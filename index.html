@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mindrink - Enjoy drinking. Stay in control.">
+    <title>Mindrink - Mindful Drinking App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="assets/mindrink_logo.png" alt="Mindrink Logo" class="logo-img">
+                <span class="logo-text">Mindrink</span>
+            </div>
+            <nav class="nav">
+                <a href="#how-it-works" class="nav-link">How it works</a>
+                <a href="#why-mindrink" class="nav-link">Why Mindrink</a>
+                <a href="mailto:hello@mindrink.me" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-headline">Enjoy drinking. Stay in control.</h1>
+                <p class="hero-subtext">
+                    Mindrink helps you maintain balance while enjoying social drinking. 
+                    Track, reflect, and make mindful choices with our intuitive app.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Get on Play Store</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Learn more</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <img src="assets/roman_balance.png" alt="Roman character enjoying balanced drinking" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="why-mindrink">
+        <div class="container">
+            <h2 class="section-title">Our Philosophy</h2>
+            <div class="philosophy-cards">
+                <div class="philosophy-card">
+                    <img src="assets/roman_enjoy.png" alt="Roman character enjoying a drink" class="philosophy-img">
+                    <h3 class="philosophy-title">Pleasure</h3>
+                    <p class="philosophy-text">
+                        Drinking can be a source of joy and connection. We believe in enjoying 
+                        the social and cultural aspects of drinking without judgment.
+                    </p>
+                </div>
+                <div class="philosophy-card">
+                    <img src="assets/roman_hangover.png" alt="Roman character reflecting on consequences" class="philosophy-img">
+                    <h3 class="philosophy-title">Consequences</h3>
+                    <p class="philosophy-text">
+                        Awareness of how drinking affects your body, mind, and relationships 
+                        empowers you to make informed decisions.
+                    </p>
+                </div>
+                <div class="philosophy-card">
+                    <img src="assets/roman_balance.png" alt="Roman character finding balance" class="philosophy-img">
+                    <h3 class="philosophy-title">Balance</h3>
+                    <p class="philosophy-text">
+                        The sweet spot is finding your personal balance—enjoying drinks while 
+                        staying true to your wellness goals and values.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Track Your Drinks</h3>
+                    <p class="feature-text">
+                        Log your drinks with ease. Simple, quick, and designed to fit into 
+                        your social moments without disruption.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">See Your Patterns</h3>
+                    <p class="feature-text">
+                        Visualize your drinking habits over time. Understand your patterns 
+                        with clear, insightful charts and summaries.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💭</div>
+                    <h3 class="feature-title">Reflect Mindfully</h3>
+                    <p class="feature-text">
+                        Take a moment to reflect on how drinking affects you. Build awareness 
+                        through gentle prompts and journaling.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Set Your Goals</h3>
+                    <p class="feature-text">
+                        Define what balance means to you. Set personal goals and track your 
+                        progress toward a healthier relationship with drinking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to find your balance?</h2>
+                <p class="cta-text">
+                    Join thousands who are building a more mindful relationship with drinking.
+                </p>
+                <a href="#" class="btn btn-primary btn-large">Get on Play Store</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    © <span id="current-year">2024</span> Mindrink. All rights reserved.
+                </p>
+                <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auto-fill current year in footer -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
