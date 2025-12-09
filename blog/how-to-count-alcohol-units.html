@@ -52,47 +52,137 @@
             <div class="feature">
                 <h2 class="feature-title">What is an alcohol unit?</h2>
                 <p class="feature-text">
-                    An alcohol unit is a standard way to measure the amount of pure alcohol in a drink. It helps you compare different types of drinks on an equal basis—whether it's a pint of beer, a glass of wine, or a shot of spirits.
+                    Mindrink uses a simple, internationally recognised definition:
+                </p>
+                <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
+                    1 unit = 10 grams of pure alcohol
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
-                    The formula is simple:
+                    This makes it easy to compare any drink—beer, wine, or spirits—on the same scale.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    To calculate units for any drink:
                 </p>
                 <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    Volume (ml) × ABV (%) ÷ 1000 = Units
+                    Units = (Volume in ml × ABV% × 0.789) ÷ 10
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    <strong>Why 0.789?</strong><br>
+                    Because ethanol weighs 0.789 g/ml, so this converts liquid volume into grams of alcohol.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    <strong>Don't worry — Mindrink does this automatically.</strong><br>
+                    But here are clear examples so you understand how drinks compare.
                 </p>
             </div>
 
             <div class="feature" style="margin-top: 32px;">
-                <h2 class="feature-title">Examples with beer, wine, and spirits</h2>
+                <h2 class="feature-title">🍺 Examples (using 1 unit = 10 g ethanol)</h2>
+                
+                <h3 class="feature-title" style="font-size: 18px; margin-top: 24px; margin-bottom: 12px;">Beer</h3>
+                <p class="feature-text">
+                    A pint (568 ml) at 5% ABV<br>
+                    = 568 × 0.05 × 0.789 ÷ 10<br>
+                    ≈ <strong>2.2 units</strong>
+                </p>
+
+                <h3 class="feature-title" style="font-size: 18px; margin-top: 24px; margin-bottom: 12px;">🍷 Wine</h3>
+                <p class="feature-text">
+                    A medium glass (175 ml) at 12% ABV<br>
+                    = 175 × 0.12 × 0.789 ÷ 10<br>
+                    ≈ <strong>1.7 units</strong>
+                </p>
+
+                <h3 class="feature-title" style="font-size: 18px; margin-top: 24px; margin-bottom: 12px;">🥃 Spirits</h3>
+                <p class="feature-text">
+                    A standard shot (25 ml) at 40% ABV<br>
+                    = 25 × 0.40 × 0.789 ÷ 10<br>
+                    ≈ <strong>0.8 units</strong>
+                </p>
+
+                <h3 class="feature-title" style="font-size: 18px; margin-top: 24px; margin-bottom: 12px;">🍸 Cocktail</h3>
+                <p class="feature-text">
+                    A margarita (150 ml) at 15% ABV (varies a lot)<br>
+                    = 150 × 0.15 × 0.789 ÷ 10<br>
+                    ≈ <strong>1.8 units</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 16px; font-style: italic;">
+                    Real cocktails often contain 2–3 shots of spirits, which means actual units can be much higher than the menu suggests.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h2 class="feature-title">🎯 Why Mindrink uses units instead of "drinks"</h2>
+                <p class="feature-text">
+                    The problem with "drinks" is that they're not standardized:
+                </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
-                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>Beer:</strong> A standard pint (568ml) at 5% ABV = 2.8 units
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        A "glass of wine" can be 125 ml, 175 ml, or 250 ml
                     </li>
-                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>Wine:</strong> A medium glass (175ml) at 12% ABV = 2.1 units
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Beer ranges from 3% to 9%+ ABV
                     </li>
-                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>Spirits:</strong> A single shot (25ml) at 40% ABV = 1 unit
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Cocktails vary by bar and recipe
                     </li>
-                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>Cocktail:</strong> A margarita (150ml) at 15% ABV = 2.25 units
+                    <li style="padding: 8px 0;">
+                        Spirits can be single, double, or poured generously
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 24px;">
-                    The key is knowing the volume and the ABV (alcohol by volume percentage). Most bottles and cans list the ABV, and standard serving sizes are usually consistent.
+                    Using units (10 g of alcohol) gives you a consistent and comparable measurement no matter what you drink.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    This helps you:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        • Understand how much alcohol you're actually consuming
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        • Compare different days, weeks, and sessions accurately
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        • Stay aware of binge thresholds and guideline ranges
+                    </li>
+                    <li style="padding: 8px 0;">
+                        • See long-term patterns more clearly
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h2 class="feature-title">📘 Want to understand Mindrink's guidance levels?</h2>
+                <p class="feature-text">
+                    Mindrink combines international public-health research (Canada, Australia, Ireland, WHO, NIAAA) and converts everything to units = 10 g for simplicity.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    👉 See our <a href="../methodology.html" class="footer-link">methodology page</a> for a full breakdown of the science and the values we derive.
                 </p>
             </div>
 
             <div class="feature" style="margin-top: 32px;">
-                <h2 class="feature-title">Why Mindrink shows units instead of only "drinks"</h2>
+                <h2 class="feature-title">A note on different unit systems around the world</h2>
                 <p class="feature-text">
-                    A "drink" can mean different things to different people. A large glass of wine isn't the same as a small one. A strong beer isn't the same as a light one. Units give you a consistent measure.
+                    Not all countries define an "alcohol unit" the same way.
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
-                    By tracking units, you get a clearer picture of your actual alcohol consumption. This awareness helps you make more informed choices, whether you're trying to stay within guidelines or just understand your patterns better.
+                    <strong>The UK uses 10 ml of pure alcohol as 1 unit</strong><br>
+                    → this equals about 8 grams of alcohol<br>
+                    → which is why UK examples like "2.1 units" for a glass of wine don't match Mindrink's numbers
                 </p>
-                <p class="feature-text" style="margin-top: 24px;">
-                    For more on how Mindrink uses units and derives guidance levels, see our <a href="../methodology.html" class="footer-link">methodology page</a>.
+                <p class="feature-text" style="margin-top: 16px;">
+                    <strong>Mindrink uses 10 grams of pure alcohol</strong><br>
+                    → this matches WHO, Australia, Ireland, and many scientific publications
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Using 10 g makes Mindrink easier to compare across countries and aligns with the most widely used international health research.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    <strong>This means:</strong><br>
+                    If you see a unit table online (especially from the UK), the values may look higher.<br>
+                    That's normal — they are using a different definition of a unit.
                 </p>
             </div>
         </div>
