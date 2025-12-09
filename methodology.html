@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="How Mindrink calculates alcohol units and derives guidance levels">
     <title>Methodology - How Mindrink Works</title>
+    <!-- Force HTTPS redirect -->
+    <script>
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
     <style>
         .methodology-table {
@@ -113,11 +119,11 @@
                     Mindrink uses a simple, internationally recognised definition:
                 </p>
                 <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
-                    1 unit = 10 grams of pure alcohol (ethanol)
+                    1 unit = 10 grams of pure alcohol
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
-                    This system is used by WHO, Australia, Ireland, and many global research publications.<br>
-                    It allows different drinks to be compared on the same scale.
+                    This system is used by WHO, Australia, Ireland, and many major research studies.<br>
+                    It allows all drinks — beer, wine, spirits, cocktails — to be compared on the same scale.
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
                     To estimate units:
@@ -125,16 +131,8 @@
                 <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
                     Units = (Volume in ml × ABV% × 0.789) ÷ 10
                 </p>
-                <ul style="list-style: none; padding: 0; margin: 16px 0;">
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>0.789</strong> is the density of ethanol in g/ml
-                    </li>
-                    <li style="padding: 8px 0;">
-                        Mindrink does this calculation automatically
-                    </li>
-                </ul>
-                <p class="feature-text" style="margin-top: 24px; margin-bottom: 8px;">
-                    <strong>Examples:</strong>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrink calculates this automatically, but here are quick examples:
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
@@ -147,48 +145,10 @@
                         <strong>Spirits</strong> (25 ml, 40%) → ~0.8 units
                     </li>
                 </ul>
-                <div style="margin-top: 32px; padding: 16px; background-color: #FEE2E2; border: 1px solid #FCA5A5; border-radius: var(--border-radius-small);">
-                    <p style="font-size: 14px; color: #991B1B; margin: 0; line-height: 1.6;">
-                        <strong>⚠️ Important note on different unit systems</strong><br><br>
-                        Different countries use different "unit" or "standard drink" definitions:
-                    </p>
-                    <table style="width: 100%; margin-top: 12px; font-size: 12px; border-collapse: collapse;">
-                        <tr style="border-bottom: 1px solid rgba(153, 27, 27, 0.2);">
-                            <td style="padding: 6px 0; font-weight: 600;">Country</td>
-                            <td style="padding: 6px 0; font-weight: 600;">Standard drink / unit</td>
-                            <td style="padding: 6px 0; font-weight: 600;">Equivalent grams</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(153, 27, 27, 0.1);">
-                            <td style="padding: 6px 0;">UK</td>
-                            <td style="padding: 6px 0;">10 ml ethanol</td>
-                            <td style="padding: 6px 0;">~8 g</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(153, 27, 27, 0.1);">
-                            <td style="padding: 6px 0;">USA</td>
-                            <td style="padding: 6px 0;">1 drink</td>
-                            <td style="padding: 6px 0;">14 g</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(153, 27, 27, 0.1);">
-                            <td style="padding: 6px 0;">Canada</td>
-                            <td style="padding: 6px 0;">1 drink</td>
-                            <td style="padding: 6px 0;">13.45 g</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(153, 27, 27, 0.1);">
-                            <td style="padding: 6px 0;">Australia / Ireland / WHO</td>
-                            <td style="padding: 6px 0;">1 drink</td>
-                            <td style="padding: 6px 0;">10 g</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 6px 0; font-weight: 600;">Mindrink</td>
-                            <td style="padding: 6px 0; font-weight: 600;">1 unit</td>
-                            <td style="padding: 6px 0; font-weight: 600;">10 g</td>
-                        </tr>
-                    </table>
-                    <p style="font-size: 14px; color: #991B1B; margin-top: 12px; margin-bottom: 0; line-height: 1.6;">
-                        Mindrink follows the 10 g system for global consistency.<br><br>
-                        If you see a UK table showing "2.1 units of wine," that's because they use 10 ml, not 10 g.
-                    </p>
-                </div>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Different countries count units differently.<br>
+                    For a deeper explanation, see our <a href="blog/how-to-count-alcohol-units.html" class="footer-link">How to Count Alcohol Units</a> guide.
+                </p>
             </div>
         </div>
     </section>
@@ -244,6 +204,7 @@
                             <th>Weekly high ≥<br>(red)</th>
                             <th>Monthly ≤<br>(≈)</th>
                             <th>Monthly high ≥<br>(≈)</th>
+                            <th>Source</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -256,6 +217,7 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">20</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
                         </tr>
                         <tr>
                             <td class="table-cell-tier">Strict</td>
@@ -266,6 +228,7 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">20</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
                         </tr>
                         <tr>
                             <td class="table-cell-tier">Balanced</td>
@@ -276,6 +239,7 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">40</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
                         </tr>
                         <tr>
                             <td class="table-cell-tier">Balanced</td>
@@ -286,6 +250,7 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">40</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
                         </tr>
                         <tr>
                             <td class="table-cell-tier">Relaxed</td>
@@ -296,6 +261,7 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">68</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
                         </tr>
                         <tr>
                             <td class="table-cell-tier">Relaxed</td>
@@ -306,13 +272,11 @@
                             <td class="table-cell-red">20</td>
                             <td class="table-cell-blue">44</td>
                             <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="small-muted" style="margin-top: 16px; text-align: center;">
-                Monthly limits are derived by multiplying weekly limits × 4.
-            </p>
         </div>
     </section>
 
