@@ -302,10 +302,11 @@ body {
 }
 
 .philosophy-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 16px;
     color: var(--text-dark);
+    line-height: 1.4;
 }
 
 .philosophy-text {
@@ -331,6 +332,10 @@ body {
     
     .philosophy-img {
         max-width: 150px;
+    }
+    
+    .philosophy-title {
+        font-size: 18px;
     }
 }
 
@@ -557,6 +562,102 @@ button:focus {
 @media (prefers-contrast: high) {
     :root {
         --text-light: #333333;
+    }
+}
+
+/* ============================================
+   About Page Styles
+   ============================================ */
+.about-page {
+    background: var(--soft-amber-bg);
+}
+
+.container.narrow {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.small-muted {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* ============================================
+   Page Title (for subpages)
+   ============================================ */
+.page-title {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+    .page-title {
+        font-size: 32px;
+    }
+}
+
+/* ============================================
+   Breadcrumbs
+   ============================================ */
+.breadcrumbs {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+    color: var(--blue-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+    color: var(--amber);
+}
+
+.breadcrumbs span {
+    margin: 0 8px;
+    color: var(--text-light);
+}
+
+/* ============================================
+   Blog List & Cards
+   ============================================ */
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.blog-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.blog-card h2 {
+    margin-bottom: 12px;
+}
+
+.blog-card p {
+    margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+    .blog-card {
+        padding: 24px;
     }
 }
 

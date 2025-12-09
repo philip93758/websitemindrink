@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple guide to understanding alcohol units">
+    <title>How to count alcohol units - Mindrink Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+                    <img src="../assets/mindrink_icon_256.png" alt="Mindrink Logo" class="logo-img">
+                    <span class="logo-text">Mindrink</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#how-it-works" class="nav-link">How it works</a>
+                <a href="../methodology.html" class="nav-link">Methodology</a>
+                <a href="../faq.html" class="nav-link">FAQ</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="philosophy" style="padding: 40px 20px 20px;">
+        <div class="container narrow">
+            <nav class="breadcrumbs">
+                <a href="../index.html" class="footer-link">Home</a>
+                <span> › </span>
+                <a href="index.html" class="footer-link">Blog</a>
+                <span> › </span>
+                <span style="color: var(--text-light);">How to count alcohol units</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="philosophy">
+        <div class="container narrow">
+            <h1 class="page-title">How to count alcohol units (without going crazy)</h1>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container narrow">
+            <div class="feature">
+                <h2 class="feature-title">What is an alcohol unit?</h2>
+                <p class="feature-text">
+                    An alcohol unit is a standard way to measure the amount of pure alcohol in a drink. It helps you compare different types of drinks on an equal basis—whether it's a pint of beer, a glass of wine, or a shot of spirits.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    The formula is simple:
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Volume (ml) × ABV (%) ÷ 1000 = Units
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h2 class="feature-title">Examples with beer, wine, and spirits</h2>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Beer:</strong> A standard pint (568ml) at 5% ABV = 2.8 units
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Wine:</strong> A medium glass (175ml) at 12% ABV = 2.1 units
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Spirits:</strong> A single shot (25ml) at 40% ABV = 1 unit
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Cocktail:</strong> A margarita (150ml) at 15% ABV = 2.25 units
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    The key is knowing the volume and the ABV (alcohol by volume percentage). Most bottles and cans list the ABV, and standard serving sizes are usually consistent.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h2 class="feature-title">Why Mindrink shows units instead of only "drinks"</h2>
+                <p class="feature-text">
+                    A "drink" can mean different things to different people. A large glass of wine isn't the same as a small one. A strong beer isn't the same as a light one. Units give you a consistent measure.
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    By tracking units, you get a clearer picture of your actual alcohol consumption. This awareness helps you make more informed choices, whether you're trying to stay within guidelines or just understand your patterns better.
+                </p>
+                <p class="feature-text" style="margin-top: 24px;">
+                    For more on how Mindrink uses units and derives guidance levels, see our <a href="../methodology.html" class="footer-link">methodology page</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    © <span id="current-year">2024</span> Mindrink. All rights reserved.
+                </p>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <a href="../index.html" class="footer-link">Home</a>
+                    <a href="index.html" class="footer-link">Blog</a>
+                    <a href="../about.html" class="footer-link">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auto-fill current year in footer -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
