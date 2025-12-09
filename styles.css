@@ -447,6 +447,50 @@ body {
 }
 
 /* ============================================
+   Contact Strip
+   ============================================ */
+.contact-strip {
+    padding: 40px 20px;
+    background-color: var(--white);
+    border-top: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.contact-strip-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-strip-text {
+    font-size: 18px;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.contact-strip-email {
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.contact-strip-email:hover {
+    color: var(--amber);
+    text-decoration: underline;
+}
+
+/* Mobile contact strip adjustments */
+@media (max-width: 767px) {
+    .contact-strip {
+        padding: 32px 20px;
+    }
+    
+    .contact-strip-text {
+        font-size: 16px;
+    }
+}
+
+/* ============================================
    Footer
    ============================================ */
 .footer {
