@@ -110,6 +110,8 @@ body {
     cursor: pointer;
     padding: 0;
     z-index: 1002;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .menu-toggle span {
@@ -117,11 +119,14 @@ body {
     height: 3px;
     background-color: var(--text-dark);
     border-radius: 3px;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    -webkit-transform-origin: center;
     transform-origin: center;
 }
 
 .menu-toggle.active span:nth-child(1) {
+    -webkit-transform: rotate(45deg) translate(8px, 8px);
     transform: rotate(45deg) translate(8px, 8px);
 }
 
@@ -130,6 +135,7 @@ body {
 }
 
 .menu-toggle.active span:nth-child(3) {
+    -webkit-transform: rotate(-45deg) translate(8px, -8px);
     transform: rotate(-45deg) translate(8px, -8px);
 }
 
@@ -157,16 +163,21 @@ body {
         flex-direction: column;
         padding: 20px;
         box-shadow: var(--shadow-medium);
+        -webkit-transform: translateY(-100%);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
+        -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
         z-index: 1001;
         gap: 0;
         border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
     
     .nav.active {
+        -webkit-transform: translateY(0);
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
