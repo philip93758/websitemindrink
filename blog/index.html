@@ -7,6 +7,10 @@
     <meta name="keywords" content="mindful drinking blog, alcohol awareness articles, moderation tips, drinking habits, responsible drinking">
     <meta name="robots" content="index, follow">
     <title>Blog - Mindful Drinking Articles & Tips | Mindrink</title>
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://mindrink.me">
+    <link rel="dns-prefetch" href="https://mindrink.me">
+    <link rel="preload" href="../styles.css" as="style">
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="256x256" href="../assets/favicons/favicon-256x256.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicons/favicon-512x512.png">
@@ -51,13 +55,13 @@
       }
     }
     </script>
+    <link rel="stylesheet" href="../styles.css">
     <!-- Force HTTPS redirect -->
-    <script>
+    <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
         }
     </script>
-    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <!-- Sticky Header -->
@@ -65,10 +69,15 @@
         <div class="header-container">
             <div class="logo-section">
                 <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
-                    <img src="../assets/mindrink_icon_256.png" alt="Mindrink Logo" class="logo-img">
+                    <img src="../assets/mindrink_icon_256.png" alt="Mindrink Logo" class="logo-img" width="32" height="32">
                     <span class="logo-text">Mindrink</span>
                 </a>
             </div>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav class="nav">
                 <a href="../index.html#why-mindrink" class="nav-link">Why Mindrink</a>
                 <a href="../index.html#how-it-works" class="nav-link">How it works</a>
@@ -79,12 +88,13 @@
         </div>
     </header>
 
+    <main>
     <!-- Intro Section -->
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="page-title">Mindrink articles</h1>
             <p style="font-size: 18px; color: var(--text-light); line-height: 1.7; text-align: center; max-width: 700px; margin: 0 auto 48px;">
-                Short pieces on alcohol, habits and balance.
+                Short pieces on alcohol, habits and balance. Learn more about <a href="../index.html#how-it-works" class="footer-link">how Mindrink works</a> or check our <a href="../methodology.html" class="footer-link">methodology</a> for the science behind our calculations.
             </p>
         </div>
     </section>
@@ -115,6 +125,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -132,8 +143,42 @@
     </footer>
 
     <!-- Auto-fill current year in footer -->
-    <script>
+    <script defer>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <!-- Mobile menu toggle -->
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    const isActive = nav.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                });
+                
+                // Close menu when clicking a link
+                const navLinks = nav.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                
+                // Close menu when clicking outside (only if menu is open)
+                document.addEventListener('click', function(event) {
+                    if (nav.classList.contains('active') && !event.target.closest('.header-container')) {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        })();
     </script>
 </body>
 </html>
