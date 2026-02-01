@@ -699,8 +699,12 @@ body.article-page .feature:hover {
     box-shadow: none;
 }
 
-/* Option E: Blog articles - accent + typography (excludes methodology) */
-body.article-page:not(.methodology-page) main .how-it-works .container.narrow {
+/* Blog article structure (all 10 posts): body.article-page, main > section.philosophy (breadcrumb + title),
+   section.how-it-works > .container.narrow > .feature(s). Left accent bar on .container.narrow and > .feature.
+   CTA ribbon only on best-alcohol-tracking-apps.html (10th post). */
+/* Option E: Blog articles - orange accent + typography (excludes methodology) */
+body.article-page:not(.methodology-page) main .how-it-works .container.narrow,
+body.article-page:not(.methodology-page) main .how-it-works > .feature {
     padding-left: 24px;
     border-left: 4px solid var(--amber);
 }
@@ -734,7 +738,8 @@ body.article-page:not(.methodology-page) .feature + .feature {
     border-top: 1px solid rgba(26, 26, 26, 0.08);
 }
 @media (max-width: 767px) {
-    body.article-page:not(.methodology-page) main .how-it-works .container.narrow {
+    body.article-page:not(.methodology-page) main .how-it-works .container.narrow,
+    body.article-page:not(.methodology-page) main .how-it-works > .feature {
         padding-left: 16px;
         border-left-width: 3px;
     }
