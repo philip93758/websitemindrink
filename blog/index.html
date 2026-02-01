@@ -10,11 +10,11 @@
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://mindrink.me">
     <link rel="dns-prefetch" href="https://mindrink.me">
-    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="/styles.css" as="style">
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="256x256" href="../assets/favicons/favicon-256x256.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicons/favicon-512x512.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/assets/favicons/apple-touch-icon.png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/blog/">
@@ -55,7 +55,7 @@
       }
     }
     </script>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <!-- Force HTTPS redirect -->
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
@@ -68,8 +68,8 @@
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
-                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
-                    <img src="../assets/mindrink_icon_256.png" alt="Mindrink Logo" class="logo-img" width="32" height="32">
+                <a href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+                    <img src="/assets/mindrink_icon_256.png" alt="Mindrink Logo" class="logo-img" width="32" height="32">
                     <span class="logo-text">Mindrink</span>
                 </a>
             </div>
@@ -79,11 +79,11 @@
                 <span></span>
             </button>
             <nav class="nav">
-                <a href="../index.html#why-mindrink" class="nav-link">Why Mindrink</a>
-                <a href="../index.html#how-it-works" class="nav-link">How it works</a>
-                <a href="../methodology.html" class="nav-link">Methodology</a>
+                <a href="/#why-mindrink" class="nav-link">Why Mindrink</a>
+                <a href="/#how-it-works" class="nav-link">How it works</a>
+                <a href="/methodology.html" class="nav-link">Methodology</a>
                 <a href="/blog/" class="nav-link">Blog</a>
-                <a href="../about.html" class="nav-link">About</a>
+                <a href="/about.html" class="nav-link">About</a>
             </nav>
         </div>
     </header>
@@ -94,33 +94,113 @@
         <div class="container narrow">
             <h1 class="page-title">Mindrink articles</h1>
             <p style="font-size: 18px; color: var(--text-light); line-height: 1.7; text-align: center; max-width: 700px; margin: 0 auto 48px;">
-                Short pieces on alcohol, habits and balance. Learn more about <a href="../index.html#how-it-works" class="footer-link">how Mindrink works</a> or check our <a href="../methodology.html" class="footer-link">methodology</a> for the science behind our calculations.
+                Short pieces on alcohol, habits and balance. Learn more about <a href="/#how-it-works" class="footer-link">how Mindrink works</a> or check our <a href="/methodology.html" class="footer-link">methodology</a> for the science behind our calculations.
             </p>
         </div>
     </section>
 
-    <!-- Blog List -->
+    <!-- Blog List (ordered per SEO structure: anchor → how much → light self-checks → patterns → tracking) -->
     <section class="how-it-works">
         <div class="container narrow">
             <div class="blog-list">
                 <article class="blog-card">
                     <h2 class="feature-title">
-                        <a href="how-to-count-alcohol-units.html" class="footer-link" style="font-size: 22px;">How to count alcohol units (without going crazy)</a>
+                        <a href="/blog/how-much-alcohol-is-too-much-weekly-consumption.html" class="footer-link" style="font-size: 22px;">How much alcohol is too much? Understanding weekly consumption</a>
                     </h2>
                     <p class="feature-text">
-                        A simple guide to understanding alcohol units, with examples for beer, wine, and spirits. Learn how Mindrink calculates units and why it matters for awareness.
+                        Explains how alcohol guidelines work and why "too much" depends on patterns, context, and individual differences.
                     </p>
-                    <a href="how-to-count-alcohol-units.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                    <a href="/blog/how-much-alcohol-is-too-much-weekly-consumption.html" class="footer-link" style="font-weight: 600;">Read more →</a>
                 </article>
 
                 <article class="blog-card">
                     <h2 class="feature-title">
-                        <a href="why-tracking-your-drinking-helps.html" class="footer-link" style="font-size: 22px;">Why tracking your drinking helps (even if you're not 'a heavy drinker')</a>
+                        <a href="/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link" style="font-size: 22px;">What counts as a drink? Understanding alcohol units and standard drinks</a>
+                    </h2>
+                    <p class="feature-text">
+                        A simple guide to understanding alcohol units, with examples for beer, wine, and spirits. Learn how Mindrink calculates units and why it matters for awareness.
+                    </p>
+                    <a href="/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/how-alcohol-guidelines-are-created.html" class="footer-link" style="font-size: 22px;">How alcohol guidelines are created (and why they differ by country)</a>
+                    </h2>
+                    <p class="feature-text">
+                        Explains where alcohol guidelines come from and why different countries recommend different limits.
+                    </p>
+                    <a href="/blog/how-alcohol-guidelines-are-created.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/am-i-drinking-too-much-without-judgment.html" class="footer-link" style="font-size: 22px;">Am I drinking too much? How to reflect on your habits without judgment</a>
                     </h2>
                     <p class="feature-text">
                         Awareness vs guilt, small adjustments, and the long-term benefits of tracking. Why even moderate drinkers benefit from understanding their patterns.
                     </p>
-                    <a href="why-tracking-your-drinking-helps.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                    <a href="/blog/am-i-drinking-too-much-without-judgment.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/should-i-worry-about-my-drinking-if-i-feel-fine.html" class="footer-link" style="font-size: 22px;">Should I worry about my drinking if I feel fine?</a>
+                    </h2>
+                    <p class="feature-text">
+                        Explores why many people question their drinking habits even when nothing feels "wrong".
+                    </p>
+                    <a href="/blog/should-i-worry-about-my-drinking-if-i-feel-fine.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/why-weekly-drinking-patterns-matter.html" class="footer-link" style="font-size: 22px;">Why weekly drinking patterns matter more than single drinking days</a>
+                    </h2>
+                    <p class="feature-text">
+                        Explains why looking at patterns over time gives more insight than focusing on individual days.
+                    </p>
+                    <a href="/blog/why-weekly-drinking-patterns-matter.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/daily-vs-weekly-drinking-habits.html" class="footer-link" style="font-size: 22px;">Daily vs weekly drinking: what actually matters when understanding habits</a>
+                    </h2>
+                    <p class="feature-text">
+                        Breaks down the difference between daily frequency and weekly totals when reflecting on alcohol use.
+                    </p>
+                    <a href="/blog/daily-vs-weekly-drinking-habits.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/occasional-vs-regular-drinking.html" class="footer-link" style="font-size: 22px;">Occasional heavy drinking vs regular drinking: what's the difference?</a>
+                    </h2>
+                    <p class="feature-text">
+                        Looks at different drinking patterns and why they feel different, without labeling them as good or bad.
+                    </p>
+                    <a href="/blog/occasional-vs-regular-drinking.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/how-to-track-alcohol-consumption-without-rules.html" class="footer-link" style="font-size: 22px;">How to track alcohol consumption (without turning it into a rulebook)</a>
+                    </h2>
+                    <p class="feature-text">
+                        Introduces alcohol tracking as a way to gain clarity rather than impose rules or restrictions.
+                    </p>
+                    <a href="/blog/how-to-track-alcohol-consumption-without-rules.html" class="footer-link" style="font-weight: 600;">Read more →</a>
+                </article>
+
+                <article class="blog-card">
+                    <h2 class="feature-title">
+                        <a href="/blog/best-alcohol-tracking-apps.html" class="footer-link" style="font-size: 22px;">Best alcohol tracking apps: what to look for (and why simplicity matters)</a>
+                    </h2>
+                    <p class="feature-text">
+                        Compares different alcohol tracking approaches and explains what actually helps over time.
+                    </p>
+                    <a href="/blog/best-alcohol-tracking-apps.html" class="footer-link" style="font-weight: 600;">Read more →</a>
                 </article>
             </div>
         </div>
@@ -135,8 +215,8 @@
                     © <span id="current-year">2024</span> Mindrink. All rights reserved.
                 </p>
                 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                    <a href="../index.html" class="footer-link">Home</a>
-                    <a href="../about.html" class="footer-link">About</a>
+                    <a href="/" class="footer-link">Home</a>
+                    <a href="/about.html" class="footer-link">About</a>
                     <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">Feedback</a>
                 </div>
             </div>
