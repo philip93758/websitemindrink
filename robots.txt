@@ -1,3 +1,4 @@
+# Mindrink robots.txt - last updated 2026
 User-agent: *
 Allow: /
 
