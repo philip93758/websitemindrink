@@ -690,15 +690,127 @@ body.article-page .feature:hover {
     box-shadow: none;
 }
 
-/* Methodology page - center-aligned content */
-body.methodology-page main .container.narrow,
-body.methodology-page main .feature {
-    text-align: center;
+/* Option E: Blog articles - accent + typography (excludes methodology) */
+body.article-page:not(.methodology-page) main .how-it-works .container.narrow {
+    padding-left: 24px;
+    border-left: 4px solid var(--amber);
 }
-body.methodology-page main .feature ul,
-body.methodology-page main .feature ol {
-    display: inline-block;
+body.article-page:not(.methodology-page) .feature-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    margin-top: 0;
+    letter-spacing: -0.02em;
+}
+body.article-page:not(.methodology-page) .feature h3.feature-title {
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+body.article-page:not(.methodology-page) .feature-text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-dark);
+}
+body.article-page:not(.methodology-page) .feature {
+    margin-bottom: 40px;
+}
+body.article-page:not(.methodology-page) .feature:last-child {
+    margin-bottom: 0;
+}
+body.article-page:not(.methodology-page) .feature + .feature {
+    padding-top: 36px;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+}
+@media (max-width: 767px) {
+    body.article-page:not(.methodology-page) main .how-it-works .container.narrow {
+        padding-left: 16px;
+        border-left-width: 3px;
+    }
+}
+
+/* Methodology page - intro title area: full strip like blog (no frame) */
+body.methodology-page main .philosophy:first-of-type {
+    background-color: var(--white);
+    padding: 80px 20px;
+}
+body.methodology-page main .philosophy:first-of-type .container.narrow {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* Methodology page - frames (cards) around content + left-aligned */
+body.methodology-page main .container.narrow {
+    background-color: var(--white);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--border-radius);
+    padding: 32px 36px;
     text-align: left;
+}
+body.methodology-page main .container.narrow .feature {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+body.methodology-page main .feature-text strong {
+    color: var(--text-dark);
+}
+body.methodology-page main .section-title {
+    text-align: left;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+body.methodology-page main .feature-title,
+body.methodology-page main h3.feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+@media (max-width: 767px) {
+    body.methodology-page main .section-title {
+        font-size: 26px;
+    }
+    body.methodology-page main .feature-title,
+    body.methodology-page main h3.feature-title {
+        font-size: 17px;
+    }
+}
+
+/* Methodology: no inner frame/box on key formulas - use left accent instead */
+body.methodology-page main p[style*="soft-amber-bg"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border-left: 4px solid var(--amber);
+    padding-left: 16px;
+}
+
+/* Section 1 desktop padding (was inline 80px 48px) */
+body.methodology-page main .how-it-works:first-of-type {
+    padding: 80px 48px;
+}
+
+/* Mobile: frames touch edges = full-width strips */
+@media (max-width: 767px) {
+    body.methodology-page main .philosophy:first-of-type {
+        padding: 60px 20px;
+    }
+    body.methodology-page main .philosophy:not(:first-of-type),
+    body.methodology-page main .how-it-works {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    body.methodology-page main .philosophy:not(:first-of-type) .container.narrow,
+    body.methodology-page main .how-it-works .container.narrow {
+        border-radius: 0;
+        padding: 20px;
+    }
 }
 
 .small-muted {
