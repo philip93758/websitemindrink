@@ -655,6 +655,52 @@ button:focus {
     margin: 0 auto;
 }
 
+/* Article/content pages - remove white box, unified background */
+body.article-page main .philosophy,
+body.article-page main .how-it-works {
+    background-color: var(--soft-amber-bg);
+}
+
+/* Article pages - tighter spacing between title and content */
+body.article-page main .philosophy {
+    padding-top: 24px;
+    padding-bottom: 12px;
+}
+body.article-page main .how-it-works {
+    padding-top: 12px;
+    padding-bottom: 80px;
+}
+
+/* Article content - slightly wider than narrow (720px → 900px) */
+body.article-page .container.narrow {
+    max-width: 900px;
+}
+
+/* Article content - plain, no white frame or hover effect */
+body.article-page .feature {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    transform: none;
+    transition: none;
+    padding: 0;
+}
+body.article-page .feature:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Methodology page - center-aligned content */
+body.methodology-page main .container.narrow,
+body.methodology-page main .feature {
+    text-align: center;
+}
+body.methodology-page main .feature ul,
+body.methodology-page main .feature ol {
+    display: inline-block;
+    text-align: left;
+}
+
 .small-muted {
     font-size: 0.9rem;
     color: var(--text-light);
@@ -668,9 +714,13 @@ button:focus {
     font-size: 42px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--text-dark);
     line-height: 1.2;
+}
+
+body.article-page .page-title {
+    margin-bottom: 12px;
 }
 
 @media (max-width: 767px) {
