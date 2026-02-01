@@ -657,22 +657,31 @@ button:focus {
 
 /* Article/content pages - remove white box, unified background */
 body.article-page main .philosophy,
-body.article-page main .how-it-works {
+body.article-page main .how-it-works,
+body.about-page main .philosophy,
+body.about-page main .how-it-works,
+body.blog-index-page main .how-it-works {
     background-color: var(--soft-amber-bg);
 }
 
 /* Article pages - tighter spacing between title and content */
-body.article-page main .philosophy {
+body.article-page main .philosophy,
+body.about-page main .philosophy,
+body.blog-index-page main .philosophy {
     padding-top: 24px;
     padding-bottom: 12px;
 }
-body.article-page main .how-it-works {
+body.article-page main .how-it-works,
+body.about-page main .how-it-works,
+body.blog-index-page main .how-it-works {
     padding-top: 12px;
     padding-bottom: 80px;
 }
 
 /* Article content - slightly wider than narrow (720px → 900px) */
-body.article-page .container.narrow {
+body.article-page .container.narrow,
+body.about-page .container.narrow,
+body.blog-index-page .container.narrow {
     max-width: 900px;
 }
 
@@ -731,32 +740,39 @@ body.article-page:not(.methodology-page) .feature + .feature {
     }
 }
 
-/* Methodology page - intro title area: full strip like blog (no frame) */
-body.methodology-page main .philosophy:first-of-type {
+/* Methodology, About & Blog index pages - intro title area: full strip (no frame) */
+body.methodology-page main .philosophy:first-of-type,
+body.about-page main .philosophy:first-of-type,
+body.blog-index-page main .philosophy:first-of-type {
     background-color: var(--white);
     padding: 80px 20px;
 }
-body.methodology-page main .philosophy:first-of-type .container.narrow {
+body.methodology-page main .philosophy:first-of-type .container.narrow,
+body.about-page main .philosophy:first-of-type .container.narrow,
+body.blog-index-page main .philosophy:first-of-type .container.narrow {
     background-color: transparent;
     box-shadow: none;
     border-radius: 0;
     padding: 0;
 }
 
-/* Methodology page - frames (cards) around content + left-aligned */
-body.methodology-page main .container.narrow {
+/* Methodology & About pages - frames (cards) around content */
+body.methodology-page main .container.narrow,
+body.about-page main .container.narrow {
     background-color: var(--white);
     box-shadow: var(--shadow-soft);
     border-radius: var(--border-radius);
     padding: 32px 36px;
     text-align: left;
 }
-body.methodology-page main .container.narrow .feature {
+body.methodology-page main .container.narrow .feature,
+body.about-page main .container.narrow .feature {
     background-color: transparent;
     box-shadow: none;
     padding: 0;
 }
-body.methodology-page main .feature-text strong {
+body.methodology-page main .feature-text strong,
+body.about-page main .feature-text strong {
     color: var(--text-dark);
 }
 body.methodology-page main .section-title {
@@ -765,19 +781,35 @@ body.methodology-page main .section-title {
     font-weight: 700;
     margin-bottom: 28px;
 }
+body.about-page main .section-title,
+body.blog-index-page main .section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
 body.methodology-page main .feature-title,
-body.methodology-page main h3.feature-title {
+body.methodology-page main h3.feature-title,
+body.about-page main .feature-title,
+body.about-page main h3.feature-title,
+body.blog-index-page main .feature-title,
+body.blog-index-page main h2.feature-title {
     font-size: 18px;
     font-weight: 600;
     margin-top: 24px;
     margin-bottom: 10px;
 }
 @media (max-width: 767px) {
-    body.methodology-page main .section-title {
+    body.methodology-page main .section-title,
+    body.about-page main .section-title {
         font-size: 26px;
     }
     body.methodology-page main .feature-title,
-    body.methodology-page main h3.feature-title {
+    body.methodology-page main h3.feature-title,
+    body.about-page main .feature-title,
+    body.about-page main h3.feature-title,
+    body.blog-index-page main .feature-title,
+    body.blog-index-page main h2.feature-title {
         font-size: 17px;
     }
 }
@@ -796,20 +828,66 @@ body.methodology-page main .how-it-works:first-of-type {
     padding: 80px 48px;
 }
 
+/* Blog index: each card is its own frame, separated by amber background */
+body.blog-index-page main .how-it-works .container.narrow {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+body.blog-index-page main .blog-list {
+    gap: 24px;
+}
+body.blog-index-page main .blog-card {
+    background-color: var(--white);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--border-radius);
+    padding: 28px 32px;
+    border-bottom: none;
+}
+body.blog-index-page main .blog-card:hover {
+    box-shadow: var(--shadow-medium);
+}
+
 /* Mobile: frames touch edges = full-width strips */
 @media (max-width: 767px) {
-    body.methodology-page main .philosophy:first-of-type {
+    body.methodology-page main .philosophy:first-of-type,
+    body.about-page main .philosophy:first-of-type,
+    body.blog-index-page main .philosophy:first-of-type {
         padding: 60px 20px;
     }
     body.methodology-page main .philosophy:not(:first-of-type),
-    body.methodology-page main .how-it-works {
-        padding-left: 0;
-        padding-right: 0;
+    body.methodology-page main .how-it-works,
+    body.about-page main .philosophy:not(:first-of-type),
+    body.about-page main .how-it-works,
+    body.blog-index-page main .how-it-works {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.methodology-page main .philosophy:not(:first-of-type) .container.narrow,
-    body.methodology-page main .how-it-works .container.narrow {
+    body.methodology-page main .how-it-works .container.narrow,
+    body.about-page main .philosophy:not(:first-of-type) .container.narrow,
+    body.about-page main .how-it-works .container.narrow {
         border-radius: 0;
         padding: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+    body.blog-index-page main .how-it-works .container.narrow {
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        max-width: none;
+    }
+    body.blog-index-page main .blog-card {
+        border-radius: 0;
+        padding: 24px 20px;
     }
 }
 
