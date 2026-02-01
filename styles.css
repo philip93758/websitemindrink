@@ -854,6 +854,54 @@ body.blog-index-page main .blog-card:hover {
     box-shadow: var(--shadow-medium);
 }
 
+/* Best apps article - methodology-style frames (each app in its own card) */
+body.best-apps-page main .how-it-works,
+body.best-apps-page main .philosophy {
+    background-color: var(--soft-amber-bg);
+}
+body.best-apps-page main .best-apps-frame {
+    padding: 24px 48px 48px;
+}
+body.best-apps-page main .best-apps-frame .container.narrow {
+    background-color: var(--white);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--border-radius);
+    padding: 32px 36px;
+}
+body.best-apps-page main .best-apps-frame .container.narrow .feature {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+/* Remove orange accent from app frames (they use white cards instead) */
+body.best-apps-page main .best-apps-frame .container.narrow,
+body.best-apps-page main .best-apps-frame .container.narrow .feature {
+    border-left: none !important;
+}
+body.best-apps-page main .best-apps-frame .container.narrow {
+    padding-left: 36px;
+}
+body.best-apps-page main .best-apps-frame .container.narrow .feature {
+    padding-left: 0;
+}
+body.best-apps-page main .best-apps-frame .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+body.best-apps-page main .cta {
+    margin-top: 48px;
+}
+@media (max-width: 767px) {
+    body.best-apps-page main .best-apps-frame {
+        padding: 16px 0 32px;
+    }
+    body.best-apps-page main .best-apps-frame .container.narrow {
+        border-radius: 0;
+        padding: 24px 20px;
+    }
+}
+
 /* Mobile: frames touch edges = full-width strips */
 @media (max-width: 767px) {
     body.methodology-page main .philosophy:first-of-type,
