@@ -263,4 +263,13 @@
                 
                 document.addEventListener('click', function(event) {
                     if (nav.classList.contains('active') && !event.target.closest('.header-container')) {
-                        nav.classList.remove('activ
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
