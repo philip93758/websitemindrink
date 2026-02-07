@@ -62,6 +62,78 @@ body {
     align-items: center;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-dropdown {
+    position: relative;
+    margin-left: 8px;
+}
+
+.language-toggle {
+    list-style: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 6px 10px;
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    border-radius: 999px;
+    background-color: var(--white);
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.language-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.language-toggle::after {
+    content: "▾";
+    margin-left: 6px;
+    font-size: 11px;
+}
+
+.language-dropdown[open] .language-toggle {
+    border-color: var(--amber);
+    color: var(--amber);
+}
+
+.language-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background-color: var(--white);
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow-medium);
+    padding: 8px 0;
+    min-width: 160px;
+    z-index: 1003;
+}
+
+.language-option {
+    display: block;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.language-option:hover {
+    background-color: var(--soft-amber-bg);
+    color: var(--amber);
+}
+
+.language-option.is-active {
+    color: var(--amber);
+    font-weight: 600;
+}
+
 .logo-section {
     display: flex;
     align-items: center;
@@ -192,6 +264,26 @@ body {
     
     .nav-link:last-child {
         border-bottom: none;
+    }
+
+    .language-dropdown {
+        width: 100%;
+        margin: 12px 0 0;
+    }
+
+    .language-toggle {
+        width: 100%;
+        text-align: left;
+        border-radius: var(--border-radius-small);
+        padding: 10px 12px;
+    }
+
+    .language-menu {
+        position: static;
+        margin-top: 8px;
+        box-shadow: none;
+        border-radius: var(--border-radius-small);
+        border: 1px solid rgba(26, 26, 26, 0.08);
     }
 }
 
