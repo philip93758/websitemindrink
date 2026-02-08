@@ -66,6 +66,60 @@
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
         }
     </script>
+    <style>
+        .methodology-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(26, 26, 26, 0.15);
+        }
+        .methodology-table thead {
+            background-color: var(--navy-outline);
+        }
+        .methodology-table th {
+            padding: 12px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        .methodology-table td {
+            padding: 10px 8px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .methodology-table tbody tr:nth-child(even) {
+            background-color: var(--soft-amber-bg);
+        }
+        .table-cell-blue {
+            color: #3A86FF;
+            font-weight: 600;
+        }
+        .table-cell-red {
+            color: #DC2626;
+            font-weight: 600;
+        }
+        .table-cell-tier {
+            font-weight: 600;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .source-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--soft-amber-bg);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-left: 8px;
+        }
+    </style>
 </head>
 <body class="article-page methodology-page">
     <!-- Sticky Header -->
@@ -105,56 +159,875 @@
     </header>
 
     <main>
-    <!-- Intro Section -->
+    <!-- Hero/Intro Section -->
     <section class="philosophy">
         <div class="container narrow">
-            <h1 class="page-title">⭐ Metodologi Mindrink: cara kami mendefinisikan batas, unit, dan tingkat risiko</h1>
+            <h1 class="page-title">⭐ Metodologi Mindrink: Bagaimana Kami Mendefinisikan Batas Alkohol, Unit, dan Tingkat Risiko</h1>
             <p class="feature-text" style="text-align: center; margin-top: 24px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Halaman ini menjelaskan secara jelas bagaimana Mindrink menghitung unit alkohol, bagaimana kami menetapkan batas, rekomendasi internasional apa yang kami gunakan, dan bagian mana dari model kami yang diturunkan.<br>
-                Tujuan kami adalah transparansi: Anda harus selalu tahu dari mana angka berasal dan apa artinya dalam kehidupan nyata.
+                Halaman ini menjelaskan secara tepat bagaimana Mindrink menghitung unit alkohol, bagaimana kami mendefinisikan batas, pedoman internasional mana yang kami andalkan, dan bagian mana dari model kami yang diturunkan.<br>
+                Tujuan kami adalah transparansi: Anda harus selalu tahu dari mana angka-angka berasal dan apa artinya untuk kehidupan nyata.
             </p>
         </div>
     </section>
 
-    <section class="how-it-works">
+    <!-- 1. What is an alcohol unit -->
+    <section class="how-it-works methodology-frame-section">
         <div class="container narrow">
             <h2 class="section-title">1. Apa itu unit alkohol?</h2>
             <div class="feature">
-                <p class="feature-text">Mindrink menggunakan definisi sederhana yang diakui secara internasional:</p>
-                <p class="feature-text">1 unit = 10 gram alkohol murni.</p>
-                <p class="feature-text">Sistem ini digunakan oleh WHO, Australia, Irlandia, dan banyak studi. Ini memungkinkan bir, anggur, spirit, dan koktail dibandingkan pada skala yang sama.</p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrink menggunakan definisi sederhana yang diakui secara internasional:
+                </p>
+                <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
+                    1 unit = 10 gram alkohol murni
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Sistem ini digunakan oleh WHO, Australia, Irlandia, dan banyak penelitian utama.<br>
+                    Ini memungkinkan semua minuman — bir, anggur, spirit, koktail — untuk dibandingkan pada skala yang sama.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    Untuk memperkirakan unit:
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Unit = (Volume dalam ml × ABV% × 0.789) ÷ 10
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrink menghitung ini secara otomatis, tetapi berikut adalah contoh cepat:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Bir</strong> (568 ml, 5%) → ~2.2 unit
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Anggur</strong> (175 ml, 12%) → ~1.7 unit
+                    </li>
+                    <li style="padding: 8px 0;">
+                        <strong>Spirit</strong> (25 ml, 40%) → ~0.8 unit
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Berbagai negara menghitung unit secara berbeda.<br>
+                    Untuk penjelasan lebih mendalam, lihat panduan kami <a href="/id/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link">Apa yang dihitung sebagai minuman</a>.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="philosophy">
+    <!-- 2. Meaning of the colours -->
+    <section class="philosophy methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">2. Batas harian dan mingguan</h2>
+            <h2 class="section-title">2. Arti warna-warna</h2>
             <div class="feature">
-                <p class="feature-text">Batas di Mindrink didasarkan pada rekomendasi kesehatan publik internasional.</p>
-                <p class="feature-text">Ini adalah acuan, bukan resep pribadi.</p>
-                <p class="feature-text">Tubuh, kebiasaan, dan konteks Anda selalu berperan.</p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrink menggunakan warna untuk membantu Anda dengan cepat menafsirkan pola minum Anda:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 Biru — Dalam pedoman</strong><br>
+                        Anda berada dalam batas yang dipilih (Strict, Balanced, Relaxed).
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 Ungu — Di atas pedoman, tetapi bukan risiko tinggi</strong><br>
+                        Anda melebihi pedoman harian atau mingguan Anda,<br>
+                        tetapi belum mencapai tingkat binge atau minggu tinggi.
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 Merah — Risiko tinggi</strong><br>
+                        Binge drinking yang berbahaya bagi kesehatan
+                    </li>
+                </ul>
+                <p class="small-muted" style="margin-top: 24px;">
+                    Warna adalah lapisan interpretasi sederhana — bukan diagnosis medis.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works">
+    <!-- 3. Full table of limits -->
+    <section class="how-it-works methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">3. Tren dan perhitungan</h2>
-            <div class="feature">
-                <p class="feature-text">Mindrink berfokus pada tren dari waktu ke waktu, bukan pada hari-hari terpisah.</p>
-                <p class="feature-text">Ini meratakan variasi sesaat dan menonjolkan pola.</p>
-                <p class="feature-text">Perhitungannya dirancang sederhana, transparan, dan mudah dipahami.</p>
+            <h2 class="section-title">3. Tabel lengkap batas</h2>
+            <p class="feature-text" style="text-align: center; margin-bottom: 24px;">
+                (Semua nilai dalam unit; 1 unit = 10 g)
+            </p>
+            <div class="table-wrapper">
+                <table class="methodology-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Harian ≤<br>(biru)</th>
+                            <th>Binge harian ≥<br>(merah)</th>
+                            <th>Mingguan ≤<br>(biru)</th>
+                            <th>Mingguan tinggi ≥<br>(merah)</th>
+                            <th>Bulanan ≤<br>(≈)</th>
+                            <th>Bulanan tinggi ≥<br>(≈)</th>
+                            <th>Sumber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-cell-tier">Strict</td>
+                            <td>Pria</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Strict</td>
+                            <td>Wanita</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Balanced</td>
+                            <td>Pria</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Balanced</td>
+                            <td>Wanita</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Relaxed</td>
+                            <td>Pria</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">17</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">68</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Relaxed</td>
+                            <td>Wanita</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">11</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">44</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <section class="philosophy">
+    <!-- 4. Official Public-Health Sources We Use -->
+    <section class="philosophy methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">4. Apa itu Mindrink — dan apa yang bukan</h2>
+            <h2 class="section-title">4. Sumber Kesehatan Masyarakat Resmi yang Kami Gunakan</h2>
+            
             <div class="feature">
-                <p class="feature-text">Mindrink adalah alat refleksi dan kesadaran diri.</p>
-                <p class="feature-text">Bukan saran medis dan tidak menggantikan pendampingan profesional.</p>
+                <h3 class="feature-title">A. Nilai yang Diambil Langsung dari Sumber Kesehatan Masyarakat Resmi</h3>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Ini adalah komponen pedoman yang digunakan Mindrink persis seperti yang diterbitkan, dengan satu langkah harmonisasi:<br>
+                    semuanya dikonversi menjadi unit Mindrink = 10 g etanol sehingga sistem nasional yang berbeda dapat dibandingkan secara langsung.
+                </p>
+                <p class="feature-text">
+                    Di bawah ini adalah nilai asli, konversi logis, dan mengapa setiap sumber menjadi bagian dari model Mindrink.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. Tingkat Strict — Kanada (CCSA 2023)</h3>
+                <p class="feature-text">
+                    <strong>Sumber:</strong> Canadian Centre on Substance Use and Addiction (2023)
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Kanada tidak menyajikan satu "batas aman".<br>
+                    Sebaliknya, ini mendefinisikan pita risiko berdasarkan pemodelan beban penyakit:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0–2 minuman/minggu → Risiko rendah
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        3–6 minuman/minggu → Risiko sedang
+                    </li>
+                    <li style="padding: 8px 0;">
+                        7+ minuman/minggu → Risiko tinggi yang meningkat
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Kanada mendefinisikan minuman standar sebagai:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    13.45 g etanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Konversi ke unit Mindrink</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Pita risiko rendah (0–2 minuman/minggu):<br>
+                    2 × 13.45 g = 26.9 g → 2.7 unit
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Pita risiko sedang (3–6 minuman/minggu):<br>
+                    3 minuman = 40.35 g → 4.0 unit<br>
+                    6 minuman = 80.7 g → 8.0 unit
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Jadi pemodelan Kanada diterjemahkan menjadi:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Risiko rendah: ~0–2.7 unit
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Risiko sedang: ~4–8 unit
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Risiko lebih tinggi: >8 unit/minggu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Bagaimana Mindrink menggunakan ini</strong>
+                </p>
+                <p class="feature-text">
+                    Pedoman Kanada adalah yang paling konservatif secara internasional.<br>
+                    Untuk menciptakan tier strict yang praktis tetapi berbasis ilmiah, Mindrink menetapkan:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Batas mingguan Strict = ≤ 5 unit/minggu
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    <strong>5 unit/minggu:</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Berada di dekat bagian bawah pita sedang Kanada
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Jauh di bawah 10/minggu Australia dan 17/11 Irlandia
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Mewakili tingkat paparan yang sangat rendah yang dapat dilacak pengguna secara realistis
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa disertakan</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Ini adalah pedoman kontemporer yang paling ketat
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Ini menyediakan kurva risiko daripada batas kaku
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Ini mengikat tier "Strict" Mindrink dalam bukti epidemiologis modern
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. Tingkat Balanced — Australia (NHMRC 2020)</h3>
+                <p class="feature-text">
+                    <strong>Sumber:</strong> National Health and Medical Research Council (2020)
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Australia memberikan pedoman yang jelas dan mudah ditafsirkan:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        ≤ 10 minuman standar per minggu
+                    </li>
+                    <li style="padding: 8px 0;">
+                        ≤ 4 minuman standar pada hari tertentu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Minuman standar Australia didefinisikan sebagai:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    10 g etanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Konversi ke unit Mindrink</strong>
+                </p>
+                <p class="feature-text">
+                    Pemetaan langsung:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        10 minuman/minggu → 10 unit/minggu
+                    </li>
+                    <li style="padding: 8px 0;">
+                        4 minuman/hari → 4 unit/hari
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa disertakan</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Menyediakan batas harian dan mingguan
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Sudah menggunakan minuman 10 g, identik dengan unit Mindrink
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Membentuk tulang punggung struktural tier Balanced
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. Tingkat Relaxed — Irlandia HSE</h3>
+                <p class="feature-text">
+                    <strong>Sumber:</strong> HSE Low-Risk Drinking Guidelines
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Irlandia menyediakan batas mingguan yang lebih tinggi dan spesifik jenis kelamin:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Pria: ≤ 17 minuman standar/minggu
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Wanita: ≤ 11 minuman standar/minggu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Irlandia mendefinisikan:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    1 minuman standar = 10 g etanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Konversi ke unit Mindrink</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Pria: 17 × 10 g = 17 unit/minggu
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Wanita: 11 × 10 g = 11 unit/minggu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa disertakan</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Menawarkan opsi yang lebih permisif untuk pengguna yang mencari panduan fleksibel
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Melengkapi model 3-tier yang jelas (Strict → Balanced → Relaxed)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Sesuai dengan konvensi minuman standar 10 g global
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. Definisi Binge — NIAAA (AS) & WHO</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Kriteria binge NIAAA (AS)</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wanita: ≥ 4 minuman AS dalam ~2 jam
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Pria: ≥ 5 minuman AS dalam ~2 jam
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Minuman AS = 14 g etanol
+                </p>
+                <p class="feature-text" style="margin-top: 8px; margin-bottom: 8px;">
+                    <strong>Konversi:</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wanita: 4 × 14 g = 56 g → 5.6 unit
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Pria: 5 × 14 g = 70 g → 7 unit
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Ambang batas Mindrink yang dibulatkan:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wanita: ≥ 6 unit/hari
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Pria: ≥ 7 unit/hari
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Heavy episodic drinking (HED) WHO</strong>
+                </p>
+                <p class="feature-text">
+                    ≥ 60 g etanol dalam satu kesempatan<br>
+                    → 6 unit
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa disertakan</strong>
+                </p>
+                <p class="feature-text">
+                    Baik NIAAA maupun WHO selaras di sekitar ~60–70 g sebagai tingkat di mana bahaya akut meningkat tajam<br>
+                    (cedera, keracunan, aritmia, melukai diri sendiri, kekerasan, jatuh).
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Nilai-nilai ini mendefinisikan zona merah Mindrink untuk konsumsi satu hari.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Values Mindrink Derives -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">5. Nilai yang Diturunkan Mindrink (untuk Membuat Model Terpadu)</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Pedoman minum resmi sangat berbeda:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        beberapa memberikan batas mingguan tetapi tidak harian
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        beberapa mendefinisikan binge, yang lain tidak
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        beberapa berlaku untuk pria dan wanita secara setara, yang lain tidak
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        tidak ada yang menawarkan ambang batas bulanan
+                    </li>
+                    <li style="padding: 8px 0;">
+                        mereka menggunakan definisi "minuman standar" yang berbeda
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Untuk menciptakan sistem tunggal yang koheren dan mudah dipahami, Mindrink menurunkan sejumlah kecil nilai.<br>
+                    Penurunan ini transparan, minimal, dan didasarkan pada penalaran kesehatan masyarakat.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. Batas Harian untuk Strict, Balanced, dan Relaxed</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa kami menurunkan batas harian</strong>
+                </p>
+                <p class="feature-text">
+                    Kanada (tier Strict) dan Irlandia (tier Relaxed) hanya menentukan panduan mingguan.<br>
+                    Tanpa batas harian, pengguna tidak dapat menafsirkan apakah hari individu masuk akal atau mendekati perilaku seperti binge.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Tier Strict — 2 unit/hari (diturunkan)</strong>
+                </p>
+                <p class="feature-text">
+                    Strict mewakili paparan yang sangat rendah, berlabuh pada pemodelan Kanada:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0–2 minuman Kanada/minggu = risiko rendah<br>
+                        → ≈ 0–2.7 unit/minggu
+                    </li>
+                    <li style="padding: 8px 0;">
+                        3–6 minuman/minggu = risiko sedang<br>
+                        → ≈ 4–8 unit/minggu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Batas harian 2 unit/hari memastikan bahwa bahkan hari-hari yang lebih berat sesekali tidak menumpuk menjadi pola mingguan risiko sedang atau tinggi.
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Batas biru harian Strict = 2 unit/hari
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Ini membuat Strict benar-benar ketat — lebih rendah dari batas nasional resmi mana pun.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Balanced & Relaxed — 4 unit/hari (dari Australia)</strong>
+                </p>
+                <p class="feature-text">
+                    Australia (NHMRC 2020) adalah satu-satunya pedoman utama yang menyediakan batas harian berbasis bukti yang eksplisit:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    ≤ 4 minuman/hari<br>
+                    = 4 unit/hari
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Mindrink menerapkan ini ke kedua tier untuk konsistensi:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Biru harian Balanced = 4 unit/hari
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Biru harian Relaxed = 4 unit/hari
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Ringkasan batas harian</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Batas biru harian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">Strict</td>
+                                <td>2 unit/hari</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Balanced</td>
+                                <td>4 unit/hari</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed</td>
+                                <td>4 unit/hari</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. Ambang Batas Risiko Tinggi Mingguan ("Minggu Merah")</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa kami menurunkan ini</strong>
+                </p>
+                <p class="feature-text">
+                    Tidak ada pedoman yang mendefinisikan "minggu risiko tinggi" universal.<br>
+                    Tetapi studi kohort besar mengidentifikasi percepatan risiko yang jelas di luar ambang batas tertentu.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Dasar ilmiah</strong>
+                </p>
+                <p class="feature-text">
+                    Studi kunci meliputi:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wood et al., Lancet 2018 — analisis gabungan dari 599.912 peminum
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Pemodelan WHO Global Burden of Disease
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Keduanya menunjukkan:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Peningkatan risiko yang nyata di sekitar 100 g/minggu, dan
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Peningkatan risiko tajam di luar ~200 g/minggu
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Penurunan Mindrink</strong>
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Ambang batas merah mingguan = ≥ 20 unit/minggu<br>
+                    (20 × 10 g = 200 g etanol)
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Ini adalah titik di mana kurva risiko secara konsisten meningkat di berbagai studi.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Ini tidak mewakili batas yang direkomendasikan — ini adalah bendera risiko untuk analisis mingguan.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. Tier Strict & Balanced Uniseks</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa</strong>
+                </p>
+                <p class="feature-text">
+                    Keduanya:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Kanada 2023 (pita risiko)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Australia 2020 (10/minggu, 4/hari)
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    bersifat netral jenis kelamin.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Menambahkan perbedaan buatan di mana tidak ada akan mendistorsi sains dan mempersulit interpretasi.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Pendekatan Mindrink</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Batas mingguan Strict = uniseks
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Batas mingguan Balanced = uniseks
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Batas mingguan Relaxed = spesifik jenis kelamin (sesuai Irlandia)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Ambang batas binge = spesifik jenis kelamin (sesuai NIAAA)
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Ini membuat semuanya selaras dengan sumber yang mendasarinya.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. Zona Warna (Lapisan Interpretasi)</h3>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrink menggunakan skema warna yang disederhanakan untuk membuat pola mudah dipahami sekilas:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 Biru</strong> — Dalam batas Anda (harian & mingguan)
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 Ungu</strong> — Di atas batas Anda tetapi tidak di wilayah risiko tinggi
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 Merah</strong> — Paparan risiko tinggi:
+                        <ul style="list-style: none; padding: 0; margin: 8px 0 0 20px;">
+                            <li style="padding: 4px 0;">Hari binge</li>
+                            <li style="padding: 4px 0;">Wanita ≥ 6 unit</li>
+                            <li style="padding: 4px 0;">Pria ≥ 7 unit</li>
+                            <li style="padding: 4px 0;">Minggu berat: ≥ 20 unit</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa kami menurunkan ini</strong>
+                </p>
+                <p class="feature-text">
+                    Pedoman bersifat numerik, bukan visual.<br>
+                    Warna membantu pengguna memahami tren mereka secara instan tanpa menafsirkan angka mentah.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Ini adalah alat komunikasi, bukan kategori diagnostik.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">5. Batas Bulanan (Diturunkan untuk Analisis Tren)</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mengapa</strong>
+                </p>
+                <p class="feature-text">
+                    Tidak ada pedoman kesehatan masyarakat yang menyediakan batas alkohol bulanan.<br>
+                    Tetapi Mindrink menyertakan grafik bulanan dan jangka panjang, yang memerlukan titik referensi.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Penurunan</strong>
+                </p>
+                <p class="feature-text">
+                    Aturan yang jelas dan transparan:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Batas bulanan = Batas mingguan × 4
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Contoh:</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Mingguan</th>
+                                <th>Bulanan (diturunkan)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">Strict</td>
+                                <td>5</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Balanced</td>
+                                <td>10</td>
+                                <td>40</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed (pria)</td>
+                                <td>17</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed (wanita)</td>
+                                <td>11</td>
+                                <td>44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Batas bulanan selalu diberi label sebagai diturunkan, tidak pernah resmi.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Limits vs. Real Life -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">6. Batas vs. Kehidupan Nyata</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Batas Mindrink adalah alat panduan, bukan aturan yang harus diikuti dengan sempurna.
+                </p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Pedoman kesehatan menggambarkan rentang risiko, bukan kewajiban pribadi.<br>
+                    Kehidupan nyata lebih kompleks daripada angka mingguan:<br>
+                    beberapa hari bersifat sosial, beberapa stres, beberapa perayaan, beberapa tenang.<br>
+                    Pola berubah selama berbulan-bulan dan bertahun-tahun. Itu normal.
+                </p>
+                <p class="feature-text" style="margin-top: 24px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Mindrink dibangun berdasarkan prinsip sederhana:<br><br>
+                    <strong>Nilainya bukan pada menjadi sempurna.<br>
+                    Nilainya adalah pada menjadi sadar.</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; margin-bottom: 8px;">
+                    Yang penting bukan mencapai setiap target, tetapi memahami hubungan Anda dengan alkohol dari waktu ke waktu:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        memperhatikan ketika konsumsi Anda naik atau turun
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        mengenali situasi yang meningkatkan minum
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        melihat bagaimana alkohol mempengaruhi tidur, energi, atau suasana hati
+                    </li>
+                    <li style="padding: 8px 0;">
+                        membuat pilihan yang sesuai dengan tujuan Anda sendiri, bukan orang lain
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Mindrink tidak pernah memberi label pada Anda, tidak pernah mempermalukan Anda, dan tidak pernah memperlakukan batas sebagai batasan moral.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Filsafat kami sederhana:<br><br>
+                    <strong>Panduan, bukan rasa bersalah.<br><br>
+                    Kesadaran, bukan penilaian.<br><br>
+                    Anda memutuskan seperti apa "sehat" untuk hidup Anda.</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; text-align: center;">
+                    Kami menyediakan angka sehingga Anda dapat membuat keputusan yang tepat —<br>
+                    bukan agar angka dapat membuat keputusan untuk Anda.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Full reference list -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">7. Daftar Referensi Lengkap (dengan Tautan)</h2>
+            <div class="feature">
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Kanada — CCSA (2023)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.ccsa.ca/canadas-guidance-alcohol-and-health" target="_blank" rel="noopener noreferrer" class="footer-link">Panduan Kanada tentang Alkohol dan Kesehatan</a><br>
+                        <span class="small-muted">https://www.ccsa.ca/canadas-guidance-alcohol-and-health</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Australia — NHMRC (2020)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.nhmrc.gov.au/health-advice/alcohol" target="_blank" rel="noopener noreferrer" class="footer-link">Pedoman Australia untuk Mengurangi Risiko Kesehatan dari Minum Alkohol</a><br>
+                        <span class="small-muted">https://www.nhmrc.gov.au/health-advice/alcohol</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Irlandia — Pedoman Minum Risiko Rendah HSE</h3>
+                    <p class="feature-text">
+                        <a href="https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/" target="_blank" rel="noopener noreferrer" class="footer-link">Pedoman alkohol risiko rendah mingguan</a><br>
+                        <span class="small-muted">https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">AS — NIAAA (Rethinking Drinking)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.rethinkingdrinking.niaaa.nih.gov/" target="_blank" rel="noopener noreferrer" class="footer-link">Rethinking Drinking</a><br>
+                        <span class="small-muted">https://www.rethinkingdrinking.niaaa.nih.gov/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">WHO — Laporan Status Global tentang Alkohol dan Kesehatan</h3>
+                    <p class="feature-text">
+                        <a href="https://www.who.int/publications/i/item/9789241565639" target="_blank" rel="noopener noreferrer" class="footer-link">Laporan Status Global tentang Alkohol dan Kesehatan</a><br>
+                        <span class="small-muted">https://www.who.int/publications/i/item/9789241565639</span>
+                    </p>
+                    <p class="small-muted" style="margin-top: 8px;">
+                        (Edisi lengkap terbaru: 2018; metodologi terus digunakan dalam pemantauan alkohol WHO saat ini.)
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Lancet (2018) — Ambang Batas Risiko untuk Konsumsi Alkohol</h3>
+                    <p class="feature-text">
+                        <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext" target="_blank" rel="noopener noreferrer" class="footer-link">Wood et al., Lancet 2018</a><br>
+                        <span class="small-muted">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <div class="feature" style="background-color: #FEE2E2; border: 1px solid #FCA5A5; padding: 16px; border-radius: var(--border-radius);">
+                <p style="font-size: 14px; color: #991B1B; text-align: center; margin: 0; line-height: 1.6;">
+                    <strong>Tidak ada tingkat alkohol yang benar-benar aman (WHO 2023).</strong> Rentang ini menunjukkan risiko yang lebih rendah, bukan keamanan. Mindrink menyediakan informasi pendidikan umum dan tidak memberikan saran medis. Jika Anda memiliki kekhawatiran tentang minum Anda, silakan konsultasikan dengan dokter atau layanan dukungan lokal.
+                </p>
             </div>
         </div>
     </section>

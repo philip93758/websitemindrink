@@ -66,6 +66,60 @@
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
         }
     </script>
+    <style>
+        .methodology-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(26, 26, 26, 0.15);
+        }
+        .methodology-table thead {
+            background-color: var(--navy-outline);
+        }
+        .methodology-table th {
+            padding: 12px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        .methodology-table td {
+            padding: 10px 8px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .methodology-table tbody tr:nth-child(even) {
+            background-color: var(--soft-amber-bg);
+        }
+        .table-cell-blue {
+            color: #3A86FF;
+            font-weight: 600;
+        }
+        .table-cell-red {
+            color: #DC2626;
+            font-weight: 600;
+        }
+        .table-cell-tier {
+            font-weight: 600;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .source-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--soft-amber-bg);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-left: 8px;
+        }
+    </style>
 </head>
 <body class="article-page methodology-page">
     <!-- Sticky Header -->
@@ -105,56 +159,875 @@
     </header>
 
     <main>
-    <!-- Intro Section -->
+    <!-- Hero/Intro Section -->
     <section class="philosophy">
         <div class="container narrow">
-            <h1 class="page-title">⭐ Mindrink-Methodik: Wie wir Alkoholgrenzen, Einheiten und Risikostufen definieren</h1>
+            <h1 class="page-title">⭐ Mindrink-Methodik: Wie wir Alkoholgrenzwerte, Einheiten und Risikostufen definieren</h1>
             <p class="feature-text" style="text-align: center; margin-top: 24px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Diese Seite erklärt genau, wie Mindrink Alkoholeinheiten berechnet, wie wir Limits definieren, auf welche internationalen Leitlinien wir uns stützen und welche Teile unseres Modells abgeleitet sind.<br>
-                Unser Ziel ist Transparenz: Du sollst immer wissen, woher die Zahlen kommen und was sie im Alltag bedeuten.
+                Diese Seite erklärt genau, wie Mindrink Alkoholeinheiten berechnet, wie wir Grenzwerte definieren, auf welche internationalen Richtlinien wir uns stützen und welche Teile unseres Modells abgeleitet sind.<br>
+                Unser Ziel ist Transparenz: Sie sollten immer wissen, woher die Zahlen kommen und was sie für das echte Leben bedeuten.
             </p>
         </div>
     </section>
 
-    <section class="how-it-works">
+    <!-- 1. What is an alcohol unit -->
+    <section class="how-it-works methodology-frame-section">
         <div class="container narrow">
             <h2 class="section-title">1. Was ist eine Alkoholeinheit?</h2>
             <div class="feature">
-                <p class="feature-text">Mindrink verwendet eine einfache, international anerkannte Definition:</p>
-                <p class="feature-text">1 Einheit = 10 Gramm reiner Alkohol.</p>
-                <p class="feature-text">Dieses System wird von der WHO, Australien, Irland und vielen Studien genutzt. Damit lassen sich Bier, Wein, Spirituosen und Cocktails auf derselben Skala vergleichen.</p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrink verwendet eine einfache, international anerkannte Definition:
+                </p>
+                <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
+                    1 Einheit = 10 Gramm reinen Alkohols
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Dieses System wird von der WHO, Australien, Irland und vielen großen Forschungsstudien verwendet.<br>
+                    Es ermöglicht, alle Getränke — Bier, Wein, Spirituosen, Cocktails — auf derselben Skala zu vergleichen.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    Zur Schätzung von Einheiten:
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Einheiten = (Volumen in ml × Alkoholgehalt% × 0.789) ÷ 10
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrink berechnet dies automatisch, aber hier sind schnelle Beispiele:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Bier</strong> (568 ml, 5%) → ~2.2 Einheiten
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>Wein</strong> (175 ml, 12%) → ~1.7 Einheiten
+                    </li>
+                    <li style="padding: 8px 0;">
+                        <strong>Spirituosen</strong> (25 ml, 40%) → ~0.8 Einheiten
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Verschiedene Länder zählen Einheiten unterschiedlich.<br>
+                    Für eine tiefere Erklärung siehe unseren <a href="/de/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link">Was zählt als Getränk</a> Leitfaden.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="philosophy">
+    <!-- 2. Meaning of the colours -->
+    <section class="philosophy methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">2. Tägliche und wöchentliche Limits</h2>
+            <h2 class="section-title">2. Bedeutung der Farben</h2>
             <div class="feature">
-                <p class="feature-text">Die in Mindrink angezeigten Limits basieren auf internationalen Leitlinien der öffentlichen Gesundheit.</p>
-                <p class="feature-text">Sie sind Orientierungspunkte, keine persönlichen Vorgaben.</p>
-                <p class="feature-text">Dein Körper, deine Gewohnheiten und dein Kontext zählen immer.</p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrink verwendet Farben, um Ihnen zu helfen, Ihre Trinkmuster schnell zu interpretieren:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 Blau — Innerhalb der Richtlinie</strong><br>
+                        Sie befinden sich innerhalb Ihres gewählten Grenzwerts (Strikt, Ausgewogen, Entspannt).
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 Lila — Über der Richtlinie, aber nicht hohes Risiko</strong><br>
+                        Sie haben Ihre tägliche oder wöchentliche Richtlinie überschritten,<br>
+                        haben aber nicht Binge- oder hohe Wochenwerte erreicht.
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 Rot — Hohes Risiko</strong><br>
+                        Binge-Trinken, das gesundheitsschädlich ist
+                    </li>
+                </ul>
+                <p class="small-muted" style="margin-top: 24px;">
+                    Farben sind eine einfache Interpretationsebene — keine medizinische Diagnose.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works">
+    <!-- 3. Full table of limits -->
+    <section class="how-it-works methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">3. Trends und Berechnungen</h2>
-            <div class="feature">
-                <p class="feature-text">Mindrink betrachtet Muster über die Zeit statt einzelne Tage.</p>
-                <p class="feature-text">So werden kurzfristige Schwankungen geglättet und langfristige Muster sichtbar.</p>
-                <p class="feature-text">Die Berechnungen sind bewusst einfach, transparent und leicht nachvollziehbar.</p>
+            <h2 class="section-title">3. Vollständige Tabelle der Grenzwerte</h2>
+            <p class="feature-text" style="text-align: center; margin-bottom: 24px;">
+                (Alle Werte in Einheiten; 1 Einheit = 10 g)
+            </p>
+            <div class="table-wrapper">
+                <table class="methodology-table">
+                    <thead>
+                        <tr>
+                            <th>Stufe</th>
+                            <th>Geschlecht</th>
+                            <th>Täglich ≤<br>(blau)</th>
+                            <th>Täglich Binge ≥<br>(rot)</th>
+                            <th>Wöchentlich ≤<br>(blau)</th>
+                            <th>Wöchentlich hoch ≥<br>(rot)</th>
+                            <th>Monatlich ≤<br>(≈)</th>
+                            <th>Monatlich hoch ≥<br>(≈)</th>
+                            <th>Quelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-cell-tier">Strict</td>
+                            <td>Männer</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Strict</td>
+                            <td>Frauen</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Balanced</td>
+                            <td>Männer</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Balanced</td>
+                            <td>Frauen</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Relaxed</td>
+                            <td>Männer</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">17</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">68</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">Relaxed</td>
+                            <td>Frauen</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">11</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">44</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <section class="philosophy">
+    <!-- 4. Official Public-Health Sources We Use -->
+    <section class="philosophy methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">4. Was Mindrink ist — und was nicht</h2>
+            <h2 class="section-title">4. Offizielle öffentliche Gesundheitsquellen, die wir verwenden</h2>
+            
             <div class="feature">
-                <p class="feature-text">Mindrink ist ein Tool zur Selbstreflexion und Bewusstheit.</p>
-                <p class="feature-text">Es ist keine medizinische Beratung und ersetzt keine professionelle Hilfe.</p>
+                <h3 class="feature-title">A. Werte, die direkt aus offiziellen öffentlichen Gesundheitsquellen stammen</h3>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Dies sind die Richtlinienkomponenten, die Mindrink genau wie veröffentlicht verwendet, mit einem Harmonisierungsschritt:<br>
+                    alles wird in Mindrink-Einheiten = 10 g Ethanol umgerechnet, damit verschiedene nationale Systeme direkt verglichen werden können.
+                </p>
+                <p class="feature-text">
+                    Unten finden Sie die ursprünglichen Werte, die logischen Umrechnungen und warum jede Quelle Teil von Mindrinks Modell ist.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. Striktes Niveau — Kanada (CCSA 2023)</h3>
+                <p class="feature-text">
+                    <strong>Quelle:</strong> Canadian Centre on Substance Use and Addiction (2023)
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Kanada präsentiert keine einzige "sichere Grenze".<br>
+                    Stattdessen definiert es Risikobänder basierend auf Krankheitslastmodellierung:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0–2 Getränke/Woche → Niedriges Risiko
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        3–6 Getränke/Woche → Mäßiges Risiko
+                    </li>
+                    <li style="padding: 8px 0;">
+                        7+ Getränke/Woche → Zunehmend hohes Risiko
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Kanada definiert ein Standardgetränk als:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    13.45 g Ethanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Umrechnung in Mindrink-Einheiten</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Niedriges Risikoband (0–2 Getränke/Woche):<br>
+                    2 × 13.45 g = 26.9 g → 2.7 Einheiten
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Mäßiges Risikoband (3–6 Getränke/Woche):<br>
+                    3 Getränke = 40.35 g → 4.0 Einheiten<br>
+                    6 Getränke = 80.7 g → 8.0 Einheiten
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Kanadas Modellierung übersetzt sich also in:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Niedriges Risiko: ~0–2.7 Einheiten
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Mäßiges Risiko: ~4–8 Einheiten
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Höheres Risiko: >8 Einheiten/Woche
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Wie Mindrink dies verwendet</strong>
+                </p>
+                <p class="feature-text">
+                    Kanadas Richtlinie ist international am konservativsten.<br>
+                    Um eine praktische, aber wissenschaftlich fundierte strikte Stufe zu schaffen, setzt Mindrink:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Striktes wöchentliches Limit = ≤ 5 Einheiten/Woche
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    <strong>5 Einheiten/Woche:</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Liegt nahe am unteren Teil von Kanadas mäßigem Band
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Liegt weit unter Australiens 10/Woche und Irlands 17/11
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Repräsentiert ein sehr niedriges Expositionsniveau, das Nutzer realistisch verfolgen können
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum enthalten</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Es ist die strengste zeitgenössische Richtlinie
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Es bietet eine Risikokurve statt einer starren Grenze
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Es verankert Mindrinks "Strict"-Stufe in modernen epidemiologischen Beweisen
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. Ausgewogenes Niveau — Australien (NHMRC 2020)</h3>
+                <p class="feature-text">
+                    <strong>Quelle:</strong> National Health and Medical Research Council (2020)
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Australien gibt eine klare, leicht interpretierbare Richtlinie:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        ≤ 10 Standardgetränke pro Woche
+                    </li>
+                    <li style="padding: 8px 0;">
+                        ≤ 4 Standardgetränke an einem einzelnen Tag
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Ein australisches Standardgetränk ist definiert als:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    10 g Ethanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Umrechnung in Mindrink-Einheiten</strong>
+                </p>
+                <p class="feature-text">
+                    Direkte Zuordnung:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        10 Getränke/Woche → 10 Einheiten/Woche
+                    </li>
+                    <li style="padding: 8px 0;">
+                        4 Getränke/Tag → 4 Einheiten/Tag
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum enthalten</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Bietet sowohl tägliche als auch wöchentliche Obergrenzen
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Verwendet bereits 10 g Getränke, identisch mit Mindrink-Einheiten
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Bildet das strukturelle Rückgrat der Ausgewogenen Stufe
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. Entspanntes Niveau — Irland HSE</h3>
+                <p class="feature-text">
+                    <strong>Quelle:</strong> HSE Low-Risk Drinking Guidelines
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Irland bietet höhere, geschlechtsspezifische wöchentliche Grenzwerte:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Männer: ≤ 17 Standardgetränke/Woche
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Frauen: ≤ 11 Standardgetränke/Woche
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Irland definiert:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    1 Standardgetränk = 10 g Ethanol
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Umrechnung in Mindrink-Einheiten</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Männer: 17 × 10 g = 17 Einheiten/Woche
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Frauen: 11 × 10 g = 11 Einheiten/Woche
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum enthalten</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Bietet eine permissivere Option für Nutzer, die flexible Anleitung suchen
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Vervollständigt ein klares 3-Stufen-Modell (Strikt → Ausgewogen → Entspannt)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Entspricht der globalen 10 g Standardgetränk-Konvention
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. Binge-Definitionen — NIAAA (USA) & WHO</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>NIAAA (USA) Binge-Kriterien</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Frauen: ≥ 4 US-Getränke in ~2 Stunden
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Männer: ≥ 5 US-Getränke in ~2 Stunden
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    US-Getränk = 14 g Ethanol
+                </p>
+                <p class="feature-text" style="margin-top: 8px; margin-bottom: 8px;">
+                    <strong>Umrechnungen:</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Frauen: 4 × 14 g = 56 g → 5.6 Einheiten
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Männer: 5 × 14 g = 70 g → 7 Einheiten
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Gerundete Mindrink-Schwellenwerte:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Frauen: ≥ 6 Einheiten/Tag
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Männer: ≥ 7 Einheiten/Tag
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>WHO schweres episodisches Trinken (HED)</strong>
+                </p>
+                <p class="feature-text">
+                    ≥ 60 g Ethanol bei einer Gelegenheit<br>
+                    → 6 Einheiten
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum enthalten</strong>
+                </p>
+                <p class="feature-text">
+                    Sowohl NIAAA als auch WHO stimmen bei ~60–70 g als dem Niveau überein, bei dem akute Schäden stark zunehmen<br>
+                    (Verletzungen, Vergiftungen, Arrhythmie, Selbstverletzung, Gewalt, Stürze).
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Diese Werte definieren die Mindrink-Rotzone für den Ein-Tages-Konsum.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Values Mindrink Derives -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">5. Werte, die Mindrink ableitet (um ein einheitliches Modell zu erstellen)</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Offizielle Trinkrichtlinien unterscheiden sich stark:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        einige geben wöchentliche Grenzwerte, aber keine täglichen
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        einige definieren Binge, andere nicht
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        einige gelten gleichermaßen für Männer und Frauen, andere nicht
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        keine bietet monatliche Schwellenwerte
+                    </li>
+                    <li style="padding: 8px 0;">
+                        sie verwenden unterschiedliche Definitionen eines "Standardgetränks"
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Um ein einheitliches, kohärentes, leicht verständliches System zu erstellen, leitet Mindrink eine kleine Anzahl von Werten ab.<br>
+                    Diese Ableitungen sind transparent, minimal und basieren auf gesundheitspolitischen Überlegungen.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. Tägliche Grenzwerte für Strikt, Ausgewogen und Entspannt</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum wir tägliche Grenzwerte ableiten</strong>
+                </p>
+                <p class="feature-text">
+                    Kanada (Strikt-Stufe) und Irland (Entspannt-Stufe) geben nur wöchentliche Anleitungen an.<br>
+                    Ohne tägliche Obergrenzen können Nutzer nicht interpretieren, ob ein einzelner Tag angemessen ist oder sich binge-ähnlichem Verhalten nähert.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Strikt-Stufe — 2 Einheiten/Tag (abgeleitet)</strong>
+                </p>
+                <p class="feature-text">
+                    Strikt repräsentiert eine sehr niedrige Exposition, verankert in Kanadas Modellierung:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0–2 kanadische Getränke/Woche = niedriges Risiko<br>
+                        → ≈ 0–2.7 Einheiten/Woche
+                    </li>
+                    <li style="padding: 8px 0;">
+                        3–6 Getränke/Woche = mäßiges Risiko<br>
+                        → ≈ 4–8 Einheiten/Woche
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Ein tägliches Limit von 2 Einheiten/Tag stellt sicher, dass selbst gelegentliche schwerere Tage sich nicht zu mäßigen oder hochriskanten wöchentlichen Mustern ansammeln.
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Striktes tägliches Blau-Limit = 2 Einheiten/Tag
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Dies hält Strikt wirklich strikt — niedriger als jedes offizielle nationale Limit.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Ausgewogen & Entspannt — 4 Einheiten/Tag (von Australien)</strong>
+                </p>
+                <p class="feature-text">
+                    Australien (NHMRC 2020) ist die einzige große Richtlinie, die ein explizites evidenzbasiertes tägliches Limit bietet:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    ≤ 4 Getränke/Tag<br>
+                    = 4 Einheiten/Tag
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Mindrink wendet dies auf beide Stufen für Konsistenz an:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Ausgewogen täglich blau = 4 Einheiten/Tag
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Entspannt täglich blau = 4 Einheiten/Tag
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Tägliches Limit-Zusammenfassung</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>Stufe</th>
+                                <th>Tägliches Blau-Limit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">Strict</td>
+                                <td>2 Einheiten/Tag</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Balanced</td>
+                                <td>4 Einheiten/Tag</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed</td>
+                                <td>4 Einheiten/Tag</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. Wöchentlicher Hochrisiko-Schwellenwert ("Rote Woche")</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum wir dies ableiten</strong>
+                </p>
+                <p class="feature-text">
+                    Keine Richtlinie definiert eine universelle "Hochrisiko-Woche".<br>
+                    Aber große Kohortenstudien identifizieren eine klare Risikobeschleunigung jenseits bestimmter Schwellenwerte.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Wissenschaftliche Grundlage</strong>
+                </p>
+                <p class="feature-text">
+                    Wichtige Studien umfassen:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wood et al., Lancet 2018 — gepoolte Analyse von 599.912 Trinkern
+                    </li>
+                    <li style="padding: 8px 0;">
+                        WHO Global Burden of Disease Modellierung
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Beide zeigen:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Bemerkenswert erhöhtes Risiko um 100 g/Woche, und
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Scharfer Risikoanstieg jenseits von ~200 g/Woche
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrink-Ableitung</strong>
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Wöchentlicher Rot-Schwellenwert = ≥ 20 Einheiten/Woche<br>
+                    (20 × 10 g = 200 g Ethanol)
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Dies ist der Punkt, an dem Risikokurven in Studien konsistent steiler werden.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Es stellt kein empfohlenes Limit dar — es ist ein Risikoflag für die wöchentliche Analyse.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. Geschlechtsneutrale Strikt- & Ausgewogen-Stufen</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum</strong>
+                </p>
+                <p class="feature-text">
+                    Beide:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Kanada 2023 (Risikobänder)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Australien 2020 (10/Woche, 4/Tag)
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    sind geschlechtsneutral.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Künstliche Unterschiede hinzuzufügen, wo keine existieren, würde sowohl die Wissenschaft verzerren als auch die Interpretation verkomplizieren.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrinks Ansatz</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Striktes wöchentliches Limit = geschlechtsneutral
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Ausgewogenes wöchentliches Limit = geschlechtsneutral
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Entspannte wöchentliche Limits = geschlechtsspezifisch (gemäß Irland)
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Binge-Schwellenwerte = geschlechtsspezifisch (gemäß NIAAA)
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Dies hält alles mit den zugrunde liegenden Quellen ausgerichtet.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. Farbzonen (Interpretationsebene)</h3>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrink verwendet ein vereinfachtes Farbschema, um Muster auf einen Blick leicht verständlich zu machen:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 Blau</strong> — Innerhalb Ihres Limits (täglich & wöchentlich)
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 Lila</strong> — Über Ihrem Limit, aber nicht in Hochrisiko-Gebiet
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 Rot</strong> — Hochrisiko-Exposition:
+                        <ul style="list-style: none; padding: 0; margin: 8px 0 0 20px;">
+                            <li style="padding: 4px 0;">Binge-Tag</li>
+                            <li style="padding: 4px 0;">Frauen ≥ 6 Einheiten</li>
+                            <li style="padding: 4px 0;">Männer ≥ 7 Einheiten</li>
+                            <li style="padding: 4px 0;">Schwere Woche: ≥ 20 Einheiten</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum wir dies ableiten</strong>
+                </p>
+                <p class="feature-text">
+                    Richtlinien sind numerisch, nicht visuell.<br>
+                    Farben helfen Nutzern, ihre Trends sofort zu verstehen, ohne rohe Zahlen zu interpretieren.
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Dies ist ein Kommunikationswerkzeug, keine diagnostische Kategorie.
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">5. Monatliche Limits (abgeleitet für Trendanalyse)</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Warum</strong>
+                </p>
+                <p class="feature-text">
+                    Keine gesundheitspolitische Richtlinie bietet monatliche Alkohollimits.<br>
+                    Aber Mindrink enthält monatliche und langfristige Diagramme, die einen Referenzpunkt erfordern.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Ableitung</strong>
+                </p>
+                <p class="feature-text">
+                    Eine klare und transparente Regel:
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Monatliches Limit = Wöchentliches Limit × 4
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Beispiele:</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>Stufe</th>
+                                <th>Wöchentlich</th>
+                                <th>Monatlich (abgeleitet)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">Strict</td>
+                                <td>5</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Balanced</td>
+                                <td>10</td>
+                                <td>40</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed (Männer)</td>
+                                <td>17</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">Relaxed (Frauen)</td>
+                                <td>11</td>
+                                <td>44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Monatliche Limits sind immer als abgeleitet gekennzeichnet, niemals offiziell.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Limits vs. Real Life -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">6. Grenzwerte vs. echtes Leben</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrinks Grenzwerte sind Anleitungswerkzeuge, keine Regeln, die perfekt befolgt werden müssen.
+                </p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Gesundheitsrichtlinien beschreiben Risikobereiche, keine persönlichen Verpflichtungen.<br>
+                    Das echte Leben ist komplexer als wöchentliche Zahlen:<br>
+                    manche Tage sind gesellig, manche stressig, manche feierlich, manche ruhig.<br>
+                    Muster verschieben sich über Monate und Jahre. Das ist normal.
+                </p>
+                <p class="feature-text" style="margin-top: 24px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Mindrink basiert auf einem einfachen Prinzip:<br><br>
+                    <strong>Der Wert liegt nicht darin, perfekt zu sein.<br>
+                    Der Wert liegt im Bewusstsein.</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; margin-bottom: 8px;">
+                    Was zählt, ist nicht, jedes Ziel zu erreichen, sondern Ihre Beziehung zu Alkohol im Laufe der Zeit zu verstehen:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        zu bemerken, wann Ihr Konsum steigt oder fällt
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Situationen zu erkennen, die das Trinken erhöhen
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        zu sehen, wie Alkohol Schlaf, Energie oder Stimmung beeinflusst
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Entscheidungen zu treffen, die zu Ihren eigenen Zielen passen, nicht zu denen anderer
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Mindrink etikettiert Sie nie, beschämt Sie nie und behandelt Grenzwerte nie als moralische Grenzen.
+                </p>
+                <p class="feature-text" style="margin-top: 16px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Unsere Philosophie ist unkompliziert:<br><br>
+                    <strong>Anleitung, nicht Schuld.<br><br>
+                    Bewusstsein, nicht Urteil.<br><br>
+                    Sie entscheiden, wie "gesund" für Ihr Leben aussieht.</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; text-align: center;">
+                    Wir liefern die Zahlen, damit Sie informierte Entscheidungen treffen können —<br>
+                    nicht damit die Zahlen Entscheidungen für Sie treffen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Full reference list -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">7. Vollständige Referenzliste (mit Links)</h2>
+            <div class="feature">
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Kanada — CCSA (2023)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.ccsa.ca/canadas-guidance-alcohol-and-health" target="_blank" rel="noopener noreferrer" class="footer-link">Kanadas Anleitung zu Alkohol und Gesundheit</a><br>
+                        <span class="small-muted">https://www.ccsa.ca/canadas-guidance-alcohol-and-health</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Australien — NHMRC (2020)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.nhmrc.gov.au/health-advice/alcohol" target="_blank" rel="noopener noreferrer" class="footer-link">Australische Richtlinien zur Reduzierung von Gesundheitsrisiken durch Alkoholkonsum</a><br>
+                        <span class="small-muted">https://www.nhmrc.gov.au/health-advice/alcohol</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Irland — HSE Low-Risk Drinking Guidelines</h3>
+                    <p class="feature-text">
+                        <a href="https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/" target="_blank" rel="noopener noreferrer" class="footer-link">Wöchentliche Richtlinien für risikoarmes Trinken</a><br>
+                        <span class="small-muted">https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">USA — NIAAA (Rethinking Drinking)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.rethinkingdrinking.niaaa.nih.gov/" target="_blank" rel="noopener noreferrer" class="footer-link">Rethinking Drinking</a><br>
+                        <span class="small-muted">https://www.rethinkingdrinking.niaaa.nih.gov/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">WHO — Globaler Statusbericht zu Alkohol und Gesundheit</h3>
+                    <p class="feature-text">
+                        <a href="https://www.who.int/publications/i/item/9789241565639" target="_blank" rel="noopener noreferrer" class="footer-link">Globaler Statusbericht zu Alkohol und Gesundheit</a><br>
+                        <span class="small-muted">https://www.who.int/publications/i/item/9789241565639</span>
+                    </p>
+                    <p class="small-muted" style="margin-top: 8px;">
+                        (Neueste vollständige Ausgabe: 2018; Methodik wird weiterhin in der aktuellen WHO-Alkoholüberwachung verwendet.)
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Lancet (2018) — Risikoschwellenwerte für Alkoholkonsum</h3>
+                    <p class="feature-text">
+                        <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext" target="_blank" rel="noopener noreferrer" class="footer-link">Wood et al., Lancet 2018</a><br>
+                        <span class="small-muted">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <div class="feature" style="background-color: #FEE2E2; border: 1px solid #FCA5A5; padding: 16px; border-radius: var(--border-radius);">
+                <p style="font-size: 14px; color: #991B1B; text-align: center; margin: 0; line-height: 1.6;">
+                    <strong>Kein Alkoholspiegel ist vollständig sicher (WHO 2023).</strong> Diese Bereiche zeigen ein niedrigeres Risiko, nicht Sicherheit. Mindrink bietet allgemeine Bildungsinformationen und gibt keine medizinische Beratung. Wenn Sie Bedenken bezüglich Ihres Trinkens haben, konsultieren Sie bitte einen Kliniker oder einen lokalen Unterstützungsdienst.
+                </p>
             </div>
         </div>
     </section>
