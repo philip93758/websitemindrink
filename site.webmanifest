@@ -1,6 +1,8 @@
 {
   "name": "Mindrink",
   "short_name": "Mindrink",
+  "lang": "en",
+  "description": "Mindrink helps you track drinking mindfully — balance, patterns, and informed choices.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
