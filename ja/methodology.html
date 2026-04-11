@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、明確なガイドラインをどう構築しているかをご説明します。意識的な飲酒のための透明性あるメソドロジーです。">
+    <meta name="keywords" content="アルコール単位の計算, 飲酒メソドロジー, アルコール記録の根拠, 意識的な飲酒の研究">
+    <meta name="robots" content="index, follow">
+    <title>Mindrinkのメソドロジー – アルコール単位の計算方法</title>
+    <!-- Resource Hints for Performance -->
+    <link rel="preload" href="/styles.css" as="style">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindrink.me/ja/methodology.html">
+    <meta property="og:title" content="Mindrinkのメソドロジー – アルコール単位の計算方法">
+    <meta property="og:description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、明確なガイドラインをどう構築しているかをご説明します。">
+    <meta property="og:image" content="https://mindrink.me/assets/slide3_roman_phone.png">
+    <meta property="og:image:secure_url" content="https://mindrink.me/assets/slide3_roman_phone.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Mindrinkアプリでマインドフルな飲酒をサポート">
+    <meta property="og:site_name" content="Mindrink">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:locale:alternate" content="id_ID">
+    <meta property="og:locale:alternate" content="it_IT">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mindrink.me/ja/methodology.html">
+    <!-- Hreflang alternates -->
+    <link rel="alternate" hreflang="en" href="https://mindrink.me/methodology.html">
+    <link rel="alternate" hreflang="fr" href="https://mindrink.me/fr/methodology.html">
+    <link rel="alternate" hreflang="de" href="https://mindrink.me/de/methodology.html">
+    <link rel="alternate" hreflang="es" href="https://mindrink.me/es/methodology.html">
+    <link rel="alternate" hreflang="pt" href="https://mindrink.me/pt/methodology.html">
+    <link rel="alternate" hreflang="id" href="https://mindrink.me/id/methodology.html">
+    <link rel="alternate" hreflang="it" href="https://mindrink.me/it/methodology.html">
+    <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/methodology.html">
+    <link rel="alternate" hreflang="x-default" href="https://mindrink.me/methodology.html">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mindrink.me/ja/methodology.html">
+    <meta name="twitter:title" content="Mindrinkのメソドロジー – アルコール単位の計算方法">
+    <meta name="twitter:description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、明確なガイドラインをどう構築しているかをご説明します。">
+    <meta name="twitter:image" content="https://mindrink.me/assets/slide3_roman_phone.png">
+    <meta name="twitter:image:alt" content="Mindrinkアプリでマインドフルな飲酒をサポート">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "メソドロジー – Mindrinkのアルコール単位の計算方法",
+      "description": "Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、明確なガイドラインをどう構築しているかをご説明します。",
+      "url": "https://mindrink.me/ja/methodology.html",
+      "datePublished": "2026-04-11",
+      "dateModified": "2026-04-11",
+      "author": {
+        "@type": "Person",
+        "name": "Mindrink Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mindrink",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mindrink.me/assets/mindrink_icon_256.png"
+        }
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Force HTTPS redirect -->
+    <script defer>
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+    </script>
+    <style>
+        .methodology-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(26, 26, 26, 0.15);
+        }
+        .methodology-table thead {
+            background-color: var(--navy-outline);
+        }
+        .methodology-table th {
+            padding: 12px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        .methodology-table td {
+            padding: 10px 8px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .methodology-table tbody tr:nth-child(even) {
+            background-color: var(--soft-amber-bg);
+        }
+        .table-cell-blue {
+            color: #3A86FF;
+            font-weight: 600;
+        }
+        .table-cell-red {
+            color: #DC2626;
+            font-weight: 600;
+        }
+        .table-cell-tier {
+            font-weight: 600;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .source-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--soft-amber-bg);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-left: 8px;
+        }
+        .methodology-page main ul {
+            list-style: disc !important;
+            padding-left: 24px !important;
+        }
+        .methodology-page main ul li {
+            border-bottom: none !important;
+            padding: 6px 0 !important;
+        }
+    </style>
+</head>
+<body class="article-page methodology-page">
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="/ja/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+                    <img src="/assets/mindrink_icon_256.png" alt="Mindrink ロゴ" class="logo-img" width="32" height="32">
+                    <span class="logo-text">Mindrink</span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav">
+                <a href="/ja/#why-mindrink" class="nav-link">Mindrinkについて</a>
+                <a href="/ja/#how-it-works" class="nav-link">使い方</a>
+                <a href="/ja/methodology.html" class="nav-link">メソドロジー</a>
+                <a href="/ja/faq.html" class="nav-link">FAQ</a>
+                <a href="/ja/blog/" class="nav-link">ブログ</a>
+                <a href="/ja/about.html" class="nav-link">私たちについて</a>
+                <details class="language-dropdown">
+                    <summary class="language-toggle" aria-label="言語を選択">JA</summary>
+                    <div class="language-menu">
+                        <a href="/methodology.html" class="language-option">English</a>
+                        <a href="/fr/methodology.html" class="language-option">Français</a>
+                        <a href="/de/methodology.html" class="language-option">Deutsch</a>
+                        <a href="/es/methodology.html" class="language-option">Español</a>
+                        <a href="/pt/methodology.html" class="language-option">Português</a>
+                        <a href="/id/methodology.html" class="language-option">Bahasa Indonesia</a>
+                        <a href="/it/methodology.html" class="language-option">Italiano</a>
+                        <a href="/ja/methodology.html" class="language-option is-active" aria-current="page">日本語</a>
+                    </div>
+                </details>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+    <!-- Hero/Intro Section -->
+    <section class="philosophy">
+        <div class="container narrow">
+            <h1 class="page-title">⭐ Mindrinkのメソドロジー：上限値、アルコール単位、リスクレベルの定義方法</h1>
+            <p class="feature-text" style="text-align: center; margin-top: 24px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                このページでは、Mindrinkがアルコール単位をどのように計算し、上限値をどう定義し、どの国際ガイドラインを参照し、モデルのどの部分が独自に導出されたものかを正確にご説明します。<br>
+                私たちの目標は透明性です。数値の根拠と、それが日常生活で何を意味するのかを常にお伝えしたいと考えています。
+            </p>
+        </div>
+    </section>
+
+    <!-- 1. What is an alcohol unit -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">1. アルコール単位とは？</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrinkは、シンプルで国際的に認知された定義を使用しています：
+                </p>
+                <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
+                    1単位 = 純アルコール10グラム
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    この基準はWHO、オーストラリア、アイルランド、そして多くの主要な研究で使用されています。<br>
+                    これにより、ビール、ワイン、スピリッツ、カクテルなどすべてのお酒を同じ基準で比較できます。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    単位の計算方法：
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    単位 = (容量ml × アルコール度数% × 0.789) ÷ 10
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrinkが自動で計算しますが、いくつか例を挙げます：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>ビール</strong>（568 ml、5%）→ 約2.2単位
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>ワイン</strong>（175 ml、12%）→ 約1.7単位
+                    </li>
+                    <li style="padding: 8px 0;">
+                        <strong>スピリッツ</strong>（25 ml、40%）→ 約0.8単位
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    国によって単位の数え方は異なります。<br>
+                    詳しくは<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link">「1杯とは何か」ガイド</a>をご覧ください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Meaning of the colours -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">2. 色の意味</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrinkは、飲酒パターンをすばやく理解できるよう色を使用しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 青 — 上限値内</strong><br>
+                        選択した上限値（厳格、バランス、ゆるやか）の範囲内です。
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 紫 — 上限値超え、ただし高リスクではない</strong><br>
+                        1日または1週間の上限値を超えていますが、<br>
+                        ビンジ飲酒や高リスク週のレベルには達していません。
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 赤 — 高リスク</strong><br>
+                        健康に害のあるビンジ飲酒レベルです。
+                    </li>
+                </ul>
+                <p class="small-muted" style="margin-top: 24px;">
+                    色は簡略化された解釈のためのものであり、医学的な診断ではありません。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Full table of limits -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">3. 上限値の一覧表</h2>
+            <p class="feature-text" style="text-align: center; margin-bottom: 24px;">
+                （すべての値は単位表記; 1単位 = 10 g）
+            </p>
+            <div class="table-wrapper">
+                <table class="methodology-table">
+                    <thead>
+                        <tr>
+                            <th>レベル</th>
+                            <th>性別</th>
+                            <th>1日 ≤<br>（青）</th>
+                            <th>1日ビンジ ≥<br>（赤）</th>
+                            <th>1週間 ≤<br>（青）</th>
+                            <th>高リスク週 ≥<br>（赤）</th>
+                            <th>1か月 ≤<br>（≈）</th>
+                            <th>高リスク月 ≥<br>（≈）</th>
+                            <th>出典</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-cell-tier">厳格</td>
+                            <td>男性</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">厳格</td>
+                            <td>女性</td>
+                            <td class="table-cell-blue">2</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">5</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">20</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Canada CCSA 2023</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">バランス</td>
+                            <td>男性</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">バランス</td>
+                            <td>女性</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">10</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">40</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Australia NHMRC 2020</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">ゆるやか</td>
+                            <td>男性</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">7</td>
+                            <td class="table-cell-blue">17</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">68</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell-tier">ゆるやか</td>
+                            <td>女性</td>
+                            <td class="table-cell-blue">4</td>
+                            <td class="table-cell-red">6</td>
+                            <td class="table-cell-blue">11</td>
+                            <td class="table-cell-red">20</td>
+                            <td class="table-cell-blue">44</td>
+                            <td class="table-cell-red">80</td>
+                            <td style="font-size: 10px;">Ireland HSE</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Official Public-Health Sources We Use -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">4. 使用している公衆衛生の公式ソース</h2>
+            
+            <div class="feature">
+                <h3 class="feature-title">A. 公式の公衆衛生ソースから直接採用した値</h3>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    以下は、Mindrinkが公式発表そのままに使用しているガイドラインの構成要素です。1つだけ統一化のステップがあります：<br>
+                    すべてをMindrink単位 = エタノール10 gに変換し、異なる国の基準を直接比較できるようにしています。
+                </p>
+                <p class="feature-text">
+                    以下に、元の数値、変換の根拠、各ソースをMindrinkのモデルに含めた理由を示します。
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. 厳格レベル — カナダ（CCSA 2023）</h3>
+                <p class="feature-text">
+                    <strong>出典：</strong> Canadian Centre on Substance Use and Addiction（2023）
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    カナダは単一の「安全な上限」を示していません。<br>
+                    代わりに、疾病負荷モデルに基づくリスク帯域を定義しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0〜2杯/週 → 低リスク
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        3〜6杯/週 → 中リスク
+                    </li>
+                    <li style="padding: 8px 0;">
+                        7杯以上/週 → リスクが高まる
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    カナダの標準ドリンクの定義：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    エタノール13.45 g
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrink単位への変換</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    低リスク帯域（0〜2杯/週）：<br>
+                    2 × 13.45 g = 26.9 g → 2.7単位
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    中リスク帯域（3〜6杯/週）：<br>
+                    3杯 = 40.35 g → 4.0単位<br>
+                    6杯 = 80.7 g → 8.0単位
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    カナダのモデルをMindrink単位に換算すると：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        低リスク：約0〜2.7単位
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        中リスク：約4〜8単位
+                    </li>
+                    <li style="padding: 8px 0;">
+                        高リスク：8単位/週超
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrinkでの使用方法</strong>
+                </p>
+                <p class="feature-text">
+                    カナダのガイドラインは国際的に最も保守的です。<br>
+                    実用的かつ科学的根拠のある厳格レベルを作るため、Mindrinkでは以下のように設定しています：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    厳格レベルの週間上限 = 5単位/週以下
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    <strong>5単位/週：</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        カナダの中リスク帯域の下限付近に位置します
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        オーストラリアの10/週、アイルランドの17/11を大きく下回ります
+                    </li>
+                    <li style="padding: 8px 0;">
+                        ユーザーが現実的に記録できる非常に低い曝露レベルです
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>採用理由</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        現代の最も厳格なガイドラインです
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        固定的な上限ではなく、リスクカーブを提供しています
+                    </li>
+                    <li style="padding: 8px 0;">
+                        Mindrinkの「厳格」レベルを現代の疫学的エビデンスに基づかせています
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. バランスレベル — オーストラリア（NHMRC 2020）</h3>
+                <p class="feature-text">
+                    <strong>出典：</strong> National Health and Medical Research Council（2020）
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    オーストラリアは、明確でわかりやすいガイドラインを提供しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        1週間あたり10標準ドリンク以下
+                    </li>
+                    <li style="padding: 8px 0;">
+                        1日あたり4標準ドリンク以下
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    オーストラリアの標準ドリンクの定義：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    エタノール10 g
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrink単位への変換</strong>
+                </p>
+                <p class="feature-text">
+                    直接対応：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        10ドリンク/週 → 10単位/週
+                    </li>
+                    <li style="padding: 8px 0;">
+                        4ドリンク/日 → 4単位/日
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>採用理由</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        1日と1週間の両方の上限を提供しています
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        すでに10 gドリンクを採用しており、Mindrink単位と同一です
+                    </li>
+                    <li style="padding: 8px 0;">
+                        バランスレベルの構造的な基盤となっています
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. ゆるやかレベル — アイルランド（HSE）</h3>
+                <p class="feature-text">
+                    <strong>出典：</strong> HSE Low-Risk Drinking Guidelines
+                </p>
+                <p class="feature-text" style="margin-top: 16px;">
+                    アイルランドは、性別別のより高い週間上限を提供しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        男性：17標準ドリンク/週以下
+                    </li>
+                    <li style="padding: 8px 0;">
+                        女性：11標準ドリンク/週以下
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    アイルランドの定義：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    1標準ドリンク = エタノール10 g
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrink単位への変換</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        男性：17 × 10 g = 17単位/週
+                    </li>
+                    <li style="padding: 8px 0;">
+                        女性：11 × 10 g = 11単位/週
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>採用理由</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        柔軟なガイダンスを求めるユーザーに、より緩やかな選択肢を提供します
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        明確な3段階モデル（厳格 → バランス → ゆるやか）を完成させます
+                    </li>
+                    <li style="padding: 8px 0;">
+                        世界共通の10 g標準ドリンク基準に一致しています
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. ビンジ飲酒の定義 — NIAAA（米国）とWHO</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>NIAAA（米国）のビンジ基準</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        女性：約2時間で4米国ドリンク以上
+                    </li>
+                    <li style="padding: 8px 0;">
+                        男性：約2時間で5米国ドリンク以上
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    米国ドリンク = エタノール14 g
+                </p>
+                <p class="feature-text" style="margin-top: 8px; margin-bottom: 8px;">
+                    <strong>変換：</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        女性：4 × 14 g = 56 g → 5.6単位
+                    </li>
+                    <li style="padding: 8px 0;">
+                        男性：5 × 14 g = 70 g → 7単位
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrinkの丸め後の閾値：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        女性：6単位/日以上
+                    </li>
+                    <li style="padding: 8px 0;">
+                        男性：7単位/日以上
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>WHO — 大量飲酒エピソード（HED）</strong>
+                </p>
+                <p class="feature-text">
+                    1回の飲酒で60 g以上のエタノール<br>
+                    → 6単位
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>採用理由</strong>
+                </p>
+                <p class="feature-text">
+                    NIAAAとWHOの両方が、急性リスクが急激に増加するレベルとして約60〜70 gで一致しています<br>
+                    （外傷、中毒、不整脈、自傷行為、暴力、転倒）。
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    これらの値がMindrinkの1日あたりの消費量の赤ゾーンを定義しています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Values Mindrink Derives -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">5. Mindrinkが導出する値（統一モデルの構築のため）</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    各国の公式な飲酒ガイドラインは大きく異なります：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        週間上限はあるが、1日の上限がないもの
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        ビンジを定義しているものとしていないもの
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        男女に同じ基準を適用するものと別々のもの
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        月間の閾値を提供しているものはない
+                    </li>
+                    <li style="padding: 8px 0;">
+                        「標準ドリンク」の定義が異なる
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    単一で一貫性があり、わかりやすいシステムを作るために、Mindrinkは少数の値を独自に導出しています。<br>
+                    これらの導出は透明で最小限にとどめ、公衆衛生の論理に基づいています。
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">1. 厳格・バランス・ゆるやかの1日上限</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>1日上限を導出する理由</strong>
+                </p>
+                <p class="feature-text">
+                    カナダ（厳格レベル）とアイルランド（ゆるやかレベル）は週間ガイダンスのみを示しています。<br>
+                    1日の上限がなければ、その日の飲酒が適度なのかビンジに近いのかをユーザーが判断できません。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>厳格レベル — 2単位/日（導出値）</strong>
+                </p>
+                <p class="feature-text">
+                    厳格レベルは、カナダのモデルに基づく非常に低い曝露量を表します：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        0〜2カナダドリンク/週 = 低リスク<br>
+                        → 約0〜2.7単位/週
+                    </li>
+                    <li style="padding: 8px 0;">
+                        3〜6杯/週 = 中リスク<br>
+                        → 約4〜8単位/週
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    1日2単位の上限により、たまに多めに飲む日があっても、中リスクや高リスクの週間パターンに蓄積しないようにしています。
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    厳格レベルの1日青上限 = 2単位/日
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    これにより、厳格レベルはどの国の公式上限よりも低く、真に厳格なものになっています。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>バランス・ゆるやか — 4単位/日（オーストラリアより）</strong>
+                </p>
+                <p class="feature-text">
+                    オーストラリア（NHMRC 2020）は、エビデンスに基づく明確な1日上限を示す唯一の主要ガイドラインです：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    4ドリンク/日以下<br>
+                    = 4単位/日
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    Mindrinkは一貫性のため、両レベルに適用しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        バランスの1日青上限 = 4単位/日
+                    </li>
+                    <li style="padding: 8px 0;">
+                        ゆるやかの1日青上限 = 4単位/日
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>1日上限のまとめ</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>レベル</th>
+                                <th>1日の青上限</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">厳格</td>
+                                <td>2単位/日</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">バランス</td>
+                                <td>4単位/日</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">ゆるやか</td>
+                                <td>4単位/日</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">2. 週間高リスク閾値（「赤い週」）</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>導出の理由</strong>
+                </p>
+                <p class="feature-text">
+                    「高リスク週」を普遍的に定義するガイドラインはありません。<br>
+                    しかし、大規模コホート研究では、特定の閾値を超えるとリスクが明確に加速することが確認されています。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>科学的根拠</strong>
+                </p>
+                <p class="feature-text">
+                    主要な研究：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        Wood et al., Lancet 2018 — 599,912人の飲酒者を対象にした統合分析
+                    </li>
+                    <li style="padding: 8px 0;">
+                        WHOの世界疾病負荷モデル
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px;">
+                    両方とも以下を示しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        100 g/週あたりでリスクが顕著に増加
+                    </li>
+                    <li style="padding: 8px 0;">
+                        約200 g/週を超えるとリスクが急激に上昇
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrinkの導出</strong>
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    週間赤閾値 = 20単位/週以上<br>
+                    (20 × 10 g = エタノール200 g)
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    これは、複数の研究でリスクカーブが一貫して急上昇するポイントです。
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    推奨上限ではなく、週間分析のためのリスク指標です。
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">3. 厳格・バランスレベルのユニセックス設定</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>理由</strong>
+                </p>
+                <p class="feature-text">
+                    以下の両方：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        カナダ 2023（リスク帯域）
+                    </li>
+                    <li style="padding: 8px 0;">
+                        オーストラリア 2020（10/週、4/日）
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    は性別に関係なく同じ基準です。
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    存在しない性差を人為的に加えることは、科学を歪め、解釈を複雑にします。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>Mindrinkのアプローチ</strong>
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        厳格レベルの週間上限 = ユニセックス
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        バランスレベルの週間上限 = ユニセックス
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        ゆるやかレベルの週間上限 = 性別別（アイルランドに準拠）
+                    </li>
+                    <li style="padding: 8px 0;">
+                        ビンジ閾値 = 性別別（NIAAAに準拠）
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 8px;">
+                    これにより、すべてが基になるソースと整合性を保っています。
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">4. カラーゾーン（解釈レイヤー）</h3>
+                <p class="feature-text" style="margin-top: 16px;">
+                    Mindrinkは、パターンをひと目で理解できるよう簡略化したカラースキームを使用しています：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟦 青</strong> — 上限値内（1日・1週間）
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        <strong>🟣 紫</strong> — 上限値超えだが高リスク領域ではない
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong>🔴 赤</strong> — 高リスク曝露：
+                        <ul style="list-style: none; padding: 0; margin: 8px 0 0 20px;">
+                            <li style="padding: 4px 0;">ビンジ日</li>
+                            <li style="padding: 4px 0;">女性 ≥ 6単位</li>
+                            <li style="padding: 4px 0;">男性 ≥ 7単位</li>
+                            <li style="padding: 4px 0;">高リスク週：≥ 20単位</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>導出の理由</strong>
+                </p>
+                <p class="feature-text">
+                    ガイドラインは数値であり、視覚的ではありません。<br>
+                    色を使うことで、ユーザーは生の数値を解釈することなく、瞬時にトレンドを理解できます。
+                </p>
+                <p class="feature-text" style="margin-top: 8px;">
+                    これはコミュニケーションツールであり、診断カテゴリーではありません。
+                </p>
+            </div>
+
+            <div class="feature" style="margin-top: 32px;">
+                <h3 class="feature-title">5. 月間上限（トレンド分析のための導出値）</h3>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>理由</strong>
+                </p>
+                <p class="feature-text">
+                    月間のアルコール上限を提供する公衆衛生ガイドラインはありません。<br>
+                    しかしMindrinkには月間・長期グラフが含まれており、基準点が必要です。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>導出方法</strong>
+                </p>
+                <p class="feature-text">
+                    明確で透明なルール：
+                </p>
+                <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    月間上限 = 週間上限 × 4
+                </p>
+                <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
+                    <strong>例：</strong>
+                </p>
+                <div class="table-wrapper" style="margin-top: 16px;">
+                    <table class="methodology-table" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>レベル</th>
+                                <th>週間</th>
+                                <th>月間（導出値）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-tier">厳格</td>
+                                <td>5</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">バランス</td>
+                                <td>10</td>
+                                <td>40</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">ゆるやか（男性）</td>
+                                <td>17</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-tier">ゆるやか（女性）</td>
+                                <td>11</td>
+                                <td>44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="feature-text" style="margin-top: 16px;">
+                    月間上限は常に導出値として表示され、公式値としては扱いません。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Limits vs. Real Life -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">6. 上限値と実生活</h2>
+            <div class="feature">
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    Mindrinkの上限値はガイダンスツールであり、完璧に守るべきルールではありません。
+                </p>
+                <p class="feature-text" style="margin-bottom: 16px;">
+                    健康ガイドラインはリスクの範囲を示すものであり、個人の義務ではありません。<br>
+                    実生活は週間の数値よりも複雑です。<br>
+                    社交的な日もあれば、ストレスのある日も、お祝いの日も、静かな日もあります。<br>
+                    パターンは月や年を通じて変化します。それは自然なことです。
+                </p>
+                <p class="feature-text" style="margin-top: 24px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    Mindrinkはシンプルな原則に基づいています：<br><br>
+                    <strong>大切なのは完璧であることではなく、<br>
+                    気づいていることです。</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; margin-bottom: 8px;">
+                    すべての目標を達成することではなく、時間の経過とともに自分とお酒の関係を理解することが大切です：
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 16px 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        消費量が増えたり減ったりしていることに気づく
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        飲酒量が増える状況を認識する
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
+                        お酒が睡眠、エネルギー、気分にどう影響するかを見る
+                    </li>
+                    <li style="padding: 8px 0;">
+                        他人の基準ではなく、自分の目標に合った選択をする
+                    </li>
+                </ul>
+                <p class="feature-text" style="margin-top: 24px;">
+                    Mindrinkはあなたにレッテルを貼ったり、恥をかかせたり、上限値を道徳的な境界線として扱うことは決してしません。
+                </p>
+                <p class="feature-text" style="margin-top: 16px; font-size: 18px; text-align: center; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
+                    私たちの考え方はシンプルです：<br><br>
+                    <strong>罪悪感ではなく、ガイダンスを。<br><br>
+                    批判ではなく、気づきを。<br><br>
+                    あなたの人生にとって「健康」とは何かを決めるのは、あなた自身です。</strong>
+                </p>
+                <p class="feature-text" style="margin-top: 24px; text-align: center;">
+                    私たちが数値を提供するのは、あなたが情報に基づいた判断をできるようにするためです —<br>
+                    数値があなたの代わりに判断するためではありません。
+                </p>
+            </div>
+    </section>
+
+    <!-- 7. Full reference list -->
+    <section class="philosophy methodology-frame-section">
+        <div class="container narrow">
+            <h2 class="section-title">7. 参考文献一覧（リンク付き）</h2>
+            <div class="feature">
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Canada — CCSA (2023)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.ccsa.ca/canadas-guidance-alcohol-and-health" target="_blank" rel="noopener noreferrer" class="footer-link">Canada's Guidance on Alcohol and Health</a><br>
+                        <span class="small-muted">https://www.ccsa.ca/canadas-guidance-alcohol-and-health</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Australia — NHMRC (2020)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.nhmrc.gov.au/health-advice/alcohol" target="_blank" rel="noopener noreferrer" class="footer-link">Australian Guidelines to Reduce Health Risks from Drinking Alcohol</a><br>
+                        <span class="small-muted">https://www.nhmrc.gov.au/health-advice/alcohol</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Ireland — HSE Low-Risk Drinking Guidelines</h3>
+                    <p class="feature-text">
+                        <a href="https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/" target="_blank" rel="noopener noreferrer" class="footer-link">Weekly low-risk alcohol guidelines</a><br>
+                        <span class="small-muted">https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">USA — NIAAA (Rethinking Drinking)</h3>
+                    <p class="feature-text">
+                        <a href="https://www.rethinkingdrinking.niaaa.nih.gov/" target="_blank" rel="noopener noreferrer" class="footer-link">Rethinking Drinking</a><br>
+                        <span class="small-muted">https://www.rethinkingdrinking.niaaa.nih.gov/</span>
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">WHO — Global Status Report on Alcohol and Health</h3>
+                    <p class="feature-text">
+                        <a href="https://www.who.int/publications/i/item/9789241565639" target="_blank" rel="noopener noreferrer" class="footer-link">Global Status Report on Alcohol and Health</a><br>
+                        <span class="small-muted">https://www.who.int/publications/i/item/9789241565639</span>
+                    </p>
+                    <p class="small-muted" style="margin-top: 8px;">
+                        （最新の完全版：2018年。この方法論は現在のWHOアルコールモニタリングでも引き続き使用されています。）
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 class="feature-title">Lancet (2018) — アルコール消費のリスク閾値</h3>
+                    <p class="feature-text">
+                        <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext" target="_blank" rel="noopener noreferrer" class="footer-link">Wood et al., Lancet 2018</a><br>
+                        <span class="small-muted">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext</span>
+                    </p>
+                </div>
+            </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="how-it-works methodology-frame-section">
+        <div class="container narrow">
+            <div class="feature" style="background-color: #FEE2E2; border: 1px solid #FCA5A5; padding: 16px; border-radius: var(--border-radius);">
+                <p style="font-size: 14px; color: #991B1B; text-align: center; margin: 0; line-height: 1.6;">
+                    <strong>アルコールに完全に安全な量はありません（WHO 2023）。</strong>これらの範囲は安全ではなく、より低いリスクを示しています。Mindrinkは一般的な教育情報を提供するものであり、医療アドバイスではありません。飲酒について心配な点がある場合は、医療専門家や地域のサポートサービスにご相談ください。
+                </p>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    © <span id="current-year">2026</span> Mindrink. 無断転載を禁じます。
+                </p>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <a href="/ja/#why-mindrink" class="footer-link">Mindrinkについて</a>
+                    <a href="/ja/#how-it-works" class="footer-link">使い方</a>
+                    <a href="/ja/methodology.html" class="footer-link">メソドロジー</a>
+                    <a href="/ja/faq.html" class="footer-link">FAQ</a>
+                    <a href="/ja/blog/" class="footer-link">ブログ</a>
+                    <a href="/ja/about.html" class="footer-link">私たちについて</a>
+                    <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">フィードバック</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auto-fill current year in footer -->
+    <script defer>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <!-- Mobile menu toggle -->
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (menuToggle && nav) {
+                function toggleMenu() {
+                    const isActive = nav.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                }
+                
+                menuToggle.addEventListener('click', toggleMenu);
+                menuToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    toggleMenu();
+                }, { passive: false });
+                
+                const navLinks = nav.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                
+                document.addEventListener('click', function(event) {
+                    if (nav.classList.contains('active') && !event.target.closest('.header-container')) {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
