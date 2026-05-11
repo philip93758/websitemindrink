@@ -1680,4 +1680,52 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://mindrink.me/alcohol-units.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-units.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-units.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mindrink.me/dry-day.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/dry-day.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/dry-day.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mindrink.me/reduce-drinking.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/reduce-drinking.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/reduce-drinking.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mindrink.me/binge-drinking.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/binge-drinking.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/binge-drinking.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mindrink.me/private-alcohol-tracking.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/private-alcohol-tracking.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/private-alcohol-tracking.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mindrink.me/best-alcohol-tracker-no-account.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindrink.me/best-alcohol-tracker-no-account.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mindrink.me/best-alcohol-tracker-no-account.html"/>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
