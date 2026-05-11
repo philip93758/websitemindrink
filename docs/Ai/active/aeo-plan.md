@@ -12,7 +12,7 @@ Create a structured answer layer for search and AI parsing. English pages live a
   - `/reduce-drinking.html`
   - `/binge-drinking.html`
   - `/private-alcohol-tracking.html`
-  - `/best-alcohol-tracker-no-account.html`
+  - `/what-to-look-for-in-alcohol-tracker.html`
 - Use a shared static HTML structure:
   - `h1`
   - `section#short-answer`
