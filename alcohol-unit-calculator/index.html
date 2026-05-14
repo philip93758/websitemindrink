@@ -22,7 +22,16 @@
     <meta property="og:image:alt" content="Mindrink Alcohol Unit Calculator">
     <meta property="og:site_name" content="Mindrink">
     <meta property="og:locale" content="en_US">
-    <link rel="canonical" href="https://mindrink.me/alcohol-unit-calculator/">
+    <link rel="canonical" href="https://mindrink.me/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="de" href="https://mindrink.me/de/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="fr" href="https://mindrink.me/fr/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="es" href="https://mindrink.me/es/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="pt" href="https://mindrink.me/pt/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="id" href="https://mindrink.me/id/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
+    <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Alcohol Unit & Drink Calculator">
     <meta name="twitter:description" content="Calculate UK alcohol units, US standard drinks, 10g standard drinks, pure alcohol grams, calories, and weekly drinking totals with Mindrink.">
@@ -49,7 +58,20 @@
                 <a href="/#how-it-works" class="nav-link">How it works</a>
                 <a href="/methodology.html" class="nav-link">Methodology</a>
                 <a href="/faq.html" class="nav-link">FAQ</a>
-                <a href="/blog/" class="nav-link">Blog</a>
+                <a href="/blog/" class="nav-link">Blog</a>
+                <details class="language-dropdown">
+                    <summary class="language-toggle" aria-label="Language selector">EN</summary>
+                    <div class="language-menu">
+                        <a href="/alcohol-unit-calculator/" class="language-option is-active" aria-current="page">English</a>
+                        <a href="/de/alcohol-unit-calculator/" class="language-option">Deutsch</a>
+                        <a href="/fr/alcohol-unit-calculator/" class="language-option">Français</a>
+                        <a href="/es/alcohol-unit-calculator/" class="language-option">Español</a>
+                        <a href="/pt/alcohol-unit-calculator/" class="language-option">Português</a>
+                        <a href="/id/alcohol-unit-calculator/" class="language-option">Bahasa Indonesia</a>
+                        <a href="/it/alcohol-unit-calculator/" class="language-option">Italiano</a>
+                        <a href="/ja/alcohol-unit-calculator/" class="language-option">日本語</a>
+                    </div>
+                </details>
             </nav>
             <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
@@ -61,7 +83,7 @@
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/">Home</a> / Alcohol unit calculator</p>
                 <h1>Alcohol Unit & Drink Calculator</h1>
-                <p class="hero-intro">Compare UK alcohol units, US standard drinks, 10g standard drinks, pure alcohol grams, and alcohol calories. Add several drinks to estimate a weekly total without storing your data.</p>
+                <p class="hero-intro">Convert one drink into standard units, UK units, US drinks, pure alcohol grams, and calories. Add drinks to the optional weekly total only when you need it.</p>
             </div>
         </section>
 
@@ -71,8 +93,8 @@
                 <section id="calculator" class="answer-block calculator-shell">
                     <h2>Calculate alcohol units and standard drinks</h2>
                     
-                    <!-- Single Drink Calculator -->
-                    <div class="calculator-grid">
+                    <!-- Single Drink Calculator -->
+                    <div class="calculator-grid legacy-single-calculator" hidden>
                         <h3>Single drink</h3>
                         <div class="calculator-fields">
                             <div class="calculator-field">
@@ -121,17 +143,107 @@
 
                     <!-- Weekly Builder -->
                     <div class="calculator-grid weekly-builder">
-                        <h3>Weekly total</h3>
-                        <p class="weekly-intro">Add your drinks to see weekly totals and patterns.</p>
+                        <h3>Drink calculator</h3>
+                        <p class="weekly-intro">Start with one drink. Change the volume, ABV, or quantity to compare standard units, UK units, US drinks, grams, and calories.</p>
+
+                        <div class="drink-editor">
+
+                            <div class="calculator-fields">
+
+                                <div class="calculator-field">
+
+                                    <label for="selected-drink-type">Drink type</label>
+
+                                    <select id="selected-drink-type" class="calculator-input"></select>
+
+                                </div>
+
+                                <div class="calculator-field">
+
+                                    <label for="selected-volume">Volume (ml)</label>
+
+                                    <input type="number" id="selected-volume" class="calculator-input" inputmode="decimal" min="0" max="5000" step="1">
+
+                                </div>
+
+                                <div class="calculator-field">
+
+                                    <label for="selected-abv">ABV (%)</label>
+
+                                    <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1">
+
+                                </div>
+
+                                <div class="calculator-field">
+
+                                    <label for="selected-quantity">Quantity</label>
+
+                                    <input type="number" id="selected-quantity" class="calculator-input" inputmode="numeric" min="0" max="100" step="1">
+
+                                </div>
+
+                            </div>
+
+                            <p id="selected-calculator-status" class="calculator-status" aria-live="polite" hidden></p>
+
+                            <div class="calculator-results selected-results" aria-label="Selected drink conversion">
+
+                                <div class="calculator-result">
+
+                                    <span class="result-label">Standard units</span>
+
+                                    <span class="result-value" id="selected-global"></span>
+
+                                </div>
+
+                                <div class="calculator-result">
+
+                                    <span class="result-label">UK units</span>
+
+                                    <span class="result-value" id="selected-uk-units"></span>
+
+                                </div>
+
+                                <div class="calculator-result">
+
+                                    <span class="result-label">US drinks</span>
+
+                                    <span class="result-value" id="selected-us"></span>
+
+                                </div>
+
+                                <div class="calculator-result">
+
+                                    <span class="result-label">Alcohol grams</span>
+
+                                    <span class="result-value" id="selected-grams"></span>
+
+                                </div>
+
+                                <div class="calculator-result">
+
+                                    <span class="result-label">Calories</span>
+
+                                    <span class="result-value" id="selected-calories"></span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
                         
                         <div class="weekly-actions">
-                            <button id="weekly-add-row" class="weekly-btn weekly-btn-add">+ Add drink</button>
+                            <button id="weekly-add-row" class="weekly-btn weekly-btn-add">Add to weekly total</button>
+
+                            <button id="weekly-duplicate-selected" class="weekly-btn weekly-btn-duplicate" hidden>Duplicate selected</button>
+
+                            <button id="weekly-delete-selected" class="weekly-btn weekly-btn-delete" hidden>Delete selected</button>
                         </div>
                         
                         <div id="weekly-rows" class="weekly-rows"></div>
 
                         <template id="weekly-row-template">
-                            <div class="weekly-row">
+                            <div class="weekly-row">
                                 <div class="weekly-row-fields">
                                     <div class="weekly-row-field">
                                         <label class="weekly-drink-label">Drink</label>
@@ -159,15 +271,15 @@
                         </template>
 
                         <div class="weekly-totals">
-                            <h4>Weekly totals:</h4>
+                            <h4>Weekly total (optional):</h4>
                             <div class="weekly-totals-grid">
                                 <div class="weekly-total">
-                                    <span class="total-label">UK units:</span>
-                                    <span class="total-value" id="weekly-total-uk-units"></span>
+                                    <span class="total-label">Standard units:</span>
+                                    <span class="total-value" id="weekly-total-global"></span>
                                 </div>
                                 <div class="weekly-total">
-                                    <span class="total-label">10g standard drinks:</span>
-                                    <span class="total-value" id="weekly-total-global"></span>
+                                    <span class="total-label">UK units:</span>
+                                    <span class="total-value" id="weekly-total-uk-units"></span>
                                 </div>
                                 <div class="weekly-total">
                                     <span class="total-label">US standard drinks:</span>
@@ -191,7 +303,19 @@
                 <!-- What are alcohol units? -->
                 <section id="what-are-units" class="answer-block">
                     <h2>What are alcohol units?</h2>
-                    <p>Alcohol units are a way to measure the amount of pure alcohol in a drink. Different countries use different standards, which can make it confusing to compare. UK alcohol units are based on 8g (or 10ml) of pure alcohol. US standard drinks contain 14g of pure alcohol. Many other countries use a 10g standard drink as a reference point. This calculator shows all three so you can understand how your drinks compare across different systems.</p>
+                    <p>Different countries use different reference sizes. This calculator keeps them separate:</p>
+
+                    <ul class="answer-list">
+
+                        <li><strong>Standard units:</strong> 10g of pure alcohol, used by WHO AUDIT examples and close to the standard-glass idea used in many European countries, including France and Germany.</li>
+
+                        <li><strong>UK units:</strong> 10ml, or about 8g, of pure alcohol.</li>
+
+                        <li><strong>US standard drinks:</strong> 14g of pure alcohol.</li>
+
+                        <li><strong>Pure alcohol grams:</strong> the neutral baseline for comparing all systems.</li>
+
+                    </ul>
                 </section>
 
                 <!-- Alcohol units vs standard drinks -->
@@ -201,8 +325,8 @@
                     <h3>UK alcohol units</h3>
                     <p>One UK alcohol unit equals 10ml (approximately 8g) of pure alcohol. The formula is: <code>(volume in ml &times; ABV%) / 1000</code>. So a 500ml beer at 5% ABV contains 2.5 UK units.</p>
                     
-                    <h3>10g global and Mindrink standard drinks</h3>
-                    <p>Some countries and health organizations use 10g of pure alcohol as a standard drink reference. Mindrink also uses this 10g basis for global comparisons. A 500ml beer at 5% ABV contains about 2.0 ten-gram standard drinks.</p>
+                    <h3>Standard units</h3>
+                    <p>Some countries and health organizations use 10g of pure alcohol as a standard drink reference. A 500ml beer at 5% ABV contains about 2.0 standard units.</p>
                     
                     <h3>US standard drinks</h3>
                     <p>A US standard drink contains 14g of pure alcohol. This is equivalent to about 1.8 UK units or 1.4 ten-gram standard drinks. A 500ml beer at 5% ABV contains about 1.4 US standard drinks.</p>
@@ -219,7 +343,7 @@
                                     <th>Volume</th>
                                     <th>ABV</th>
                                     <th>UK units</th>
-                                    <th>10g standard drinks</th>
+                                    <th>Standard units</th>
                                     <th>US standard drinks</th>
                                     <th>Pure alcohol grams</th>
                                 </tr>
@@ -307,20 +431,20 @@
                             <p>A US standard drink contains 14g of pure alcohol. This calculator divides pure alcohol grams by 14 to estimate US standard drinks.</p>
                         </div>
                         <div class="faq-item">
-                            <h3>What is a 10g global standard drink?</h3>
-                            <p>Some countries and health references use 10g of pure alcohol as a standard drink. Mindrink also uses this 10g basis for global comparisons, so the calculator shows it separately from UK and US measures.</p>
+                            <h3>What is a standard unit?</h3>
+                            <p>A standard unit in this calculator is 10g of pure alcohol. WHO AUDIT examples use this basis, and it is close to the standard-glass idea used in many European countries, including France and Germany.</p>
                         </div>
                         <div class="faq-item">
                             <h3>Are alcohol units the same in every country?</h3>
-                            <p>No. UK alcohol units, US standard drinks, and 10g standard drinks use different reference amounts. Comparing through pure alcohol grams is the clearest way to move between systems.</p>
+                            <p>No. Standard units, UK alcohol units, and US standard drinks use different reference amounts. Comparing through pure alcohol grams is the clearest way to move between systems.</p>
                         </div>
                         <div class="faq-item">
                             <h3>How many units are in a beer?</h3>
-                            <p>A 500ml beer at 5% ABV contains about 2.5 UK units, 2.0 10g standard drinks, 1.4 US standard drinks, and 19.7g of pure alcohol.</p>
+                            <p>A 500ml beer at 5% ABV contains about 2.0 standard units, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol.</p>
                         </div>
                         <div class="faq-item">
                             <h3>How many units are in a glass of wine?</h3>
-                            <p>A 175ml glass of wine at 12% ABV contains about 2.1 UK units, 1.7 10g standard drinks, 1.2 US standard drinks, and 16.6g of pure alcohol.</p>
+                            <p>A 175ml glass of wine at 12% ABV contains about 1.7 standard units, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol.</p>
                         </div>
                         <div class="faq-item">
                             <h3>Can this calculator tell me if I drink too much?</h3>
@@ -365,10 +489,10 @@
                     },
                     {
                       "@type": "Question",
-                      "name": "What is a 10g global standard drink?",
+                      "name": "What is a standard unit?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Some countries and health references use 10g of pure alcohol as a standard drink. Mindrink also uses this 10g basis for global comparisons, so the calculator shows it separately from UK and US measures."
+                        "text": "A standard unit in this calculator is 10g of pure alcohol. WHO AUDIT examples use this basis, and it is close to the standard-glass idea used in many European countries, including France and Germany."
                       }
                     },
                     {
@@ -376,7 +500,7 @@
                       "name": "Are alcohol units the same in every country?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "No. UK alcohol units, US standard drinks, and 10g standard drinks use different reference amounts. Comparing through pure alcohol grams is the clearest way to move between systems."
+                        "text": "No. Standard units, UK alcohol units, and US standard drinks use different reference amounts. Comparing through pure alcohol grams is the clearest way to move between systems."
                       }
                     },
                     {
@@ -384,7 +508,7 @@
                       "name": "How many units are in a beer?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A 500ml beer at 5% ABV contains about 2.5 UK units, 2.0 10g standard drinks, 1.4 US standard drinks, and 19.7g of pure alcohol."
+                        "text": "A 500ml beer at 5% ABV contains about 2.0 standard units, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol."
                       }
                     },
                     {
@@ -392,7 +516,7 @@
                       "name": "How many units are in a glass of wine?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A 175ml glass of wine at 12% ABV contains about 2.1 UK units, 1.7 10g standard drinks, 1.2 US standard drinks, and 16.6g of pure alcohol."
+                        "text": "A 175ml glass of wine at 12% ABV contains about 1.7 standard units, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol."
                       }
                     },
                     {

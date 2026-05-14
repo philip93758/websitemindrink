@@ -1367,40 +1367,51 @@ body.answer-page main {
 
 .calculator-result,
 .weekly-total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    min-height: 86px;
+    padding: 12px;
+    border: 1px solid rgba(26, 26, 26, 0.1);
+    border-radius: var(--border-radius-small);
+    background-color: rgba(255, 255, 255, 0.72);
 }
 
 .calculator-result {
-    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
-}
-
-.calculator-result:last-child {
-    border-bottom: none;
+    gap: 8px;
 }
 
 .result-label,
 .total-label {
-    font-size: 14px;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.25;
     color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .total-label {
-    font-size: 13px;
+    font-size: 11px;
+}
+
+.result-value,
+.total-value {
+    display: block;
+    align-self: end;
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 .result-value {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 28px;
     color: var(--text-dark);
 }
 
 .total-value {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-dark);
+    font-size: 22px;
 }
 
 .calculator-status {
@@ -1415,7 +1426,7 @@ body.answer-page main {
 
 .weekly-builder {
     display: grid;
-    gap: 20px;
+    gap: 18px;
 }
 
 .weekly-intro {
@@ -1423,6 +1434,23 @@ body.answer-page main {
     line-height: 1.6;
     color: var(--text-light);
     margin-bottom: 8px;
+}
+
+.legacy-single-calculator {
+    display: none;
+}
+
+.drink-editor {
+    display: grid;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    border-radius: var(--border-radius-small);
+    background-color: var(--white);
+}
+
+.selected-results {
+    background-color: rgba(244, 162, 97, 0.12);
 }
 
 .weekly-actions,
@@ -1484,13 +1512,71 @@ body.answer-page main {
 }
 
 .weekly-row {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    gap: 6px;
     padding: 16px;
     background-color: var(--white);
     border: 1px solid rgba(26, 26, 26, 0.12);
     border-radius: var(--border-radius-small);
+}
+
+.drink-list-row {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) auto;
+    text-align: left;
+}
+
+.drink-list-row.active {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.14);
+}
+
+.drink-list-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.drink-list-detail {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.drink-list-units {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.weekly-empty {
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px dashed rgba(26, 26, 26, 0.18);
+    border-radius: var(--border-radius-small);
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.weekly-remove {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    padding: 8px 10px;
+    border: 1px solid rgba(26, 26, 26, 0.18);
+    border-radius: var(--border-radius-small);
+    background-color: var(--white);
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.weekly-remove:hover {
+    background-color: #f8f8f8;
 }
 
 .weekly-totals {
@@ -1657,16 +1743,31 @@ body.answer-page main {
 
     .calculator-fields,
     .calculator-results {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .weekly-row-fields,
     .weekly-totals-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .weekly-row-actions {
         flex-direction: column;
+    }
+
+    .drink-list-row {
+        grid-template-columns: 1fr;
+    }
+
+    .drink-list-units {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .weekly-remove {
+        grid-column: 1;
+        grid-row: auto;
+        width: 100%;
     }
 
     .weekly-btn {
@@ -1680,7 +1781,7 @@ body.answer-page main {
 
 @media (min-width: 768px) {
     .calculator-results {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .weekly-row-fields {

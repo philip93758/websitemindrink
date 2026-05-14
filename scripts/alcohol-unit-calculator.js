@@ -1,11 +1,8 @@
-// Alcohol Unit Calculator - Main Script
-// Loads as ES module, manages calculator state and UI
-
 import { WEBSITE_DRINK_PRESETS, getDrinkPreset } from '/shared/alcohol/drinks.js';
 import {
+  buildDrinkTypeBreakdown,
   calculateDrinkResult,
   calculateWeeklyTotals,
-  buildDrinkTypeBreakdown,
 } from '/shared/alcohol/formulas.js';
 import {
   MAX_ABV_PERCENT,
@@ -15,9 +12,168 @@ import {
   WEEKLY_MODERATE_MAX,
 } from '/shared/alcohol/constants.js';
 
-// ==========================================
-// Analytics Wrapper (No-op for V1)
-// ==========================================
+const LOCALES = {
+  en: {
+    drinks: {
+      beer: 'Beer',
+      wine: 'Wine',
+      sparkling_wine: 'Sparkling wine',
+      cider: 'Cider',
+      spirits: 'Spirits',
+      cocktail: 'Cocktail',
+      liqueur: 'Liqueur',
+      fortified_wine: 'Fortified wine',
+      custom: 'Custom',
+    },
+    incomplete: 'Incomplete',
+    enterDetails: 'Enter drink details to see results.',
+    limits: 'Use volume up to {volume}ml, ABV up to {abv}%, and quantity up to {quantity}.',
+    weeklyEmpty: 'Weekly total is optional. Add the drink above if you want to build a weekly estimate.',
+    weeklyOptional: 'Optional: add the drink above to estimate a weekly total.',
+    rowDetail: '{quantity} x {volume}ml at {abv}%',
+    standardUnits: 'standard units',
+    remove: 'Remove',
+    byDrinkType: 'By drink type:',
+    breakdown: '{count} drinks, {standard} standard units, {uk} UK units, {calories} calories',
+    weeklyIncomplete: 'Some rows need volume, ABV, and quantity before they count.',
+    low: 'Your weekly total is relatively low. Tracking over time can still help you understand patterns.',
+    moderate: 'Your weekly total shows a noticeable pattern. Dry days can make weekly drinking easier to observe.',
+    higher: 'Your weekly total is higher. Seeing patterns over time may help you decide what feels right for you.',
+  },
+  de: {
+    drinks: { beer: 'Bier', wine: 'Wein', sparkling_wine: 'Sekt', cider: 'Cider', spirits: 'Spirituosen', cocktail: 'Cocktail', liqueur: 'Likör', fortified_wine: 'Likörwein', custom: 'Eigene Eingabe' },
+    incomplete: 'Unvollständig',
+    enterDetails: 'Getränkedaten eingeben, um Ergebnisse zu sehen.',
+    limits: 'Nutze höchstens {volume} ml, {abv}% ABV und Menge {quantity}.',
+    weeklyEmpty: 'Die Wochensumme ist optional. Füge das Getränk oben hinzu, wenn du eine Woche schätzen möchtest.',
+    weeklyOptional: 'Optional: Füge das Getränk oben hinzu, um eine Wochensumme zu schätzen.',
+    rowDetail: '{quantity} x {volume} ml bei {abv}%',
+    standardUnits: 'Standardeinheiten',
+    remove: 'Entfernen',
+    byDrinkType: 'Nach Getränketyp:',
+    breakdown: '{count} Getränke, {standard} Standardeinheiten, {uk} UK-Einheiten, {calories} Kalorien',
+    weeklyIncomplete: 'Einige Zeilen brauchen Menge, ABV und Anzahl.',
+    low: 'Die Wochensumme ist relativ niedrig. Tracking kann trotzdem helfen, Muster zu verstehen.',
+    moderate: 'Die Wochensumme zeigt ein sichtbares Muster. Trockene Tage machen es leichter lesbar.',
+    higher: 'Die Wochensumme ist höher. Muster über Zeit können helfen zu entscheiden, was passt.',
+  },
+  fr: {
+    drinks: { beer: 'Bière', wine: 'Vin', sparkling_wine: 'Vin pétillant', cider: 'Cidre', spirits: 'Spiritueux', cocktail: 'Cocktail', liqueur: 'Liqueur', fortified_wine: 'Vin fortifié', custom: 'Personnalisé' },
+    incomplete: 'Incomplet',
+    enterDetails: 'Saisissez les détails de la boisson pour voir les résultats.',
+    limits: 'Utilisez jusqu’à {volume} ml, {abv}% ABV et une quantité de {quantity}.',
+    weeklyEmpty: 'Le total hebdomadaire est optionnel. Ajoutez la boisson ci-dessus si vous voulez estimer une semaine.',
+    weeklyOptional: 'Optionnel : ajoutez la boisson ci-dessus pour estimer un total hebdomadaire.',
+    rowDetail: '{quantity} x {volume} ml à {abv}%',
+    standardUnits: 'unités standard',
+    remove: 'Retirer',
+    byDrinkType: 'Par type de boisson :',
+    breakdown: '{count} boissons, {standard} unités standard, {uk} unités UK, {calories} calories',
+    weeklyIncomplete: 'Certaines lignes ont besoin du volume, de l’ABV et de la quantité.',
+    low: 'Votre total hebdomadaire est relativement faible. Le suivi peut quand même aider à comprendre les schémas.',
+    moderate: 'Votre total hebdomadaire montre un schéma notable. Les jours sans alcool peuvent le rendre plus lisible.',
+    higher: 'Votre total hebdomadaire est plus élevé. Voir les schémas dans le temps peut aider à décider ce qui vous convient.',
+  },
+  es: {
+    drinks: { beer: 'Cerveza', wine: 'Vino', sparkling_wine: 'Espumoso', cider: 'Sidra', spirits: 'Licores', cocktail: 'Cóctel', liqueur: 'Licor', fortified_wine: 'Vino fortificado', custom: 'Personalizado' },
+    incomplete: 'Incompleto',
+    enterDetails: 'Introduce los datos de la bebida para ver resultados.',
+    limits: 'Usa hasta {volume} ml, {abv}% ABV y cantidad {quantity}.',
+    weeklyEmpty: 'El total semanal es opcional. Añade la bebida de arriba si quieres estimar una semana.',
+    weeklyOptional: 'Opcional: añade la bebida de arriba para estimar un total semanal.',
+    rowDetail: '{quantity} x {volume} ml al {abv}%',
+    standardUnits: 'unidades estándar',
+    remove: 'Eliminar',
+    byDrinkType: 'Por tipo de bebida:',
+    breakdown: '{count} bebidas, {standard} unidades estándar, {uk} unidades UK, {calories} calorías',
+    weeklyIncomplete: 'Algunas filas necesitan volumen, ABV y cantidad.',
+    low: 'Tu total semanal es relativamente bajo. Registrar puede ayudarte a entender patrones.',
+    moderate: 'Tu total semanal muestra un patrón visible. Los días sin alcohol pueden hacerlo más claro.',
+    higher: 'Tu total semanal es más alto. Ver patrones en el tiempo puede ayudarte a decidir qué te conviene.',
+  },
+  pt: {
+    drinks: { beer: 'Cerveja', wine: 'Vinho', sparkling_wine: 'Espumante', cider: 'Cidra', spirits: 'Destilados', cocktail: 'Coquetel', liqueur: 'Licor', fortified_wine: 'Vinho fortificado', custom: 'Personalizado' },
+    incomplete: 'Incompleto',
+    enterDetails: 'Insira os dados da bebida para ver os resultados.',
+    limits: 'Use até {volume} ml, {abv}% ABV e quantidade {quantity}.',
+    weeklyEmpty: 'O total semanal é opcional. Adicione a bebida acima se quiser estimar uma semana.',
+    weeklyOptional: 'Opcional: adicione a bebida acima para estimar um total semanal.',
+    rowDetail: '{quantity} x {volume} ml a {abv}%',
+    standardUnits: 'unidades padrão',
+    remove: 'Remover',
+    byDrinkType: 'Por tipo de bebida:',
+    breakdown: '{count} bebidas, {standard} unidades padrão, {uk} unidades UK, {calories} calorias',
+    weeklyIncomplete: 'Algumas linhas precisam de volume, ABV e quantidade.',
+    low: 'Seu total semanal é relativamente baixo. Registrar ainda pode ajudar a entender padrões.',
+    moderate: 'Seu total semanal mostra um padrão perceptível. Dias sem álcool podem deixá-lo mais claro.',
+    higher: 'Seu total semanal é mais alto. Ver padrões ao longo do tempo pode ajudar a decidir o que faz sentido.',
+  },
+  id: {
+    drinks: { beer: 'Bir', wine: 'Anggur', sparkling_wine: 'Anggur bersoda', cider: 'Sider', spirits: 'Spirit', cocktail: 'Koktail', liqueur: 'Likur', fortified_wine: 'Anggur fortifikasi', custom: 'Kustom' },
+    incomplete: 'Belum lengkap',
+    enterDetails: 'Masukkan detail minuman untuk melihat hasil.',
+    limits: 'Gunakan maksimal {volume} ml, ABV {abv}%, dan jumlah {quantity}.',
+    weeklyEmpty: 'Total mingguan bersifat opsional. Tambahkan minuman di atas jika ingin memperkirakan satu minggu.',
+    weeklyOptional: 'Opsional: tambahkan minuman di atas untuk memperkirakan total mingguan.',
+    rowDetail: '{quantity} x {volume} ml pada {abv}%',
+    standardUnits: 'unit standar',
+    remove: 'Hapus',
+    byDrinkType: 'Menurut jenis minuman:',
+    breakdown: '{count} minuman, {standard} unit standar, {uk} unit UK, {calories} kalori',
+    weeklyIncomplete: 'Beberapa baris membutuhkan volume, ABV, dan jumlah.',
+    low: 'Total mingguan Anda relatif rendah. Mencatat tetap dapat membantu memahami pola.',
+    moderate: 'Total mingguan Anda menunjukkan pola yang terlihat. Hari tanpa alkohol dapat membuatnya lebih mudah dibaca.',
+    higher: 'Total mingguan Anda lebih tinggi. Melihat pola dari waktu ke waktu dapat membantu Anda memutuskan apa yang cocok.',
+  },
+  it: {
+    drinks: { beer: 'Birra', wine: 'Vino', sparkling_wine: 'Spumante', cider: 'Sidro', spirits: 'Superalcolici', cocktail: 'Cocktail', liqueur: 'Liquore', fortified_wine: 'Vino fortificato', custom: 'Personalizzato' },
+    incomplete: 'Incompleto',
+    enterDetails: 'Inserisci i dettagli della bevanda per vedere i risultati.',
+    limits: 'Usa fino a {volume} ml, {abv}% ABV e quantità {quantity}.',
+    weeklyEmpty: 'Il totale settimanale è opzionale. Aggiungi la bevanda sopra se vuoi stimare una settimana.',
+    weeklyOptional: 'Opzionale: aggiungi la bevanda sopra per stimare un totale settimanale.',
+    rowDetail: '{quantity} x {volume} ml al {abv}%',
+    standardUnits: 'unità standard',
+    remove: 'Rimuovi',
+    byDrinkType: 'Per tipo di bevanda:',
+    breakdown: '{count} bevande, {standard} unità standard, {uk} unità UK, {calories} calorie',
+    weeklyIncomplete: 'Alcune righe richiedono volume, ABV e quantità.',
+    low: 'Il totale settimanale è relativamente basso. Registrare può comunque aiutare a capire i pattern.',
+    moderate: 'Il totale settimanale mostra un pattern visibile. I giorni senza alcol possono renderlo più chiaro.',
+    higher: 'Il totale settimanale è più alto. Vedere i pattern nel tempo può aiutarti a decidere cosa ti sembra giusto.',
+  },
+  ja: {
+    drinks: { beer: 'ビール', wine: 'ワイン', sparkling_wine: 'スパークリングワイン', cider: 'サイダー', spirits: '蒸留酒', cocktail: 'カクテル', liqueur: 'リキュール', fortified_wine: '酒精強化ワイン', custom: 'カスタム' },
+    incomplete: '未入力',
+    enterDetails: '結果を見るには飲み物の詳細を入力してください。',
+    limits: '容量は{volume}mlまで、ABVは{abv}%まで、数量は{quantity}までです。',
+    weeklyEmpty: '週合計は任意です。1週間の目安を作りたい場合は、上の飲み物を追加してください。',
+    weeklyOptional: '任意: 上の飲み物を追加して週合計を見積もれます。',
+    rowDetail: '{quantity} x {volume}ml、{abv}%',
+    standardUnits: '標準単位',
+    remove: '削除',
+    byDrinkType: '飲み物別:',
+    breakdown: '{count}杯、{standard}標準単位、{uk} UK単位、{calories}カロリー',
+    weeklyIncomplete: '一部の行に容量、ABV、数量が必要です。',
+    low: '週合計は比較的低めです。記録するとパターンを理解しやすくなります。',
+    moderate: '週合計に目立つパターンがあります。休肝日があると把握しやすくなります。',
+    higher: '週合計は高めです。時間とともにパターンを見ると、自分に合う判断がしやすくなります。',
+  },
+};
+
+function getLocaleCopy() {
+  const lang = document.documentElement.lang || 'en';
+  return LOCALES[lang] || LOCALES.en;
+}
+
+function t(template, values = {}) {
+  return Object.entries(values).reduce(
+    (text, [key, value]) => text.replaceAll(`{${key}}`, value),
+    template
+  );
+}
+
+const copy = getLocaleCopy();
 
 function trackCalculatorEvent(eventName) {
   if (typeof window.mindrinkTrack === 'function') {
@@ -25,70 +181,19 @@ function trackCalculatorEvent(eventName) {
   }
 }
 
-// ==========================================
-// State Management
-// ==========================================
-
 const calculatorState = {
-  // Single drink calculator
-  singleDrink: {
-    drinkType: 'beer',
-    volumeMl: 500,
-    abvPercent: 5,
-    quantity: 1,
-  },
-  
-  // Weekly builder
-  weeklyRows: [
-    { id: 'row-1', drinkType: 'beer', drinkLabel: 'Beer', volumeMl: 500, abvPercent: 5, quantity: 3 },
-    { id: 'row-2', drinkType: 'wine', drinkLabel: 'Wine', volumeMl: 175, abvPercent: 12, quantity: 2 },
-  ],
-  
-  // Row counter for generating unique IDs
-  nextRowId: 3,
+  draftDrink: { drinkType: 'beer', volumeMl: 500, abvPercent: 5, quantity: 1 },
+  weeklyRows: [],
+  nextRowId: 1,
 };
 
-// ==========================================
-// Default State
-// ==========================================
-
-function getDefaultSingleDrink() {
-  return {
-    drinkType: 'beer',
-    volumeMl: 500,
-    abvPercent: 5,
-    quantity: 1,
-  };
-}
-
-function getDefaultWeeklyRows() {
-  return [
-    { id: 'row-1', drinkType: 'beer', drinkLabel: 'Beer', volumeMl: 500, abvPercent: 5, quantity: 3 },
-    { id: 'row-2', drinkType: 'wine', drinkLabel: 'Wine', volumeMl: 175, abvPercent: 12, quantity: 2 },
-  ];
-}
-
-function resetState() {
-  calculatorState.singleDrink = { ...getDefaultSingleDrink() };
-  calculatorState.weeklyRows = JSON.parse(JSON.stringify(getDefaultWeeklyRows()));
-  calculatorState.nextRowId = 3;
-}
-
-// ==========================================
-// Utility Functions
-// ==========================================
-
 function formatNumber(value, decimals = 1) {
-  if (value === null || value === undefined) {
-    return '';
-  }
+  if (value === null || value === undefined) return '';
   return value.toFixed(decimals);
 }
 
 function formatCalories(value) {
-  if (value === null || value === undefined) {
-    return '';
-  }
+  if (value === null || value === undefined) return '';
   return Math.round(value).toString();
 }
 
@@ -96,395 +201,297 @@ function generateRowId() {
   return `row-${calculatorState.nextRowId++}`;
 }
 
+function getDrinkLabel(drinkType) {
+  return copy.drinks[drinkType] || getDrinkPreset(drinkType).label;
+}
+
 function getInputHint({ volumeMl, abvPercent, quantity }) {
   if (volumeMl === null || volumeMl === '' || abvPercent === null || abvPercent === '' || quantity === null || quantity === '') {
-    return 'Enter drink details to see results.';
+    return copy.enterDetails;
   }
 
   if (volumeMl > MAX_VOLUME_ML || abvPercent > MAX_ABV_PERCENT || quantity > MAX_QUANTITY) {
-    return `Use volume up to ${MAX_VOLUME_ML}ml, ABV up to ${MAX_ABV_PERCENT}%, and quantity up to ${MAX_QUANTITY}.`;
+    return t(copy.limits, { volume: MAX_VOLUME_ML, abv: MAX_ABV_PERCENT, quantity: MAX_QUANTITY });
   }
 
   return '';
 }
 
-// Get drink label from type
-function getDrinkLabel(drinkType) {
-  const preset = getDrinkPreset(drinkType);
-  return preset ? preset.label : drinkType;
-}
-
-// ==========================================
-// Weekly Interpretation
-// ==========================================
-
 function getWeeklyInterpretation(totalUkUnits) {
-  if (totalUkUnits === null || totalUkUnits === undefined) {
-    return null;
-  }
-  
+  if (totalUkUnits === null || totalUkUnits === undefined) return null;
+
   if (totalUkUnits < WEEKLY_LOW_MAX) {
     return {
       key: 'low',
-      message: 'Your weekly total is relatively low. Tracking over time can still help you understand patterns.',
+      message: copy.low,
     };
   }
-  
+
   if (totalUkUnits <= WEEKLY_MODERATE_MAX) {
     return {
       key: 'moderate',
-      message: 'Your weekly total shows a noticeable pattern. Dry days can make weekly drinking easier to observe.',
+      message: copy.moderate,
     };
   }
-  
+
   return {
     key: 'higher',
-    message: 'Your weekly total is higher. Seeing patterns over time may help you decide what feels right for you.',
+    message: copy.higher,
   };
 }
 
-// ==========================================
-// Render Functions
-// ==========================================
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) element.textContent = value;
+}
 
-// Render single drink results
-function renderSingleDrinkResults() {
-  const result = calculateDrinkResult(calculatorState.singleDrink);
-  const hint = getInputHint(calculatorState.singleDrink);
-  const statusEl = document.getElementById('single-calculator-status');
-  
-  const resultElements = {
-    ukUnits: document.getElementById('single-uk-units'),
-    global: document.getElementById('single-global'),
-    us: document.getElementById('single-us'),
-    grams: document.getElementById('single-grams'),
-    calories: document.getElementById('single-calories'),
+function syncEditorFields() {
+  const fields = {
+    type: document.getElementById('selected-drink-type'),
+    volume: document.getElementById('selected-volume'),
+    abv: document.getElementById('selected-abv'),
+    quantity: document.getElementById('selected-quantity'),
   };
+  const draft = calculatorState.draftDrink;
+
+  if (fields.type) fields.type.value = draft.drinkType;
+  if (fields.volume) fields.volume.value = draft.volumeMl ?? '';
+  if (fields.abv) fields.abv.value = draft.abvPercent ?? '';
+  if (fields.quantity) fields.quantity.value = draft.quantity ?? '';
+}
+
+function renderDraftResults() {
+  const draft = calculatorState.draftDrink;
+  const hint = getInputHint(draft);
+  const result = calculateDrinkResult(draft);
+  const statusEl = document.getElementById('selected-calculator-status');
+  const resultIds = [
+    'selected-uk-units',
+    'selected-global',
+    'selected-us',
+    'selected-grams',
+    'selected-calories',
+  ];
 
   if (statusEl) {
     statusEl.textContent = hint;
     statusEl.hidden = hint === '';
   }
-  
-  if (result.isValid && hint === '') {
-    if (resultElements.ukUnits) resultElements.ukUnits.textContent = formatNumber(result.ukUnits);
-    if (resultElements.global) resultElements.global.textContent = formatNumber(result.globalStandardDrinks);
-    if (resultElements.us) resultElements.us.textContent = formatNumber(result.usStandardDrinks);
-    if (resultElements.grams) resultElements.grams.textContent = formatNumber(result.alcoholGrams);
-    if (resultElements.calories) resultElements.calories.textContent = formatCalories(result.calories);
-  } else {
-    if (resultElements.ukUnits) resultElements.ukUnits.textContent = '';
-    if (resultElements.global) resultElements.global.textContent = '';
-    if (resultElements.us) resultElements.us.textContent = '';
-    if (resultElements.grams) resultElements.grams.textContent = '';
-    if (resultElements.calories) resultElements.calories.textContent = '';
+
+  if (!result.isValid || hint !== '') {
+    resultIds.forEach((id) => setText(id, ''));
+    return;
   }
+
+  setText('selected-uk-units', formatNumber(result.ukUnits));
+  setText('selected-global', formatNumber(result.globalStandardDrinks));
+  setText('selected-us', formatNumber(result.usStandardDrinks));
+  setText('selected-grams', formatNumber(result.alcoholGrams));
+  setText('selected-calories', formatCalories(result.calories));
 }
 
-// Render a single weekly row
-function renderWeeklyRow(row) {
-  const template = document.getElementById('weekly-row-template');
-  if (!template) return null;
-  
-  const clone = template.content.cloneNode(true);
-  const rowEl = clone.querySelector('.weekly-row');
-  rowEl.dataset.rowId = row.id;
-  
-  // Drink type select
-  const drinkSelect = clone.querySelector('.weekly-drink-type');
-  if (drinkSelect) {
-    drinkSelect.id = `weekly-drink-${row.id}`;
-    drinkSelect.innerHTML = WEBSITE_DRINK_PRESETS.map(p => 
-      `<option value="${p.id}" ${p.id === row.drinkType ? 'selected' : ''}>${p.label}</option>`
-    ).join('');
-    drinkSelect.value = row.drinkType;
-    const label = clone.querySelector('.weekly-drink-label');
-    if (label) label.setAttribute('for', drinkSelect.id);
-  }
-  
-  // Volume input
-  const volumeInput = clone.querySelector('.weekly-volume');
-  if (volumeInput) {
-    volumeInput.id = `weekly-volume-${row.id}`;
-    volumeInput.value = row.volumeMl;
-    const label = clone.querySelector('.weekly-volume-label');
-    if (label) label.setAttribute('for', volumeInput.id);
-  }
-  
-  // ABV input
-  const abvInput = clone.querySelector('.weekly-abv');
-  if (abvInput) {
-    abvInput.id = `weekly-abv-${row.id}`;
-    abvInput.value = row.abvPercent;
-    const label = clone.querySelector('.weekly-abv-label');
-    if (label) label.setAttribute('for', abvInput.id);
-  }
-  
-  // Quantity input
-  const quantityInput = clone.querySelector('.weekly-quantity');
-  if (quantityInput) {
-    quantityInput.id = `weekly-quantity-${row.id}`;
-    quantityInput.value = row.quantity;
-    const label = clone.querySelector('.weekly-quantity-label');
-    if (label) label.setAttribute('for', quantityInput.id);
-  }
-  
-  // Duplicate button
-  const duplicateBtn = clone.querySelector('.weekly-duplicate');
-  if (duplicateBtn) {
-    duplicateBtn.dataset.rowId = row.id;
-  }
-  
-  // Delete button
-  const deleteBtn = clone.querySelector('.weekly-delete');
-  if (deleteBtn) {
-    deleteBtn.dataset.rowId = row.id;
-  }
-  
-  return clone;
-}
-
-// Render all weekly rows
 function renderWeeklyRows() {
   const container = document.getElementById('weekly-rows');
   if (!container) return;
-  
+
   container.innerHTML = '';
-  
-  calculatorState.weeklyRows.forEach(row => {
-    const rowEl = renderWeeklyRow(row);
-    if (rowEl) {
-      container.appendChild(rowEl);
-    }
+
+  if (calculatorState.weeklyRows.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'weekly-empty';
+    empty.textContent = copy.weeklyEmpty;
+    container.appendChild(empty);
+    return;
+  }
+
+  calculatorState.weeklyRows.forEach((row) => {
+    const result = calculateDrinkResult(row);
+    const item = document.createElement('div');
+    item.className = 'weekly-row drink-list-row';
+
+    const name = document.createElement('span');
+    name.className = 'drink-list-name';
+    name.textContent = getDrinkLabel(row.drinkType);
+
+    const detail = document.createElement('span');
+    detail.className = 'drink-list-detail';
+    detail.textContent = t(copy.rowDetail, {
+      quantity: row.quantity ?? '-',
+      volume: row.volumeMl ?? '-',
+      abv: row.abvPercent ?? '-',
+    });
+
+    const units = document.createElement('span');
+    units.className = 'drink-list-units';
+    units.textContent = result.isValid
+      ? `${formatNumber(result.globalStandardDrinks)} ${copy.standardUnits}`
+      : copy.incomplete;
+
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'weekly-remove';
+    remove.dataset.rowId = row.id;
+    remove.textContent = copy.remove;
+
+    item.append(name, detail, units, remove);
+    container.appendChild(item);
   });
-  
-  renderWeeklyTotals();
 }
 
-// Render weekly totals
 function renderWeeklyTotals() {
+  const hasRows = calculatorState.weeklyRows.length > 0;
   const totals = calculateWeeklyTotals(calculatorState.weeklyRows);
   const rowHints = calculatorState.weeklyRows.map(getInputHint).filter(Boolean);
-  const blockingHint = rowHints.find((message) => message !== 'Enter drink details to see results.') || '';
+  const blockingHint = rowHints.find((message) => message !== copy.enterDetails) || '';
   const weeklyHint = blockingHint ||
-    (!totals.isValid && rowHints.length > 0 ? 'Some rows need volume, ABV, and quantity before they count.' : '');
+    (!totals.isValid && rowHints.length > 0 ? copy.weeklyIncomplete : '');
   const breakdown = buildDrinkTypeBreakdown(
-    calculatorState.weeklyRows.map(r => ({ ...r, drinkLabel: getDrinkLabel(r.drinkType) }))
+    calculatorState.weeklyRows.map((row) => ({ ...row, drinkLabel: getDrinkLabel(row.drinkType) }))
   );
-  
-  // Update total elements
-  const totalElements = {
-    ukUnits: document.getElementById('weekly-total-uk-units'),
-    global: document.getElementById('weekly-total-global'),
-    us: document.getElementById('weekly-total-us'),
-    grams: document.getElementById('weekly-total-grams'),
-    calories: document.getElementById('weekly-total-calories'),
-  };
-  
-  if (totals.isValid && weeklyHint === '') {
-    if (totalElements.ukUnits) totalElements.ukUnits.textContent = formatNumber(totals.totalUkUnits);
-    if (totalElements.global) totalElements.global.textContent = formatNumber(totals.totalGlobalStandardDrinks);
-    if (totalElements.us) totalElements.us.textContent = formatNumber(totals.totalUsStandardDrinks);
-    if (totalElements.grams) totalElements.grams.textContent = formatNumber(totals.totalAlcoholGrams);
-    if (totalElements.calories) totalElements.calories.textContent = formatCalories(totals.totalCalories);
+
+  if (!hasRows) {
+    setText('weekly-total-uk-units', '0.0');
+    setText('weekly-total-global', '0.0');
+    setText('weekly-total-us', '0.0');
+    setText('weekly-total-grams', '0.0');
+    setText('weekly-total-calories', '0');
+  } else if (totals.isValid && weeklyHint === '') {
+    setText('weekly-total-uk-units', formatNumber(totals.totalUkUnits));
+    setText('weekly-total-global', formatNumber(totals.totalGlobalStandardDrinks));
+    setText('weekly-total-us', formatNumber(totals.totalUsStandardDrinks));
+    setText('weekly-total-grams', formatNumber(totals.totalAlcoholGrams));
+    setText('weekly-total-calories', formatCalories(totals.totalCalories));
   } else {
-    if (totalElements.ukUnits) totalElements.ukUnits.textContent = '';
-    if (totalElements.global) totalElements.global.textContent = '';
-    if (totalElements.us) totalElements.us.textContent = '';
-    if (totalElements.grams) totalElements.grams.textContent = '';
-    if (totalElements.calories) totalElements.calories.textContent = '';
+    ['weekly-total-uk-units', 'weekly-total-global', 'weekly-total-us', 'weekly-total-grams', 'weekly-total-calories']
+      .forEach((id) => setText(id, ''));
   }
-  
-  // Update interpretation
+
   const interpretationEl = document.getElementById('weekly-interpretation');
   if (interpretationEl) {
-    const interpretation = weeklyHint === '' ? getWeeklyInterpretation(totals.totalUkUnits) : null;
+    const interpretation = hasRows && weeklyHint === '' ? getWeeklyInterpretation(totals.totalUkUnits) : null;
     if (interpretation) {
       interpretationEl.textContent = interpretation.message;
       interpretationEl.className = `weekly-interpretation weekly-interpretation-${interpretation.key}`;
     } else {
-      interpretationEl.textContent = weeklyHint || 'Add drinks to see a weekly pattern summary.';
+      interpretationEl.textContent = weeklyHint || copy.weeklyOptional;
       interpretationEl.className = 'weekly-interpretation';
     }
   }
-  
-  // Update breakdown
+
   const breakdownEl = document.getElementById('weekly-breakdown');
-  if (breakdownEl && totals.isValid && weeklyHint === '' && Object.keys(breakdown).length > 0) {
-    breakdownEl.innerHTML = '<h4>By drink type:</h4>' + 
-      Object.entries(breakdown).map(([id, data]) => 
-        `<p><strong>${data.label}:</strong> ${data.count} drinks, ${formatNumber(data.ukUnits)} UK units, ${formatNumber(data.alcoholGrams)}g alcohol, ${formatCalories(data.calories)} calories</p>`
+  if (breakdownEl && hasRows && totals.isValid && weeklyHint === '' && Object.keys(breakdown).length > 0) {
+    breakdownEl.innerHTML = `<h4>${copy.byDrinkType}</h4>` +
+      Object.values(breakdown).map((data) =>
+        `<p><strong>${data.label}:</strong> ${t(copy.breakdown, {
+          count: data.count,
+          standard: formatNumber(data.alcoholGrams / 10),
+          uk: formatNumber(data.ukUnits),
+          calories: formatCalories(data.calories),
+        })}</p>`
       ).join('');
   } else if (breakdownEl) {
     breakdownEl.innerHTML = '';
   }
 }
 
-// ==========================================
-// Event Handlers
-// ==========================================
+function renderCalculator() {
+  syncEditorFields();
+  renderDraftResults();
+  renderWeeklyRows();
+  renderWeeklyTotals();
+}
 
-function setupSingleDrinkEvents() {
-  // Drink type select
-  const drinkSelect = document.getElementById('single-drink-type');
+function parseNumericInput(value, integer = false) {
+  if (value === '') return null;
+  const parsed = integer ? parseInt(value, 10) : parseFloat(value);
+  return Number.isNaN(parsed) ? null : parsed;
+}
+
+function updateDraft(updater) {
+  updater(calculatorState.draftDrink);
+  renderCalculator();
+  trackCalculatorEvent('calculator_single_drink_changed');
+}
+
+function addDraftToWeeklyTotal() {
+  const hint = getInputHint(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink);
+  if (hint !== '' || !result.isValid) {
+    renderCalculator();
+    return;
+  }
+
+  calculatorState.weeklyRows.push({
+    id: generateRowId(),
+    ...calculatorState.draftDrink,
+  });
+  renderCalculator();
+  trackCalculatorEvent('calculator_weekly_row_added');
+}
+
+function setupEditorEvents() {
+  const drinkSelect = document.getElementById('selected-drink-type');
+  const volumeInput = document.getElementById('selected-volume');
+  const abvInput = document.getElementById('selected-abv');
+  const quantityInput = document.getElementById('selected-quantity');
+
   if (drinkSelect) {
-    drinkSelect.addEventListener('change', (e) => {
-      calculatorState.singleDrink.drinkType = e.target.value;
-      const preset = getDrinkPreset(e.target.value);
-      if (preset.defaultVolumeMl !== undefined) {
-        calculatorState.singleDrink.volumeMl = preset.defaultVolumeMl;
-        document.getElementById('single-volume').value = preset.defaultVolumeMl;
-      }
-      if (preset.defaultAbvPercent !== undefined) {
-        calculatorState.singleDrink.abvPercent = preset.defaultAbvPercent;
-        document.getElementById('single-abv').value = preset.defaultAbvPercent;
-      }
-      renderSingleDrinkResults();
-      trackCalculatorEvent('calculator_single_drink_changed');
+    drinkSelect.innerHTML = WEBSITE_DRINK_PRESETS.map((preset) =>
+      `<option value="${preset.id}">${getDrinkLabel(preset.id)}</option>`
+    ).join('');
+
+    drinkSelect.addEventListener('change', (event) => {
+      updateDraft((draft) => {
+        const preset = getDrinkPreset(event.target.value);
+        draft.drinkType = preset.id;
+        draft.volumeMl = preset.defaultVolumeMl;
+        draft.abvPercent = preset.defaultAbvPercent;
+      });
     });
   }
-  
-  // Volume input
-  const volumeInput = document.getElementById('single-volume');
+
   if (volumeInput) {
-    volumeInput.addEventListener('input', (e) => {
-      const value = e.target.value === '' ? null : parseFloat(e.target.value);
-      if (value !== null && !isNaN(value)) {
-        calculatorState.singleDrink.volumeMl = value;
-      } else {
-        calculatorState.singleDrink.volumeMl = null;
-      }
-      renderSingleDrinkResults();
-      trackCalculatorEvent('calculator_single_drink_changed');
+    volumeInput.addEventListener('input', (event) => {
+      updateDraft((draft) => {
+        draft.volumeMl = parseNumericInput(event.target.value);
+      });
     });
   }
-  
-  // ABV input
-  const abvInput = document.getElementById('single-abv');
+
   if (abvInput) {
-    abvInput.addEventListener('input', (e) => {
-      const value = e.target.value === '' ? null : parseFloat(e.target.value);
-      if (value !== null && !isNaN(value)) {
-        calculatorState.singleDrink.abvPercent = value;
-      } else {
-        calculatorState.singleDrink.abvPercent = null;
-      }
-      renderSingleDrinkResults();
-      trackCalculatorEvent('calculator_single_drink_changed');
+    abvInput.addEventListener('input', (event) => {
+      updateDraft((draft) => {
+        draft.abvPercent = parseNumericInput(event.target.value);
+      });
     });
   }
-  
-  // Quantity input
-  const quantityInput = document.getElementById('single-quantity');
+
   if (quantityInput) {
-    quantityInput.addEventListener('input', (e) => {
-      const value = e.target.value === '' ? null : parseInt(e.target.value, 10);
-      if (value !== null && !isNaN(value)) {
-        calculatorState.singleDrink.quantity = value;
-      } else {
-        calculatorState.singleDrink.quantity = null;
-      }
-      renderSingleDrinkResults();
-      trackCalculatorEvent('calculator_single_drink_changed');
+    quantityInput.addEventListener('input', (event) => {
+      updateDraft((draft) => {
+        draft.quantity = parseNumericInput(event.target.value, true);
+      });
     });
   }
 }
 
-function setupWeeklyEvents() {
-  // Add row button
+function setupListEvents() {
   const addRowBtn = document.getElementById('weekly-add-row');
-  if (addRowBtn) {
-    addRowBtn.addEventListener('click', () => {
-      const newRow = {
-        id: generateRowId(),
-        drinkType: 'beer',
-        drinkLabel: 'Beer',
-        volumeMl: 500,
-        abvPercent: 5,
-        quantity: 1,
-      };
-      calculatorState.weeklyRows.push(newRow);
-      renderWeeklyRows();
-      trackCalculatorEvent('calculator_weekly_row_added');
-    });
-  }
-  
-  // Duplicate row - event delegation
   const container = document.getElementById('weekly-rows');
-  if (container) {
-    container.addEventListener('click', (e) => {
-      const duplicateBtn = e.target.closest('.weekly-duplicate');
-      if (duplicateBtn) {
-        const rowId = duplicateBtn.dataset.rowId;
-        const rowToDuplicate = calculatorState.weeklyRows.find(r => r.id === rowId);
-        if (rowToDuplicate) {
-          const newRow = {
-            ...rowToDuplicate,
-            id: generateRowId(),
-          };
-          calculatorState.weeklyRows.push(newRow);
-          renderWeeklyRows();
-          trackCalculatorEvent('calculator_weekly_row_added');
-        }
-      }
-      
-      const deleteBtn = e.target.closest('.weekly-delete');
-      if (deleteBtn) {
-        const rowId = deleteBtn.dataset.rowId;
-        calculatorState.weeklyRows = calculatorState.weeklyRows.filter(r => r.id !== rowId);
-        renderWeeklyRows();
-        trackCalculatorEvent('calculator_weekly_row_deleted');
-      }
-    });
+
+  if (addRowBtn) {
+    addRowBtn.addEventListener('click', addDraftToWeeklyTotal);
   }
-  
-  // Row input changes - event delegation
+
   if (container) {
-    function handleWeeklyInputChange(e) {
-      if (e.type === 'input' && e.target.classList.contains('weekly-drink-type')) {
-        return;
-      }
-      if (e.type === 'change' && !e.target.classList.contains('weekly-drink-type')) {
-        return;
-      }
+    container.addEventListener('click', (event) => {
+      const removeButton = event.target.closest('.weekly-remove');
+      if (!removeButton) return;
 
-      const rowEl = e.target.closest('.weekly-row');
-      if (!rowEl) return;
-      
-      const rowId = rowEl.dataset.rowId;
-      const row = calculatorState.weeklyRows.find(r => r.id === rowId);
-      if (!row) return;
-      
-      if (e.target.classList.contains('weekly-drink-type')) {
-        row.drinkType = e.target.value;
-        row.drinkLabel = getDrinkLabel(e.target.value);
-        const preset = getDrinkPreset(e.target.value);
-        if (preset.defaultVolumeMl !== undefined) {
-          row.volumeMl = preset.defaultVolumeMl;
-          const volumeInput = rowEl.querySelector('.weekly-volume');
-          if (volumeInput) volumeInput.value = preset.defaultVolumeMl;
-        }
-        if (preset.defaultAbvPercent !== undefined) {
-          row.abvPercent = preset.defaultAbvPercent;
-          const abvInput = rowEl.querySelector('.weekly-abv');
-          if (abvInput) abvInput.value = preset.defaultAbvPercent;
-        }
-      } else if (e.target.classList.contains('weekly-volume')) {
-        const value = e.target.value === '' ? null : parseFloat(e.target.value);
-        row.volumeMl = value !== null && !isNaN(value) ? value : null;
-      } else if (e.target.classList.contains('weekly-abv')) {
-        const value = e.target.value === '' ? null : parseFloat(e.target.value);
-        row.abvPercent = value !== null && !isNaN(value) ? value : null;
-      } else if (e.target.classList.contains('weekly-quantity')) {
-        const value = e.target.value === '' ? null : parseInt(e.target.value, 10);
-        row.quantity = value !== null && !isNaN(value) ? value : null;
-      }
-      
-      renderWeeklyTotals();
-    }
-
-    container.addEventListener('input', handleWeeklyInputChange);
-    container.addEventListener('change', handleWeeklyInputChange);
+      calculatorState.weeklyRows = calculatorState.weeklyRows.filter((row) => row.id !== removeButton.dataset.rowId);
+      renderCalculator();
+      trackCalculatorEvent('calculator_weekly_row_deleted');
+    });
   }
 }
 
@@ -497,34 +504,14 @@ function setupCTAEvent() {
   }
 }
 
-// ==========================================
-// Initialization
-// ==========================================
-
 function initCalculator() {
-  // Track page view
   trackCalculatorEvent('calculator_page_view');
-  
-  // Setup single drink form defaults
-  const drinkSelect = document.getElementById('single-drink-type');
-  if (drinkSelect) {
-    drinkSelect.innerHTML = WEBSITE_DRINK_PRESETS.map(p => 
-      `<option value="${p.id}">${p.label}</option>`
-    ).join('');
-    drinkSelect.value = calculatorState.singleDrink.drinkType;
-  }
-  
-  // Setup event listeners
-  setupSingleDrinkEvents();
-  setupWeeklyEvents();
+  setupEditorEvents();
+  setupListEvents();
   setupCTAEvent();
-  
-  // Initial render
-  renderSingleDrinkResults();
-  renderWeeklyRows();
+  renderCalculator();
 }
 
-// Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initCalculator);
 } else {
