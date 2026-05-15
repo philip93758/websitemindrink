@@ -1,16 +1,16 @@
-import { WEBSITE_DRINK_PRESETS, getDrinkPreset } from '/shared/alcohol/drinks.js';
+import { WEBSITE_DRINK_PRESETS, getDrinkPreset } from '/shared/alcohol/drinks.js?v=calculator-20260515';
 import {
   buildDrinkTypeBreakdown,
   calculateDrinkResult,
   calculateWeeklyTotals,
-} from '/shared/alcohol/formulas.js';
+} from '/shared/alcohol/formulas.js?v=calculator-20260515';
 import {
   MAX_ABV_PERCENT,
   MAX_QUANTITY,
   MAX_VOLUME_ML,
   WEEKLY_LOW_MAX,
   WEEKLY_MODERATE_MAX,
-} from '/shared/alcohol/constants.js';
+} from '/shared/alcohol/constants.js?v=calculator-20260515';
 
 const LOCALES = {
   en: {
