@@ -1370,6 +1370,7 @@ body.answer-page main {
     display: grid;
     grid-template-rows: auto 1fr;
     align-content: start;
+    min-width: 0;
     min-height: 86px;
     padding: 12px;
     border: 1px solid rgba(26, 26, 26, 0.1);
@@ -1384,12 +1385,15 @@ body.answer-page main {
 .result-label,
 .total-label {
     display: block;
+    max-width: 100%;
     font-size: 12px;
     font-weight: 700;
     line-height: 1.25;
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+    hyphens: auto;
 }
 
 .total-label {
@@ -1399,6 +1403,7 @@ body.answer-page main {
 .result-value,
 .total-value {
     display: block;
+    min-width: 0;
     align-self: end;
     color: var(--text-dark);
     font-weight: 700;
@@ -1781,7 +1786,7 @@ body.answer-page main {
 
 @media (min-width: 768px) {
     .calculator-results {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
     }
 
     .weekly-row-fields {
@@ -1789,7 +1794,7 @@ body.answer-page main {
     }
 
     .weekly-totals-grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 }
 
