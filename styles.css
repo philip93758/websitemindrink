@@ -217,15 +217,15 @@ body {
         padding: 12px 16px;
         position: relative;
     }
-    
+
     .logo-text {
         font-size: 18px;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
-    
+
     .nav {
         position: fixed;
         top: 61px;
@@ -247,21 +247,21 @@ body {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
-    
+
     .nav.active {
         -webkit-transform: translateY(0);
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
-    
+
     .nav-link {
         font-size: 16px;
         padding: 12px 0;
         border-bottom: 1px solid rgba(26, 26, 26, 0.05);
         width: 100%;
     }
-    
+
     .nav-link:last-child {
         border-bottom: none;
     }
@@ -422,25 +422,25 @@ body {
     .hero {
         padding: 40px 20px;
     }
-    
+
     .hero-container {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
     }
-    
+
     .hero-headline {
         font-size: 32px;
     }
-    
+
     .hero-subtext {
         font-size: 16px;
     }
-    
+
     .hero-buttons {
         justify-content: center;
     }
-    
+
     .hero-img {
         max-width: 300px;
     }
@@ -581,20 +581,20 @@ body {
     .philosophy {
         padding: 60px 20px;
     }
-    
+
     .philosophy-cards {
         grid-template-columns: 1fr;
         gap: 24px;
     }
-    
+
     .philosophy-card {
         padding: 24px;
     }
-    
+
     .philosophy-img {
         max-width: 150px;
     }
-    
+
     .philosophy-title {
         font-size: 18px;
     }
@@ -650,12 +650,12 @@ body {
     .how-it-works {
         padding: 60px 20px;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
-    
+
     .feature {
         padding: 24px;
     }
@@ -702,11 +702,11 @@ body {
     .cta {
         padding: 60px 20px;
     }
-    
+
     .cta-title {
         font-size: 28px;
     }
-    
+
     .cta-text {
         font-size: 16px;
     }
@@ -750,7 +750,7 @@ body {
     .contact-strip {
         padding: 32px 20px;
     }
-    
+
     .contact-strip-text {
         font-size: 16px;
     }
@@ -798,7 +798,7 @@ body {
     .footer {
         padding: 32px 20px;
     }
-    
+
     .footer-content {
         flex-direction: column;
         text-align: center;
@@ -1685,53 +1685,6 @@ body.answer-page main {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.footer-container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 28px;
-}
-
-.footer-section h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.footer-section p,
-.footer-section a,
-.footer-bottom p {
-    color: var(--text-light);
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-section li + li {
-    margin-top: 6px;
-}
-
-.footer-section a {
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    color: var(--blue-accent);
-}
-
-.footer-bottom {
-    max-width: 1120px;
-    margin: 28px auto 0;
-    padding: 18px 20px 0;
-    border-top: 1px solid rgba(26, 26, 26, 0.1);
-}
-
 @media (max-width: 767px) {
     .answer-hero {
         padding: 42px 20px 20px;
@@ -1779,9 +1732,6 @@ body.answer-page main {
         width: 100%;
     }
 
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (min-width: 768px) {
