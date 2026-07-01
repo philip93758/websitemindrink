@@ -6,13 +6,20 @@ Agent entry for the public website repository (`websitemindrink`).
 
 | Need | Path |
 |---|---|
-| Active tickets | [Ai/active/](./Ai/active/) |
-| Closed workstreams | [Ai/archive/](./Ai/archive/) |
+| Active tickets (local) | `docs/Ai/active/` — **gitignored** in this repo |
+| Closed workstreams | **Moved to Atrium** — see below |
 
 ## Ownership
 
 - **This repo:** website pages, locale SEO implementation, deployment, content tickets
 - **Atrium:** SEO/growth ops, GSC workflow, ticket intake, platform KB (index-only link to this repo)
+
+## Archive (Atrium)
+
+| | Path |
+|---|---|
+| Local | `../../mindrink-atrium/docs/atrium/archive/mindrink-website/` |
+| GitHub | https://github.com/philip93758/mindrink-atrium/tree/dev/docs/atrium/archive/mindrink-website |
 
 ## Platform rules (Atrium — separate repo)
 
