@@ -112,6 +112,25 @@ export function calculateAlcoholCalories(alcoholGrams) {
 }
 
 /**
+ * Calculate equivalent drinks based on pure alcohol grams
+ * Baseline: 500ml beer at 5% ABV = 19.725g alcohol, 750ml wine at 12% ABV = 70.236g alcohol
+ * @param {number} alcoholGrams - Total pure alcohol grams
+ * @returns {Object} - Equivalent counts
+ */
+export function calculateEquivalents(alcoholGrams) {
+  if (alcoholGrams === null || alcoholGrams === undefined) {
+    return { beer500mlAt5Percent: null, wine750mlAt12Percent: null };
+  }
+  const beerBaselineGrams = 500 * 0.05 * 0.789;
+  const wineBaselineGrams = 750 * 0.12 * 0.789;
+
+  return {
+    beer500mlAt5Percent: roundValue(alcoholGrams / beerBaselineGrams, 1),
+    wine750mlAt12Percent: roundValue(alcoholGrams / wineBaselineGrams, 1),
+  };
+}
+
+/**
  * Round alcohol result for display
  * @param {number} value - The value to round
  * @param {number} decimals - Number of decimal places
@@ -133,7 +152,7 @@ function roundValue(value, decimals) {
  */
 function roundByType(value, type) {
   if (value === null) return null;
-  
+
   const decimalsMap = {
     grams: 1,
     ukUnits: 1,
@@ -141,7 +160,7 @@ function roundByType(value, type) {
     us: 1,
     calories: 0,
   };
-  
+
   const decimals = decimalsMap[type] ?? 1;
   return roundValue(value, decimals);
 }
@@ -153,8 +172,7 @@ function roundByType(value, type) {
  */
 export function calculateDrinkResult({ volumeMl, abvPercent, quantity }) {
   const normalized = normalizeAlcoholInput({ volumeMl, abvPercent, quantity });
-  
-  // If any required field is missing, return empty result
+
   if (normalized.volumeMl === null || normalized.abvPercent === null || normalized.quantity === null) {
     return {
       volumeMl: null,
@@ -168,14 +186,14 @@ export function calculateDrinkResult({ volumeMl, abvPercent, quantity }) {
       isValid: false,
     };
   }
-  
+
   const alcoholGrams = calculateAlcoholGrams(normalized.volumeMl, normalized.abvPercent);
   const totalAlcoholGrams = alcoholGrams * normalized.quantity;
   const totalUkUnits = calculateUkUnits(normalized.volumeMl, normalized.abvPercent) * normalized.quantity;
   const totalGlobal = calculateGlobalStandardDrinks(totalAlcoholGrams);
   const totalUs = calculateUsStandardDrinks(totalAlcoholGrams);
   const totalCalories = calculateAlcoholCalories(totalAlcoholGrams);
-  
+
   return {
     volumeMl: normalized.volumeMl,
     abvPercent: normalized.abvPercent,
@@ -210,11 +228,11 @@ function calculateRawDrinkResult(row) {
 }
 
 /**
- * Calculate weekly totals from an array of drink rows
+ * Calculate totals from an array of drink rows
  * @param {Array} rows - Array of drink row objects
- * @returns {Object} - Weekly totals
+ * @returns {Object} - Totals
  */
-export function calculateWeeklyTotals(rows) {
+export function calculateTotals(rows) {
   if (!rows || rows.length === 0) {
     return {
       totalUkUnits: null,
@@ -225,14 +243,14 @@ export function calculateWeeklyTotals(rows) {
       isValid: false,
     };
   }
-  
+
   let totalUkUnits = 0;
   let totalGlobalStandardDrinks = 0;
   let totalUsStandardDrinks = 0;
   let totalAlcoholGrams = 0;
   let totalCalories = 0;
   let validCount = 0;
-  
+
   for (const row of rows) {
     const result = calculateRawDrinkResult(row);
     if (result) {
@@ -244,7 +262,7 @@ export function calculateWeeklyTotals(rows) {
       validCount++;
     }
   }
-  
+
   if (validCount === 0) {
     return {
       totalUkUnits: null,
@@ -255,7 +273,7 @@ export function calculateWeeklyTotals(rows) {
       isValid: false,
     };
   }
-  
+
   return {
     totalUkUnits: roundByType(totalUkUnits, 'ukUnits'),
     totalGlobalStandardDrinks: roundByType(totalGlobalStandardDrinks, 'global'),
@@ -275,9 +293,9 @@ export function buildDrinkTypeBreakdown(rows) {
   if (!rows || rows.length === 0) {
     return {};
   }
-  
+
   const breakdown = {};
-  
+
   for (const row of rows) {
     const result = calculateRawDrinkResult(row);
     if (result && row.drinkType) {
@@ -296,13 +314,12 @@ export function buildDrinkTypeBreakdown(rows) {
       breakdown[row.drinkType].calories += result.calories;
     }
   }
-  
-  // Round the totals
+
   for (const type in breakdown) {
     breakdown[type].ukUnits = roundByType(breakdown[type].ukUnits, 'ukUnits');
     breakdown[type].alcoholGrams = roundByType(breakdown[type].alcoholGrams, 'grams');
     breakdown[type].calories = roundByType(breakdown[type].calories, 'calories');
   }
-  
+
   return breakdown;
 }

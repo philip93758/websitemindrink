@@ -5,10 +5,11 @@ import {
   calculateAlcoholCalories,
   calculateAlcoholGrams,
   calculateDrinkResult,
+  calculateEquivalents,
   calculateGlobalStandardDrinks,
+  calculateTotals,
   calculateUkUnits,
   calculateUsStandardDrinks,
-  calculateWeeklyTotals,
 } from '../shared/alcohol/formulas.js';
 
 describe('alcohol formulas', () => {
@@ -63,8 +64,8 @@ describe('alcohol formulas', () => {
     assert.equal(result.calories, 0);
   });
 
-  it('calculates weekly totals for multiple rows', () => {
-    const totals = calculateWeeklyTotals([
+  it('calculates totals for multiple rows', () => {
+    const totals = calculateTotals([
       { volumeMl: 500, abvPercent: 5, quantity: 3 },
       { volumeMl: 175, abvPercent: 12, quantity: 2 },
     ]);
@@ -77,8 +78,8 @@ describe('alcohol formulas', () => {
     assert.equal(totals.totalCalories, 646);
   });
 
-  it('sums weekly totals before display rounding', () => {
-    const totals = calculateWeeklyTotals([
+  it('sums totals before display rounding', () => {
+    const totals = calculateTotals([
       { volumeMl: 33, abvPercent: 5, quantity: 1 },
       { volumeMl: 33, abvPercent: 5, quantity: 1 },
       { volumeMl: 33, abvPercent: 5, quantity: 1 },
@@ -86,5 +87,41 @@ describe('alcohol formulas', () => {
 
     assert.equal(totals.totalAlcoholGrams, 3.9);
     assert.equal(totals.totalCalories, 27);
+  });
+
+  // New equivalent baseline math tests
+  it('calculates equivalents for default drink 500ml beer at 5%', () => {
+    const grams = calculateAlcoholGrams(500, 5);
+    const equivalents = calculateEquivalents(grams);
+    assert.equal(equivalents.beer500mlAt5Percent, 1.0);
+    assert.equal(Number(equivalents.wine750mlAt12Percent.toFixed(1)), 0.3);
+  });
+
+  it('calculates equivalents for 750ml wine at 12%', () => {
+    const grams = calculateAlcoholGrams(750, 12);
+    const equivalents = calculateEquivalents(grams);
+    assert.equal(Number(equivalents.beer500mlAt5Percent.toFixed(1)), 3.6);
+    assert.equal(equivalents.wine750mlAt12Percent, 1.0);
+  });
+
+  it('returns null equivalents for null input', () => {
+    const equivalents = calculateEquivalents(null);
+    assert.equal(equivalents.beer500mlAt5Percent, null);
+    assert.equal(equivalents.wine750mlAt12Percent, null);
+  });
+
+  it('returns null equivalents for undefined input', () => {
+    const equivalents = calculateEquivalents(undefined);
+    assert.equal(equivalents.beer500mlAt5Percent, null);
+    assert.equal(equivalents.wine750mlAt12Percent, null);
+  });
+
+  // Test that calculateEquivalents uses unrounded alcohol grams
+  it('calculates equivalents from unrounded alcohol grams for multi-quantity', () => {
+    // 2 x 500ml at 5% ABV = 2 * 500 * 0.05 * 0.789 = 39.45g exactly
+    const unroundedGrams = 2 * 500 * 0.05 * 0.789;
+    const equivalents = calculateEquivalents(unroundedGrams);
+    assert.equal(equivalents.beer500mlAt5Percent, 2.0);
+    assert.equal(Number(equivalents.wine750mlAt12Percent.toFixed(1)), 0.6);
   });
 });
