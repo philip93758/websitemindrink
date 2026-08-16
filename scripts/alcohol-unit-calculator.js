@@ -1,15 +1,14 @@
-import { WEBSITE_DRINK_PRESETS, getDrinkPreset } from '/shared/alcohol/drinks.js?v=calculator-20260620';
+import { WEBSITE_DRINK_PRESETS, getDrinkPreset } from '/shared/alcohol/drinks.js?v=calculator-20260816c';
 import {
-  buildDrinkTypeBreakdown,
   calculateDrinkResult,
   calculateEquivalents,
   calculateTotals,
-} from '/shared/alcohol/formulas.js?v=calculator-20260620';
+} from '/shared/alcohol/formulas.js?v=calculator-20260816c';
 import {
   MAX_ABV_PERCENT,
   MAX_QUANTITY,
   MAX_VOLUME_ML,
-} from '/shared/alcohol/constants.js?v=calculator-20260620';
+} from '/shared/alcohol/constants.js?v=calculator-20260816c';
 
 const LOCALES = {
   en: {
@@ -38,8 +37,10 @@ const LOCALES = {
     addToTotal: 'Add to total',
     equivalents: {
       heading: 'Equivalent to about',
-      beer: '500 ml beer · 5% ABV',
-      wine: '750 ml wine bottle · 12% ABV',
+      beerTitle: 'Beer pint',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Bottle of wine',
+      wineSubtitle: '750ml 12%',
     },
   },
   de: {
@@ -58,8 +59,10 @@ const LOCALES = {
     addToTotal: 'Zur Gesamtsumme hinzufügen',
     equivalents: {
       heading: 'Entspricht etwa',
-      beer: '500ml Bier bei 5%',
-      wine: '750ml Wein bei 12%',
+      beerTitle: 'Bierglas',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Weinflasche',
+      wineSubtitle: '750ml 12%',
     },
   },
   fr: {
@@ -78,8 +81,10 @@ const LOCALES = {
     addToTotal: 'Ajouter au total',
     equivalents: {
       heading: 'Equivalent à environ',
-      beer: '500ml de bière à 5%',
-      wine: '750ml de vin à 12%',
+      beerTitle: 'Pinte de bière',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Bouteille de vin',
+      wineSubtitle: '750ml 12%',
     },
   },
   es: {
@@ -97,9 +102,11 @@ const LOCALES = {
     totalIncomplete: 'Algunas filas necesitan volumen, ABV y cantidad.',
     addToTotal: 'Añadir al total',
     equivalents: {
-      heading: 'Equivalente aproximadamente a',
-      beer: '500ml de cerveza al 5%',
-      wine: '750ml de vino al 12%',
+      heading: 'Equivalente a',
+      beerTitle: 'Pinta de cerveza',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Botella de vino',
+      wineSubtitle: '750ml 12%',
     },
   },
   pt: {
@@ -117,9 +124,11 @@ const LOCALES = {
     totalIncomplete: 'Algumas linhas precisam de volume, ABV e quantidade.',
     addToTotal: 'Adicionar ao total',
     equivalents: {
-      heading: 'Equivalente aproximadamente a',
-      beer: '500ml de cerveja a 5%',
-      wine: '750ml de vinho a 12%',
+      heading: 'Equivalente a',
+      beerTitle: 'Pinta de cerveja',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Garrafa de vinho',
+      wineSubtitle: '750ml 12%',
     },
   },
   id: {
@@ -137,9 +146,11 @@ const LOCALES = {
     totalIncomplete: 'Beberapa baris membutuhkan volume, ABV, dan jumlah.',
     addToTotal: 'Tambahkan ke total',
     equivalents: {
-      heading: 'Setara dengan sekitar',
-      beer: '500ml bir pada 5%',
-      wine: '750ml anggur pada 12%',
+      heading: 'Setara dengan',
+      beerTitle: 'Pinta bir',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Botol anggur',
+      wineSubtitle: '750ml 12%',
     },
   },
   it: {
@@ -158,8 +169,10 @@ const LOCALES = {
     addToTotal: 'Aggiungi al totale',
     equivalents: {
       heading: 'Circa equivalente a',
-      beer: '500ml di birra al 5%',
-      wine: '750ml di vino al 12%',
+      beerTitle: 'Pinta di birra',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'Bottiglia di vino',
+      wineSubtitle: '750ml 12%',
     },
   },
   ja: {
@@ -178,8 +191,10 @@ const LOCALES = {
     addToTotal: '合計に追加',
     equivalents: {
       heading: 'およそ次と同等',
-      beer: '500mlのビール5%',
-      wine: '750mlのワイン12%',
+      beerTitle: 'ビールパイント',
+      beerSubtitle: '500ml 5%',
+      wineTitle: 'ワインボトル',
+      wineSubtitle: '750ml 12%',
     },
   },
 };
@@ -260,50 +275,87 @@ function syncEditorFields() {
   if (fields.quantity) fields.quantity.value = draft.quantity ?? '';
 }
 
-function renderEquivalents() {
-  const draft = calculatorState.draftDrink;
-  const result = calculateDrinkResult(draft);
-  const container = document.getElementById('equivalent-container');
+function unroundedAlcoholGrams(drink) {
+  if (drink.volumeMl == null || drink.abvPercent == null || drink.quantity == null) {
+    return null;
+  }
+  return (drink.volumeMl * (drink.abvPercent / 100) * 0.789) * drink.quantity;
+}
 
+function fillEquivalentCards(ids, alcoholGrams, visible) {
+  const container = document.getElementById(ids.container);
   if (!container) return;
 
-  const hint = getInputHint(draft);
-
-  if (!result.isValid || hint !== '') {
+  if (!visible || alcoholGrams == null) {
     container.hidden = true;
     return;
   }
 
-  // Use UNROUNDED alcohol grams from the draft calculation
-  const normalized = { volumeMl: draft.volumeMl, abvPercent: draft.abvPercent, quantity: draft.quantity };
-  const alcoholGrams = (normalized.volumeMl * (normalized.abvPercent / 100) * 0.789) * normalized.quantity;
-
   const equiv = calculateEquivalents(alcoholGrams);
   const localeCopy = getLocaleCopy();
 
-  // Set the heading
-  const labelEl = document.getElementById('equivalent-label');
+  const labelEl = document.getElementById(ids.label);
   if (labelEl) {
     labelEl.textContent = localeCopy.equivalents.heading;
   }
 
-  // Set beer card
-  const beerValueEl = document.getElementById('equivalent-beer');
-  const beerDetailEl = document.getElementById('equivalent-beer-detail');
-  if (beerValueEl && beerDetailEl) {
-    beerValueEl.textContent = equiv.beer500mlAt5Percent !== null ? equiv.beer500mlAt5Percent.toFixed(1) : '';
-    beerDetailEl.textContent = localeCopy.equivalents.beer;
+  const beerValueEl = document.getElementById(ids.beer);
+  const beerTitleEl = document.getElementById(ids.beerTitle);
+  const beerSubtitleEl = document.getElementById(ids.beerSubtitle);
+  const beerCard = document.getElementById(ids.beerCard);
+  if (beerValueEl && beerTitleEl && beerSubtitleEl) {
+    const beerValue = equiv.beer500mlAt5Percent !== null ? equiv.beer500mlAt5Percent.toFixed(1) : '';
+    beerValueEl.textContent = beerValue;
+    beerTitleEl.textContent = localeCopy.equivalents.beerTitle;
+    beerSubtitleEl.textContent = localeCopy.equivalents.beerSubtitle;
+    if (beerCard) {
+      beerCard.setAttribute(
+        'aria-label',
+        `${beerValue} ${localeCopy.equivalents.beerTitle}, ${localeCopy.equivalents.beerSubtitle}`
+      );
+    }
   }
 
-  // Set wine card
-  const wineValueEl = document.getElementById('equivalent-wine');
-  const wineDetailEl = document.getElementById('equivalent-wine-detail');
-  if (wineValueEl && wineDetailEl) {
-    wineValueEl.textContent = equiv.wine750mlAt12Percent !== null ? equiv.wine750mlAt12Percent.toFixed(1) : '';
-    wineDetailEl.textContent = localeCopy.equivalents.wine;
+  const wineValueEl = document.getElementById(ids.wine);
+  const wineTitleEl = document.getElementById(ids.wineTitle);
+  const wineSubtitleEl = document.getElementById(ids.wineSubtitle);
+  const wineCard = document.getElementById(ids.wineCard);
+  if (wineValueEl && wineTitleEl && wineSubtitleEl) {
+    const wineValue = equiv.wine750mlAt12Percent !== null ? equiv.wine750mlAt12Percent.toFixed(1) : '';
+    wineValueEl.textContent = wineValue;
+    wineTitleEl.textContent = localeCopy.equivalents.wineTitle;
+    wineSubtitleEl.textContent = localeCopy.equivalents.wineSubtitle;
+    if (wineCard) {
+      wineCard.setAttribute(
+        'aria-label',
+        `${wineValue} ${localeCopy.equivalents.wineTitle}, ${localeCopy.equivalents.wineSubtitle}`
+      );
+    }
   }
 
   container.hidden = false;
+}
+
+function renderEquivalents() {
+  const draft = calculatorState.draftDrink;
+  const result = calculateDrinkResult(draft);
+  const hint = getInputHint(draft);
+  fillEquivalentCards(
+    {
+      container: 'equivalent-container',
+      label: 'equivalent-label',
+      beer: 'equivalent-beer',
+      beerTitle: 'equivalent-beer-title',
+      beerSubtitle: 'equivalent-beer-subtitle',
+      beerCard: 'equivalent-beer-card',
+      wine: 'equivalent-wine',
+      wineTitle: 'equivalent-wine-title',
+      wineSubtitle: 'equivalent-wine-subtitle',
+      wineCard: 'equivalent-wine-card',
+    },
+    unroundedAlcoholGrams(draft),
+    result.isValid && hint === ''
+  );
 }
 
 function renderDraftResults() {
@@ -381,6 +433,19 @@ function renderTotalRows() {
   });
 }
 
+const TOTAL_EQUIVALENT_IDS = {
+  container: 'total-equivalent-container',
+  label: 'total-equivalent-label',
+  beer: 'total-equivalent-beer',
+  beerTitle: 'total-equivalent-beer-title',
+  beerSubtitle: 'total-equivalent-beer-subtitle',
+  beerCard: 'total-equivalent-beer-card',
+  wine: 'total-equivalent-wine',
+  wineTitle: 'total-equivalent-wine-title',
+  wineSubtitle: 'total-equivalent-wine-subtitle',
+  wineCard: 'total-equivalent-wine-card',
+};
+
 function renderTotalTotals() {
   const hasRows = calculatorState.totalRows.length > 0;
   const totals = calculateTotals(calculatorState.totalRows);
@@ -388,15 +453,13 @@ function renderTotalTotals() {
   const blockingHint = rowHints.find((message) => message !== copy.enterDetails) || '';
   const totalHint = blockingHint ||
     (!totals.isValid && rowHints.length > 0 ? copy.totalIncomplete : '');
-  const breakdown = buildDrinkTypeBreakdown(
-    calculatorState.totalRows.map((row) => ({ ...row, drinkLabel: getDrinkLabel(row.drinkType) }))
-  );
 
   const totalsContainer = document.getElementById('total-totals');
   if (!totalsContainer) return;
 
   if (!hasRows) {
     totalsContainer.hidden = true;
+    fillEquivalentCards(TOTAL_EQUIVALENT_IDS, null, false);
     return;
   }
 
@@ -411,20 +474,16 @@ function renderTotalTotals() {
       .forEach((id) => setText(id, ''));
   }
 
-  const breakdownEl = document.getElementById('total-breakdown');
-  if (breakdownEl && hasRows && totals.isValid && totalHint === '' && Object.keys(breakdown).length > 0) {
-    breakdownEl.innerHTML = `<h4>${copy.byDrinkType}</h4>` +
-      Object.values(breakdown).map((data) =>
-        `<p><strong>${data.label}:</strong> ${t(copy.breakdown, {
-          count: data.count,
-          standard: formatNumber(data.alcoholGrams / 10),
-          uk: formatNumber(data.ukUnits),
-          calories: formatCalories(data.calories),
-        })}</p>`
-      ).join('');
-  } else if (breakdownEl) {
-    breakdownEl.innerHTML = '';
-  }
+  const totalGrams = calculatorState.totalRows.reduce((sum, row) => {
+    const grams = unroundedAlcoholGrams(row);
+    return grams == null ? sum : sum + grams;
+  }, 0);
+
+  fillEquivalentCards(
+    TOTAL_EQUIVALENT_IDS,
+    totalGrams,
+    totals.isValid && totalHint === '' && totalGrams > 0
+  );
 
   totalsContainer.hidden = !hasRows || totalHint !== '';
 }
@@ -532,38 +591,6 @@ function setupListEvents() {
   }
 }
 
-const DETAILS_SUMMARIES = {
-  de: 'Mehr Details',
-  en: 'More details',
-  es: 'Más detalles',
-  fr: 'Plus de détails',
-  id: 'Detail selengkapnya',
-  it: 'Più dettagli',
-  ja: '詳細',
-  pt: 'Mais detalhes',
-};
-
-function setupResultDetails() {
-  const results = document.querySelector('.selected-results');
-  if (!results || results.querySelector('.result-details')) return;
-
-  const secondaryCards = ['selected-uk-units', 'selected-us', 'selected-calories']
-    .map((id) => document.getElementById(id)?.closest('.calculator-result'))
-    .filter(Boolean);
-  if (secondaryCards.length !== 3) return;
-
-  const details = document.createElement('details');
-  details.className = 'result-details';
-  const summary = document.createElement('summary');
-  summary.textContent = DETAILS_SUMMARIES[document.documentElement.lang] || DETAILS_SUMMARIES.en;
-  const grid = document.createElement('div');
-  grid.className = 'result-details-grid';
-
-  details.append(summary, grid);
-  results.insertBefore(details, secondaryCards[0]);
-  secondaryCards.forEach((card) => grid.appendChild(card));
-}
-
 function setupCTAEvent() {
   const ctaBtn = document.querySelector('.answer-cta a, .answer-cta button');
   if (ctaBtn) {
@@ -575,7 +602,6 @@ function setupCTAEvent() {
 
 function initCalculator() {
   trackCalculatorEvent('calculator_page_view');
-  setupResultDetails();
   setupEditorEvents();
   setupListEvents();
   setupCTAEvent();

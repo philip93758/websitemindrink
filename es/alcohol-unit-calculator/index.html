@@ -6,8 +6,8 @@
     <meta name="description" content="Calcula unidades estándar, unidades UK, bebidas estándar de EE. UU., gramos de alcohol puro, calorías y totales semanales voluntarios.">
     <meta name="robots" content="index, follow">
     <title>Calculadora de unidades de alcohol | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260620" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260620" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260816l" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260620">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260816l">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -102,13 +102,10 @@
                         <p id="selected-calculator-status" class="calculator-status" aria-live="polite" hidden></p>
 
                         <div class="calculator-results selected-results">
+                            <h3 class="results-panel-title">Esta bebida</h3>
                             <div class="calculator-result">
                                 <span class="result-label">Unidades estándar</span>
                                 <span class="result-value" id="selected-global"></span>
-                            </div>
-                            <div class="calculator-result">
-                                <span class="result-label">Gramos de alcohol</span>
-                                <span class="result-value" id="selected-grams"></span>
                             </div>
                             <div class="calculator-result">
                                 <span class="result-label">unidades UK</span>
@@ -119,20 +116,31 @@
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
+                                <span class="result-label">Gramos de alcohol</span>
+                                <span class="result-value" id="selected-grams"></span>
+                            </div>
+                            <div class="calculator-result">
                                 <span class="result-label">Calorías</span>
                                 <span class="result-value" id="selected-calories"></span>
-                            </div><div id="equivalent-container" class="equivalent-container" hidden>
+                            </div>
+                            <div id="equivalent-container" class="equivalent-container" hidden>
                                 <p class="equivalent-label" id="equivalent-label"></p>
                                 <div class="equivalent-cards">
-                                    <div class="equivalent-card" id="equivalent-beer-card">
-
-                                        <span class="equivalent-card-value" id="equivalent-beer"></span>
-                                        <span class="equivalent-card-detail" id="equivalent-beer-detail"></span>
+                                    <div class="equivalent-card equivalent-card--beer" id="equivalent-beer-card">
+                                        <span class="equivalent-card-icon" aria-hidden="true"></span>
+                                        <span class="equivalent-card-copy">
+                                            <span class="equivalent-card-value" id="equivalent-beer"></span>
+                                            <span class="equivalent-card-title" id="equivalent-beer-title"></span>
+                                            <span class="equivalent-card-subtitle" id="equivalent-beer-subtitle"></span>
+                                        </span>
                                     </div>
-                                    <div class="equivalent-card" id="equivalent-wine-card">
-
-                                        <span class="equivalent-card-value" id="equivalent-wine"></span>
-                                        <span class="equivalent-card-detail" id="equivalent-wine-detail"></span>
+                                    <div class="equivalent-card equivalent-card--wine" id="equivalent-wine-card">
+                                        <span class="equivalent-card-icon" aria-hidden="true"></span>
+                                        <span class="equivalent-card-copy">
+                                            <span class="equivalent-card-value" id="equivalent-wine"></span>
+                                            <span class="equivalent-card-title" id="equivalent-wine-title"></span>
+                                            <span class="equivalent-card-subtitle" id="equivalent-wine-subtitle"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -144,33 +152,52 @@
                         <button type="button" id="total-add-row" class="total-btn total-btn-add"></button>
                     </div>
 
-                    <div id="total-rows" class="total-rows"></div>
-
                     <div id="total-totals" class="total-totals" hidden>
-                        <h4 id="totals-heading">Tu total</h4>
-                        <div class="total-totals-grid">
-                            <div class="total">
-                                <span class="total-label">Unidades estándar</span>
-                                <span class="total-value" id="total-global"></span>
+                        <div class="calculator-results total-results">
+                            <h3 class="results-panel-title" id="totals-heading">Tu total</h3>
+                            <div id="total-rows" class="total-rows"></div>
+                            <div class="calculator-result">
+                                <span class="result-label">Unidades estándar</span>
+                                <span class="result-value" id="total-global"></span>
                             </div>
-                            <div class="total">
-                                <span class="total-label">Unidades UK</span>
-                                <span class="total-value" id="total-uk-units"></span>
+                            <div class="calculator-result">
+                                <span class="result-label">Unidades UK</span>
+                                <span class="result-value" id="total-uk-units"></span>
                             </div>
-                            <div class="total">
-                                <span class="total-label">Bebidas US</span>
-                                <span class="total-value" id="total-us"></span>
+                            <div class="calculator-result">
+                                <span class="result-label">Bebidas US</span>
+                                <span class="result-value" id="total-us"></span>
                             </div>
-                            <div class="total">
-                                <span class="total-label">Gramos de alcohol</span>
-                                <span class="total-value" id="total-grams"></span>
+                            <div class="calculator-result">
+                                <span class="result-label">Gramos de alcohol</span>
+                                <span class="result-value" id="total-grams"></span>
                             </div>
-                            <div class="total">
-                                <span class="total-label">Calorías</span>
-                                <span class="total-value" id="total-calories"></span>
+                            <div class="calculator-result">
+                                <span class="result-label">Calorías</span>
+                                <span class="result-value" id="total-calories"></span>
+                            </div>
+                            <div id="total-equivalent-container" class="equivalent-container" hidden>
+                                <p class="equivalent-label" id="total-equivalent-label"></p>
+                                <div class="equivalent-cards">
+                                    <div class="equivalent-card equivalent-card--beer" id="total-equivalent-beer-card">
+                                        <span class="equivalent-card-icon" aria-hidden="true"></span>
+                                        <span class="equivalent-card-copy">
+                                            <span class="equivalent-card-value" id="total-equivalent-beer"></span>
+                                            <span class="equivalent-card-title" id="total-equivalent-beer-title"></span>
+                                            <span class="equivalent-card-subtitle" id="total-equivalent-beer-subtitle"></span>
+                                        </span>
+                                    </div>
+                                    <div class="equivalent-card equivalent-card--wine" id="total-equivalent-wine-card">
+                                        <span class="equivalent-card-icon" aria-hidden="true"></span>
+                                        <span class="equivalent-card-copy">
+                                            <span class="equivalent-card-value" id="total-equivalent-wine"></span>
+                                            <span class="equivalent-card-title" id="total-equivalent-wine-title"></span>
+                                            <span class="equivalent-card-subtitle" id="total-equivalent-wine-subtitle"></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div id="total-breakdown" class="total-breakdown"></div>
                     </div>
                 </section>
 
@@ -261,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260620"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 </body>
