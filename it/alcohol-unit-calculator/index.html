@@ -6,8 +6,8 @@
     <meta name="description" content="Calcola unità standard, unità UK, drink US, grammi di alcol puro, calorie e totali settimanali facoltativi.">
     <meta name="robots" content="index, follow">
     <title>Calcolatore unità alcoliche | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260816p" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816p" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260816q" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816q" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260816p">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260816q">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -112,7 +112,7 @@
                                 <span class="result-value" id="selected-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Drink US</span>
+                                <span class="result-label">Drink USA</span>
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
@@ -165,7 +165,7 @@
                                 <span class="result-value" id="total-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Drink US</span>
+                                <span class="result-label">Drink USA</span>
                                 <span class="result-value" id="total-us"></span>
                             </div>
                             <div class="calculator-result">
@@ -207,7 +207,7 @@
                     <ul class="answer-list">
                         <li><strong>Unità standard:</strong> 10 g di alcol puro, usate negli esempi WHO AUDIT e vicine all'idea di bicchiere standard in molti paesi europei, tra cui Francia e Germania.</li>
                         <li><strong>Unità UK:</strong> 10 ml, circa 8 g, di alcol puro.</li>
-                        <li><strong>Drink US:</strong> 14 g di alcol puro.</li>
+                        <li><strong>Drink USA:</strong> 14 g di alcol puro.</li>
                         <li><strong>Grammi di alcol puro:</strong> base neutra per confrontare tutti i sistemi.</li>
                     </ul>
                 </section>
@@ -223,7 +223,7 @@
                                     <th>ABV</th>
                                     <th>Unità standard</th>
                                     <th>Unità UK</th>
-                                    <th>Drink US</th>
+                                    <th>Drink USA</th>
                                     <th>Grammi di alcol</th>
                                 </tr>
                             </thead>
@@ -262,8 +262,8 @@
 
                 <section class="answer-cta">
                     <div class="container narrow">
-                        <h2>Capire i pattern nel tempo</h2>
-                        <p>Mindrink aiuta a osservare i pattern nel tempo senza rendere pubblici i tuoi dati.</p>
+                        <h2>Capire le abitudini nel tempo</h2>
+                        <p>Mindrink aiuta a osservare le abitudini nel tempo senza rendere pubblici i tuoi dati.</p>
                         <a href="/it/" class="cta-button">Esplora Mindrink</a>
                     </div>
                 </section>
@@ -288,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816p"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816q"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 </body>
