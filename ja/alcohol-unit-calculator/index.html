@@ -6,8 +6,8 @@
     <meta name="description" content="標準単位、UK単位、米国標準ドリンク、純アルコール量、カロリー、任意の週合計を計算します。">
     <meta name="robots" content="index, follow">
     <title>アルコール単位計算機 | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260816l" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260816n" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260816l">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260816n">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -112,7 +112,7 @@
                                 <span class="result-value" id="selected-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">米国標準飲酒</span>
+                                <span class="result-label">USドリンク</span>
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
@@ -288,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 </body>

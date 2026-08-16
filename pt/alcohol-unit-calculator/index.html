@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcule unidades padrao, unidades UK, doses padrao dos EUA, gramas de alcool puro, calorias e totais semanais voluntarios.">
+    <meta name="description" content="Calcule unidades padrão, unidades UK, doses US, gramas de álcool puro, calorias e totais semanais voluntários.">
     <meta name="robots" content="index, follow">
-    <title>Calculadora de unidades de alcool | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260816l" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l" as="script">
+    <title>Calculadora de unidades de álcool | Mindrink</title>
+    <link rel="preload" href="/styles.css?v=calculator-20260816n" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/pt/alcohol-unit-calculator/">
-    <meta property="og:title" content="Calculadora de unidades de alcool">
-    <meta property="og:description" content="Calcule unidades padrao, unidades UK, doses padrao dos EUA, gramas de alcool puro, calorias e totais semanais voluntarios.">
+    <meta property="og:title" content="Calculadora de unidades de álcool">
+    <meta property="og:description" content="Calcule unidades padrão, unidades UK, doses US, gramas de álcool puro, calorias e totais semanais voluntários.">
     <meta property="og:image" content="https://mindrink.me/assets/slide3_roman_phone.png">
     <link rel="canonical" href="https://mindrink.me/pt/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260816l">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260816n">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -53,7 +53,7 @@
                     <div class="language-menu">
                         <a href="/alcohol-unit-calculator/" class="language-option">English</a>
                         <a href="/de/alcohol-unit-calculator/" class="language-option">Deutsch</a>
-                        <a href="/fr/alcohol-unit-calculator/" class="language-option">Francais</a>
+                        <a href="/fr/alcohol-unit-calculator/" class="language-option">Français</a>
                         <a href="/es/alcohol-unit-calculator/" class="language-option">Espanol</a>
                         <a href="/pt/alcohol-unit-calculator/" class="language-option is-active" aria-current="page">Portugues</a>
                         <a href="/id/alcohol-unit-calculator/" class="language-option">Bahasa Indonesia</a>
@@ -69,9 +69,9 @@
     <main>
         <section class="answer-hero">
             <div class="container narrow">
-                <p class="breadcrumb"><a href="/pt/">Inicio</a> / Calculadora de unidades de alcool</p>
-                <h1>Calculadora de unidades de alcool</h1>
-                <p class="hero-intro">Insira uma bebida para ver seu teor de alcool e equivalentes comuns.</p>
+                <p class="breadcrumb"><a href="/pt/">Início</a> / Calculadora de unidades de álcool</p>
+                <h1>Calculadora de unidades de álcool</h1>
+                <p class="hero-intro">Insira uma bebida para ver seu teor de álcool e equivalentes comuns.</p>
             </div>
         </section>
 
@@ -104,19 +104,19 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Esta bebida</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades padrao</span>
+                                <span class="result-label">Unidades padrão</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">unidades UK</span>
+                                <span class="result-label">Unidades UK</span>
                                 <span class="result-value" id="selected-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">bebidas padrão US</span>
+                                <span class="result-label">Doses US</span>
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Gramas de alcool</span>
+                                <span class="result-label">Gramas de álcool</span>
                                 <span class="result-value" id="selected-grams"></span>
                             </div>
                             <div class="calculator-result">
@@ -157,7 +157,7 @@
                             <h3 class="results-panel-title" id="totals-heading">Seu total</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades padrao</span>
+                                <span class="result-label">Unidades padrão</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -165,11 +165,11 @@
                                 <span class="result-value" id="total-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Doses dos EUA</span>
+                                <span class="result-label">Doses US</span>
                                 <span class="result-value" id="total-us"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Gramas de alcool</span>
+                                <span class="result-label">Gramas de álcool</span>
                                 <span class="result-value" id="total-grams"></span>
                             </div>
                             <div class="calculator-result">
@@ -202,13 +202,13 @@
                 </section>
 
                 <section class="answer-block">
-                    <h2>O que sao unidades de alcool?</h2>
-                    <p>Paises usam referencias diferentes. Esta calculadora separa cada uma:</p>
+                    <h2>O que são unidades de álcool?</h2>
+                    <p>Países usam referências diferentes. Esta calculadora separa cada uma:</p>
                     <ul class="answer-list">
-                        <li><strong>Unidades padrao:</strong> 10 g de alcool puro, usadas em exemplos WHO AUDIT e proximas da ideia de copo padrao em muitos paises europeus, incluindo Franca e Alemanha.</li>
-                        <li><strong>Unidades UK:</strong> 10 ml, ou cerca de 8 g, de alcool puro.</li>
-                        <li><strong>Doses padrao dos EUA:</strong> 14 g de alcool puro.</li>
-                        <li><strong>Gramas de alcool puro:</strong> a base neutra para comparar todos os sistemas.</li>
+                        <li><strong>Unidades padrão:</strong> 10 g de álcool puro, usadas em exemplos WHO AUDIT e próximas da ideia de copo padrão em muitos países europeus, incluindo França e Alemanha.</li>
+                        <li><strong>Unidades UK:</strong> 10 ml, ou cerca de 8 g, de álcool puro.</li>
+                        <li><strong>Doses US:</strong> 14 g de álcool puro.</li>
+                        <li><strong>Gramas de álcool puro:</strong> a base neutra para comparar todos os sistemas.</li>
                     </ul>
                 </section>
 
@@ -221,10 +221,10 @@
                                     <th>Bebida</th>
                                     <th>Volume</th>
                                     <th>ABV</th>
-                                    <th>Unidades padrao</th>
+                                    <th>Unidades padrão</th>
                                     <th>Unidades UK</th>
-                                    <th>Doses dos EUA</th>
-                                    <th>Gramas de alcool</th>
+                                    <th>Doses US</th>
+                                    <th>Gramas de álcool</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -262,8 +262,8 @@
 
                 <section class="answer-cta">
                     <div class="container narrow">
-                        <h2>Entender padroes ao longo do tempo</h2>
-                        <p>Mindrink ajuda a observar padroes ao longo do tempo sem tornar seus dados publicos.</p>
+                        <h2>Entender padrões ao longo do tempo</h2>
+                        <p>Mindrink ajuda a observar padrões ao longo do tempo sem tornar seus dados públicos.</p>
                         <a href="/pt/" class="cta-button">Explorar Mindrink</a>
                     </div>
                 </section>
@@ -288,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 </body>

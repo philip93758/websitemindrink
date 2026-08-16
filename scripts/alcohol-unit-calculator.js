@@ -36,7 +36,7 @@ const LOCALES = {
     totalIncomplete: 'Some rows need volume, ABV, and quantity before they count.',
     addToTotal: 'Add to total',
     equivalents: {
-      heading: 'Equivalent to about',
+      heading: 'Equivalent to',
       beerTitle: 'Beer pint',
       beerSubtitle: '500ml 5%',
       wineTitle: 'Bottle of wine',
@@ -56,9 +56,9 @@ const LOCALES = {
     byDrinkType: 'Nach Getränketyp:',
     breakdown: '{count} Getränke, {standard} Standardeinheiten, {uk} UK-Einheiten, {calories} Kalorien',
     totalIncomplete: 'Einige Zeilen brauchen Volumen, ABV und Anzahl.',
-    addToTotal: 'Zur Gesamtsumme hinzufügen',
+    addToTotal: 'Zur Summe hinzufügen',
     equivalents: {
-      heading: 'Entspricht etwa',
+      heading: 'Entspricht',
       beerTitle: 'Bierglas',
       beerSubtitle: '500ml 5%',
       wineTitle: 'Weinflasche',
@@ -80,7 +80,7 @@ const LOCALES = {
     totalIncomplete: 'Certaines lignes ont besoin du volume, de l’ABV et de la quantité.',
     addToTotal: 'Ajouter au total',
     equivalents: {
-      heading: 'Equivalent à environ',
+      heading: 'Équivaut à',
       beerTitle: 'Pinte de bière',
       beerSubtitle: '500ml 5%',
       wineTitle: 'Bouteille de vin',
@@ -147,7 +147,7 @@ const LOCALES = {
     addToTotal: 'Tambahkan ke total',
     equivalents: {
       heading: 'Setara dengan',
-      beerTitle: 'Pinta bir',
+      beerTitle: 'Gelas bir',
       beerSubtitle: '500ml 5%',
       wineTitle: 'Botol anggur',
       wineSubtitle: '750ml 12%',
@@ -168,7 +168,7 @@ const LOCALES = {
     totalIncomplete: 'Alcune righe richiedono volume, ABV e quantità.',
     addToTotal: 'Aggiungi al totale',
     equivalents: {
-      heading: 'Circa equivalente a',
+      heading: 'Equivalente a',
       beerTitle: 'Pinta di birra',
       beerSubtitle: '500ml 5%',
       wineTitle: 'Bottiglia di vino',
@@ -190,8 +190,8 @@ const LOCALES = {
     totalIncomplete: '一部の行に容量、ABV、数量が必要です。',
     addToTotal: '合計に追加',
     equivalents: {
-      heading: 'およそ次と同等',
-      beerTitle: 'ビールパイント',
+      heading: '次と同等',
+      beerTitle: 'ビールジョッキ',
       beerSubtitle: '500ml 5%',
       wineTitle: 'ワインボトル',
       wineSubtitle: '750ml 12%',

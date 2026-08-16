@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcola unita standard, unita UK, drink standard USA, grammi di alcol puro, calorie e totali settimanali facoltativi.">
+    <meta name="description" content="Calcola unità standard, unità UK, drink US, grammi di alcol puro, calorie e totali settimanali facoltativi.">
     <meta name="robots" content="index, follow">
-    <title>Calcolatore unita alcoliche | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260816l" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l" as="script">
+    <title>Calcolatore unità alcoliche | Mindrink</title>
+    <link rel="preload" href="/styles.css?v=calculator-20260816n" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/it/alcohol-unit-calculator/">
-    <meta property="og:title" content="Calcolatore unita alcoliche">
-    <meta property="og:description" content="Calcola unita standard, unita UK, drink standard USA, grammi di alcol puro, calorie e totali settimanali facoltativi.">
+    <meta property="og:title" content="Calcolatore unità alcoliche">
+    <meta property="og:description" content="Calcola unità standard, unità UK, drink US, grammi di alcol puro, calorie e totali settimanali facoltativi.">
     <meta property="og:image" content="https://mindrink.me/assets/slide3_roman_phone.png">
     <link rel="canonical" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260816l">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260816n">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -43,7 +43,7 @@
                 </a>
             </div>
             <nav class="nav">
-                <a href="/it/#why-mindrink" class="nav-link">Perche Mindrink</a>
+                <a href="/it/#why-mindrink" class="nav-link">Perché Mindrink</a>
                 <a href="/it/#how-it-works" class="nav-link">Come funziona</a>
                 <a href="/it/methodology.html" class="nav-link">Metodologia</a>
                 <a href="/it/faq.html" class="nav-link">FAQ</a>
@@ -69,9 +69,9 @@
     <main>
         <section class="answer-hero">
             <div class="container narrow">
-                <p class="breadcrumb"><a href="/it/">Home</a> / Calcolatore unita alcoliche</p>
-                <h1>Calcolatore unita alcoliche</h1>
-                <p class="hero-intro">Inserisci una bevanda per vedere la sua quantita di alcol e gli equivalenti comuni.</p>
+                <p class="breadcrumb"><a href="/it/">Home</a> / Calcolatore unità alcoliche</p>
+                <h1>Calcolatore unità alcoliche</h1>
+                <p class="hero-intro">Inserisci una bevanda per vedere la sua quantità di alcol e gli equivalenti comuni.</p>
             </div>
         </section>
 
@@ -94,7 +94,7 @@
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-quantity">Quantita</label>
+                                <label for="selected-quantity">Quantità</label>
                                 <input type="number" id="selected-quantity" class="calculator-input" inputmode="numeric" min="0" max="100" step="1">
                             </div>
                         </div>
@@ -104,15 +104,15 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Questa bevanda</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unita standard</span>
+                                <span class="result-label">Unità standard</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">unità UK</span>
+                                <span class="result-label">Unità UK</span>
                                 <span class="result-value" id="selected-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">bevande standard US</span>
+                                <span class="result-label">Drink US</span>
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
@@ -157,15 +157,15 @@
                             <h3 class="results-panel-title" id="totals-heading">Il tuo totale</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unita standard</span>
+                                <span class="result-label">Unità standard</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Unita UK</span>
+                                <span class="result-label">Unità UK</span>
                                 <span class="result-value" id="total-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Drink USA</span>
+                                <span class="result-label">Drink US</span>
                                 <span class="result-value" id="total-us"></span>
                             </div>
                             <div class="calculator-result">
@@ -202,12 +202,12 @@
                 </section>
 
                 <section class="answer-block">
-                    <h2>Cosa sono le unita alcoliche?</h2>
+                    <h2>Cosa sono le unità alcoliche?</h2>
                     <p>I paesi usano riferimenti diversi. Questo calcolatore li separa:</p>
                     <ul class="answer-list">
-                        <li><strong>Unita standard:</strong> 10 g di alcol puro, usate negli esempi WHO AUDIT e vicine all'idea di bicchiere standard in molti paesi europei, tra cui Francia e Germania.</li>
-                        <li><strong>Unita UK:</strong> 10 ml, circa 8 g, di alcol puro.</li>
-                        <li><strong>Drink standard USA:</strong> 14 g di alcol puro.</li>
+                        <li><strong>Unità standard:</strong> 10 g di alcol puro, usate negli esempi WHO AUDIT e vicine all'idea di bicchiere standard in molti paesi europei, tra cui Francia e Germania.</li>
+                        <li><strong>Unità UK:</strong> 10 ml, circa 8 g, di alcol puro.</li>
+                        <li><strong>Drink US:</strong> 14 g di alcol puro.</li>
                         <li><strong>Grammi di alcol puro:</strong> base neutra per confrontare tutti i sistemi.</li>
                     </ul>
                 </section>
@@ -221,9 +221,9 @@
                                     <th>Bevanda</th>
                                     <th>Volume</th>
                                     <th>ABV</th>
-                                    <th>Unita standard</th>
-                                    <th>Unita UK</th>
-                                    <th>Drink USA</th>
+                                    <th>Unità standard</th>
+                                    <th>Unità UK</th>
+                                    <th>Drink US</th>
                                     <th>Grammi di alcol</th>
                                 </tr>
                             </thead>
@@ -276,7 +276,7 @@
             <div class="footer-content">
                 <p class="footer-text">&copy; <span id="current-year">2026</span> Mindrink. Tutti i diritti riservati.</p>
                 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                    <a href="/it/#why-mindrink" class="footer-link">Perche Mindrink</a>
+                    <a href="/it/#why-mindrink" class="footer-link">Perché Mindrink</a>
                     <a href="/it/#how-it-works" class="footer-link">Come funziona</a>
                     <a href="/it/methodology.html" class="footer-link">Metodologia</a>
                     <a href="/it/faq.html" class="footer-link">FAQ</a>
@@ -288,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816l"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260816n"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 </body>
