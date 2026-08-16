@@ -5,10 +5,13 @@ import {
   calculateTotals,
 } from '/shared/alcohol/formulas.js?v=calculator-20260816c';
 import {
+  ETHANOL_DENSITY_G_PER_ML,
   MAX_ABV_PERCENT,
   MAX_QUANTITY,
   MAX_VOLUME_ML,
 } from '/shared/alcohol/constants.js?v=calculator-20260816c';
+
+const MIN_ADD_QUANTITY = 1;
 
 const LOCALES = {
   en: {
@@ -248,7 +251,18 @@ function getInputHint({ volumeMl, abvPercent, quantity }) {
     return copy.enterDetails;
   }
 
-  if (volumeMl > MAX_VOLUME_ML || abvPercent > MAX_ABV_PERCENT || quantity > MAX_QUANTITY) {
+  if (quantity < MIN_ADD_QUANTITY) {
+    return copy.enterDetails;
+  }
+
+  if (
+    volumeMl < 0 ||
+    abvPercent < 0 ||
+    quantity < 0 ||
+    volumeMl > MAX_VOLUME_ML ||
+    abvPercent > MAX_ABV_PERCENT ||
+    quantity > MAX_QUANTITY
+  ) {
     return t(copy.limits, { volume: MAX_VOLUME_ML, abv: MAX_ABV_PERCENT, quantity: MAX_QUANTITY });
   }
 
@@ -276,10 +290,18 @@ function syncEditorFields() {
 }
 
 function unroundedAlcoholGrams(drink) {
-  if (drink.volumeMl == null || drink.abvPercent == null || drink.quantity == null) {
+  const volumeMl = Number(drink.volumeMl);
+  const abvPercent = Number(drink.abvPercent);
+  const quantity = Number(drink.quantity);
+
+  if (!Number.isFinite(volumeMl) || !Number.isFinite(abvPercent) || !Number.isFinite(quantity)) {
     return null;
   }
-  return (drink.volumeMl * (drink.abvPercent / 100) * 0.789) * drink.quantity;
+  if (volumeMl < 0 || abvPercent < 0 || quantity < MIN_ADD_QUANTITY) {
+    return null;
+  }
+
+  return volumeMl * (abvPercent / 100) * ETHANOL_DENSITY_G_PER_ML * quantity;
 }
 
 function fillEquivalentCards(ids, alcoholGrams, visible) {
@@ -488,11 +510,21 @@ function renderTotalTotals() {
   totalsContainer.hidden = !hasRows || totalHint !== '';
 }
 
+function syncAddButton() {
+  const addRowBtn = document.getElementById('total-add-row');
+  if (!addRowBtn) return;
+
+  const hint = getInputHint(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink);
+  addRowBtn.disabled = hint !== '' || !result.isValid;
+}
+
 function renderCalculator() {
   syncEditorFields();
   renderDraftResults();
   renderTotalRows();
   renderTotalTotals();
+  syncAddButton();
 }
 
 function parseNumericInput(value, integer = false) {

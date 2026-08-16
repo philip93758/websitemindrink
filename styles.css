@@ -1722,7 +1722,8 @@ body.answer-page main {
         grid-row: auto;
     }
 
-    .weekly-remove {
+    .weekly-remove,
+    .total-remove {
         grid-column: 1;
         grid-row: auto;
         width: 100%;
@@ -2007,4 +2008,17 @@ body.answer-page main {
 
 .total-btn-add:hover {
     background-color: #e09250;
+}
+
+.total-btn-add:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.total-btn-add:disabled:hover {
+    background-color: var(--amber);
+}
+
+.total-btn:disabled:active {
+    transform: none;
 }
