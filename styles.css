@@ -1722,8 +1722,7 @@ body.answer-page main {
         grid-row: auto;
     }
 
-    .weekly-remove,
-    .total-remove {
+    .weekly-remove {
         grid-column: 1;
         grid-row: auto;
         width: 100%;
@@ -1863,6 +1862,14 @@ body.answer-page main {
 
 .total-remove:hover {
     background-color: #f8f8f8;
+}
+
+@media (max-width: 767px) {
+    .total-remove {
+        grid-column: 1;
+        grid-row: auto;
+        width: 100%;
+    }
 }
 
 /* ============================================
