@@ -62,12 +62,6 @@ body {
     align-items: center;
 }
 
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
 .language-dropdown {
     position: relative;
     margin-left: 8px;
