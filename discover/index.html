@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Questions about your week, the app, and what to look for — from a vague hunch to choosing a tracker.">
+    <meta name="description" content="Questions people ask before they log a drink — and a calculator if you want to try it now.">
     <meta name="robots" content="index, follow">
     <title>Discover | Mindrink</title>
     <link rel="preload" href="/styles.css" as="style">
@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/discover/">
     <meta property="og:title" content="Discover">
-    <meta property="og:description" content="Questions about your week, the app, and what to look for — from a vague hunch to choosing a tracker.">
+    <meta property="og:description" content="Questions people ask before they log a drink — and a calculator if you want to try it now.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta property="og:site_name" content="Mindrink">
     <meta property="og:locale" content="en_US">
@@ -31,7 +31,7 @@
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/discover/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Discover">
-    <meta name="twitter:description" content="Questions about your week, the app, and what to look for — from a vague hunch to choosing a tracker.">
+    <meta name="twitter:description" content="Questions people ask before they log a drink — and a calculator if you want to try it now.">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="stylesheet" href="/styles.css">
     <script defer>
@@ -40,7 +40,7 @@
         }
     </script>
 </head>
-<body>
+<body class="discover-page">
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
@@ -51,7 +51,7 @@
             </div>
             <nav class="nav">
                 <a href="/discover/" class="nav-link" aria-current="page">Discover</a>
-                <a href="/science/" class="nav-link">Science</a>
+                <a href="/methodology.html" class="nav-link">Science</a>
                 <a href="/about.html" class="nav-link">About</a>
                 <details class="language-dropdown">
                     <summary class="language-toggle" aria-label="Language selector">EN</summary>
@@ -75,58 +75,147 @@
         </div>
     </header>
     <main>
-    <section class="philosophy">
-        <div class="container narrow">
-            <h1 class="page-title">Discover</h1>
-            <p class="feature-text" style="font-size: 18px; line-height: 1.7; text-align: center; max-width: 700px; margin: 0 auto 24px;">
-                Questions about your week, the app, and what to look for — from a vague hunch to choosing a tracker.
-            </p>
-        </div>
-    </section>
-    <section class="how-it-works">
-        <div class="container narrow">
-            <div class="hub-group">
-                <h2 class="section-title">From the question to the app</h2>
-                <ol class="hub-funnel">
-                    <li><a href="/blog/how-much-alcohol-is-too-much-weekly-consumption.html">How much alcohol is too much? Understanding weekly consumption</a></li>
-                    <li><a href="/blog/how-alcohol-guidelines-are-created.html">How alcohol guidelines are created (and why they differ by country)</a></li>
-                    <li><a href="/blog/what-counts-as-a-drink-alcohol-units.html">What counts as a drink? Understanding alcohol units and standard drinks</a></li>
-                    <li><a href="/blog/am-i-drinking-too-much-without-judgment.html">Am I drinking too much? How to reflect on your habits without judgment</a></li>
-                    <li><a href="/blog/should-i-worry-about-my-drinking-if-i-feel-fine.html">Should I worry about my drinking if I feel fine?</a></li>
-                    <li><a href="/blog/why-weekly-drinking-patterns-matter.html">Why weekly drinking patterns matter more than single drinking days</a></li>
-                    <li><a href="/blog/occasional-vs-regular-drinking.html">Occasional heavy drinking vs regular drinking: what's the difference?</a></li>
-                    <li><a href="/blog/how-to-track-alcohol-consumption-without-rules.html">How to track alcohol consumption (without turning it into a rulebook)</a></li>
-                    <li><a href="/blog/best-alcohol-tracking-apps.html">Best alcohol tracking apps: what to look for (and why simplicity matters)</a></li>
-                </ol>
-            </div>
-        </div>
-    </section>
-    <section class="knowledge-section">
+    <section class="discover-hero">
         <div class="container">
-            <h2 class="section-title">Short answers</h2>
+            <p class="discover-kicker">Discover</p>
+            <h1 class="discover-title">A path to tracking alcohol</h1>
+            <p class="discover-lede">Questions people ask before they log a drink — from a vague hunch to choosing a tracker.</p>
+        </div>
+    </section>
+    <section class="discover-path" aria-labelledby="discover-path-title">
+        <div class="container">
+            <h2 class="discover-section-title" id="discover-path-title">Start here</h2>
+            <ol class="discover-steps">
+                <li>
+                    <a href="/blog/how-much-alcohol-is-too-much-weekly-consumption.html">
+                        <span class="discover-step-num" aria-hidden="true">1</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">How much is too much?</span>
+                            <span class="discover-step-text">Weekly patterns matter more than one night.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/how-alcohol-guidelines-are-created.html">
+                        <span class="discover-step-num" aria-hidden="true">2</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">Why do guidelines differ?</span>
+                            <span class="discover-step-text">Where country limits come from, and why they disagree.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/what-counts-as-a-drink-alcohol-units.html">
+                        <span class="discover-step-num" aria-hidden="true">3</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">What counts as a drink?</span>
+                            <span class="discover-step-text">Units, glasses, and pints — compared on the same scale.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/am-i-drinking-too-much-without-judgment.html">
+                        <span class="discover-step-num" aria-hidden="true">4</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">Am I drinking too much?</span>
+                            <span class="discover-step-text">A way to look at habits without the lecture.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/should-i-worry-about-my-drinking-if-i-feel-fine.html">
+                        <span class="discover-step-num" aria-hidden="true">5</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">Should I worry if I feel fine?</span>
+                            <span class="discover-step-text">Feeling well is not the whole picture.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/why-weekly-drinking-patterns-matter.html">
+                        <span class="discover-step-num" aria-hidden="true">6</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">Why does the week matter?</span>
+                            <span class="discover-step-text">Dry days, spikes, and the shape of seven days.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/occasional-vs-regular-drinking.html">
+                        <span class="discover-step-num" aria-hidden="true">7</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">Occasional or regular?</span>
+                            <span class="discover-step-text">Two different patterns can hide behind the same total.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/how-to-track-alcohol-consumption-without-rules.html">
+                        <span class="discover-step-num" aria-hidden="true">8</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">How do I track without a rulebook?</span>
+                            <span class="discover-step-text">A record you can use, not a set of laws.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/best-alcohol-tracking-apps.html">
+                        <span class="discover-step-num" aria-hidden="true">9</span>
+                        <span class="discover-step-body">
+                            <span class="discover-step-title">What should I look for in an app?</span>
+                            <span class="discover-step-text">Privacy, units, and something you will keep using.</span>
+                        </span>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </section>
+    <section class="knowledge-section" aria-labelledby="discover-answers-title">
+        <div class="container">
+            <div class="knowledge-header">
+                <h2 class="knowledge-title" id="discover-answers-title">Short answers</h2>
+                <p class="knowledge-text">Quick explanations for units, dry days, heavier sessions, and private tracking.</p>
+            </div>
             <div class="knowledge-links">
-                    <a href="/dry-day.html" class="knowledge-link"><span class="knowledge-link-title">What is a dry day?</span></a>
-                    <a href="/alcohol-units.html" class="knowledge-link"><span class="knowledge-link-title">How many alcohol units are in common drinks?</span></a>
-                    <a href="/reduce-drinking.html" class="knowledge-link"><span class="knowledge-link-title">How to reduce drinking without quitting</span></a>
-                    <a href="/binge-drinking.html" class="knowledge-link"><span class="knowledge-link-title">What is binge drinking?</span></a>
-                    <a href="/private-alcohol-tracking.html" class="knowledge-link"><span class="knowledge-link-title">Private alcohol tracking without an account</span></a>
-                    <a href="/what-to-look-for-in-alcohol-tracker.html" class="knowledge-link"><span class="knowledge-link-title">What should you look for in an alcohol tracker?</span></a>
+                <a href="/dry-day.html" class="knowledge-link">
+                    <span class="knowledge-link-title">What is a dry day?</span>
+                    <span class="knowledge-link-text">A simple way to make alcohol-free days visible.</span>
+                </a>
+                <a href="/alcohol-units.html" class="knowledge-link">
+                    <span class="knowledge-link-title">How many units are in common drinks?</span>
+                    <span class="knowledge-link-text">Compare beer, wine, spirits, and cocktails consistently.</span>
+                </a>
+                <a href="/reduce-drinking.html" class="knowledge-link">
+                    <span class="knowledge-link-title">Reduce drinking without quitting</span>
+                    <span class="knowledge-link-text">Small changes that shift the pattern without pressure.</span>
+                </a>
+                <a href="/binge-drinking.html" class="knowledge-link">
+                    <span class="knowledge-link-title">What is binge drinking?</span>
+                    <span class="knowledge-link-text">When a lot of alcohol lands in one session.</span>
+                </a>
+                <a href="/private-alcohol-tracking.html" class="knowledge-link">
+                    <span class="knowledge-link-title">Private tracking without an account</span>
+                    <span class="knowledge-link-text">Keep the log on your device, for you first.</span>
+                </a>
+                <a href="/what-to-look-for-in-alcohol-tracker.html" class="knowledge-link">
+                    <span class="knowledge-link-title">What to look for in a tracker</span>
+                    <span class="knowledge-link-text">Fast logging, units, export, and clear pricing.</span>
+                </a>
             </div>
         </div>
     </section>
-    <section class="how-it-works">
-        <div class="container narrow">
-            <div class="hub-group">
-                <h2 class="section-title">Tool</h2>
-                <article class="blog-card">
-                    <h2 class="feature-title"><a href="/alcohol-unit-calculator/" class="footer-link">Alcohol Unit & Drink Calculator</a></h2>
-                </article>
-            </div>
-            <div class="hub-group" style="margin-top: 32px;">
-                <h2 class="section-title">App questions</h2>
-                <article class="blog-card">
-                    <h2 class="feature-title"><a href="/faq.html" class="footer-link">Frequently asked questions</a></h2>
-                </article>
+    <section class="discover-try" aria-labelledby="discover-try-title">
+        <div class="container">
+            <h2 class="discover-section-title" id="discover-try-title">Resources</h2>
+            <div class="discover-try-grid">
+                <a class="discover-try-card" href="/alcohol-unit-calculator/">
+                    <span class="discover-try-title">Alcohol unit calculator</span>
+                    <span class="discover-try-text">See what a drink actually counts as, in units you can compare.</span>
+                </a>
+                <a class="discover-try-card" href="/faq.html">
+                    <span class="discover-try-title">FAQ</span>
+                    <span class="discover-try-text">Privacy, limits, and how Mindrink works.</span>
+                </a>
             </div>
         </div>
     </section>
@@ -137,7 +226,7 @@
                 <p class="footer-text">© <span id="current-year">2026</span> Mindrink. All rights reserved.</p>
                 <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
                     <a href="/discover/" class="footer-link">Discover</a>
-                    <a href="/science/" class="footer-link">Science</a>
+                    <a href="/methodology.html" class="footer-link">Science</a>
                     <a href="/about.html" class="footer-link">About</a>
                     <a href="/#how-it-works" class="footer-link">How it works</a>
                     <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">Feedback</a>

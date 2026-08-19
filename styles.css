@@ -1858,14 +1858,25 @@ body.answer-page main {
     content: counter(hub) ". ";
 }
 
-.hub-funnel a {
+.hub-funnel a,
+.hub-links a {
     font-weight: 600;
     color: var(--text-dark);
     text-decoration: none;
 }
 
-.hub-funnel a:hover {
+.hub-funnel a:hover,
+.hub-links a:hover {
     color: var(--amber);
+}
+
+.hub-links {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
 }
 
 .hub-group {
@@ -1875,6 +1886,196 @@ body.answer-page main {
 .hub-group .section-title {
     text-align: left;
     margin-bottom: 16px;
+}
+
+/* English Discover hub */
+.discover-page {
+    background-color: var(--soft-amber-bg);
+}
+
+.discover-hero {
+    padding: 64px 20px 48px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--soft-amber-bg) 100%);
+}
+
+.discover-hero .container {
+    max-width: 760px;
+}
+
+.discover-kicker {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+}
+
+.discover-title {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.discover-lede {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 620px;
+}
+
+.discover-path,
+.discover-try {
+    padding: 24px 20px 64px;
+}
+
+.discover-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.discover-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.discover-steps a {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    min-height: 100%;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid rgba(26, 26, 26, 0.06);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.discover-steps a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--amber);
+}
+
+.discover-step-num {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background-color: var(--soft-amber-bg);
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.discover-step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.discover-step-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-dark);
+}
+
+.discover-step-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-light);
+}
+
+.discover-page .knowledge-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.discover-try-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.discover-try-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 28px 24px;
+    background-color: var(--white);
+    border: 1px solid rgba(26, 26, 26, 0.06);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.discover-try-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--amber);
+}
+
+.discover-try-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.discover-try-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+@media (max-width: 1023px) {
+    .discover-steps,
+    .discover-page .knowledge-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .discover-hero {
+        padding: 40px 20px 28px;
+    }
+
+    .discover-title {
+        font-size: 32px;
+    }
+
+    .discover-lede {
+        font-size: 16px;
+    }
+
+    .discover-path,
+    .discover-try {
+        padding: 12px 20px 48px;
+    }
+
+    .discover-steps,
+    .discover-page .knowledge-links,
+    .discover-try-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Total builder styles (aliases for weekly styles) */
