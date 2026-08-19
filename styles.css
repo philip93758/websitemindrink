@@ -1204,6 +1204,7 @@ body.answer-page main {
     color: var(--text-light);
     font-size: 14px;
     margin-bottom: 18px;
+    text-align: center;
 }
 
 .breadcrumb a {
@@ -1838,6 +1839,43 @@ body.answer-page main {
     }
 }
 
+/* Discover / Science hub indexes */
+.hub-funnel {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    counter-reset: hub;
+}
+
+.hub-funnel li {
+    counter-increment: hub;
+}
+
+.hub-funnel li a::before {
+    content: counter(hub) ". ";
+}
+
+.hub-funnel a {
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.hub-funnel a:hover {
+    color: var(--amber);
+}
+
+.hub-group {
+    margin-bottom: 8px;
+}
+
+.hub-group .section-title {
+    text-align: left;
+    margin-bottom: 16px;
+}
 
 /* Total builder styles (aliases for weekly styles) */
 .total-rows {
