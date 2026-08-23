@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcula gramos de alcohol puro y unidades (UBE) a partir del volumen y la graduación. No es un test de alcoholemia. Las UBE varían según el país.">
+    <meta name="description" content="Introduce el volumen y la graduación para calcular gramos de alcohol puro y equivalentes en unidades. La cantidad por UBE varía según el país; no calcula la alcoholemia.">
     <meta name="robots" content="index, follow">
     <title>Calculadora de gramos de alcohol y UBE | Mindrink</title>
     <link rel="preload" href="/styles.css?v=calculator-20260816r" as="style">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/es/alcohol-unit-calculator/">
     <meta property="og:title" content="Calculadora de gramos de alcohol y UBE">
-    <meta property="og:description" content="Calcula gramos de alcohol puro y unidades (UBE) a partir del volumen y la graduación. No es un test de alcoholemia. Las UBE varían según el país.">
+    <meta property="og:description" content="Introduce el volumen y la graduación para calcular gramos de alcohol puro y equivalentes en unidades. La cantidad por UBE varía según el país; no calcula la alcoholemia.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="canonical" href="https://mindrink.me/es/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -102,7 +102,7 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Esta bebida</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades estándar</span>
+                                <span class="result-label">Unidades de 10 g (referencia UBE)</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -155,7 +155,7 @@
                             <h3 class="results-panel-title" id="totals-heading">Tu total</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades estándar</span>
+                                <span class="result-label">Unidades de 10 g (referencia UBE)</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -203,7 +203,7 @@
                     <h2>Qué calcula esta herramienta</h2>
                     <p>A partir del volumen y la graduación obtienes gramos de alcohol puro y equivalentes en unidades. En España y en varios países se habla de UBE (unidad de bebida estándar), pero la cantidad de alcohol por UBE no es la misma en todos los mercados. La referencia de 10 g sirve para comparar, no como definición universal. Esto no estima la concentración de alcohol en sangre.</p>
                     <ul class="answer-list">
-                        <li><strong>Unidades estándar / UBE de 10 g:</strong> 10 g de alcohol puro; cercanas a algunas definiciones de UBE, pero no a todas.</li>
+                        <li><strong>Referencia de 10 g:</strong> 10 g de alcohol puro; coincide con algunas definiciones de UBE, pero no con todas.</li>
                         <li><strong>Unidades UK:</strong> 10 ml, o unos 8 g, de alcohol puro.</li>
                         <li><strong>Bebidas estándar de EE. UU.:</strong> 14 g de alcohol puro.</li>
                         <li><strong>Gramos de alcohol puro:</strong> la base neutral para comparar todos los sistemas.</li>
@@ -220,7 +220,7 @@
                                     <th>Bebida</th>
                                     <th>Volumen</th>
                                     <th>ABV</th>
-                                    <th>Unidades estándar</th>
+                                    <th>Unidades de 10 g</th>
                                     <th>Unidades UK</th>
                                     <th>Bebidas US</th>
                                     <th>Gramos de alcohol</th>
@@ -271,7 +271,7 @@
                     </details>
                     <details>
                         <summary>¿Qué datos necesito?</summary>
-                        <p>El volumen en mililitros y la graduación (ABV). Con eso puedes calcular gramos de alcohol, unidades y UBE de 10 g.</p>
+                        <p>El volumen en mililitros y la graduación (ABV). Con esos datos puedes calcular gramos de alcohol y equivalentes basados en una referencia de 10 g.</p>
                     </details>
                 </section>
 
