@@ -10,7 +10,6 @@
     <!-- Resource Hints for Performance -->
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/styles.css" as="style">
-    <link rel="preload" href="/assets/app-mindrink-way.png" as="image">
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
@@ -156,7 +155,11 @@
                 </div>
             </div>
             <div class="hero-illustration">
-                <img src="/assets/app-mindrink-way.png" alt="People using a mindful drinking app to track alcohol habits in a social moment" class="hero-img" width="700" height="560" loading="eager" fetchpriority="high">
+                <picture class="hero-picture">
+                    <source type="image/avif" srcset="/assets/app-mindrink-way-300.avif 300w, /assets/app-mindrink-way-400.avif 400w, /assets/app-mindrink-way-600.avif 600w, /assets/app-mindrink-way-800.avif 800w" sizes="(max-width: 340px) calc(100vw - 40px), (max-width: 767px) 300px, 400px">
+                    <source type="image/webp" srcset="/assets/app-mindrink-way-300.webp 300w, /assets/app-mindrink-way-400.webp 400w, /assets/app-mindrink-way-600.webp 600w, /assets/app-mindrink-way-800.webp 800w" sizes="(max-width: 340px) calc(100vw - 40px), (max-width: 767px) 300px, 400px">
+                    <img src="/assets/app-mindrink-way.png" alt="People using a mindful drinking app to track alcohol habits in a social moment" class="hero-img" width="700" height="560" loading="eager" fetchpriority="high">
+                </picture>
             </div>
         </div>
     </section>

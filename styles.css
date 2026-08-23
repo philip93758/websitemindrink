@@ -329,6 +329,12 @@ body {
     align-items: center;
 }
 
+.hero-picture {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+}
+
 .hero-img {
     width: 100%;
     max-width: 400px;
@@ -436,6 +442,10 @@ body {
     }
 
     .hero-img {
+        max-width: 300px;
+    }
+
+    .hero-picture {
         max-width: 300px;
     }
 
