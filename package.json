@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/alcohol-formulas.test.js"
+    "test": "node --test tests",
+    "sitemap:update": "node scripts/update-sitemap-lastmod.js",
+    "sitemap:check": "node scripts/update-sitemap-lastmod.js --check"
   }
 }
