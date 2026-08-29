@@ -48,7 +48,7 @@
       "name": "Politique de confidentialité",
       "description": "Politique de confidentialité de l’app Mindrink : données sur l’appareil, collecte, conservation des données et suppression.",
       "url": "https://mindrink.me/fr/privacy.html",
-      "dateModified": "2026-08-19",
+      "dateModified": "2026-08-29",
       "inLanguage": "fr",
       "isPartOf": {
         "@type": "WebSite",
@@ -116,9 +116,9 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Politique de confidentialité</h1>
-            <p class="small-muted">Dernière mise à jour : 19 août 2026</p>
+            <p class="small-muted">Dernière mise à jour : 29 août 2026</p>
             <p class="feature-text">
-                Cette politique de confidentialité décrit comment Mindrink traite les informations dans l’application mobile Mindrink. Le site public mindrink.me est un site d’information et n’utilise ni cookies d’analyse ni cookies publicitaires.
+                Cette politique de confidentialité décrit comment Mindrink traite les informations dans l’application mobile et sur le site public mindrink.me. Le site n’utilise aucun cookie publicitaire ou d’analyse. L’analyse du site, limitée au strict minimum et décrite ci-dessous, peut être désactivée à tout moment.
             </p>
             <p class="feature-text">
                 Contact confidentialité: <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
@@ -158,6 +158,10 @@
                 <strong>Analyses.</strong> Les analyses sont activées par défaut et peuvent être désactivées dans Gérer vos données. Tant qu’elles sont activées, nous envoyons des données d’usage anonymes à Amplitude (Union européenne). Cela peut inclure la version de l’app, la classe d’appareil, le système d’exploitation, la taille d’écran, le pays dérivé des paramètres régionaux de l’appareil, la langue, le thème, l’activation des rappels et le profil de recommandation choisi. Cela n’inclut pas l’historique de consommation, les réflexions, les notes ni les objectifs. Nous ne collectons pas d’identifiants publicitaires ni d’adresse IP pour les analyses.
             </p>
             <p class="feature-text">
+                <strong>Analyse du site.</strong> Mindrink envoie un petit nombre d’événements agrégés et explicites à PostHog Cloud EU : pages consultées, clics vers une autre page de mindrink.me et quatre actions du calculateur. Seuls la langue, les chemins de page normalisés, le type de calculateur et, le cas échéant, l’emplacement du CTA peuvent être inclus. Le texte des liens, les référents, les données saisies sur les boissons, le volume, l’ABV, la quantité, les résultats, les totaux, les informations de santé, le texte libre, les paramètres de requête et les URL complètes ne sont jamais envoyés. PostHog utilise uniquement un identifiant éphémère en mémoire de page ; aucun identifiant ne subsiste sur la page suivante et le parcours complet n’est donc pas rattaché à une personne. La capture automatique, les profils, l’enregistrement de session, les cartes de chaleur, la mesure des performances, l’enrichissement GeoIP et le stockage persistant de PostHog sont désactivés. Global Privacy Control et Do Not Track sont respectés automatiquement. Seule votre préférence est enregistrée si vous désactivez l’analyse ci-dessous.
+            </p>
+            <div class="analytics-opt-out" data-analytics-opt-out></div>
+            <p class="feature-text">
                 <strong>Rapports de plantage et d’erreur.</strong> Nous envoyons des rapports techniques de plantage et d’erreur à Sentry afin de diagnostiquer les pannes. Ces rapports peuvent inclure des traces d’exécution et des métadonnées de diagnostic. Ils sont configurés pour ne pas inclure l’historique de consommation, de captures d’écran ni d’identifiants personnels par défaut.
             </p>
             <p class="feature-text">
@@ -181,6 +185,7 @@
             </p>
             <ul>
                 <li>Amplitude, pour les analyses optionnelles (UE)</li>
+                <li>PostHog Cloud EU, pour l’analyse du site limitée au strict minimum</li>
                 <li>Sentry, pour le diagnostic des plantages et erreurs</li>
                 <li>Tally, pour les retours que vous choisissez d’envoyer</li>
             </ul>
@@ -192,11 +197,12 @@
             <ul>
                 <li><strong>Relevés de consommations, réflexions, objectifs et paramètres locaux.</strong> Mindrink ne stocke ni ne conserve ces données sur nos serveurs. Elles sont conservées uniquement sur votre appareil jusqu’à ce que vous les supprimiez dans l’app ou désinstalliez l’application.</li>
                 <li><strong>Analyses.</strong> Amplitude conserve les événements d’usage anonymes aussi longtemps que nécessaire pour analyser l’usage et améliorer l’app, puis les supprime conformément aux paramètres de conservation d’Amplitude. Désactiver les analyses arrête toute nouvelle collecte.</li>
+                <li><strong>Analyse du site.</strong> Les événements du site dans PostHog sont conservés au maximum 90 jours. La désactivation arrête toute nouvelle collecte dans ce navigateur.</li>
                 <li><strong>Rapports de plantage et d’erreur.</strong> Sentry conserve les rapports de diagnostic pendant une période limitée, nécessaire pour enquêter et corriger les problèmes, puis les supprime conformément aux paramètres de conservation de Sentry.</li>
                 <li><strong>E-mails et retours.</strong> Nous conservons ces communications aussi longtemps que nécessaire pour traiter votre demande, puis les supprimons lorsqu’elles ne sont plus nécessaires.</li>
             </ul>
             <p class="feature-text">
-                Les analyses et les rapports de plantage étant anonymes, nous ne pouvons ni identifier ni supprimer les données Amplitude ou Sentry d’une personne en particulier.
+                Les analyses et rapports de plantage n’étant liés à aucun compte ni identifiant persistant, nous ne pouvons ni identifier ni supprimer les données Amplitude, PostHog ou Sentry d’une personne en particulier.
             </p>
 
             <h2 class="feature-title">Suppression</h2>
@@ -210,12 +216,12 @@
                 Pour demander la suppression d’un e-mail ou d’un avis que vous nous avez envoyé, contactez <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>.
             </p>
             <p class="feature-text">
-                Nous ne pouvons pas supprimer les données Amplitude ou Sentry d’une personne en particulier. Ces données sont anonymes et ne sont pas liées à vous.
+                Nous ne pouvons pas supprimer les données Amplitude, PostHog ou Sentry d’une personne en particulier. Elles ne sont liées à aucun compte ni identifiant persistant.
             </p>
 
             <h2 class="feature-title">Sécurité</h2>
             <p class="feature-text">
-                Les données de consommation locales sont stockées sur l’appareil. La sauvegarde Android de l’app est désactivée, donc la désinstallation supprime ces données locales. Les outils d’analyse et de plantage sont configurés pour exclure l’historique de consommation et limiter les identifiants. Les analyses Amplitude sont envoyées vers le point de terminaison UE d’Amplitude, sans adresse IP ni identifiant publicitaire.
+                Les données de consommation locales sont stockées sur l’appareil. La sauvegarde Android de l’app est désactivée, donc la désinstallation supprime ces données locales. Les outils d’analyse et de plantage sont configurés pour exclure l’historique de consommation et limiter les identifiants. Les analyses Amplitude sont envoyées vers le point de terminaison UE d’Amplitude, sans adresse IP ni identifiant publicitaire. L’analyse du site est envoyée au point de terminaison UE de PostHog avec la conservation IP et l’enrichissement GeoIP désactivés ; la connexion réseau expose néanmoins techniquement l’adresse IP de la requête à PostHog à son arrivée.
             </p>
 
             <h2 class="feature-title">Enfants</h2>
@@ -284,5 +290,6 @@
             }
         })();
     </script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
 </body>
 </html>

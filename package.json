@@ -3,8 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "npm run analytics:build && npm run analytics:pages:check && npm run sitemap:check",
+    "analytics:build": "node scripts/build-analytics-assets.js",
+    "analytics:pages:update": "node scripts/update-analytics-loaders.js",
+    "analytics:pages:check": "node scripts/update-analytics-loaders.js --check",
     "test": "node --test tests",
     "sitemap:update": "node scripts/update-sitemap-lastmod.js",
     "sitemap:check": "node scripts/update-sitemap-lastmod.js --check"
+  },
+  "dependencies": {
+    "posthog-js": "^1.422.5"
   }
 }

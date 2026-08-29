@@ -48,7 +48,7 @@
       "name": "Kebijakan Privasi",
       "description": "Kebijakan privasi aplikasi Mindrink: data di perangkat, pengumpulan, retensi data, dan penghapusan.",
       "url": "https://mindrink.me/id/privacy.html",
-      "dateModified": "2026-08-19",
+      "dateModified": "2026-08-29",
       "inLanguage": "id",
       "isPartOf": {
         "@type": "WebSite",
@@ -116,9 +116,9 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Kebijakan Privasi</h1>
-            <p class="small-muted">Terakhir diperbarui: 19 Agustus 2026</p>
+            <p class="small-muted">Terakhir diperbarui: 29 Agustus 2026</p>
             <p class="feature-text">
-                Kebijakan privasi ini menjelaskan bagaimana Mindrink menangani informasi di aplikasi seluler Mindrink. Situs publik mindrink.me adalah situs informasi dan tidak menggunakan cookie analitik atau iklan.
+                Kebijakan privasi ini menjelaskan bagaimana Mindrink menangani informasi di aplikasi seluler dan situs publik mindrink.me. Situs tidak memakai cookie iklan atau analitik. Analitik situs dengan data minimal dijelaskan di bawah dan dapat dimatikan kapan saja.
             </p>
             <p class="feature-text">
                 Kontak privasi: <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
@@ -158,6 +158,10 @@
                 <strong>Analitik.</strong> Analitik aktif secara default dan dapat dimatikan di Pengelolaan Data. Selama aktif, kami mengirim data penggunaan anonim ke Amplitude (Uni Eropa). Ini dapat mencakup versi aplikasi, kelas perangkat, sistem operasi, ukuran layar, negara dari pengaturan lokal perangkat, bahasa, tema, apakah pengingat aktif, dan profil panduan yang kamu pilih. Tidak mencakup riwayat minum, refleksi, catatan, atau tujuan. Kami tidak mengumpulkan pengenal iklan atau alamat IP untuk analitik.
             </p>
             <p class="feature-text">
+                <strong>Analitik situs.</strong> Mindrink mengirim sejumlah kecil peristiwa agregat yang ditentukan secara eksplisit ke PostHog Cloud EU: halaman dilihat, klik ke halaman lain di mindrink.me, dan empat tindakan kalkulator. Peristiwa hanya boleh menyertakan bahasa, jalur halaman yang dinormalisasi, jenis kalkulator, dan lokasi CTA bila relevan. Teks tautan, perujuk, input minuman, volume, ABV, jumlah, hasil, total, informasi kesehatan, teks bebas, parameter kueri, dan URL lengkap tidak pernah dikirim. PostHog hanya memakai pengenal sementara di memori halaman; tidak ada pengenal yang bertahan ke halaman berikutnya, sehingga perjalanan lengkap tidak ditautkan ke seseorang. Autocapture, profil, rekaman sesi, heatmap, pengukuran performa, pengayaan GeoIP, dan penyimpanan PostHog persisten dinonaktifkan. Global Privacy Control dan Do Not Track dihormati secara otomatis. Hanya pilihan opt-out yang disimpan jika kamu mematikan analitik di bawah.
+            </p>
+            <div class="analytics-opt-out" data-analytics-opt-out></div>
+            <p class="feature-text">
                 <strong>Laporan crash dan error.</strong> Kami mengirim laporan teknis crash dan error ke Sentry untuk mendiagnosis kegagalan. Laporan ini dapat mencakup stack trace dan metadata diagnostik. Laporan dikonfigurasi agar tidak mencakup riwayat minum, tangkapan layar, atau pengenal pribadi default.
             </p>
             <p class="feature-text">
@@ -181,6 +185,7 @@
             </p>
             <ul>
                 <li>Amplitude, untuk analitik opsional (UE)</li>
+                <li>PostHog Cloud EU, untuk analitik situs dengan data minimal</li>
                 <li>Sentry, untuk diagnosis crash dan error</li>
                 <li>Tally, untuk masukan yang kamu pilih untuk dikirim</li>
             </ul>
@@ -192,11 +197,12 @@
             <ul>
                 <li><strong>Catatan minuman, refleksi, tujuan, dan pengaturan lokal.</strong> Mindrink tidak menyimpan atau menahan data ini di server kami. Data itu hanya ditahan di perangkat kamu sampai kamu menghapusnya di aplikasi atau mencopot pemasangan aplikasi.</li>
                 <li><strong>Analitik.</strong> Amplitude menahan peristiwa penggunaan anonim selama diperlukan untuk menganalisis penggunaan dan memperbaiki aplikasi, lalu menghapusnya sesuai pengaturan retensi Amplitude. Mematikan analitik menghentikan pengumpulan baru.</li>
+                <li><strong>Analitik situs.</strong> Peristiwa situs di PostHog disimpan paling lama 90 hari. Mematikannya menghentikan pengumpulan baru di browser ini.</li>
                 <li><strong>Laporan crash dan error.</strong> Sentry menahan laporan diagnostik untuk jangka waktu terbatas yang diperlukan guna menyelidiki dan memperbaiki masalah, lalu menghapusnya sesuai pengaturan retensi Sentry.</li>
                 <li><strong>Email dan masukan.</strong> Kami menahan komunikasi ini selama diperlukan untuk menangani permintaanmu, lalu menghapusnya ketika tidak lagi dibutuhkan.</li>
             </ul>
             <p class="feature-text">
-                Karena analitik dan laporan crash bersifat anonim, kami tidak dapat mengidentifikasi atau menghapus data Amplitude atau Sentry milik orang tertentu.
+                Karena analitik dan laporan crash tidak terikat ke akun atau pengenal pengunjung persisten, kami tidak dapat mengidentifikasi atau menghapus data Amplitude, PostHog, atau Sentry milik orang tertentu.
             </p>
 
             <h2 class="feature-title">Penghapusan</h2>
@@ -210,12 +216,12 @@
                 Untuk meminta penghapusan email atau masukan yang kamu kirim, hubungi <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>.
             </p>
             <p class="feature-text">
-                Kami tidak dapat menghapus data Amplitude atau Sentry milik orang tertentu. Data itu anonim dan tidak terikat padamu.
+                Kami tidak dapat menghapus data Amplitude, PostHog, atau Sentry milik orang tertentu. Data itu tidak terikat ke akun atau pengenal pengunjung persisten.
             </p>
 
             <h2 class="feature-title">Keamanan</h2>
             <p class="feature-text">
-                Data minum lokal disimpan di perangkat. Cadangan Android untuk aplikasi dimatikan, jadi mencopot pemasangan menghapus data lokal itu. Analitik dan pelaporan crash dikonfigurasi untuk mengecualikan riwayat minum dan membatasi pengenal. Analitik Amplitude dikirim ke endpoint UE Amplitude, tanpa alamat IP atau pengenal iklan.
+                Data minum lokal disimpan di perangkat. Cadangan Android untuk aplikasi dimatikan, jadi mencopot pemasangan menghapus data lokal itu. Analitik dan pelaporan crash dikonfigurasi untuk mengecualikan riwayat minum dan membatasi pengenal. Analitik Amplitude dikirim ke endpoint UE Amplitude, tanpa alamat IP atau pengenal iklan. Analitik situs dikirim ke endpoint UE PostHog dengan penyimpanan IP dan pengayaan GeoIP dinonaktifkan; koneksi jaringan tetap secara teknis memperlihatkan IP permintaan kepada PostHog saat tiba.
             </p>
 
             <h2 class="feature-title">Anak-anak</h2>
@@ -284,5 +290,6 @@
             }
         })();
     </script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
 </body>
 </html>
