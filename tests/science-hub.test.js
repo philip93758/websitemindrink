@@ -67,6 +67,8 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
 
   assert.match(episode, /<h1 class="history-title">Who Invented Alcohol\?<\/h1>/);
   assert.match(episode, /href="\/science\/" class="nav-link" aria-current="page">Science<\/a>/);
+  assert.match(episode, /<p class="history-deck">Humans did not invent fermentation\. Microorganisms did\./);
+  assert.doesNotMatch(episode, /class="history-opening"/);
   assert.match(episode, /Episode 1\.2 — Mesopotamia: The World's First Beer Civilization/);
   assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8);
 });
@@ -82,6 +84,7 @@ test('publishes every approved translation as a localized hub and episode', () =
     assert.match(hub, new RegExp(`href="\/${locale}\/science\/who-invented-alcohol\\.html"`));
     assert.ok(hub.indexOf('science-methodology') < hub.indexOf('science-history-series'), `${locale} hierarchy`);
     assert.ok(episode.includes(`<h1 class="history-title">${expected.title}</h1>`), `${locale} title is missing`);
+    assert.doesNotMatch(episode, /class="history-opening"/, `${locale} opening is duplicated in the body`);
     assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8, `${locale} reference count`);
     assert.doesNotMatch(episode, /\*\*|\]\(https?:\/\//, `${locale} contains unconverted Markdown`);
     assert.equal((episode.match(/<link rel="alternate" hreflang=/g) ?? []).length, 9, `${locale} hreflang count`);
