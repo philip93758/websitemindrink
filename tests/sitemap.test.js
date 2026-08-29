@@ -35,7 +35,7 @@ test('keeps sitemap lastmod values synchronized with page sources', () => {
   const sitemapText = readFileSync(SITEMAP_PATH, 'utf8');
   const { changes, entries, output } = buildExpectedSitemap(sitemapText);
 
-  assert.equal(entries.length, 184);
+  assert.equal(entries.length, 200);
   assert.deepEqual(
     changes,
     [],

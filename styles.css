@@ -2183,6 +2183,541 @@ body.answer-page main {
 }
 
 /* ============================================
+   Science hub and history series
+   ============================================ */
+body.science-page,
+body.history-article-page {
+    background-color: var(--soft-amber-bg);
+}
+
+.science-hero {
+    padding: 76px 20px 58px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--soft-amber-bg) 100%);
+}
+
+.science-hero .container,
+.science-methodology .container,
+.science-history-series .container {
+    max-width: 980px;
+}
+
+.science-kicker,
+.history-series-label,
+.science-card-label {
+    margin: 0 0 12px;
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.science-title {
+    max-width: 900px;
+    margin: 0 0 18px;
+    color: var(--text-dark);
+    font-size: 48px;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+}
+
+.science-lede {
+    max-width: 820px;
+    margin: 0 0 20px;
+    color: var(--text-light);
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.science-commitment {
+    max-width: 760px;
+    margin: 0;
+    padding-left: 18px;
+    border-left: 3px solid var(--amber);
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.65;
+}
+
+.science-methodology {
+    padding: 22px 20px 82px;
+}
+
+.science-methodology-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+    align-items: end;
+    padding: 48px;
+    border-radius: calc(var(--border-radius) + 4px);
+    background: var(--navy-outline);
+    box-shadow: 0 18px 44px rgba(26, 26, 26, 0.14);
+}
+
+.science-methodology-panel .science-card-label {
+    color: #ffc88f;
+}
+
+.science-methodology-panel h2 {
+    max-width: 690px;
+    margin: 0 0 18px;
+    color: var(--white);
+    font-size: 36px;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+}
+
+.science-methodology-copy > p:not(.science-card-label) {
+    max-width: 720px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.science-methodology-points {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.science-methodology-points li {
+    display: inline-flex;
+    gap: 9px;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.science-methodology-points li::before {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffc88f;
+    content: "";
+}
+
+.science-primary-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 240px;
+    padding: 15px 20px;
+    border-radius: 999px;
+    background: var(--amber);
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.science-primary-link::after {
+    content: "→";
+    margin-left: 9px;
+}
+
+.science-primary-link:hover {
+    transform: translateY(-2px);
+    background: #f7b16f;
+}
+
+.science-history-series {
+    padding: 78px 20px 88px;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+    background: var(--white);
+}
+
+.science-history-intro {
+    max-width: 760px;
+    margin-bottom: 34px;
+}
+
+.science-history-intro h2 {
+    margin: 0 0 16px;
+    color: var(--text-dark);
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.science-history-intro > p:not(.science-card-label) {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.science-episode-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 40px;
+    align-items: center;
+    padding: 32px 34px;
+    border: 1px solid rgba(244, 162, 97, 0.34);
+    border-radius: var(--border-radius);
+    background: linear-gradient(145deg, #fff 0%, #fff8ef 100%);
+}
+
+.science-episode-card h3 {
+    margin: 0 0 10px;
+    color: var(--text-dark);
+    font-size: 26px;
+    line-height: 1.25;
+}
+
+.science-episode-card > div > p:not(.science-card-label) {
+    max-width: 650px;
+    margin: 0;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.science-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.science-card-link::after {
+    content: "→";
+    color: var(--amber);
+    transition: transform 0.2s ease;
+}
+
+.science-card-link:hover {
+    color: var(--amber);
+}
+
+.science-card-link:hover::after {
+    transform: translateX(3px);
+}
+
+.history-hero {
+    padding: 42px 20px 64px;
+    background: linear-gradient(180deg, var(--white) 0%, #fffaf4 100%);
+}
+
+.history-hero .container {
+    max-width: 900px;
+}
+
+.history-breadcrumbs {
+    margin-bottom: 48px;
+}
+
+.history-title {
+    max-width: 820px;
+    margin: 0 0 14px;
+    color: var(--text-dark);
+    font-size: 56px;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+}
+
+.history-subtitle {
+    margin: 0 0 24px;
+    color: var(--text-dark);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.history-deck {
+    max-width: 760px;
+    margin: 0 0 26px;
+    color: var(--text-light);
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.history-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.history-meta span + span::before {
+    content: "·";
+    margin-right: 18px;
+    color: var(--amber);
+}
+
+.history-article {
+    padding: 64px 20px 88px;
+}
+
+.history-copy {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.history-copy > p,
+.history-copy section > p {
+    margin: 0 0 24px;
+    color: var(--text-dark);
+    font-size: 18px;
+    line-height: 1.82;
+}
+
+.history-copy .history-opening {
+    font-size: 21px;
+    line-height: 1.75;
+}
+
+.history-copy h2 {
+    margin: 72px 0 24px;
+    color: var(--text-dark);
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.history-copy h3 {
+    margin: 42px 0 18px;
+    color: var(--text-dark);
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+.history-copy em {
+    font-style: italic;
+}
+
+.history-copy a:not(.citation) {
+    color: #8f531f;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.history-copy a:not(.citation):hover {
+    color: var(--amber);
+}
+
+.citation {
+    margin-left: 2px;
+    color: #8f531f;
+    font-size: 0.72em;
+    font-weight: 700;
+    line-height: 0;
+    text-decoration: none;
+    vertical-align: super;
+}
+
+.history-evidence-note,
+.history-question {
+    margin: 34px 0;
+    padding: 24px 26px;
+    border-left: 4px solid var(--amber);
+    background-color: rgba(255, 255, 255, 0.78);
+    color: var(--text-dark);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.history-evidence-note strong,
+.history-question strong {
+    color: var(--text-dark);
+}
+
+.history-sequence {
+    margin: 32px 0;
+    padding: 22px;
+    border-radius: var(--border-radius-small);
+    background-color: var(--white);
+    color: var(--text-dark);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.history-references {
+    margin-top: 80px;
+    padding-top: 42px;
+    border-top: 1px solid rgba(26, 26, 26, 0.12);
+}
+
+.history-references h2 {
+    margin-top: 0;
+}
+
+.history-references ol {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.history-references li {
+    margin-bottom: 18px;
+    padding-left: 6px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.history-next {
+    margin-top: 64px;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    background-color: var(--text-dark);
+    color: var(--white);
+}
+
+.history-next p {
+    margin: 0 0 8px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.history-next strong {
+    display: block;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+    .science-hero {
+        padding: 48px 20px 38px;
+    }
+
+    .science-title {
+        font-size: 36px;
+    }
+
+    .science-lede {
+        font-size: 17px;
+    }
+
+    .science-commitment {
+        font-size: 15px;
+    }
+
+    .science-methodology {
+        padding: 14px 20px 58px;
+    }
+
+    .science-methodology-panel,
+    .science-episode-card {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .science-methodology-panel {
+        padding: 30px 24px;
+    }
+
+    .science-methodology-panel h2,
+    .science-history-intro h2 {
+        font-size: 28px;
+    }
+
+    .science-primary-link {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .science-history-series {
+        padding: 58px 20px 64px;
+    }
+
+    .science-episode-card {
+        padding: 26px 24px;
+    }
+
+    .science-episode-card .science-card-link {
+        margin-top: -4px;
+    }
+
+    .history-hero {
+        padding: 28px 20px 44px;
+    }
+
+    .history-breadcrumbs {
+        margin-bottom: 36px;
+    }
+
+    .history-title {
+        font-size: 40px;
+    }
+
+    .history-subtitle {
+        font-size: 20px;
+    }
+
+    .history-deck {
+        font-size: 17px;
+    }
+
+    .history-meta {
+        display: block;
+    }
+
+    .history-meta span {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .history-meta span + span::before {
+        content: none;
+    }
+
+    .history-article {
+        padding: 46px 20px 64px;
+    }
+
+    .history-copy > p,
+    .history-copy section > p {
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+    .history-copy .history-opening {
+        font-size: 19px;
+    }
+
+    .history-copy h2 {
+        margin-top: 58px;
+        font-size: 29px;
+    }
+
+    .history-copy h3 {
+        margin-top: 36px;
+        font-size: 21px;
+    }
+
+    .history-evidence-note,
+    .history-question {
+        padding: 20px;
+        font-size: 17px;
+    }
+
+    .history-next {
+        padding: 24px;
+    }
+}
+
+/* ============================================
    Equivalent Cards
    ============================================ */
 .calculator-results > .equivalent-container,
