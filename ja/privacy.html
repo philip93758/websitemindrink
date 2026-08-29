@@ -48,7 +48,7 @@
       "name": "プライバシーポリシー",
       "description": "Mindrinkアプリのプライバシーポリシー。端末内のデータ、収集内容、データの保持、削除について。",
       "url": "https://mindrink.me/ja/privacy.html",
-      "dateModified": "2026-08-19",
+      "dateModified": "2026-08-29",
       "inLanguage": "ja",
       "isPartOf": {
         "@type": "WebSite",
@@ -116,9 +116,9 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">プライバシーポリシー</h1>
-            <p class="small-muted">最終更新日: 2026年8月19日</p>
+            <p class="small-muted">最終更新日: 2026年8月29日</p>
             <p class="feature-text">
-                このプライバシーポリシーは、Mindrinkモバイルアプリにおける情報の取り扱いを説明します。公開サイト mindrink.me は情報提供のためのサイトであり、分析用・広告用のCookieは使用しません。
+                このプライバシーポリシーは、Mindrinkモバイルアプリと公開サイト mindrink.me における情報の取り扱いを説明します。サイトは広告Cookieや分析Cookieを使用しません。データを最小限にしたウェブサイト分析について以下で説明しており、いつでもオフにできます。
             </p>
             <p class="feature-text">
                 プライバシーに関する連絡先: <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
@@ -158,6 +158,10 @@
                 <strong>分析。</strong> 分析は初期状態でオンになっており、データ管理でオフにできます。オンの間、匿名の利用データをAmplitude（欧州連合）に送ります。これにはアプリのバージョン、端末クラス、OS、画面サイズ、端末の地域設定から得た国、言語、テーマ、リマインダーのオンオフ、選択したガイドライン用プロファイルが含まれることがあります。飲酒履歴、振り返り、メモ、目標は含まれません。分析のために広告IDやIPアドレスは収集しません。
             </p>
             <p class="feature-text">
+                <strong>ウェブサイト分析。</strong> Mindrinkは、ページ表示、mindrink.me内の別ページへのクリック、計算ツールの4つの操作という、少数の明示的な集計イベントをEU内のPostHog Cloudへ送信します。イベントに含まれるのは、言語、正規化されたページパス、計算ツールの種類、必要な場合のCTA位置だけです。リンクの文言、参照元、飲み物の入力値、容量、ABV、数量、計算結果、合計、健康情報、自由記述、クエリパラメータ、完全なURLは一切送信しません。PostHogが使うのはページメモリ内の一時的な識別子だけで、次のページには識別子が残らないため、閲覧経路全体が一人の利用者に結び付くことはありません。自動取得、人物プロファイル、セッションリプレイ、ヒートマップ、パフォーマンス取得、GeoIP付加、PostHogの永続ストレージは無効です。Global Privacy ControlとDo Not Trackは自動的に尊重されます。以下で分析をオフにした場合のみ、その設定を保存します。
+            </p>
+            <div class="analytics-opt-out" data-analytics-opt-out></div>
+            <p class="feature-text">
                 <strong>クラッシュとエラーの報告。</strong> 不具合を調べるため、技術的なクラッシュ・エラー報告をSentryに送ります。これにはスタックトレースや診断用メタデータが含まれることがあります。飲酒履歴、スクリーンショット、既定の個人識別子は含まれないよう設定しています。
             </p>
             <p class="feature-text">
@@ -181,6 +185,7 @@
             </p>
             <ul>
                 <li>Amplitude（任意の分析、EU）</li>
+                <li>PostHog Cloud EU（データを最小限にしたウェブサイト分析）</li>
                 <li>Sentry（クラッシュとエラーの診断）</li>
                 <li>Tally（送信を選んだフィードバック）</li>
             </ul>
@@ -192,11 +197,12 @@
             <ul>
                 <li><strong>飲酒記録、振り返り、目標、端末内の設定。</strong> Mindrinkはこれらのデータをサーバーに保存・保持しません。アプリ内で削除するか、アプリをアンインストールするまで、端末内にのみ保持されます。</li>
                 <li><strong>分析。</strong> Amplitudeは、利用状況の把握とアプリ改善に必要な期間、匿名の利用イベントを保持し、その後Amplitudeの保持設定に従って削除します。分析をオフにすると、以後の収集は止まります。</li>
+                <li><strong>ウェブサイト分析。</strong> PostHogのウェブサイトイベントは90日以内に削除されます。オフにすると、このブラウザからの以後の収集は止まります。</li>
                 <li><strong>クラッシュとエラーの報告。</strong> Sentryは、調査と修正に必要な限られた期間、診断報告を保持し、その後Sentryの保持設定に従って削除します。</li>
                 <li><strong>メールとフィードバック。</strong> 依頼への対応に必要な期間保持し、不要になったら削除します。</li>
             </ul>
             <p class="feature-text">
-                分析とクラッシュ報告は匿名のため、特定の個人のAmplitudeまたはSentryデータを識別したり削除したりすることはできません。
+                分析とクラッシュ報告はアカウントや永続的な訪問者識別子に結び付いていないため、特定の個人のAmplitude、PostHog、Sentryデータを識別したり削除したりすることはできません。
             </p>
 
             <h2 class="feature-title">削除</h2>
@@ -210,12 +216,12 @@
                 送信したメールやフィードバックの削除を希望する場合は、<a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a> までご連絡ください。
             </p>
             <p class="feature-text">
-                特定の個人のAmplitudeまたはSentryデータは削除できません。そのデータは匿名であり、あなたには結びついていません。
+                特定の個人のAmplitude、PostHog、Sentryデータは削除できません。そのデータはアカウントや永続的な訪問者識別子に結び付いていません。
             </p>
 
             <h2 class="feature-title">セキュリティ</h2>
             <p class="feature-text">
-                飲酒データは端末内に保存されます。アプリのAndroidバックアップはオフのため、アンインストールでそのローカルデータは削除されます。分析とクラッシュ報告は飲酒履歴を含めず、識別子を制限するよう設定しています。Amplitudeの分析は、IPアドレスや広告IDなしでAmplitudeのEUエンドポイントに送信されます。
+                飲酒データは端末内に保存されます。アプリのAndroidバックアップはオフのため、アンインストールでそのローカルデータは削除されます。分析とクラッシュ報告は飲酒履歴を含めず、識別子を制限するよう設定しています。Amplitudeの分析は、IPアドレスや広告IDなしでAmplitudeのEUエンドポイントに送信されます。ウェブサイト分析はIP保存とGeoIP付加を無効にしてPostHogのEUエンドポイントへ送信しますが、ネットワーク接続上、リクエスト到着時のIPアドレスは技術的にPostHogへ見えます。
             </p>
 
             <h2 class="feature-title">子ども</h2>
@@ -284,5 +290,6 @@
             }
         })();
     </script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
 </body>
 </html>

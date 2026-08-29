@@ -48,7 +48,7 @@
       "name": "Política de privacidade",
       "description": "Política de privacidade do app Mindrink: dados no dispositivo, coleta, retenção de dados e exclusão.",
       "url": "https://mindrink.me/pt/privacy.html",
-      "dateModified": "2026-08-19",
+      "dateModified": "2026-08-29",
       "inLanguage": "pt",
       "isPartOf": {
         "@type": "WebSite",
@@ -116,9 +116,9 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Política de privacidade</h1>
-            <p class="small-muted">Última atualização: 19 de agosto de 2026</p>
+            <p class="small-muted">Última atualização: 29 de agosto de 2026</p>
             <p class="feature-text">
-                Esta política de privacidade descreve como o Mindrink trata informações no aplicativo móvel Mindrink. O site público mindrink.me é um site informativo e não usa cookies de análise nem de publicidade.
+                Esta política de privacidade descreve como o Mindrink trata informações no aplicativo móvel e no site público mindrink.me. O site não usa cookies de publicidade nem de análise. A análise do site com dados mínimos é descrita abaixo e pode ser desativada a qualquer momento.
             </p>
             <p class="feature-text">
                 Contato de privacidade: <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
@@ -158,6 +158,10 @@
                 <strong>Análises.</strong> As análises vêm ligadas por padrão e podem ser desativadas em Gestão de dados. Enquanto estiverem ligadas, enviamos dados de uso anônimos para a Amplitude (União Europeia). Isso pode incluir versão do app, classe do dispositivo, sistema operacional, tamanho da tela, país derivado das configurações regionais do dispositivo, idioma, tema, se os lembretes estão ativados e o perfil de orientação escolhido. Não inclui histórico de consumo, reflexões, notas nem metas. Não coletamos identificadores de publicidade nem endereço IP para análises.
             </p>
             <p class="feature-text">
+                <strong>Análise do site.</strong> O Mindrink envia um pequeno conjunto de eventos agregados e explícitos ao PostHog Cloud EU: páginas visualizadas, cliques para outra página do mindrink.me e quatro ações da calculadora. Os eventos podem incluir somente idioma, caminhos normalizados, tipo de calculadora e, quando aplicável, localização do CTA. Texto de links, referenciadores, dados de bebidas, volume, ABV, quantidade, resultados, totais, informações de saúde, texto livre, parâmetros de consulta e URLs completas nunca são enviados. O PostHog usa apenas um identificador temporário na memória da página; nenhum identificador persiste na página seguinte, por isso o percurso completo não é ligado a uma pessoa. Captura automática, perfis, gravação de sessão, mapas de calor, captura de desempenho, enriquecimento GeoIP e armazenamento persistente do PostHog estão desativados. Global Privacy Control e Do Not Track são respeitados automaticamente. Só a preferência é armazenada se você desativar a análise abaixo.
+            </p>
+            <div class="analytics-opt-out" data-analytics-opt-out></div>
+            <p class="feature-text">
                 <strong>Relatórios de falha e erro.</strong> Enviamos relatórios técnicos de falha e erro para o Sentry a fim de diagnosticar problemas. Esses relatórios podem incluir stack traces e metadados de diagnóstico. Estão configurados para não incluir histórico de consumo, capturas de tela nem identificadores pessoais padrão.
             </p>
             <p class="feature-text">
@@ -181,6 +185,7 @@
             </p>
             <ul>
                 <li>Amplitude, para análises opcionais (UE)</li>
+                <li>PostHog Cloud EU, para análise do site com dados mínimos</li>
                 <li>Sentry, para diagnóstico de falhas e erros</li>
                 <li>Tally, para o feedback que você escolher enviar</li>
             </ul>
@@ -192,11 +197,12 @@
             <ul>
                 <li><strong>Registros de bebidas, reflexões, metas e configurações locais.</strong> A Mindrink não armazena nem retém esses dados em nossos servidores. Eles são retidos só no seu dispositivo até você apagá-los no app ou desinstalar o aplicativo.</li>
                 <li><strong>Análises.</strong> A Amplitude retém eventos de uso anônimos pelo tempo necessário para analisar o uso e melhorar o app, e depois os exclui de acordo com as configurações de retenção da Amplitude. Desativar as análises interrompe novas coletas.</li>
+                <li><strong>Análise do site.</strong> Os eventos do site no PostHog são retidos por no máximo 90 dias. Desativá-la interrompe novas coletas neste navegador.</li>
                 <li><strong>Relatórios de falha e erro.</strong> O Sentry retém relatórios de diagnóstico por um período limitado, necessário para investigar e corrigir problemas, e depois os exclui de acordo com as configurações de retenção do Sentry.</li>
                 <li><strong>E-mails e feedback.</strong> Retemos essas comunicações pelo tempo necessário para atender ao seu pedido e as excluímos quando não forem mais necessárias.</li>
             </ul>
             <p class="feature-text">
-                Como as análises e os relatórios de falha são anônimos, não podemos identificar nem excluir os dados da Amplitude ou do Sentry de uma pessoa específica.
+                Como as análises e os relatórios de falha não estão ligados a uma conta nem a um identificador persistente, não podemos identificar nem excluir dados da Amplitude, do PostHog ou do Sentry de uma pessoa específica.
             </p>
 
             <h2 class="feature-title">Exclusão</h2>
@@ -210,12 +216,12 @@
                 Para pedir a exclusão de um e-mail ou feedback que você nos enviou, escreva para <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>.
             </p>
             <p class="feature-text">
-                Não podemos excluir dados da Amplitude ou do Sentry de uma pessoa específica. Esses dados são anônimos e não estão ligados a você.
+                Não podemos excluir dados da Amplitude, do PostHog ou do Sentry de uma pessoa específica. Esses dados não estão ligados a uma conta nem a um identificador persistente.
             </p>
 
             <h2 class="feature-title">Segurança</h2>
             <p class="feature-text">
-                Os dados locais de consumo ficam no dispositivo. O backup do Android do app está desativado, então desinstalar remove esses dados locais. As análises e os relatórios de falha estão configurados para excluir o histórico de consumo e limitar identificadores. As análises da Amplitude são enviadas ao endpoint da UE da Amplitude, sem endereço IP nem identificador de publicidade.
+                Os dados locais de consumo ficam no dispositivo. O backup do Android do app está desativado, então desinstalar remove esses dados locais. As análises e os relatórios de falha estão configurados para excluir o histórico de consumo e limitar identificadores. As análises da Amplitude são enviadas ao endpoint da UE da Amplitude, sem endereço IP nem identificador de publicidade. A análise do site é enviada ao endpoint da UE do PostHog com captura de IP e enriquecimento GeoIP desativados; mesmo assim, a conexão de rede expõe tecnicamente o IP da solicitação ao PostHog quando ela chega.
             </p>
 
             <h2 class="feature-title">Crianças</h2>
@@ -284,5 +290,6 @@
             }
         })();
     </script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
 </body>
 </html>

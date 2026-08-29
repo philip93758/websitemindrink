@@ -1,1 +1,3 @@
 docs/Ai/
+node_modules/
+/scripts/analytics-config.js

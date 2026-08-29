@@ -5,6 +5,12 @@ import {
   calculateTotals,
 } from '/shared/alcohol/formulas.js?v=calculator-20260816c';
 import {
+  trackAppCtaClicked,
+  trackCalculationCompleted,
+  trackCalculatorStarted,
+  trackCalculatorTotalAdded,
+} from '/scripts/analytics.js?v=analytics-20260829b';
+import {
   ETHANOL_DENSITY_G_PER_ML,
   MAX_ABV_PERCENT,
   MAX_QUANTITY,
@@ -216,16 +222,11 @@ function t(template, values = {}) {
 
 const copy = getLocaleCopy();
 
-function trackCalculatorEvent(eventName) {
-  if (typeof window.mindrinkTrack === 'function') {
-    window.mindrinkTrack(eventName);
-  }
-}
-
 const calculatorState = {
   draftDrink: { drinkType: 'beer', volumeMl: 500, abvPercent: 5, quantity: 1 },
   totalRows: [],
   nextRowId: 1,
+  lastCompletedDraftSignature: null,
 };
 
 function formatNumber(value, decimals = 1) {
@@ -534,12 +535,25 @@ function parseNumericInput(value, integer = false) {
 }
 
 function updateDraft(updater) {
+  trackCalculatorStarted();
   updater(calculatorState.draftDrink);
   renderCalculator();
-  trackCalculatorEvent('calculator_single_drink_changed');
+}
+
+function trackCompletedDraft() {
+  const hint = getInputHint(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink);
+  if (hint !== '' || !result.isValid) return;
+
+  // The signature stays in page memory only and is never passed to analytics.
+  const signature = JSON.stringify(calculatorState.draftDrink);
+  if (signature === calculatorState.lastCompletedDraftSignature) return;
+  calculatorState.lastCompletedDraftSignature = signature;
+  trackCalculationCompleted();
 }
 
 function addDraftToTotal() {
+  trackCalculatorStarted();
   const hint = getInputHint(calculatorState.draftDrink);
   const result = calculateDrinkResult(calculatorState.draftDrink);
   if (hint !== '' || !result.isValid) {
@@ -552,7 +566,8 @@ function addDraftToTotal() {
     ...calculatorState.draftDrink,
   });
   renderCalculator();
-  trackCalculatorEvent('calculator_total_row_added');
+  trackCompletedDraft();
+  trackCalculatorTotalAdded();
 }
 
 function setupEditorEvents() {
@@ -573,6 +588,7 @@ function setupEditorEvents() {
         draft.volumeMl = preset.defaultVolumeMl;
         draft.abvPercent = preset.defaultAbvPercent;
       });
+      trackCompletedDraft();
     });
   }
 
@@ -582,6 +598,7 @@ function setupEditorEvents() {
         draft.volumeMl = parseNumericInput(event.target.value);
       });
     });
+    volumeInput.addEventListener('change', trackCompletedDraft);
   }
 
   if (abvInput) {
@@ -590,6 +607,7 @@ function setupEditorEvents() {
         draft.abvPercent = parseNumericInput(event.target.value);
       });
     });
+    abvInput.addEventListener('change', trackCompletedDraft);
   }
 
   if (quantityInput) {
@@ -598,6 +616,7 @@ function setupEditorEvents() {
         draft.quantity = parseNumericInput(event.target.value, true);
       });
     });
+    quantityInput.addEventListener('change', trackCompletedDraft);
   }
 }
 
@@ -618,7 +637,6 @@ function setupListEvents() {
 
       calculatorState.totalRows = calculatorState.totalRows.filter((row) => row.id !== removeButton.dataset.rowId);
       renderCalculator();
-      trackCalculatorEvent('calculator_total_row_deleted');
     });
   }
 }
@@ -627,13 +645,12 @@ function setupCTAEvent() {
   const ctaBtn = document.querySelector('.answer-cta a, .answer-cta button');
   if (ctaBtn) {
     ctaBtn.addEventListener('click', () => {
-      trackCalculatorEvent('calculator_cta_clicked');
+      trackAppCtaClicked('calculator_footer');
     });
   }
 }
 
 function initCalculator() {
-  trackCalculatorEvent('calculator_page_view');
   setupEditorEvents();
   setupListEvents();
   setupCTAEvent();

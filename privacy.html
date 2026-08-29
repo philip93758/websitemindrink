@@ -48,7 +48,7 @@
       "name": "Privacy Policy",
       "description": "Privacy Policy for the Mindrink app: what is stored on your device, what we collect, data retention, and how deletion works.",
       "url": "https://mindrink.me/privacy.html",
-      "dateModified": "2026-08-19",
+      "dateModified": "2026-08-29",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Mindrink",
@@ -115,9 +115,9 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Privacy Policy</h1>
-            <p class="small-muted">Last updated: 19 August 2026</p>
+            <p class="small-muted">Last updated: 29 August 2026</p>
             <p class="feature-text">
-                This privacy policy describes how Mindrink handles information in the Mindrink mobile application. The public website at mindrink.me is an informational site and does not use analytics or advertising cookies.
+                This privacy policy describes how Mindrink handles information in the Mindrink mobile application and on the public website at mindrink.me. The website uses no advertising or analytics cookies. Privacy-minimized website analytics is described below and can be turned off at any time.
             </p>
             <p class="feature-text">
                 Privacy contact: <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>
@@ -156,6 +156,10 @@
                 <strong>Analytics.</strong> Analytics is on by default and can be turned off in Data Management. While it is on, we send anonymous usage data to Amplitude (European Union). This may include app version, device class, operating system, screen size, country derived from device locale, language, theme, whether reminders are enabled, and the guideline profile you selected. It does not include drink history, reflections, notes, or goals. We do not collect advertising identifiers or IP address for analytics.
             </p>
             <p class="feature-text">
+                <strong>Website analytics.</strong> Mindrink sends a small set of explicit aggregate events to PostHog Cloud EU: page views, clicks to another page on mindrink.me, and four calculator funnel actions. Events may include only the language, normalized page paths, calculator type, and CTA location where relevant. They never include link text, referrers, drink inputs, volume, ABV, quantity, calculated results, totals, health information, free text, query parameters, or complete URLs. PostHog uses an ephemeral identifier in page memory only; no identifier persists to the next page, so full journeys are not stitched to one visitor. Autocapture, person profiles, session replay, heatmaps, performance capture, GeoIP enrichment, and persistent PostHog storage are disabled. Global Privacy Control and Do Not Track are respected automatically. Only an opt-out preference is stored if you turn website analytics off below.
+            </p>
+            <div class="analytics-opt-out" data-analytics-opt-out></div>
+            <p class="feature-text">
                 <strong>Crash and error reports.</strong> We send technical crash and error reports to Sentry so we can diagnose failures. These reports may include stack traces and diagnostic metadata. They are configured not to include drink history, screenshots, or default personal identifiers.
             </p>
             <p class="feature-text">
@@ -179,6 +183,7 @@
             </p>
             <ul>
                 <li>Amplitude, for optional analytics (EU)</li>
+                <li>PostHog Cloud EU, for privacy-minimized website analytics</li>
                 <li>Sentry, for crash and error diagnostics</li>
                 <li>Tally, for feedback you choose to submit</li>
             </ul>
@@ -190,11 +195,12 @@
             <ul>
                 <li><strong>Drink records, reflections, goals, and local settings.</strong> Mindrink does not store or retain this data on our servers. It is retained only on your device until you delete it in the app or uninstall the app.</li>
                 <li><strong>Analytics.</strong> Amplitude retains anonymous usage events for as long as needed to analyze usage and improve the app, and then deletes them in accordance with Amplitude’s retention settings. Disabling analytics stops further collection.</li>
+                <li><strong>Website analytics.</strong> PostHog website events are retained for no longer than 90 days. Turning website analytics off stops further collection in that browser.</li>
                 <li><strong>Crash and error reports.</strong> Sentry retains diagnostic reports for a limited period necessary to investigate and fix issues, and then deletes them in accordance with Sentry’s retention settings.</li>
                 <li><strong>Emails and feedback.</strong> We retain these communications for as long as needed to handle your request, and delete them when they are no longer required.</li>
             </ul>
             <p class="feature-text">
-                Because analytics and crash reports are anonymous, we cannot identify or delete a specific person’s Amplitude or Sentry data.
+                Because analytics and crash reports are not tied to an account or persistent visitor identifier, we cannot identify or delete a specific person’s Amplitude, PostHog, or Sentry data.
             </p>
 
             <h2 class="feature-title">Deletion</h2>
@@ -208,12 +214,12 @@
                 To request deletion of an email or feedback message you sent us, contact <a href="mailto:hello@mindrink.me" class="footer-link">hello@mindrink.me</a>.
             </p>
             <p class="feature-text">
-                We cannot delete Amplitude or Sentry data for a specific person. That data is anonymous and is not tied to you.
+                We cannot delete Amplitude, PostHog, or Sentry data for a specific person. That data is not tied to an account or persistent visitor identifier.
             </p>
 
             <h2 class="feature-title">Security</h2>
             <p class="feature-text">
-                Local drink data is stored on the device. Android backup for the app is disabled, so uninstalling the app removes that local data. Analytics and crash reporting are configured to exclude drink history and to limit identifiers. Amplitude analytics is sent to Amplitude’s EU endpoint, without IP address or advertising ID.
+                Local drink data is stored on the device. Android backup for the app is disabled, so uninstalling the app removes that local data. Analytics and crash reporting are configured to exclude drink history and to limit identifiers. Amplitude analytics is sent to Amplitude’s EU endpoint, without IP address or advertising ID. Website analytics is sent to PostHog’s EU endpoint with IP capture and GeoIP enrichment disabled; the network connection still necessarily exposes the request IP to PostHog when it arrives.
             </p>
 
             <h2 class="feature-title">Children</h2>
@@ -286,5 +292,6 @@
             }
         })();
     </script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
 </body>
 </html>

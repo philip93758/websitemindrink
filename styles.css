@@ -15,6 +15,44 @@
     --border-radius-small: 8px;
 }
 
+.analytics-opt-out {
+    margin: 20px 0 28px;
+    padding: 18px;
+    border: 1px solid #d6d9d7;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.analytics-opt-out h3 {
+    margin: 0 0 6px;
+    color: #24342e;
+    font-size: 17px;
+}
+
+.analytics-opt-out p {
+    margin: 0;
+    color: #53635d;
+}
+
+.analytics-opt-out button {
+    min-height: 42px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border: 1px solid #356a56;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #356a56;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.analytics-opt-out button:focus-visible {
+    outline: 3px solid rgba(53, 106, 86, 0.35);
+    outline-offset: 2px;
+}
+
 /* ============================================
    Reset & Base Styles
    ============================================ */
