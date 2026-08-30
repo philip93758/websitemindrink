@@ -67,10 +67,15 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
 
   assert.match(episode, /<h1 class="history-title">Who Invented Alcohol\?<\/h1>/);
   assert.match(episode, /href="\/science\/" class="nav-link" aria-current="page">Science<\/a>/);
-  assert.match(episode, /<p class="history-deck">Humans did not invent fermentation\. Microorganisms did\./);
+  assert.match(episode, /<p class="history-deck">Fermentation is far older than humanity\./);
   assert.doesNotMatch(episode, /class="history-opening"/);
-  assert.match(episode, /Episode 1\.2 — Mesopotamia: The World's First Beer Civilization/);
+  assert.match(episode, /Episode 2 — Mesopotamia: The World's First Beer Civilization/);
   assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8);
+  assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2);
+  assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4);
+  assert.match(episode, /German Archaeological Institute, Nico Becker/);
+  assert.match(episode, /CC BY-NC-ND 4\.0/);
+  assert.match(episode, /PNAS reuse policy/);
 });
 
 test('publishes every approved translation as a localized hub and episode', () => {
@@ -86,6 +91,10 @@ test('publishes every approved translation as a localized hub and episode', () =
     assert.ok(episode.includes(`<h1 class="history-title">${expected.title}</h1>`), `${locale} title is missing`);
     assert.doesNotMatch(episode, /class="history-opening"/, `${locale} opening is duplicated in the body`);
     assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8, `${locale} reference count`);
+    assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2, `${locale} argument maps`);
+    assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4, `${locale} figure count`);
+    assert.equal((episode.match(/loading="lazy" decoding="async">/g) ?? []).length, 4, `${locale} lazy images`);
+    assert.doesNotMatch(episode, /<img[^>]+alt=""/, `${locale} contains an empty image description`);
     assert.doesNotMatch(episode, /\*\*|\]\(https?:\/\//, `${locale} contains unconverted Markdown`);
     assert.equal((episode.match(/<link rel="alternate" hreflang=/g) ?? []).length, 9, `${locale} hreflang count`);
   }

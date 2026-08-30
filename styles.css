@@ -2537,17 +2537,94 @@ body.history-article-page {
     color: var(--text-dark);
 }
 
-.history-sequence {
-    margin: 32px 0;
-    padding: 22px;
-    border-radius: var(--border-radius-small);
-    background-color: var(--white);
-    color: var(--text-dark);
-    font-size: 17px;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
+.history-argument-map {
+    display: grid;
+    gap: 1px;
+    margin: 34px 0 40px;
+    overflow: hidden;
+    border: 1px solid rgba(26, 26, 26, 0.1);
+    border-radius: var(--border-radius);
+    background: rgba(26, 26, 26, 0.1);
     box-shadow: var(--shadow-soft);
+}
+
+.history-argument-row {
+    display: grid;
+    grid-template-columns: minmax(170px, 0.8fr) minmax(0, 2.2fr);
+    gap: 24px;
+    align-items: center;
+    padding: 22px 24px;
+    background: var(--white);
+}
+
+.history-argument-row--synthesis {
+    background: #fff8ef;
+}
+
+.history-argument-label {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.45;
+}
+
+.history-argument-row--synthesis .history-argument-label {
+    color: #8f531f;
+}
+
+.history-argument-path {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    align-items: center;
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.history-argument-step {
+    min-width: 0;
+}
+
+.history-argument-arrow {
+    color: var(--amber);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.history-figure {
+    margin: 40px 0 46px;
+}
+
+.history-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-small);
+    background: var(--white);
+    box-shadow: var(--shadow-soft);
+}
+
+.history-figure--portrait img {
+    width: auto;
+    max-width: 100%;
+    max-height: 760px;
+    margin: 0 auto;
+}
+
+.history-figure figcaption {
+    margin-top: 13px;
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.history-image-credit {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
 }
 
 .history-references {
@@ -2710,6 +2787,21 @@ body.history-article-page {
     .history-question {
         padding: 20px;
         font-size: 17px;
+    }
+
+    .history-argument-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 19px 18px;
+    }
+
+    .history-argument-path {
+        gap: 7px 8px;
+        font-size: 14px;
+    }
+
+    .history-figure {
+        margin: 34px 0 40px;
     }
 
     .history-next {

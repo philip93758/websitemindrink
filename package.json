@@ -7,6 +7,7 @@
     "analytics:build": "node scripts/build-analytics-assets.js",
     "analytics:pages:update": "node scripts/update-analytics-loaders.js",
     "analytics:pages:check": "node scripts/update-analytics-loaders.js --check",
+    "science:episode:sync": "node scripts/sync-history-episode-content.js",
     "test": "node --test tests",
     "sitemap:update": "node scripts/update-sitemap-lastmod.js",
     "sitemap:check": "node scripts/update-sitemap-lastmod.js --check"
