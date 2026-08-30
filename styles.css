@@ -2561,37 +2561,37 @@ body.history-article-page {
 
 .history-argument-map {
     display: grid;
-    gap: 0;
-    margin: 42px 0 48px;
-    border-top: 2px solid #24211e;
-    border-bottom: 1px solid #9d9891;
-    background: var(--white);
+    gap: 16px;
+    margin: 46px 0 52px;
+    padding: 18px;
+    border: 1px solid #d8d2c9;
+    border-top: 3px solid #24211e;
+    border-radius: 10px;
+    background: #f6f3ee;
 }
 
 .history-argument-row {
     display: grid;
-    grid-template-columns: minmax(190px, 0.85fr) minmax(0, 2.15fr);
-    gap: 28px;
-    align-items: center;
-    padding: 20px 4px;
-    border-bottom: 1px solid #dedad3;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ded8cf;
+    border-radius: 8px;
     background: var(--white);
-}
-
-.history-argument-row:last-child {
-    border-bottom: 0;
+    box-shadow: 0 7px 20px rgba(36, 33, 30, 0.045);
 }
 
 .history-argument-row--synthesis {
-    background: #fbf8f3;
+    border-color: #d8bda5;
+    border-left: 4px solid #a35e27;
+    background: #fffaf3;
 }
 
 .history-argument-label {
     margin: 0;
     color: #24211e;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 750;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.01em;
     line-height: 1.45;
 }
 
@@ -2601,21 +2601,38 @@ body.history-article-page {
 
 .history-argument-path {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px 10px;
-    align-items: center;
+    flex-wrap: nowrap;
+    gap: 9px;
+    align-items: stretch;
     color: #383531;
     font-size: 14px;
-    line-height: 1.55;
+    line-height: 1.4;
 }
 
 .history-argument-step {
+    display: grid;
+    flex: 1 1 0;
+    place-items: center;
     min-width: 0;
+    min-height: 54px;
+    padding: 10px 11px;
+    border: 1px solid #d9d4cd;
+    border-radius: 6px;
+    background: #fbfaf8;
+    text-align: center;
+}
+
+.history-argument-row--synthesis .history-argument-step {
+    border-color: #dfcdbd;
+    background: var(--white);
 }
 
 .history-argument-arrow {
+    display: grid;
+    flex: 0 0 22px;
+    place-items: center;
     color: #a35e27;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
     line-height: 1;
 }
@@ -2835,14 +2852,26 @@ body.history-article-page {
     }
 
     .history-argument-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 18px 2px;
+        gap: 14px;
+        padding: 18px 16px;
     }
 
     .history-argument-path {
-        gap: 7px 8px;
+        flex-direction: column;
+        gap: 7px;
         font-size: 14px;
+    }
+
+    .history-argument-step {
+        width: 100%;
+        min-height: 48px;
+        padding: 11px 13px;
+    }
+
+    .history-argument-arrow {
+        flex-basis: 18px;
+        align-self: center;
+        transform: rotate(90deg);
     }
 
     .history-figure {

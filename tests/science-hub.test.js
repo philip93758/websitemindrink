@@ -72,6 +72,7 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
   assert.match(episode, /Episode 2 — Mesopotamia: The World's First Beer Civilization/);
   assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8);
   assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2);
+  assert.doesNotMatch(episode, /history-argument-label">(?:Thesis|Antithesis|Synthesis)\b/);
   assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4);
   assert.match(episode, /German Archaeological Institute, Nico Becker/);
   assert.match(episode, /CC BY-NC-ND 4\.0/);
@@ -92,6 +93,7 @@ test('publishes every approved translation as a localized hub and episode', () =
     assert.doesNotMatch(episode, /class="history-opening"/, `${locale} opening is duplicated in the body`);
     assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8, `${locale} reference count`);
     assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2, `${locale} argument maps`);
+    assert.doesNotMatch(episode, /history-argument-label">[^<]+(?:—|――)/, `${locale} argument-map prefixes`);
     assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4, `${locale} figure count`);
     assert.equal((episode.match(/loading="lazy" decoding="async">/g) ?? []).length, 4, `${locale} lazy images`);
     assert.doesNotMatch(episode, /<img[^>]+alt=""/, `${locale} contains an empty image description`);

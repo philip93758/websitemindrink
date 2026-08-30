@@ -245,6 +245,10 @@ function argumentMapHtml(blocks) {
   const rows = blocks.map((block, index) => {
     const match = block.match(/^\*\*(.+?)\s*[:：]\*\*\s*(.+)$/s);
     if (!match) throw new Error(`Could not parse argument row: ${block}`);
+    const conciseLabel = match[1].replace(/^.*?(?:—|――)\s*/u, '').trim();
+    const label = conciseLabel
+      ? `${conciseLabel[0].toLocaleUpperCase()}${conciseLabel.slice(1)}`
+      : conciseLabel;
     const parts = match[2].split(/\s*(→|↔)\s*/);
     const path = parts
       .map((part, partIndex) =>
@@ -256,7 +260,7 @@ function argumentMapHtml(blocks) {
     const variants = ['thesis', 'antithesis', 'synthesis'];
     return [
       `    <div class="history-argument-row history-argument-row--${variants[index]}">`,
-      `        <p class="history-argument-label">${inline(match[1], { citations: false })}</p>`,
+      `        <p class="history-argument-label">${inline(label, { citations: false })}</p>`,
       `        <div class="history-argument-path">${path}</div>`,
       '    </div>',
     ].join('\n');
