@@ -15,7 +15,7 @@ POSTHOG_HOST=https://eu.i.posthog.com
 
 ## GitHub Pages deployment
 
-The GitHub Pages workflow reads `POSTHOG_PUBLIC_TOKEN` from a repository Actions variable and fixes the ingestion host to `https://eu.i.posthog.com`. Pushes to `dev` run the complete test and build checks without deploying. A push to `main` builds the same clean static artifact and deploys it to the existing `github-pages` environment.
+The GitHub Pages workflow reads `POSTHOG_PUBLIC_TOKEN` from a repository Actions variable, or from an Actions secret with the same name when no variable is present. It fixes the ingestion host to `https://eu.i.posthog.com`. Pushes to `dev` run the complete test and build checks without deploying. A push to `main` builds the same clean static artifact and deploys it to the existing `github-pages` environment.
 
 The generated `scripts/analytics-config.js` file remains ignored. Do not commit it; GitHub creates it during the Pages build.
 

@@ -34,11 +34,11 @@ jobs:
 
       - name: Build and validate website
         env:
-          POSTHOG_PUBLIC_TOKEN: ${{ vars.POSTHOG_PUBLIC_TOKEN }}
+          POSTHOG_PUBLIC_TOKEN: ${{ vars.POSTHOG_PUBLIC_TOKEN || secrets.POSTHOG_PUBLIC_TOKEN }}
           POSTHOG_HOST: https://eu.i.posthog.com
         run: |
           if [ -z "$POSTHOG_PUBLIC_TOKEN" ]; then
-            echo "POSTHOG_PUBLIC_TOKEN repository variable is missing."
+            echo "POSTHOG_PUBLIC_TOKEN is missing from the repository Actions variables and secrets."
             exit 1
           fi
           npm test
