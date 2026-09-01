@@ -139,3 +139,12 @@ test('routes every localized Science navigation item through its hub', () => {
 
   assert.deepEqual(failures, []);
 });
+
+test('keeps the Japanese Why Mindrink and About labels distinct', () => {
+  const homepage = read('ja/index.html');
+
+  assert.match(homepage, /href="#why-mindrink" class="nav-link">私たちの考え方<\/a>/);
+  assert.match(homepage, /href="\/ja\/#why-mindrink" class="footer-link">私たちの考え方<\/a>/);
+  assert.match(homepage, /href="\/ja\/about\.html" class="nav-link">Mindrinkについて<\/a>/);
+  assert.doesNotMatch(homepage, /href="#why-mindrink"[^>]*>Mindrinkについて<\/a>/);
+});
