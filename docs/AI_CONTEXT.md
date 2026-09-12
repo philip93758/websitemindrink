@@ -78,3 +78,22 @@ npm test
 - Keep the source's five main sections and six subsections in their current order: image placement relies on that structure. If the structure changes, update the importer before running it.
 - When references or the opening change, reconcile the article checks with the approved source. Verify that every citation resolves and review the page on mobile and desktop.
 - `--check` verifies article content without writing files. Re-importing unchanged content preserves its article modification date.
+
+### Episode 1.2 — Mesopotamia
+
+The approved eight-language source is Atrium's `docs/marketing/Content/History series/Ep 1.2/`. Import without editing that sibling repository:
+
+```bash
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2"
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2" --check
+npm run sitemap:update
+npm run build
+npm test
+```
+
+- The route is `science/mesopotamia-beer-written-records.html` under each language prefix. The importer updates the matching Science hub card/CollectionPage, Episode 1.1 next link, and missing sitemap entries. It does not publish or commit.
+- Source markers control all five image positions and the source-comparison table. Preserve the opening image below the title and before the first paragraph, the five introduction paragraphs, four main headings (including references), all 11 references and the comparison's four source types. Unsupported structural changes must fail for review, not silently omit content.
+- The comparison is a semantic table on desktop and stacks with localized labels on mobile. Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
+- Approved original images and responsive derivatives live in `assets/science/history/episode-1-2/`. Its [provenance record](../assets/science/history/episode-1-2/README.md) documents rights, hashes and regeneration. Normal content sync needs no image-processing dependency.
+- Run both episode importers with `--check` after changing series navigation. Episode 1.1 now uses the approved next page title/number rather than its outdated planned teaser.
+- `--check` is read-only; repeat imports preserve publication/modification dates when content is unchanged. Source dates are not verified deployment dates. Record actual release evidence separately in the action log.

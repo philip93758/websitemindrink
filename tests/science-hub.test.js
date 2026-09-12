@@ -69,7 +69,7 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
   assert.match(episode, /href="\/science\/" class="nav-link" aria-current="page">Science<\/a>/);
   assert.match(episode, /<p class="history-deck">Long before people learned to make alcoholic drinks,/);
   assert.doesNotMatch(episode, /class="history-opening"/);
-  assert.match(episode, /Episode 2 — Mesopotamia: The World's First Beer Civilization/);
+  assert.match(episode, /href="\/science\/mesopotamia-beer-written-records\.html" rel="next">Episode 1\.2 — Mesopotamia: What the First Written Records Tell Us About Beer/);
   assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 13);
   assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2);
   assert.doesNotMatch(episode, /history-argument-label">(?:Thesis|Antithesis|Synthesis)\b/);

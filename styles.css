@@ -2624,6 +2624,10 @@ body.history-article-page {
     hyphens: auto;
 }
 
+.science-episode-card + .science-episode-card {
+    margin-top: 22px;
+}
+
 .history-argument-row--synthesis .history-argument-step {
     border-color: #dfcdbd;
     background: var(--white);
@@ -2723,6 +2727,193 @@ body.history-article-page {
     font-size: 22px;
     font-weight: 600;
     line-height: 1.42;
+}
+
+.history-copy .history-next a:not(.citation) {
+    color: #fff;
+    text-decoration-color: #bca88b;
+    text-underline-offset: 5px;
+}
+
+.history-copy .history-next a:not(.citation):hover {
+    color: #f6d8b2;
+}
+
+/* Episode 1.2: retain the editorial article layout, with a longer headline,
+   an opening photograph and a source comparison that stays readable on phones. */
+.history-records-page .history-title {
+    margin-bottom: 28px;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+}
+
+.history-figure--lead {
+    width: 100%;
+    margin: 32px auto 40px;
+}
+
+.history-records-page .history-figure img {
+    max-width: 100%;
+}
+
+.history-records-page [data-illustration="puabi-related-seal"] img {
+    max-width: min(100%, 816px);
+    margin-inline: auto;
+}
+
+.history-figure figcaption a {
+    color: #8f531f;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+}
+
+.history-records-page .history-deck {
+    margin-bottom: 0;
+}
+
+.history-source-comparison {
+    margin: 54px 0;
+}
+
+.history-source-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    color: #373431;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+.history-source-table th,
+.history-source-table td {
+    padding: 18px 14px;
+    border-bottom: 1px solid #dedad3;
+    text-align: left;
+    vertical-align: top;
+}
+
+.history-source-table thead th {
+    border-top: 2px solid #24211e;
+    border-bottom-color: #24211e;
+    color: #24211e;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.history-source-table th:first-child {
+    width: 25%;
+    padding-left: 0;
+}
+
+.history-source-table th:last-child,
+.history-source-table td:last-child {
+    padding-right: 0;
+}
+
+.history-source-label {
+    display: none;
+}
+
+.history-section-break {
+    width: 80px;
+    margin: 52px auto;
+    border: 0;
+    border-top: 1px solid #9b9285;
+}
+
+.history-series-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid #dedad3;
+}
+
+.history-series-navigation a:first-child {
+    max-width: 75%;
+}
+
+.history-series-navigation a:first-child span {
+    display: block;
+    margin-bottom: 8px;
+    color: #625e58;
+    font-size: 13px;
+}
+
+.history-series-navigation strong {
+    font-family: Georgia, 'Times New Roman', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.history-records-page [id] {
+    scroll-margin-top: 100px;
+}
+
+@media (max-width: 600px) {
+    .history-source-table,
+    .history-source-table tbody,
+    .history-source-table tr,
+    .history-source-table th,
+    .history-source-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Keep column headers available to assistive technology. Explicit table
+       roles in the HTML preserve relationships with this stacked layout. */
+    .history-source-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+    }
+
+    .history-source-table tbody tr {
+        padding: 22px 0;
+        border-top: 1px solid #dedad3;
+    }
+
+    .history-source-table tbody tr:first-child {
+        border-top: 2px solid #24211e;
+    }
+
+    .history-source-table tbody th:first-child {
+        width: 100%;
+        padding: 0 0 8px;
+        font-size: 18px;
+    }
+
+    .history-source-table tbody th,
+    .history-source-table tbody td {
+        padding: 10px 0 0;
+        border: 0;
+    }
+
+    .history-source-label {
+        display: block;
+        margin-bottom: 3px;
+        color: #625e58;
+        font-size: 12px;
+        font-weight: 650;
+    }
+
+    .history-series-navigation {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .history-series-navigation a:first-child {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 900px) {

@@ -1,5 +1,6 @@
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { EPISODE12_SLUG } from './history-episode12-config.js';
 
 const sourceDirectory = process.argv[2];
 
@@ -268,9 +269,23 @@ function argumentMapHtml(blocks) {
   return `<div class="history-argument-map">\n${rows.join('\n')}\n</div>`;
 }
 
-function nextHtml(block) {
+function nextHtml(block, edition) {
   const text = block.replace(/^\*\*|\*\*$/g, '');
   const match = text.match(/^(.+?)\s*[:：]\s*(.+)$/s);
+  const nextPath = edition.target.replace('who-invented-alcohol.html', EPISODE12_SLUG);
+  if (existsSync(join(ROOT, nextPath))) {
+    // The source's planned teaser predates Episode 1.2's approved title. Once
+    // the next article exists, keep its real title, numbering and local link.
+    const nextPage = readFileSync(join(ROOT, nextPath), 'utf8');
+    const title = nextPage.match(/<h1 class="history-title">([^<]+)<\/h1>/)[1];
+    const label = nextPage.match(/<p class="history-meta"><span>[^<]+<\/span><span>([^<]+)<\/span>/)[1];
+    return [
+      '<div class="history-next">',
+      `    <p>${inline(match[1], { citations: false })}</p>`,
+      `    <strong><a href="/${nextPath}" rel="next">${label} — ${title}</a></strong>`,
+      '</div>',
+    ].join('\n');
+  }
   if (!match) return `<div class="history-next"><strong>${inline(text, { citations: false })}</strong></div>`;
   return [
     '<div class="history-next">',
@@ -368,7 +383,7 @@ function parseEdition(markdown, edition) {
     }
 
     if (/^\*\*/.test(block)) {
-      html.push(nextHtml(block).split('\n').map((line) => `                    ${line}`).join('\n'));
+      html.push(nextHtml(block, edition).split('\n').map((line) => `                    ${line}`).join('\n'));
       continue;
     }
 
