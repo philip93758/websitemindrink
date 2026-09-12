@@ -245,7 +245,7 @@ function argumentMapHtml(blocks) {
   const rows = blocks.map((block, index) => {
     const match = block.match(/^\*\*(.+?)\s*[:：]\*\*\s*(.+)$/s);
     if (!match) throw new Error(`Could not parse argument row: ${block}`);
-    const conciseLabel = match[1].replace(/^.*?(?:—|――)\s*/u, '').trim();
+    const conciseLabel = match[1].replace(/^.*?(?:—|–|――)\s*/u, '').trim();
     const label = conciseLabel
       ? `${conciseLabel[0].toLocaleUpperCase()}${conciseLabel.slice(1)}`
       : conciseLabel;
@@ -290,13 +290,13 @@ function parseEdition(markdown, edition) {
   const title = blocks.shift().replace(/^#\s+/, '');
   const subtitle = blocks.shift().replace(/^###\s+/, '');
   const intro = [];
-  while (blocks.length && blocks[0] !== '---') intro.push(blocks.shift().replace(/\n/g, ' '));
-  blocks.shift();
-  if (intro.length !== 3) throw new Error(`Expected three introduction paragraphs for ${edition.target}`);
+  while (blocks.length && blocks[0] !== '---' && !blocks[0].startsWith('## ')) {
+    intro.push(blocks.shift().replace(/\n/g, ' '));
+  }
+  if (blocks[0] === '---') blocks.shift();
+  if (!intro.length) throw new Error(`Missing introduction for ${edition.target}`);
 
-  const html = [];
-  html.push(`                <p>${inline(intro[1])}</p>`);
-  html.push(`                <p>${inline(intro[2])}</p>`);
+  const html = intro.slice(1).map((paragraph) => `                <p>${inline(paragraph)}</p>`);
 
   const sectionIds = ['when-title', 'what-title', 'why-title', 'conclusion-title', 'references-title'];
   let sectionIndex = -1;
@@ -386,15 +386,27 @@ function parseEdition(markdown, edition) {
     html.push('                </section>');
   }
 
+  if (sectionIndex !== sectionIds.length - 1 || subsectionIndex !== 6) {
+    throw new Error(`Review section and image placement for the changed structure in ${edition.target}`);
+  }
+
   return { title, subtitle, deck: intro[0], body: html.join('\n') };
 }
 
-const sourceAssetDirectory = join(resolve(sourceDirectory), '_assets', 'selected');
-const targetAssetDirectory = join(ROOT, 'assets', 'science', 'history');
-mkdirSync(targetAssetDirectory, { recursive: true });
-for (const figure of Object.values(figures)) {
-  copyFileSync(join(sourceAssetDirectory, figure.file), join(targetAssetDirectory, figure.file));
-}
+const descriptions = {
+  en: 'Who invented alcohol? Explore the archaeological evidence and open questions about early fermented drinks at Raqefet, Jiahu and in Georgia.',
+  de: 'Wer hat den Alkohol erfunden? Archäologische Funde und offene Fragen zu frühen vergorenen Getränken in Raqefet, Jiahu und Georgien.',
+  es: '¿Quién inventó el alcohol? Pruebas arqueológicas y preguntas abiertas sobre las primeras bebidas fermentadas en Raqefet, Jiahu y Georgia.',
+  fr: 'Qui a inventé l’alcool ? Vestiges archéologiques et questions ouvertes sur les premières boissons fermentées à Raqefet, Jiahu et en Géorgie.',
+  id: 'Siapa penemu alkohol? Bukti arkeologi dan pertanyaan yang belum terjawab tentang minuman fermentasi awal di Raqefet, Jiahu, dan Georgia.',
+  it: 'Chi ha inventato l’alcol? Prove archeologiche e domande aperte sulle prime bevande fermentate a Raqefet, Jiahu e in Georgia.',
+  ja: 'アルコールは誰が発明したのか。ラケフェト、賈湖、ジョージアの出土品から、初期の発酵飲料の痕跡と、まだ分かっていないことをたどります。',
+  pt: 'Quem inventou o álcool? Vestígios arqueológicos e questões em aberto sobre as primeiras bebidas fermentadas em Raqefet, Jiahu e na Geórgia.',
+};
+
+// Parse every edition before writing, so an unsupported source structure cannot
+// leave the website with only some of its languages updated.
+const updates = [];
 
 for (const [locale, edition] of Object.entries(editions)) {
   const markdown = readFileSync(join(resolve(sourceDirectory), edition.source), 'utf8');
@@ -402,9 +414,13 @@ for (const [locale, edition] of Object.entries(editions)) {
   const target = join(ROOT, edition.target);
   let page = readFileSync(target, 'utf8').replaceAll('\r\n', '\n');
 
+  const original = page;
   page = page
-    .replace(/<meta property="article:modified_time" content="[^"]+">/, `<meta property="article:modified_time" content="${MODIFIED_TIME}">`)
-    .replace(/"dateModified": "[^"]+"/, `"dateModified": "${MODIFIED_DATE}"`)
+    .replace(/(<meta (?:name|property)="(?:description|og:description|twitter:description)" content=")[^"]*(">)/g,
+      (_match, prefix, suffix) => `${prefix}${escapeHtml(descriptions[locale])}${suffix}`)
+    .replace(/"headline": "[^"]+"/, () => `"headline": ${JSON.stringify(parsed.title)}`)
+    .replace(/"alternativeHeadline": "[^"]+"/, () => `"alternativeHeadline": ${JSON.stringify(parsed.subtitle)}`)
+    .replace(/"description": "[^"]+"/, () => `"description": ${JSON.stringify(descriptions[locale])}`)
     .replace(/<h1 class="history-title">[\s\S]*?<\/h1>/, `<h1 class="history-title">${inline(parsed.title, { citations: false })}</h1>`)
     .replace(/<p class="history-subtitle">[\s\S]*?<\/p>/, `<p class="history-subtitle">${inline(parsed.subtitle, { citations: false })}</p>`)
     .replace(/<p class="history-deck">[\s\S]*?<\/p>/, `<p class="history-deck">${inline(parsed.deck)}</p>`)
@@ -413,6 +429,27 @@ for (const [locale, edition] of Object.entries(editions)) {
       `<div class="history-copy">\n${parsed.body}\n            </div>\n        </article>`,
     );
 
-  writeFileSync(target, page.replaceAll('\n', '\r\n'));
-  console.log(`Updated ${locale}: ${edition.target}`);
+  if (page !== original) {
+    page = page
+      .replace(/<meta property="article:modified_time" content="[^"]+">/, `<meta property="article:modified_time" content="${MODIFIED_TIME}">`)
+      .replace(/"dateModified": "[^"]+"/, `"dateModified": "${MODIFIED_DATE}"`);
+    updates.push({ locale, target, page });
+  }
+}
+
+if (process.argv.includes('--check')) {
+  if (updates.length) throw new Error(`Content differs from source: ${updates.map(({ locale }) => locale).join(', ')}`);
+  console.log(`Verified all ${Object.keys(editions).length} editions against the source Markdown.`);
+} else {
+  const sourceAssetDirectory = join(resolve(sourceDirectory), '_assets', 'selected');
+  const targetAssetDirectory = join(ROOT, 'assets', 'science', 'history');
+  mkdirSync(targetAssetDirectory, { recursive: true });
+  for (const figure of Object.values(figures)) {
+    copyFileSync(join(sourceAssetDirectory, figure.file), join(targetAssetDirectory, figure.file));
+  }
+
+  for (const { locale, target, page } of updates) {
+    writeFileSync(target, page.replaceAll('\n', '\r\n'));
+    console.log(`Updated ${locale}: ${target}`);
+  }
 }

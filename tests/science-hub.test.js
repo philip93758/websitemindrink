@@ -67,10 +67,10 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
 
   assert.match(episode, /<h1 class="history-title">Who Invented Alcohol\?<\/h1>/);
   assert.match(episode, /href="\/science\/" class="nav-link" aria-current="page">Science<\/a>/);
-  assert.match(episode, /<p class="history-deck">Fermentation is far older than humanity\./);
+  assert.match(episode, /<p class="history-deck">Long before people learned to make alcoholic drinks,/);
   assert.doesNotMatch(episode, /class="history-opening"/);
   assert.match(episode, /Episode 2 — Mesopotamia: The World's First Beer Civilization/);
-  assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8);
+  assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 13);
   assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2);
   assert.doesNotMatch(episode, /history-argument-label">(?:Thesis|Antithesis|Synthesis)\b/);
   assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4);
@@ -91,9 +91,9 @@ test('publishes every approved translation as a localized hub and episode', () =
     assert.ok(hub.indexOf('science-methodology') < hub.indexOf('science-history-series'), `${locale} hierarchy`);
     assert.ok(episode.includes(`<h1 class="history-title">${expected.title}</h1>`), `${locale} title is missing`);
     assert.doesNotMatch(episode, /class="history-opening"/, `${locale} opening is duplicated in the body`);
-    assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 8, `${locale} reference count`);
+    assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 13, `${locale} reference count`);
     assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2, `${locale} argument maps`);
-    assert.doesNotMatch(episode, /history-argument-label">[^<]+(?:—|――)/, `${locale} argument-map prefixes`);
+    assert.doesNotMatch(episode, /history-argument-label">[^<]+(?:—|–|――)/, `${locale} argument-map prefixes`);
     assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4, `${locale} figure count`);
     assert.equal((episode.match(/loading="lazy" decoding="async">/g) ?? []).length, 4, `${locale} lazy images`);
     assert.doesNotMatch(episode, /<img[^>]+alt=""/, `${locale} contains an empty image description`);

@@ -49,3 +49,21 @@ npm run sitemap:check
 - Do not update `lastmod` for copyright-only, formatting-only, or asset-compression changes that do not significantly change the indexed page. Shared styling and image assets are intentionally not automatic dependencies.
 - Keep the existing sitemap URL, canonical, and hreflang structure intact. The updater changes `<lastmod>` values only.
 - `npm test` includes the sitemap synchronization check and will direct the agent to run `sitemap:update` when significant page sources are newer.
+
+## History episode content sync
+
+Episode 1.1's approved Markdown is in Atrium's `docs/marketing/Content/History series/Ep 1.1/` folder. From this website repository, import and verify all eight editions with:
+
+```bash
+npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1"
+npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1" --check
+npm run sitemap:update
+npm run build
+npm test
+```
+
+- Keep the first source paragraph as the article introduction in the hero; the remaining introductory paragraphs belong in the article body.
+- Preserve the responsive flowcharts and credited images. The importer removes the translated thesis/antithesis/synthesis prefixes from visible chart labels.
+- Keep the source's five main sections and six subsections in their current order: image placement relies on that structure. If the structure changes, update the importer before running it.
+- When references or the opening change, reconcile the article checks with the approved source. Verify that every citation resolves and review the page on mobile and desktop.
+- `--check` verifies article content without writing files. Re-importing unchanged content preserves its article modification date.

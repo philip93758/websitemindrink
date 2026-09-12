@@ -2620,6 +2620,8 @@ body.history-article-page {
     border-radius: 6px;
     background: #fbfaf8;
     text-align: center;
+    overflow-wrap: anywhere;
+    hyphens: auto;
 }
 
 .history-argument-row--synthesis .history-argument-step {
@@ -2863,6 +2865,7 @@ body.history-article-page {
     }
 
     .history-argument-step {
+        flex: 0 0 auto;
         width: 100%;
         min-height: 48px;
         padding: 11px 13px;
