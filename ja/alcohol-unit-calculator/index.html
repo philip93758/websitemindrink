@@ -6,8 +6,8 @@
     <meta name="description" content="標準単位、UK単位、米国標準ドリンク、純アルコール量、カロリー、任意の週合計を計算します。">
     <meta name="robots" content="index, follow">
     <title>アルコール単位計算機 | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260829a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260912a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260829a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260912a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -69,7 +69,7 @@
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/ja/discover/">ガイド</a> / アルコール単位計算機</p>
                 <h1>アルコール単位計算機</h1>
-                <p class="hero-intro">飲み物を入力して、アルコール量と同じくらいの量に換算して確認できます。</p>
+                <p class="hero-intro">容量とアルコール度数を入力すると、純アルコール量（g）、10g単位、英国単位、米国標準ドリンクに換算できます。血中アルコール濃度を計算するものではありません。</p>
             </div>
         </section>
 
@@ -88,7 +88,7 @@
                                 <input type="number" id="selected-volume" class="calculator-input" inputmode="decimal" min="0" max="5000" step="1" value="500">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-abv">ABV (%)</label>
+                                <label for="selected-abv">アルコール度数（%）</label>
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1" value="5">
                             </div>
                             <div class="calculator-field">
@@ -102,7 +102,7 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">この飲み物</h3>
                             <div class="calculator-result">
-                                <span class="result-label">標準単位</span>
+                                <span class="result-label">10g単位</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -147,7 +147,8 @@
                     </div>
 
                     <div class="total-actions">
-                        <button type="button" id="total-add-row" class="total-btn total-btn-add">合計に追加</button>
+                        <button type="button" id="total-add-row" class="total-btn total-btn-add">この飲み物を合計に追加</button>
+                        <p id="total-empty" class="calculator-status" role="status">まだ飲み物が追加されていません。</p>
                     </div>
 
                     <div id="total-totals" class="total-totals" hidden>
@@ -155,7 +156,7 @@
                             <h3 class="results-panel-title" id="totals-heading">合計</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">標準単位</span>
+                                <span class="result-label">10g単位</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -203,7 +204,7 @@
                     <h2>アルコール単位とは？</h2>
                     <p>国によって基準が異なります。この計算機では分けて表示します:</p>
                     <ul class="answer-list">
-                        <li><strong>標準単位:</strong> 純アルコール10g。WHO AUDITの例で使われ、フランスやドイツを含む多くの欧州諸国の標準グラスの考え方に近い基準です。</li>
+                        <li><strong>10g単位:</strong> 1単位は純アルコール10gです。比較のための基準であり、標準ドリンクの定義は国によって異なります。</li>
                         <li><strong>UK単位:</strong> 純アルコール10ml、約8g。</li>
                         <li><strong>米国標準ドリンク:</strong> 純アルコール14g。</li>
                         <li><strong>純アルコールのグラム数:</strong> すべての方式を比較するための中立的な基準。</li>
@@ -219,7 +220,7 @@
                                     <th>飲み物</th>
                                     <th>容量</th>
                                     <th>ABV</th>
-                                    <th>標準単位</th>
+                                    <th>10g単位</th>
                                     <th>UK単位</th>
                                     <th>USドリンク</th>
                                     <th>アルコール量</th>
@@ -261,7 +262,7 @@
                 <section class="answer-cta">
                     <div class="container narrow">
                         <h2>時間とともにパターンを理解する</h2>
-                        <p>Mindrinkは、データを公開せずに飲酒パターンを時間とともに確認するためのツールです。</p>
+                        <p>この計算機では、1杯に含まれるアルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。</p>
                         <a href="/ja/" class="cta-button">Mindrinkを見る</a>
                     </div>
                 </section>
@@ -284,9 +285,9 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
 </body>
 </html>

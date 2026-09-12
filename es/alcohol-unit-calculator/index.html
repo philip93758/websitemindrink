@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Introduce el volumen y la graduación para calcular gramos de alcohol puro y equivalentes en unidades. La cantidad por UBE varía según el país; no calcula la alcoholemia.">
     <meta name="robots" content="index, follow">
-    <title>Calculadora de gramos de alcohol y UBE | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260829a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a" as="script">
+    <title>Calculadora de UBE y gramos de alcohol | Mindrink</title>
+    <link rel="preload" href="/styles.css?v=calculator-20260912a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/es/alcohol-unit-calculator/">
-    <meta property="og:title" content="Calculadora de gramos de alcohol y UBE">
+    <meta property="og:title" content="Calculadora de UBE y gramos de alcohol">
     <meta property="og:description" content="Introduce el volumen y la graduación para calcular gramos de alcohol puro y equivalentes en unidades. La cantidad por UBE varía según el país; no calcula la alcoholemia.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="canonical" href="https://mindrink.me/es/alcohol-unit-calculator/">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260829a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260912a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -68,8 +68,8 @@
         <section class="answer-hero">
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/es/discover/">Descubrir</a> / Calculadora de gramos de alcohol</p>
-                <h1>Calculadora de gramos de alcohol y unidades</h1>
-                <p class="hero-intro">Introduce el volumen y la graduación de una bebida para ver los gramos de alcohol puro y las unidades equivalentes. Esta herramienta no calcula la alcoholemia.</p>
+                <h1>Calculadora de UBE y gramos de alcohol</h1>
+                <p class="hero-intro">Introduce el volumen y la graduación para calcular gramos de alcohol, unidades de 10 g, unidades UK y bebidas estándar de EE. UU. La UBE varía según el país; no calculamos la alcoholemia.</p>
             </div>
         </section>
 
@@ -88,7 +88,7 @@
                                 <input type="number" id="selected-volume" class="calculator-input" inputmode="decimal" min="0" max="5000" step="1" value="500">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-abv">ABV (%)</label>
+                                <label for="selected-abv">Graduación alcohólica (% vol.)</label>
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1" value="5">
                             </div>
                             <div class="calculator-field">
@@ -102,7 +102,7 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Esta bebida</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades de 10 g (referencia UBE)</span>
+                                <span class="result-label">Unidades de 10 g</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -147,7 +147,8 @@
                     </div>
 
                     <div class="total-actions">
-                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Añadir al total</button>
+                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Añadir esta bebida al total</button>
+                        <p id="total-empty" class="calculator-status" role="status">Aún no has añadido bebidas.</p>
                     </div>
 
                     <div id="total-totals" class="total-totals" hidden>
@@ -155,7 +156,7 @@
                             <h3 class="results-panel-title" id="totals-heading">Tu total</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unidades de 10 g (referencia UBE)</span>
+                                <span class="result-label">Unidades de 10 g</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -203,7 +204,7 @@
                     <h2>Qué calcula esta herramienta</h2>
                     <p>A partir del volumen y la graduación obtienes gramos de alcohol puro y equivalentes en unidades. En España y en varios países se habla de UBE (unidad de bebida estándar), pero la cantidad de alcohol por UBE no es la misma en todos los mercados. La referencia de 10 g sirve para comparar, no como definición universal. Esto no estima la concentración de alcohol en sangre.</p>
                     <ul class="answer-list">
-                        <li><strong>Referencia de 10 g:</strong> 10 g de alcohol puro; coincide con algunas definiciones de UBE, pero no con todas.</li>
+                        <li><strong>Unidades de 10 g:</strong> cada unidad representa 10 g de alcohol puro. Es una referencia para comparar, no una definición universal de UBE.</li>
                         <li><strong>Unidades UK:</strong> 10 ml, o unos 8 g, de alcohol puro.</li>
                         <li><strong>Bebidas estándar de EE. UU.:</strong> 14 g de alcohol puro.</li>
                         <li><strong>Gramos de alcohol puro:</strong> la base neutral para comparar todos los sistemas.</li>
@@ -278,7 +279,7 @@
                 <section class="answer-cta">
                     <div class="container narrow">
                         <h2>Entender patrones en el tiempo</h2>
-                        <p>Mindrink ayuda a observar patrones con el tiempo sin publicar tus datos.</p>
+                        <p>La calculadora muestra el alcohol de una bebida. Mindrink te ayuda a registrar bebidas y observar tus hábitos a lo largo del tiempo.</p>
                         <a href="/es/" class="cta-button">Explorar Mindrink</a>
                     </div>
                 </section>
@@ -301,9 +302,9 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
 </body>
 </html>

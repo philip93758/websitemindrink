@@ -7,6 +7,7 @@ import {
   SITEMAP_PATH,
   sitemapUrlToFile,
   sourcesForPage,
+  significantPathsFromDiff,
 } from '../scripts/update-sitemap-lastmod.js';
 
 
@@ -42,4 +43,15 @@ test('keeps sitemap lastmod values synchronized with page sources', () => {
     'Run npm run sitemap:update before committing significant page changes',
   );
   assert.equal(output, sitemapText);
+});
+
+test('analytics loader cache changes alone are not significant sitemap modifications', () => {
+  const diff = [
+    'diff --git a/index.html b/index.html', '--- a/index.html', '+++ b/index.html', '@@ -1 +1 @@',
+    '-    <script type="module" src="/scripts/analytics.js?v=old"></script>',
+    '+    <script type="module" src="/scripts/analytics.js?v=new"></script>',
+  ].join('\n');
+  assert.deepEqual([...significantPathsFromDiff(diff)], []);
+  assert.deepEqual([...significantPathsFromDiff(diff + '\n-<p>Old copy</p>\n+<p>New copy</p>')], ['index.html']);
+  assert.deepEqual([...significantPathsFromDiff('diff --git a/scripts/alcohol-unit-calculator.js b/scripts/alcohol-unit-calculator.js\n+const changed = true;')], ['scripts/alcohol-unit-calculator.js']);
 });

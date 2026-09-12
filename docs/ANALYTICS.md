@@ -1,6 +1,6 @@
 # Privacy-minimized website analytics
 
-Mindrink uses a locally bundled slim build of `posthog-js` with a PostHog Cloud EU project. Analytics starts without a banner, but remains deliberately limited to aggregate page traffic, internal page transitions, and the alcohol calculator funnel.
+Mindrink uses a locally bundled slim build of `posthog-js` with a PostHog Cloud EU project. Analytics starts without a banner, but remains deliberately limited to aggregate page traffic, internal page transitions, calculator interactions and the existing app discovery/store CTAs.
 
 ## Build configuration
 
@@ -29,8 +29,16 @@ The generated `scripts/analytics-config.js` file remains ignored. Do not commit 
 | `calculation_completed` | A valid, deliberately committed calculation that differs from the previous completed draft | `locale`, `page_path`, `calculator_type` |
 | `calculator_total_added` | A successful click on “Add to total” | `locale`, `page_path`, `calculator_type` |
 | `app_cta_clicked` | Click on the calculator journey’s app CTA | calculator properties plus `cta_location: calculator_footer` |
+| `app_cta_viewed` | Once per page when at least 50% of the existing calculator CTA button intersects the viewport while the document is visible | calculator properties plus `cta_location: calculator_footer` |
+| `app_store_clicked` | Click on an existing Mindrink store button on a homepage or the app-comparison article | `locale`, `page_path`, `page_family: home` or `app_comparison`, `cta_location: home_hero`, `home_footer` or `comparison_footer`, `store: app_store` or `google_play` |
 
 Paths never contain query parameters or fragments. Link text, referrers, full URLs, calculator inputs, drink values, results, health information, and free text are never sent.
+
+Store detection accepts only HTTPS links to Mindrink's exact Apple app ID or Google Play package, and only the existing button placements above. URL parameters are used locally to recognize the Google Play package; the URL and app ID are not event properties. The existing calculator CTA still links to the same-language homepage, not directly to a store. `app_cta_clicked` therefore must not be interpreted as a store click.
+
+`app_cta_viewed` means viewport exposure, not attention or proof the person read the CTA. An unavailable IntersectionObserver produces no exposure event. Background tabs do not count; returning to the tab requests a fresh intersection. Exposure is deduplicated in page memory and subject to the same GPC/DNT/opt-out gates. A store click is not an install. Do not reconstruct ordered, cross-page funnels or unique people from these aggregate events.
+
+The two events are introduced in the 2026-09-12 dev implementation. Before evaluating production results, record the actual deployment date, exclude known QA runs, and update any downstream report that uses an explicit six-event allowlist. Existing historical exports are not backfilled by this website change.
 
 `internal_navigation_clicked` describes an aggregate edge such as `/discover/` → `/about.html`. The destination page receives a new memory-only identifier, so these events do not create a stitched multi-page visitor journey. PostHog can still show the most common transitions by grouping the explicit from/to paths.
 

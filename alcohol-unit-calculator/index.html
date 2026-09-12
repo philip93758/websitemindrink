@@ -7,8 +7,8 @@
     <meta name="keywords" content="alcohol unit calculator, alcohol units, standard drinks, alcohol calculator, UK units, US standard drinks, drinking calculator">
     <meta name="robots" content="index, follow">
     <title>Alcohol Unit Calculator | Standard Drinks &amp; Grams | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260829a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260912a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="1024x1024" href="/assets/favicons/apple-touch-icon.png">
@@ -37,7 +37,7 @@
     <meta name="twitter:description" content="Enter drink volume and ABV to calculate pure alcohol grams and compare 10 g units, UK alcohol units, and US standard drinks.">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta name="twitter:image:alt" content="Mindrink Alcohol Unit Calculator">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260829a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260912a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -81,7 +81,7 @@
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/discover/">Discover</a> / Alcohol unit calculator</p>
                 <h1>Alcohol unit and standard drink calculator</h1>
-                <p class="hero-intro">Enter the drink volume and ABV to calculate grams of pure alcohol and compare common conventions, including 10 g units, UK alcohol units, and US standard drinks. This calculator does not estimate blood alcohol concentration.</p>
+                <p class="hero-intro">Enter volume and alcohol strength to calculate grams of alcohol, 10 g units, UK units and US standard drinks. This is not a blood alcohol calculator.</p>
             </div>
         </section>
 
@@ -102,7 +102,7 @@
                                 <input type="number" id="selected-volume" class="calculator-input" inputmode="decimal" min="0" max="5000" step="1" value="500">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-abv">ABV (%)</label>
+                                <label for="selected-abv">Alcohol strength (ABV %)</label>
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1" value="5">
                             </div>
                             <div class="calculator-field">
@@ -116,7 +116,7 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">This drink</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Standard units</span>
+                                <span class="result-label">10 g units</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -161,7 +161,8 @@
                     </div>
 
                     <div class="total-actions">
-                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Add to total</button>
+                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Add this drink to total</button>
+                        <p id="total-empty" class="calculator-status" role="status">No drinks added yet.</p>
                     </div>
 
                     <div id="total-totals" class="total-totals" hidden>
@@ -169,7 +170,7 @@
                             <h3 class="results-panel-title" id="totals-heading">Your total</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Standard units</span>
+                                <span class="result-label">10 g units</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -219,7 +220,7 @@
                     <p>Different countries use different reference sizes. This calculator keeps them separate:</p>
 
                     <ul class="answer-list">
-                        <li><strong>Standard units:</strong> 10g of pure alcohol, used by WHO AUDIT examples and close to the standard-glass idea used in many European countries, including France and Germany.</li>
+                        <li><strong>10 g units:</strong> each unit represents 10 g of pure alcohol. This is a comparison reference, not a universal definition of a standard drink.</li>
                         <li><strong>UK units:</strong> 10ml, or about 8g, of pure alcohol.</li>
                         <li><strong>US standard drinks:</strong> 14g of pure alcohol.</li>
                         <li><strong>Pure alcohol grams:</strong> the neutral baseline for comparing all systems.</li>
@@ -237,7 +238,7 @@
                                     <th>Volume</th>
                                     <th>ABV</th>
                                     <th>UK units</th>
-                                    <th>Standard units</th>
+                                    <th>10 g units</th>
                                     <th>US standard drinks</th>
                                     <th>Pure alcohol grams</th>
                                 </tr>
@@ -308,7 +309,7 @@
                     <div class="faq-list">
                         <div class="faq-item">
                             <h3>How do you calculate alcohol units?</h3>
-                            <p>UK alcohol units are calculated as volume in millilitres multiplied by ABV percentage, then divided by 1000. Pure alcohol grams are calculated as volume in millilitres multiplied by ABV as a decimal, then multiplied by 0.789.</p>
+                            <p>For one drink, UK units = volume (ml) × ABV (%) ÷ 1000. Pure alcohol (g) = volume (ml) × (ABV (%) ÷ 100) × 0.789. Multiply by quantity for several identical drinks.</p>
                         </div>
                         <div class="faq-item">
                             <h3>What is a UK alcohol unit?</h3>
@@ -320,7 +321,7 @@
                         </div>
                         <div class="faq-item">
                             <h3>What is a standard unit?</h3>
-                            <p>A standard unit in this calculator is 10g of pure alcohol. WHO AUDIT examples use this basis, and it is close to the standard-glass idea used in many European countries, including France and Germany.</p>
+                            <p>The 10 g unit in this calculator represents 10 g of pure alcohol. It is a comparison reference, not a universal standard drink: definitions differ by country.</p>
                         </div>
                         <div class="faq-item">
                             <h3>Are alcohol units the same in every country?</h3>
@@ -328,11 +329,11 @@
                         </div>
                         <div class="faq-item">
                             <h3>How many units are in a beer?</h3>
-                            <p>A 500ml beer at 5% ABV contains about 2.0 standard units, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol.</p>
+                            <p>A 500ml beer at 5% ABV contains about 2.0 units of 10 g, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol.</p>
                         </div>
                         <div class="faq-item">
                             <h3>How many units are in a glass of wine?</h3>
-                            <p>A 175ml glass of wine at 12% ABV contains about 1.7 standard units, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol.</p>
+                            <p>A 175ml glass of wine at 12% ABV contains about 1.7 units of 10 g, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol.</p>
                         </div>
                         <div class="faq-item">
                             <h3>Can this calculator tell me if I drink too much?</h3>
@@ -356,7 +357,7 @@
                       "name": "How do you calculate alcohol units?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "UK alcohol units are calculated as volume in millilitres multiplied by ABV percentage, then divided by 1000. Pure alcohol grams are calculated as volume in millilitres multiplied by ABV as a decimal, then multiplied by 0.789."
+                        "text": "For one drink, UK units = volume (ml) × ABV (%) ÷ 1000. Pure alcohol (g) = volume (ml) × (ABV (%) ÷ 100) × 0.789. Multiply by quantity for several identical drinks."
                       }
                     },
                     {
@@ -380,7 +381,7 @@
                       "name": "What is a standard unit?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A standard unit in this calculator is 10g of pure alcohol. WHO AUDIT examples use this basis, and it is close to the standard-glass idea used in many European countries, including France and Germany."
+                        "text": "The 10 g unit in this calculator represents 10 g of pure alcohol. It is a comparison reference, not a universal standard drink: definitions differ by country."
                       }
                     },
                     {
@@ -396,7 +397,7 @@
                       "name": "How many units are in a beer?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A 500ml beer at 5% ABV contains about 2.0 standard units, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol."
+                        "text": "A 500ml beer at 5% ABV contains about 2.0 units of 10 g, 2.5 UK units, 1.4 US standard drinks, and 19.7g of pure alcohol."
                       }
                     },
                     {
@@ -404,7 +405,7 @@
                       "name": "How many units are in a glass of wine?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A 175ml glass of wine at 12% ABV contains about 1.7 standard units, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol."
+                        "text": "A 175ml glass of wine at 12% ABV contains about 1.7 units of 10 g, 2.1 UK units, 1.2 US standard drinks, and 16.6g of pure alcohol."
                       }
                     },
                     {
@@ -432,7 +433,7 @@
                     <div class="container narrow">
                         <h2>Understand patterns over time</h2>
 
-                        <p>Tracking over time can make drinking patterns easier to understand.</p>
+                        <p>The calculator shows the alcohol in a drink. Mindrink helps you record drinks and see patterns over time.</p>
                         <a href="/" class="cta-button">Explore Mindrink</a>
                     </div>
                 </section>
@@ -456,9 +457,9 @@
     </footer>
 
     <!-- Calculator Script (ES Module) -->
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a"></script>
 
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script><script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
 </body>
 </html>

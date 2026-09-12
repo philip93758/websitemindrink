@@ -6,8 +6,8 @@
     <meta name="description" content="Calculez les unités standard, unités UK, verres standard US, grammes d'alcool pur, calories et totaux hebdomadaires facultatifs.">
     <meta name="robots" content="index, follow">
     <title>Calculateur d'unités d'alcool | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=calculator-20260829a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-20260912a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=calculator-20260829a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-20260912a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -70,7 +70,7 @@
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/fr/discover/">Découvrir</a> / Calculateur d'unités d'alcool</p>
                 <h1>Calculateur d'unités d'alcool</h1>
-                <p class="hero-intro">Saisissez une boisson pour voir sa quantité d'alcool et les équivalents courants.</p>
+                <p class="hero-intro">Saisissez le volume et le degré d’alcool pour calculer les grammes d’alcool, les unités de 10 g, les unités UK et les verres standard US. Cet outil ne calcule pas l’alcoolémie.</p>
             </div>
         </section>
 
@@ -91,7 +91,7 @@
                                 <input type="number" id="selected-volume" class="calculator-input" inputmode="decimal" min="0" max="5000" step="1" value="500">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-abv">ABV (%)</label>
+                                <label for="selected-abv">Degré d’alcool (% vol.)</label>
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1" value="5">
                             </div>
                             <div class="calculator-field">
@@ -105,7 +105,7 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Cette boisson</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unités standard</span>
+                                <span class="result-label">Unités de 10 g</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -150,7 +150,8 @@
                     </div>
 
                     <div class="total-actions">
-                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Ajouter au total</button>
+                        <button type="button" id="total-add-row" class="total-btn total-btn-add">Ajouter cette boisson au total</button>
+                        <p id="total-empty" class="calculator-status" role="status">Aucune boisson ajoutée pour le moment.</p>
                     </div>
 
                     <div id="total-totals" class="total-totals" hidden>
@@ -158,7 +159,7 @@
                             <h3 class="results-panel-title" id="totals-heading">Votre total</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unités standard</span>
+                                <span class="result-label">Unités de 10 g</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -207,7 +208,7 @@
                     <h2>Que sont les unités d'alcool ?</h2>
                     <p>Les pays utilisent des repères différents. Ce calculateur les sépare clairement :</p>
                     <ul class="answer-list">
-                        <li><strong>Unités standard :</strong> 10 g d'alcool pur, utilisées dans les exemples WHO AUDIT et proches de l'idée de verre standard dans de nombreux pays européens, dont la France et l'Allemagne.</li>
+                        <li><strong>Unités de 10 g :</strong> chaque unité représente 10 g d’alcool pur. C’est une référence de comparaison, pas une définition universelle du verre standard.</li>
                         <li><strong>Unités UK :</strong> 10 ml, soit environ 8 g d'alcool pur.</li>
                         <li><strong>Verres standard US :</strong> 14 g d'alcool pur.</li>
                         <li><strong>Grammes d'alcool pur :</strong> la base neutre pour comparer tous les systèmes.</li>
@@ -224,7 +225,7 @@
                                     <th>Boisson</th>
                                     <th>Volume</th>
                                     <th>ABV</th>
-                                    <th>Unités standard</th>
+                                    <th>Unités de 10 g</th>
                                     <th>Unités UK</th>
                                     <th>Verres standard US</th>
                                     <th>Grammes d'alcool</th>
@@ -267,7 +268,7 @@
                 <section class="answer-cta">
                     <div class="container narrow">
                         <h2>Comprendre les schémas dans le temps</h2>
-                        <p>Mindrink aide à observer les habitudes dans le temps sans rendre vos données publiques.</p>
+                        <p>Le calculateur indique la quantité d’alcool dans une boisson. Mindrink vous aide à enregistrer vos boissons et à observer vos habitudes au fil du temps.</p>
                         <a href="/fr/" class="cta-button">Découvrir Mindrink</a>
                     </div>
                 </section>
@@ -290,9 +291,9 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260829a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260912a"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
 </body>
 </html>

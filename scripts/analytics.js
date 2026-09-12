@@ -2,7 +2,8 @@ import {
   browserPrivacySignalActive,
   createAnalyticsController,
   resolveInternalNavigation,
-} from '/scripts/analytics-core.js?v=analytics-20260829b';
+} from '/scripts/analytics-core.js?v=analytics-20260912a';
+import { handleStoreCtaClick } from '/scripts/analytics-cta.js?v=analytics-20260912a';
 
 const COPY = {
   en: {
@@ -150,6 +151,7 @@ function handleInternalNavigation(event) {
 
 controller.sitePageViewed();
 document.addEventListener('click', handleInternalNavigation, { capture: true });
+document.addEventListener('click', event => handleStoreCtaClick(event, controller));
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', renderOptOutControl, { once: true });
@@ -161,3 +163,4 @@ export const trackCalculatorStarted = () => controller.calculatorStarted();
 export const trackCalculationCompleted = () => controller.calculationCompleted();
 export const trackCalculatorTotalAdded = () => controller.calculatorTotalAdded();
 export const trackAppCtaClicked = (ctaLocation) => controller.appCtaClicked(ctaLocation);
+export const trackAppCtaViewed = (ctaLocation) => controller.appCtaViewed(ctaLocation);

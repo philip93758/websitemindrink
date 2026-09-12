@@ -77,14 +77,33 @@ export function sourcesForPage(pagePath) {
   return sources;
 }
 
+// A cache-version change to the analytics loader does not change indexed content.
+// Apply the same rule to working changes and history, so committing a loader
+// refresh does not later give every page a misleading new modification date.
+export function significantPathsFromDiff(diff) {
+  const paths = new Set();
+  let path;
+  for (const line of diff.split(/\r?\n/)) {
+    if (line.startsWith('diff --git ')) {
+      path = line.match(/ b\/(.+)$/)?.[1];
+    } else if (path && /^[+-]/.test(line) && !/^(---|\+\+\+)/.test(line)) {
+      const content = line.slice(1).trim();
+      const analyticsLoader = /^<script type="module" src="\/scripts\/analytics\.js\?v=[^"]+"><\/script>$/.test(content);
+      if (content && !(path.endsWith('.html') && analyticsLoader)) paths.add(path);
+    }
+  }
+  return paths;
+}
+
 function dirtyPaths(sourcePaths) {
   const wanted = new Set(sourcePaths);
   const modified = runGit([
     'diff',
-    '--name-only',
+    '--unified=0',
     '--ignore-space-at-eol',
     'HEAD',
     '--',
+    ...sourcePaths,
   ]);
   const untracked = runGit([
     'ls-files',
@@ -93,8 +112,7 @@ function dirtyPaths(sourcePaths) {
   ]);
 
   return new Set(
-    `${modified}\n${untracked}`
-      .split(/\r?\n/)
+    [...significantPathsFromDiff(modified), ...untracked.split(/\r?\n/)]
       .map((path) => normalizePath(path.trim()))
       .filter((path) => path && wanted.has(path)),
   );
@@ -103,21 +121,22 @@ function dirtyPaths(sourcePaths) {
 function committedDates(sourcePaths) {
   const output = runGit([
     'log',
-    '--format=@@DATE:%cs',
+    '--format=@@COMMIT:%H:%cs',
     '--name-only',
     '--no-renames',
   ]);
   const wanted = new Set(sourcePaths);
   const dates = new Map();
-  let commitDate;
-
-  for (const rawLine of output.split(/\r?\n/)) {
-    const line = normalizePath(rawLine.trim());
-
-    if (line.startsWith('@@DATE:')) {
-      commitDate = line.slice('@@DATE:'.length);
-    } else if (line && commitDate && wanted.has(line) && !dates.has(line)) {
-      dates.set(line, commitDate);
+  for (const block of output.split('@@COMMIT:').slice(1)) {
+    if (dates.size === wanted.size) break;
+    const [header, ...lines] = block.split(/\r?\n/);
+    const [hash, date] = header.split(':');
+    const pending = lines.map(line => normalizePath(line.trim()))
+      .filter(path => wanted.has(path) && !dates.has(path));
+    if (!pending.length) continue;
+    const patch = runGit(['show', '--format=', '--root', '--diff-merges=first-parent', '--unified=0', '--no-renames', hash, '--', ...pending]);
+    for (const path of significantPathsFromDiff(patch)) {
+      if (wanted.has(path) && !dates.has(path)) dates.set(path, date);
     }
   }
 

@@ -35,6 +35,8 @@ Do not mirror website docs into Atrium. Do not edit Atrium platform files from a
 
 ## Sitemap `lastmod` workflow
 
+Analytics-loader cache-version changes alone are excluded from `lastmod`, both in the working tree and in committed history. They do not represent refreshed indexed content.
+
 `sitemap.xml` is committed static output. Keep its per-URL `<lastmod>` values synchronized with significant source changes:
 
 ```bash
@@ -49,6 +51,13 @@ npm run sitemap:check
 - Do not update `lastmod` for copyright-only, formatting-only, or asset-compression changes that do not significantly change the indexed page. Shared styling and image assets are intentionally not automatic dependencies.
 - Keep the existing sitemap URL, canonical, and hreflang structure intact. The updater changes `<lastmod>` values only.
 - `npm test` includes the sitemap synchronization check and will direct the agent to run `sitemap:update` when significant page sources are newer.
+
+## Multilingual SEO and UX changes
+
+- Use corresponding existing content slots across all eight languages. Local search terms and natural wording may differ; new explanations, section roles, features and CTA journeys must have equivalent coverage.
+- Do not introduce new locale-only sections or restore intentionally removed content. A shared structural change needs explicit approval and localized coverage before release.
+- `tests/seo-ux.test.js` and its locale fixture protect the current sections, heading hierarchy, language routing, calculator labels, CTA meaning and comparison disclosures. Existing differences in localized FAQs and comparison introductions are preserved by the baseline, not endorsed as a pattern for new divergence. Update that structural baseline only for an approved change.
+- Keep the calculator CTA pointed at the same-language homepage. Store-click measurement belongs on existing homepage/comparison buttons. See [ANALYTICS.md](ANALYTICS.md) for event meaning and privacy constraints.
 
 ## History episode content sync
 

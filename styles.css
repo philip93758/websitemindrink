@@ -2942,6 +2942,15 @@ body.history-article-page {
     gap: 12px;
 }
 
+/* Component display rules must not reveal empty totals or hidden status text. */
+.calculator-shell [hidden] {
+    display: none !important;
+}
+
+.total-actions #total-empty {
+    margin: 0;
+}
+
 .total-results {
     background-color: rgba(244, 162, 97, 0.2);
 }
@@ -3037,6 +3046,10 @@ body.history-article-page {
 
 .total-actions {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
     justify-content: center;
     margin-top: 28px;
     margin-bottom: 20px;

@@ -5,6 +5,8 @@ export const ANALYTICS_EVENTS = Object.freeze({
   calculationCompleted: 'calculation_completed',
   calculatorTotalAdded: 'calculator_total_added',
   appCtaClicked: 'app_cta_clicked',
+  appCtaViewed: 'app_cta_viewed',
+  appStoreClicked: 'app_store_clicked',
 });
 
 export const ANALYTICS_OPT_OUT_KEY = 'mindrink_analytics_opt_out';
@@ -28,7 +30,37 @@ const EVENT_PROPERTY_KEYS = new Set([
   'to_page_path',
   'calculator_type',
   'cta_location',
+  'page_family',
+  'store',
 ]);
+
+export function resolveStoreCta(href, pathname, placement) {
+  const path = normalizePagePath(pathname);
+  const localePrefix = '(?:(?:en|de|fr|es|pt|id|it|ja)/)?';
+  const home = new RegExp(`^/${localePrefix}(?:index\\.html)?$`).test(path);
+  const comparison = new RegExp(`^/${localePrefix}blog/best-alcohol-tracking-apps\\.html$`).test(path);
+  const validPlacement = home
+    ? ['home_hero', 'home_footer'].includes(placement)
+    : comparison && placement === 'comparison_footer';
+  if (!validPlacement) return null;
+
+  try {
+    const url = new URL(href);
+    if (url.protocol !== 'https:' || url.username || url.password || url.port) return null;
+    let store;
+    if (url.hostname === 'apps.apple.com'
+      && /^\/(?:[a-z]{2}\/)?app\/(?:[^/]+\/)?id6756892721\/?$/.test(url.pathname)) {
+      store = 'app_store';
+    } else if (url.hostname === 'play.google.com'
+      && url.pathname === '/store/apps/details'
+      && url.searchParams.get('id') === 'com.mindrink.app') {
+      store = 'google_play';
+    } else return null;
+    return { store, cta_location: placement, page_family: home ? 'home' : 'app_comparison' };
+  } catch {
+    return null;
+  }
+}
 
 export function normalizePagePath(pathname = '/') {
   const pathOnly = String(pathname).split(/[?#]/, 1)[0].replace(/\\/g, '/');
@@ -80,6 +112,20 @@ export function sanitizePosthogEvent(event) {
     }
   }
 
+  if (event.event === ANALYTICS_EVENTS.appStoreClicked) {
+    if (!['app_store', 'google_play'].includes(properties.store)) return null;
+    const placements = properties.page_family === 'home'
+      ? ['home_hero', 'home_footer']
+      : properties.page_family === 'app_comparison' ? ['comparison_footer'] : [];
+    if (!placements.includes(properties.cta_location)) return null;
+    delete properties.calculator_type;
+    delete properties.from_page_path;
+    delete properties.to_page_path;
+  } else {
+    delete properties.store;
+    delete properties.page_family;
+  }
+
   return { ...event, properties };
 }
 
@@ -127,6 +173,7 @@ export function createAnalyticsController({
   let sitePageViewRequested = false;
   let sitePageViewQueued = false;
   let calculatorStarted = false;
+  let appCtaViewed = false;
 
   function contextProperties({ includePagePath = true, calculator = false } = {}) {
     const context = getContext?.() || {};
@@ -286,6 +333,19 @@ export function createAnalyticsController({
         { cta_location: ctaLocation },
         { calculator: true },
       );
+    },
+    appCtaViewed(ctaLocation) {
+      if (appCtaViewed || optedOut || !ALLOWED_CTA_LOCATIONS.has(ctaLocation)) return false;
+      appCtaViewed = true;
+      return enqueue(
+        ANALYTICS_EVENTS.appCtaViewed,
+        { cta_location: ctaLocation },
+        { calculator: true },
+      );
+    },
+    appStoreClicked(href, placement) {
+      const properties = resolveStoreCta(href, getContext?.()?.pathname, placement);
+      return properties ? enqueue(ANALYTICS_EVENTS.appStoreClicked, properties) : false;
     },
   });
 }

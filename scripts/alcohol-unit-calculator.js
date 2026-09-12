@@ -6,10 +6,12 @@ import {
 } from '/shared/alcohol/formulas.js?v=calculator-20260816c';
 import {
   trackAppCtaClicked,
+  trackAppCtaViewed,
   trackCalculationCompleted,
   trackCalculatorStarted,
   trackCalculatorTotalAdded,
-} from '/scripts/analytics.js?v=analytics-20260829b';
+} from '/scripts/analytics.js?v=analytics-20260912a';
+import { observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20260912a';
 import {
   ETHANOL_DENSITY_G_PER_ML,
   MAX_ABV_PERCENT,
@@ -35,15 +37,15 @@ const LOCALES = {
     incomplete: 'Incomplete',
     enterDetails: 'Enter drink details to see results.',
     limits: 'Use volume up to {volume}ml, ABV up to {abv}%, and quantity up to {quantity}.',
-    totalEmpty: 'Total is optional. Add the drink above if you want to build a total.',
+    totalEmpty: "No drinks added yet.",
     totalOptional: 'Optional: add the drink above to estimate a total.',
     rowDetail: '{quantity} x {volume}ml at {abv}%',
-    standardUnits: 'standard units',
+    standardUnits: "10 g units",
     remove: 'Remove',
     byDrinkType: 'By drink type:',
     breakdown: '{count} drinks, {standard} standard units, {uk} UK units, {calories} calories',
     totalIncomplete: 'Some rows need volume, ABV, and quantity before they count.',
-    addToTotal: 'Add to total',
+    addToTotal: "Add this drink to total",
     equivalents: {
       heading: 'Equivalent to',
       beerTitle: 'Pint of beer',
@@ -57,15 +59,15 @@ const LOCALES = {
     incomplete: 'Unvollständig',
     enterDetails: 'Getränkedaten eingeben, um Ergebnisse zu sehen.',
     limits: 'Nutze höchstens {volume} ml, {abv}% ABV und Menge {quantity}.',
-    totalEmpty: 'Die Gesamtsumme ist freiwillig. Füge das Getränk oben hinzu, wenn du eine Summe schätzen möchtest.',
+    totalEmpty: "Noch keine Getränke hinzugefügt.",
     totalOptional: 'Freiwillig: Füge das Getränk oben hinzu, um eine Gesamtsumme zu schätzen.',
     rowDetail: '{quantity} x {volume} ml bei {abv}%',
-    standardUnits: 'Standardeinheiten',
+    standardUnits: "10-g-Einheiten",
     remove: 'Entfernen',
     byDrinkType: 'Nach Getränk:',
     breakdown: '{count} Getränke, {standard} Standardeinheiten, {uk} UK-Einheiten, {calories} Kalorien',
     totalIncomplete: 'Einige Zeilen brauchen Volumen, ABV und Anzahl.',
-    addToTotal: 'Zur Summe hinzufügen',
+    addToTotal: "Dieses Getränk zur Summe hinzufügen",
     equivalents: {
       heading: 'Entspricht',
       beerTitle: 'Bierglas',
@@ -79,15 +81,15 @@ const LOCALES = {
     incomplete: 'Incomplet',
     enterDetails: 'Saisissez les détails de la boisson pour voir les résultats.',
     limits: 'Utilisez jusqu’à {volume} ml, {abv}% ABV et une quantité de {quantity}.',
-    totalEmpty: 'Le total est facultatif. Ajoutez la boisson ci-dessus si vous voulez estimer un total.',
+    totalEmpty: "Aucune boisson ajoutée pour le moment.",
     totalOptional: 'Facultatif : ajoutez la boisson ci-dessus pour estimer un total.',
     rowDetail: '{quantity} x {volume} ml à {abv}%',
-    standardUnits: 'unités standard',
+    standardUnits: "Unités de 10 g",
     remove: 'Supprimer',
     byDrinkType: 'Par type de boisson :',
     breakdown: '{count} boissons, {standard} unités standard, {uk} unités UK, {calories} calories',
     totalIncomplete: 'Certaines lignes ont besoin du volume, de l’ABV et de la quantité.',
-    addToTotal: 'Ajouter au total',
+    addToTotal: "Ajouter cette boisson au total",
     equivalents: {
       heading: 'Équivaut à',
       beerTitle: 'Pinte de bière',
@@ -101,15 +103,15 @@ const LOCALES = {
     incomplete: 'Incompleto',
     enterDetails: 'Introduce los datos de la bebida para ver resultados.',
     limits: 'Usa hasta {volume} ml, {abv}% ABV y cantidad {quantity}.',
-    totalEmpty: 'El total es voluntario. Añade la bebida de arriba si quieres estimar un total.',
+    totalEmpty: "Aún no has añadido bebidas.",
     totalOptional: 'Voluntario: añade la bebida de arriba para estimar un total.',
     rowDetail: '{quantity} x {volume} ml al {abv}%',
-    standardUnits: 'unidades estándar',
+    standardUnits: "Unidades de 10 g",
     remove: 'Eliminar',
     byDrinkType: 'Por tipo de bebida:',
     breakdown: '{count} bebidas, {standard} unidades estándar, {uk} unidades UK, {calories} calorías',
     totalIncomplete: 'Algunas filas necesitan volumen, ABV y cantidad.',
-    addToTotal: 'Añadir al total',
+    addToTotal: "Añadir esta bebida al total",
     equivalents: {
       heading: 'Equivalente a',
       beerTitle: 'Pinta de cerveza',
@@ -123,15 +125,15 @@ const LOCALES = {
     incomplete: 'Incompleto',
     enterDetails: 'Insira os dados da bebida para ver os resultados.',
     limits: 'Use até {volume} ml, {abv}% ABV e quantidade {quantity}.',
-    totalEmpty: 'O total é voluntário. Adicione a bebida acima se quiser estimar um total.',
+    totalEmpty: "Nenhuma bebida adicionada ainda.",
     totalOptional: 'Voluntário: adicione a bebida acima para estimar um total.',
     rowDetail: '{quantity} x {volume} ml a {abv}%',
-    standardUnits: 'unidades padrão',
+    standardUnits: "Unidades de 10 g",
     remove: 'Remover',
     byDrinkType: 'Por tipo de bebida:',
     breakdown: '{count} bebidas, {standard} unidades padrão, {uk} unidades UK, {calories} calorias',
     totalIncomplete: 'Algumas linhas precisam de volume, ABV e quantidade.',
-    addToTotal: 'Adicionar ao total',
+    addToTotal: "Adicionar esta bebida ao total",
     equivalents: {
       heading: 'Equivalente a',
       beerTitle: 'Copo de cerveja',
@@ -145,15 +147,15 @@ const LOCALES = {
     incomplete: 'Belum lengkap',
     enterDetails: 'Masukkan detail minuman untuk melihat hasil.',
     limits: 'Gunakan maksimal {volume} ml, ABV {abv}%, dan jumlah {quantity}.',
-    totalEmpty: 'Total bersifat sukarela. Tambahkan minuman di atas jika ingin memperkirakan total.',
+    totalEmpty: "Belum ada minuman yang ditambahkan.",
     totalOptional: 'Sukarela: tambahkan minuman di atas untuk memperkirakan total.',
     rowDetail: '{quantity} x {volume} ml pada {abv}%',
-    standardUnits: 'unit standar',
+    standardUnits: "Unit 10 g",
     remove: 'Hapus',
     byDrinkType: 'Menurut jenis minuman:',
     breakdown: '{count} minuman, {standard} unit standar, {uk} unit UK, {calories} kalori',
     totalIncomplete: 'Beberapa baris membutuhkan volume, ABV, dan jumlah.',
-    addToTotal: 'Tambahkan ke total',
+    addToTotal: "Tambahkan minuman ini ke total",
     equivalents: {
       heading: 'Setara dengan',
       beerTitle: 'Gelas bir',
@@ -167,15 +169,15 @@ const LOCALES = {
     incomplete: 'Incompleto',
     enterDetails: 'Inserisci i dettagli della bevanda per vedere i risultati.',
     limits: 'Usa fino a {volume} ml, {abv}% ABV e quantità {quantity}.',
-    totalEmpty: 'Il totale è facoltativo. Aggiungi la bevanda sopra se vuoi stimare un totale.',
+    totalEmpty: "Nessuna bevanda aggiunta.",
     totalOptional: 'Facoltativo: aggiungi la bevanda sopra per stimare un totale.',
     rowDetail: '{quantity} x {volume} ml al {abv}%',
-    standardUnits: 'unità standard',
+    standardUnits: "Unità da 10 g",
     remove: 'Rimuovi',
     byDrinkType: 'Per tipo di bevanda:',
     breakdown: '{count} bevande, {standard} unità standard, {uk} unità UK, {calories} calorie',
     totalIncomplete: 'Alcune righe richiedono volume, ABV e quantità.',
-    addToTotal: 'Aggiungi al totale',
+    addToTotal: "Aggiungi questa bevanda al totale",
     equivalents: {
       heading: 'Equivalente a',
       beerTitle: 'Pinta di birra',
@@ -189,15 +191,15 @@ const LOCALES = {
     incomplete: '未入力',
     enterDetails: '結果を見るには飲み物の詳細を入力してください。',
     limits: '容量は{volume}mlまで、ABVは{abv}%まで、杯数は{quantity}までです。',
-    totalEmpty: '合計は任意です。合計を確認したい場合は、上の飲み物を追加してください。',
+    totalEmpty: "まだ飲み物が追加されていません。",
     totalOptional: '任意: 上の飲み物を追加して合計を見積もれます。',
     rowDetail: '{quantity} x {volume}ml、{abv}%',
-    standardUnits: '標準単位',
+    standardUnits: "10g単位",
     remove: '削除',
     byDrinkType: '飲み物別:',
     breakdown: '{count}杯、{standard}標準単位、{uk} UK単位、{calories}カロリー',
     totalIncomplete: '一部の行に容量、ABV、杯数が必要です。',
-    addToTotal: '合計に追加',
+    addToTotal: "この飲み物を合計に追加",
     equivalents: {
       heading: '換算すると',
       beerTitle: 'ビールジョッキ',
@@ -471,6 +473,11 @@ const TOTAL_EQUIVALENT_IDS = {
 
 function renderTotalTotals() {
   const hasRows = calculatorState.totalRows.length > 0;
+  const emptyState = document.getElementById('total-empty');
+  if (emptyState) {
+    emptyState.textContent = copy.totalEmpty;
+    emptyState.hidden = hasRows;
+  }
   const totals = calculateTotals(calculatorState.totalRows);
   const rowHints = calculatorState.totalRows.map(getInputHint).filter(Boolean);
   const blockingHint = rowHints.find((message) => message !== copy.enterDetails) || '';
@@ -644,6 +651,7 @@ function setupListEvents() {
 function setupCTAEvent() {
   const ctaBtn = document.querySelector('.answer-cta a, .answer-cta button');
   if (ctaBtn) {
+    observeCtaExposure(ctaBtn, () => trackAppCtaViewed('calculator_footer'));
     ctaBtn.addEventListener('click', () => {
       trackAppCtaClicked('calculator_footer');
     });

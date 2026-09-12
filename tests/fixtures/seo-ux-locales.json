@@ -1,0 +1,775 @@
+{
+  "baseline": {
+    "ja": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">おすすめのアルコール記録アプリ：選び方とシンプルさの重要性</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>おすすめのアルコール記録アプリ：選び方とシンプルさの重要性 | Mindrink ブログ</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>アルコール単位計算機</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+        "title": "<title>アルコール単位計算機 | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "es": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Las mejores apps para registrar alcohol: qué buscar (y por qué importa la simplicidad)</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Mejores apps para registrar alcohol | Blog Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Calculadora de gramos de alcohol y unidades</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+        "title": "<title>Calculadora de gramos de alcohol y UBE | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "id": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Aplikasi pelacak alkohol terbaik: apa yang perlu diperhatikan (dan mengapa kesederhanaan penting)</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Aplikasi pelacak alkohol terbaik | Blog Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Kalkulator unit alkohol</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+        "title": "<title>Kalkulator unit alkohol | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "pt": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Melhores apps de registro de álcool: o que observar (e por que a simplicidade importa)</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Melhores apps para registrar álcool | Blog Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Calculadora de unidades e gramas de álcool</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+        "title": "<title>Calculadora de unidades e gramas de álcool | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "en": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Best alcohol tracking apps: what to look for (and why simplicity matters)</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Best Alcohol Tracking Apps: A Comparison | Mindrink Blog</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section id=\"what-are-units\" class=\"answer-block\">",
+          "<section id=\"common-examples\" class=\"answer-block\">",
+          "<section id=\"faq\" class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h3>",
+          "<h2>"
+        ],
+        "h1": "<h1>Alcohol unit and standard drink calculator</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+        "title": "<title>Alcohol Unit Calculator | Standard Drinks &amp; Grams | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "fr": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Quelle application choisir pour suivre sa consommation d’alcool ?</h1>",
+        "lists": 25,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Meilleures applications pour suivre sa consommation d’alcool | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Calculateur d'unités d'alcool</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+        "title": "<title>Calculateur d'unités d'alcool | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "it": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Le migliori app per monitorare l'alcol: cosa cercare (e perché la semplicità conta)</h1>",
+        "lists": 22,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Le migliori app per monitorare l'alcol | Blog Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Calcolatore unità alcoliche</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+        "title": "<title>Calcolatore unità alcoliche | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    },
+    "de": {
+      "blog/best-alcohol-tracking-apps.html": {
+        "sections": [
+          "<section class=\"philosophy\" style=\"padding: 40px 20px 20px;\">",
+          "<section class=\"philosophy\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works best-apps-frame\">",
+          "<section class=\"how-it-works\">",
+          "<section class=\"cta\">"
+        ],
+        "headings": [
+          "<h1 class=\"page-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"section-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"feature-title\">",
+          "<h2 class=\"cta-title\">"
+        ],
+        "h1": "<h1 class=\"page-title\">Beste Apps zum Tracken von Alkoholkonsum: Welche passt zu dir?</h1>",
+        "lists": 26,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+        "title": "<title>Beste Apps zum Tracken von Alkoholkonsum 2026 | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/blog/best-alcohol-tracking-apps.html\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/blog/best-alcohol-tracking-apps.html\">"
+        ]
+      },
+      "alcohol-unit-calculator/index.html": {
+        "sections": [
+          "<section class=\"answer-hero\">",
+          "<section class=\"answer-content\">",
+          "<section id=\"calculator\" class=\"answer-block calculator-shell\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-block\">",
+          "<section class=\"answer-cta\">"
+        ],
+        "headings": [
+          "<h1>",
+          "<h3 class=\"results-panel-title\">",
+          "<h3 class=\"results-panel-title\" id=\"totals-heading\">",
+          "<h2>",
+          "<h2>",
+          "<h2>"
+        ],
+        "h1": "<h1>Alkoholeinheiten berechnen</h1>",
+        "lists": 4,
+        "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+        "title": "<title>Alkoholeinheiten berechnen | Rechner | Mindrink</title>",
+        "alternates": [
+          "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"es\" href=\"https://mindrink.me/es/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"pt\" href=\"https://mindrink.me/pt/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"id\" href=\"https://mindrink.me/id/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"it\" href=\"https://mindrink.me/it/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"ja\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
+          "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://mindrink.me/alcohol-unit-calculator/\">"
+        ]
+      }
+    }
+  },
+  "calculator": {
+    "en": {
+      "abv": "Alcohol strength (ABV %)",
+      "unit": "10 g units",
+      "empty": "No drinks added yet.",
+      "add": "Add this drink to total",
+      "intro": "Enter volume and alcohol strength to calculate grams of alcohol, 10 g units, UK units and US standard drinks. This is not a blood alcohol calculator.",
+      "bridge": "The calculator shows the alcohol in a drink. Mindrink helps you record drinks and see patterns over time.",
+      "definition": "<li><strong>10 g units:</strong> each unit represents 10 g of pure alcohol. This is a comparison reference, not a universal definition of a standard drink.</li>"
+    },
+    "de": {
+      "abv": "Alkoholgehalt (Vol.-%)",
+      "unit": "10-g-Einheiten",
+      "empty": "Noch keine Getränke hinzugefügt.",
+      "add": "Dieses Getränk zur Summe hinzufügen",
+      "intro": "Gib Volumen und Alkoholgehalt ein, um Gramm Alkohol, 10-g-Einheiten, UK-Einheiten und US-Standarddrinks zu berechnen. Dies ist kein Promillerechner.",
+      "bridge": "Der Rechner zeigt den Alkohol in einem Getränk. Mit Mindrink kannst du Getränke festhalten und Trinkmuster im Laufe der Zeit erkennen.",
+      "definition": "<li><strong>10-g-Einheiten:</strong> eine Einheit entspricht 10 g reinem Alkohol. Das ist eine Vergleichsgröße, keine weltweit einheitliche Definition eines Standardgetränks.</li>"
+    },
+    "fr": {
+      "abv": "Degré d’alcool (% vol.)",
+      "unit": "Unités de 10 g",
+      "empty": "Aucune boisson ajoutée pour le moment.",
+      "add": "Ajouter cette boisson au total",
+      "intro": "Saisissez le volume et le degré d’alcool pour calculer les grammes d’alcool, les unités de 10 g, les unités UK et les verres standard US. Cet outil ne calcule pas l’alcoolémie.",
+      "bridge": "Le calculateur indique la quantité d’alcool dans une boisson. Mindrink vous aide à enregistrer vos boissons et à observer vos habitudes au fil du temps.",
+      "definition": "<li><strong>Unités de 10 g :</strong> chaque unité représente 10 g d’alcool pur. C’est une référence de comparaison, pas une définition universelle du verre standard.</li>"
+    },
+    "es": {
+      "abv": "Graduación alcohólica (% vol.)",
+      "unit": "Unidades de 10 g",
+      "empty": "Aún no has añadido bebidas.",
+      "add": "Añadir esta bebida al total",
+      "intro": "Introduce el volumen y la graduación para calcular gramos de alcohol, unidades de 10 g, unidades UK y bebidas estándar de EE. UU. La UBE varía según el país; no calculamos la alcoholemia.",
+      "bridge": "La calculadora muestra el alcohol de una bebida. Mindrink te ayuda a registrar bebidas y observar tus hábitos a lo largo del tiempo.",
+      "definition": "<li><strong>Unidades de 10 g:</strong> cada unidad representa 10 g de alcohol puro. Es una referencia para comparar, no una definición universal de UBE.</li>"
+    },
+    "pt": {
+      "abv": "Teor alcoólico (% vol.)",
+      "unit": "Unidades de 10 g",
+      "empty": "Nenhuma bebida adicionada ainda.",
+      "add": "Adicionar esta bebida ao total",
+      "intro": "Indique o volume e o teor alcoólico para calcular gramas de álcool, unidades de 10 g, unidades do Reino Unido e bebidas padrão dos EUA. Esta ferramenta não calcula a alcoolemia.",
+      "bridge": "A calculadora mostra o álcool de uma bebida. O Mindrink ajuda a registrar bebidas e observar padrões ao longo do tempo.",
+      "definition": "<li><strong>Unidades de 10 g:</strong> cada unidade representa 10 g de álcool puro. É uma referência de comparação, não uma definição universal de bebida padrão.</li>"
+    },
+    "it": {
+      "abv": "Gradazione alcolica (% vol.)",
+      "unit": "Unità da 10 g",
+      "empty": "Nessuna bevanda aggiunta.",
+      "add": "Aggiungi questa bevanda al totale",
+      "intro": "Inserisci volume e gradazione per calcolare grammi di alcol, unità da 10 g, unità UK e drink standard USA. Questo strumento non calcola il tasso alcolemico.",
+      "bridge": "Il calcolatore mostra l’alcol contenuto in una bevanda. Mindrink ti aiuta a registrare le bevande e a osservare le tue abitudini nel tempo.",
+      "definition": "<li><strong>Unità da 10 g:</strong> ogni unità rappresenta 10 g di alcol puro. È un riferimento per il confronto, non una definizione universale di unità alcolica.</li>"
+    },
+    "id": {
+      "abv": "Kadar alkohol (% ABV)",
+      "unit": "Unit 10 g",
+      "empty": "Belum ada minuman yang ditambahkan.",
+      "add": "Tambahkan minuman ini ke total",
+      "intro": "Masukkan volume dan kadar alkohol untuk menghitung gram alkohol, unit 10 g, unit Inggris, dan minuman standar AS. Alat ini tidak menghitung kadar alkohol dalam darah.",
+      "bridge": "Kalkulator menunjukkan jumlah alkohol dalam satu minuman. Mindrink membantu Anda mencatat minuman dan melihat pola dari waktu ke waktu.",
+      "definition": "<li><strong>Unit 10 g:</strong> setiap unit mewakili 10 g alkohol murni. Ini adalah acuan perbandingan, bukan definisi universal minuman standar.</li>"
+    },
+    "ja": {
+      "abv": "アルコール度数（%）",
+      "unit": "10g単位",
+      "empty": "まだ飲み物が追加されていません。",
+      "add": "この飲み物を合計に追加",
+      "intro": "容量とアルコール度数を入力すると、純アルコール量（g）、10g単位、英国単位、米国標準ドリンクに換算できます。血中アルコール濃度を計算するものではありません。",
+      "bridge": "この計算機では、1杯に含まれるアルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。",
+      "definition": "<li><strong>10g単位:</strong> 1単位は純アルコール10gです。比較のための基準であり、標準ドリンクの定義は国によって異なります。</li>"
+    }
+  },
+  "comparison": {
+    "en": {
+      "disclosure": "This article is published by Mindrink, one of the apps discussed. It is not an independent ranking.",
+      "tBest": "alcohol-free challenges or year-round tracking",
+      "questions": [
+        "Do I want a simple log, self-set goals or a guided program?",
+        "Does it support my phone and language, and what does it cost?",
+        "Where are my records stored, and how can I back them up?"
+      ]
+    },
+    "de": {
+      "disclosure": "Dieser Artikel wird von Mindrink veröffentlicht, einer der besprochenen Apps. Er ist kein unabhängiges Ranking.",
+      "tBest": "alkoholfreie Challenges oder ganzjähriges Tracking",
+      "questions": [
+        "Möchte ich ein einfaches Trinktagebuch, eigene Ziele oder ein geführtes Programm?",
+        "Unterstützt die App mein Smartphone und meine Sprache, und was kostet sie?",
+        "Wo werden meine Einträge gespeichert, und wie kann ich sie sichern?"
+      ]
+    },
+    "fr": {
+      "disclosure": "Cet article est publié par Mindrink, l’une des applications présentées. Il ne s’agit pas d’un classement indépendant.",
+      "tBest": "les défis sans alcool ou le suivi tout au long de l’année",
+      "questions": [
+        "Ai-je besoin d’un simple journal, d’objectifs personnels ou d’un programme guidé ?",
+        "L’application fonctionne-t-elle sur mon téléphone et dans ma langue, et combien coûte-t-elle ?",
+        "Où mes données sont-elles conservées et comment les sauvegarder ?"
+      ]
+    },
+    "es": {
+      "disclosure": "Mindrink, una de las apps presentadas, publica este artículo. No es una clasificación independiente.",
+      "tBest": "retos sin alcohol o seguimiento durante todo el año",
+      "questions": [
+        "¿Quiero un registro sencillo, objetivos propios o un programa guiado?",
+        "¿Funciona en mi teléfono y en mi idioma, y cuánto cuesta?",
+        "¿Dónde se guardan mis datos y cómo puedo hacer una copia?"
+      ]
+    },
+    "pt": {
+      "disclosure": "Este artigo é publicado pelo Mindrink, um dos apps apresentados. Não é uma classificação independente.",
+      "tBest": "desafios sem álcool ou acompanhamento durante todo o ano",
+      "questions": [
+        "Quero um registro simples, metas próprias ou um programa guiado?",
+        "O app funciona no meu aparelho e no meu idioma, e quanto custa?",
+        "Onde meus dados ficam armazenados e como posso fazer um backup?"
+      ]
+    },
+    "it": {
+      "disclosure": "Questo articolo è pubblicato da Mindrink, una delle app presentate. Non è una classifica indipendente.",
+      "tBest": "sfide senza alcol o monitoraggio durante tutto l’anno",
+      "questions": [
+        "Voglio un diario semplice, obiettivi personali o un programma guidato?",
+        "L’app funziona sul mio telefono e nella mia lingua, e quanto costa?",
+        "Dove sono conservati i miei dati e come posso farne un backup?"
+      ]
+    },
+    "id": {
+      "disclosure": "Artikel ini diterbitkan oleh Mindrink, salah satu aplikasi yang dibahas. Ini bukan peringkat independen.",
+      "tBest": "tantangan tanpa alkohol atau pencatatan sepanjang tahun",
+      "questions": [
+        "Apakah saya ingin catatan sederhana, target pribadi, atau program terpandu?",
+        "Apakah aplikasi mendukung ponsel dan bahasa saya, dan berapa biayanya?",
+        "Di mana catatan saya disimpan dan bagaimana cara mencadangkannya?"
+      ]
+    },
+    "ja": {
+      "disclosure": "この記事は、紹介するアプリの一つであるMindrinkが公開しています。独立したランキングではありません。",
+      "tBest": "禁酒チャレンジや年間を通じた飲酒記録",
+      "questions": [
+        "シンプルな記録、自分で設定する目標、ガイド付きプログラムのどれが必要か？",
+        "自分の端末や言語に対応しているか、費用はいくらか？",
+        "記録はどこに保存され、どうバックアップできるか？"
+      ]
+    }
+  }
+}

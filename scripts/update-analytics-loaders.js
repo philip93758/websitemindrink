@@ -4,7 +4,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 export const ROOT_DIR = resolve(SCRIPT_DIR, '..');
-export const ANALYTICS_LOADER = '<script type="module" src="/scripts/analytics.js?v=analytics-20260829b"></script>';
+export const ANALYTICS_LOADER = '<script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>';
 
 const IGNORED_DIRECTORIES = new Set(['.git', '.codex', '.agents', 'node_modules']);
 const ANALYTICS_LOADER_PATTERN = /[ \t]*<script\s+type=["']module["']\s+src=["']\/scripts\/analytics\.js\?v=[^"']+["']\s*><\/script>[ \t]*(?:\r?\n)?/g;
