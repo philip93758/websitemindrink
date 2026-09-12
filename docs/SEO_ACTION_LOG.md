@@ -171,6 +171,53 @@ Verification on 2026-09-12:
 
 Follow-up: if deployed with RELEASE-20260912-SEO-UX, list SEO-20260912-05 under that same actual release. The three pages also received the shared earlier content/UX changes, so their outcomes cannot isolate these descriptions. Apply the manual comparison protocol above and append a dated result linked to the actual release and private analysis. No recurring monitoring or production deployment was created here.
 
+## 2026-09-12 follow-up — SEO-20260912-06
+
+### Alcohol-unit accuracy and contextual calculator-link parity
+
+| Field | Record |
+|---|---|
+| Approval | Owner approved the bounded accuracy/internal-link pass, website `dev` implementation, change-log update and local commit |
+| Status | Implemented and locally verified; not pushed or deployed by this task |
+| Implementation revision | Commit containing the unique trailer `SEO-Action: SEO-20260912-06`, based on `d6bb958`. Resolve its hash/time with `git log -1 --format="%H %cI" --fixed-strings --grep="SEO-Action: SEO-20260912-06"` |
+| Exact affected page families | `methodology.html`, `alcohol-units.html`, `blog/what-counts-as-a-drink-alcohol-units.html`, under each of the eight prefixes defined above: 24 pages |
+| Preserved | All titles/descriptions, headings, sections, table/list structure, existing link destinations, calculator code/controls, and app CTA journeys. No new FAQ questions or language-only sections |
+| Production revision/time and crawl evidence | Unknown until a separately authorized release is verified |
+| Search outcome | Not measured; this is a content-correctness and navigation improvement, not a demonstrated ranking lift |
+
+Accuracy changes within existing slots:
+
+- All eight methodology pages and eight unit guides now explicitly divide the percentage by 100. English equivalent: `Units of 10 g = (Volume in ml × (ABV (%) ÷ 100) × 0.789) ÷ 10`. The preceding existing sentence explains to use `5` for `5%`; equivalent wording appears in every language.
+- The French methodology example changes `(150 × 12 × 0,789) ÷ 10 ≈ 1,4` to `(150 × (12 ÷ 100) × 0,789) ÷ 10 ≈ 1,4`. The displayed intended result was already correct; the written calculation lacked the percentage conversion.
+- The French guide's 175 ml / 12% wine comparison now states approximately **1.2 US standard drinks**, rather than 1. It clarifies that a different unit definition changes the reported count, not the alcohol content of an otherwise identical drink.
+- Opening unit definitions identify 10 g as Mindrink's comparison reference, rather than a universal national definition. The methodology's adjacent paragraph uses the verified Australian 10 g example without broad claims of universal research adoption.
+- Unit-explainer country/FAQ wording distinguishes UK units of 10 ml pure alcohol (approximately 8 g) from US standard drinks of 14 g. The English grams-divided-by-8 table is explicitly approximate. This does not change the calculator's existing UK formula.
+- German/French/Indonesian short-answer examples now state serving size and strength: 330 ml beer at 5% is about 1.3 units; 250 ml wine at 13% is about 2.6 units. This replaces vague 2.4-unit wine examples inconsistent with their existing tables. Correct existing Italian/Spanish/Portuguese/Japanese serving examples remain localized in the same slots.
+- English pint examples specify British 568 ml servings. English/Italian/Japanese guide introductions now say alcohol amount depends on both size and strength, replacing unconditional pint-versus-shot comparisons.
+- All eight answer-page FAQ schemas match their five existing visible questions and answers. The English schema previously described a different question set; it now reflects the visible FAQ without adding body content. Local punctuation discrepancies were also synchronized. No Google FAQ-rich-result benefit is claimed.
+
+Contextual calculator links:
+
+| Existing slot | Added missing same-language calculator links | Existing behavior retained |
+|---|---|---|
+| Methodology's unit-explanation paragraph linking to the unit guide | English, French, Italian, Japanese, Indonesian | German/Spanish/Portuguese calculator links and all guide/definition links |
+| Unit explainer's short-answer paragraph | French, Spanish, Portuguese, Italian, Japanese, Indonesian | English/German introductory links; existing Spanish/Portuguese/German later calculator links and dry-day CTAs |
+| Unit blog guide | None needed | All eight already link to the local calculator |
+
+The extra Spanish/Portuguese introductory links provide the corresponding early opportunity across all languages; their existing later links were not deleted or moved. Eleven contextual links were added overall, with no new navigation section.
+
+Verification on 2026-09-12:
+
+- **134 tests passed**, including 58 new checks covering the 24-page metadata/structure baseline, eight-language formula text and link slots, all eight FAQ schemas, 32 worked guide examples, and the corrected French and wine-serving examples.
+- Build passed with analytics disabled; the analytics loader and sitemap checks cover 200 pages/URLs. The sitemap updater changed only the 24 affected content dates; the other 176 URLs are unchanged.
+- Phone preview: changed formula and calculator-link paragraphs fit on all 24 pages at a 390 px viewport override (375 px available document width). French formula visually inspected; Japanese desktop formula also checked and its calculator link followed to the correct local page.
+- Existing long reference URLs overflow on the French methodology phone view; those paragraphs and shared styles were not changed. This is a separate pre-existing wrapping issue, not a clean whole-page mobile audit verdict. The large guidance table has its existing scrollable wrapper.
+- Temporary preview closed/stopped and viewport restored. No production events, release, outreach, publisher credentials or Atrium source changes were made.
+
+Primary references checked for the unit definitions (not a review of all medical guidance on these pages): [NHS alcohol units](https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/), [NIAAA US standard drinks](https://www.niaaa.nih.gov/alcohols-effects-health/what-standard-drink), [Australian standard drinks guide](https://www.health.gov.au/topics/alcohol/about-alcohol/standard-drinks-guide). Existing application risk thresholds, source editions and wider health recommendations remain outside this pass.
+
+Follow-up: add this action to the actual release record if shipped with earlier September actions. Use the dated baseline/report links and manual evaluation protocol above; correct explanatory text and links cannot be credited separately when released as a bundle. Later analysis should distinguish editorial correctness, crawler discovery, and measured traffic change.
+
 ## Reusable action entry
 
 ```text

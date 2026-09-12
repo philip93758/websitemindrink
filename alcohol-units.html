@@ -26,17 +26,52 @@
     <meta name="twitter:description" content="A clear guide to alcohol units in beer, wine, spirits, and common drinking patterns.">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"What is one alcohol unit?","acceptedAnswer":{"@type":"Answer","text":"Using the World Health Organization 10 g ethanol reference, one alcohol unit equals 10 g of pure alcohol. UK alcohol units are smaller at 8 g."}},
-        {"@type":"Question","name":"How many 10 g units are in a pint of beer?","acceptedAnswer":{"@type":"Answer","text":"A 568 ml pint of 5% beer is about 2.2 units on a 10 g basis, or about 2.8 UK units."}},
-        {"@type":"Question","name":"How many 10 g units are in wine?","acceptedAnswer":{"@type":"Answer","text":"A 175 ml glass of 13% wine is about 1.8 units on a 10 g basis. A full 750 ml bottle at 13% is about 7.7 units."}},
-        {"@type":"Question","name":"How many 10 g units are in spirits?","acceptedAnswer":{"@type":"Answer","text":"A 25 ml shot of 40% spirits is about 0.8 units on a 10 g basis. A double is about 1.6 units."}},
-        {"@type":"Question","name":"How do I convert between country units?","acceptedAnswer":{"@type":"Answer","text":"Convert through grams of pure alcohol: UK units are 8 g, 10 g standard drinks are 10 g, and US standard drinks are 14 g."}}
-      ]
+      "@type": "Question",
+      "name": "What is the quickest way to estimate 10 g units?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use: volume in ml x ABV percentage x 0.789 / 1000. For UK units, use volume in ml x ABV percentage / 1000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do cocktails count as more than one unit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often yes, because cocktails can contain multiple spirit measures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are units the same as calories?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Units measure alcohol amount; calories measure energy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can tracking units help reduce drinking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Seeing totals makes it easier to choose smaller servings or alcohol-free days. See <a href=\"/reduce-drinking.html\">how to reduce drinking without quitting</a>."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do units relate to binge drinking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Binge drinking is about consuming many units in one session. See <a href=\"/binge-drinking.html\">binge drinking explained</a>."
+      }
     }
+  ]
+}
     </script>
     <link rel="stylesheet" href="/styles.css">
     <script defer>
@@ -86,7 +121,7 @@
             <div class="container narrow">
                 <section id="short-answer" class="answer-block answer-first">
                     <h2>How many alcohol units are in common drinks?</h2>
-                    <p>Using the World Health Organization 10 g ethanol reference, one alcohol unit equals 10 g of pure alcohol. On that basis, a 25 ml shot of 40% spirits is about 0.8 units, a 175 ml glass of 13% wine is about 1.8 units, and a pint of 5% beer is about 2.2 units. The point is simple: units make strong drinks, large pours, and cocktails easier to compare. <a href="/alcohol-unit-calculator/">Try the alcohol unit calculator</a> to calculate units for any drink.</p>
+                    <p>Mindrink uses 10 g of pure alcohol per comparison unit; national standard-drink definitions differ. On that basis, a 25 ml shot of 40% spirits is about 0.8 units, a 175 ml glass of 13% wine is about 1.8 units, and a British pint (568 ml) of 5% beer is about 2.2 units. The point is simple: units make strong drinks, large pours, and cocktails easier to compare. <a href="/alcohol-unit-calculator/">Try the alcohol unit calculator</a> to calculate units for any drink.</p>
                 </section>
                 <section id="explanation" class="answer-block">
                     <h2>How to calculate alcohol units</h2>
@@ -108,7 +143,7 @@
                 <section id="examples" class="answer-block">
                     <h2>Real-life examples</h2>
                     <ul class="answer-list">
-                        <li>Two pints of 5% beer are about 4.5 units on a 10 g basis. That can be most of a moderate day before the evening really starts.</li>
+                        <li>Two British pints (568 ml each) of 5% beer are about 4.5 units on a 10 g basis. That can be most of a moderate day before the evening really starts.</li>
                         <li>Three 175 ml glasses of 13% wine are about 5.4 units. It may feel like dinner, but the total is closer to a session.</li>
                         <li>A double spirit pour at 40% is about 1.6 units. Cocktails often climb quickly because the alcohol is less visible than the glass.</li>
                     </ul>
@@ -120,14 +155,14 @@
                         <table class="answer-table">
                             <thead><tr><th>System</th><th>Pure alcohol per unit</th><th>How to convert from grams</th><th>Example: 20 g alcohol</th></tr></thead>
                             <tbody>
-                                <tr><td>UK alcohol unit</td><td>8 g</td><td>grams / 8</td><td>2.5 UK units</td></tr>
+                                <tr><td>UK alcohol unit</td><td>10 ml (≈ 8 g)</td><td>grams / 8 (approximately)</td><td>2.5 UK units</td></tr>
                                 <tr><td>10 g standard drink/unit</td><td>10 g</td><td>grams / 10</td><td>2.0 units</td></tr>
                                 <tr><td>US standard drink</td><td>14 g</td><td>grams / 14</td><td>1.4 US standard drinks</td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <p style="margin-top: 16px;">For example, a pint of 5% beer contains about 22.4 g of alcohol. That is about 2.2 units on a 10 g basis, about 2.8 UK units, or about 1.6 US standard drinks.</p>
-                    <p style="margin-top: 16px;">Reference points: the World Health Organization reference uses 10 g of pure alcohol; Australia also uses a 10 g standard drink. The UK defines one unit as 8 g, while the US defines one standard drink as 14 g.</p>
+                    <p style="margin-top: 16px;">For example, a British pint (568 ml) of 5% beer contains about 22.4 g of alcohol. That is about 2.2 units on a 10 g basis, about 2.8 UK units, or about 1.6 US standard drinks.</p>
+                    <p style="margin-top: 16px;">Reference points: the World Health Organization reference uses 10 g of pure alcohol; Australia also uses a 10 g standard drink. The UK defines one unit as 10 ml of pure alcohol (approximately 8 g), while the US defines one standard drink as 14 g.</p>
                 </section>
                 <section id="interpretation" class="answer-block">
                     <h2>How to interpret units</h2>
