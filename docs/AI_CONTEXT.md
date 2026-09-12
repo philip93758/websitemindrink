@@ -7,6 +7,7 @@ Agent entry for the public website repository (`websitemindrink`).
 | Need | Path |
 |---|---|
 | Active tickets (local) | `docs/Ai/active/` — **gitignored** in this repo |
+| SEO/UX action and release-evidence log | [SEO_ACTION_LOG.md](SEO_ACTION_LOG.md) — tracked; sanitized implementation history and links to private Atrium analysis |
 | Closed workstreams | **Moved to Atrium** — see below |
 
 ## Ownership
@@ -54,6 +55,7 @@ npm run sitemap:check
 
 ## Multilingual SEO and UX changes
 
+- Record meaningful SEO/content/UX changes in [SEO_ACTION_LOG.md](SEO_ACTION_LOG.md), including affected URLs/locales, changed slots, implementation revision and the separate actual deployment evidence when known. Append dated analysis outcomes; never treat a commit or sitemap date as the production release date. Keep raw/private analytics in Atrium, linked rather than copied into Git.
 - Use corresponding existing content slots across all eight languages. Local search terms and natural wording may differ; new explanations, section roles, features and CTA journeys must have equivalent coverage.
 - Do not introduce new locale-only sections or restore intentionally removed content. A shared structural change needs explicit approval and localized coverage before release.
 - `tests/seo-ux.test.js` and its locale fixture protect the current sections, heading hierarchy, language routing, calculator labels, CTA meaning and comparison disclosures. Existing differences in localized FAQs and comparison introductions are preserved by the baseline, not endorsed as a pattern for new divergence. Update that structural baseline only for an approved change.

@@ -1,0 +1,192 @@
+# Website SEO and usability action log
+
+Started: 2026-09-12. Owner: website implementation; analysis remains in Atrium.
+
+This is the durable, version-controlled index of changes that may affect search acquisition or the on-site journey. It is not a deployment log, a raw analytics export, or proof of SEO uplift. Historical entries are a selective backfill, not a complete website changelog.
+
+## Recording rules
+
+- Add an entry for each meaningful SEO/content/UX package, including shared changes that affect multiple languages. Use a stable action ID and link the exact implementation revision and affected paths.
+- Separate proposal, implementation, production deployment, and observed Google crawl dates. Never substitute a commit date, sitemap `lastmod`, ticket closeout date, or latest crawl for a verified deployment date.
+- Append release evidence and dated findings to the original action. Preserve earlier observations; mark a conclusion superseded with a link if later evidence changes it. Do not silently rewrite history.
+- Record exact title/description changes; use a revision diff for larger copy changes. State which titles, structures and user journeys were intentionally preserved.
+- Keep exports, credentials and private performance reports outside Git. Link local Atrium evidence instead of copying it into this file. Durable entries may contain sanitized qualitative findings.
+- Group actions shipped together under the same production release. Multiple packages in one release are not separate controlled experiments, and changed sibling languages are not untreated controls.
+- Documentation-only changes to this log do not refresh page `lastmod` and are not a public SEO release.
+
+## Page-family notation
+
+The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Spanish `/es/`, Portuguese `/pt/`, Indonesian `/id/`, Italian `/it/`, Japanese `/ja/`.
+
+For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
+
+## Historical register — backfilled 2026-09-12
+
+Dates below are source-record or commit dates, not verified production timestamps. See the [private historical analysis](../../mindrink-atrium/reports/gsc/2026-09-12/seo-history-review-2026-09-12.md) for comparison windows, metrics and limitations.
+
+| ID | Recorded date and source | Scope and action | Production evidence / evaluation |
+|---|---|---|---|
+| SEO-20260528-01 | 2026-05-28 archived closeout; external setting, no implementation commit | Canonical host and sitemap: owner enabled GitHub Pages Enforce HTTPS and resubmitted the HTTPS sitemap. | Closeout records live redirects and a 200 HTTPS sitemap; exact switch time unknown. Operational correction verified in that record; traffic attribution unresolved. |
+| SEO-20260528-02 | 2026-05-28 archived closeout; source commit `7218d0b` dated 2026-05-29 | German/French comparisons: tracking/selection-oriented titles, H1s, introductions and internal links, plus the then-approved locale-specific sections. | The closeout and commit have different dates; neither establishes rollout. Historical analysis finds modest sustained French exposure/click gains and broadly steady German clicks, not proven causality. Later common-structure rule supersedes further locale-only expansion. |
+| SEO-20260823-01 | 2026-08-23, `0425c16` and `781cda7` | Calculator intent/metadata and relevant unit-page links. ES/PT/DE snippet alignment; English multi-convention positioning and localized copy/link refinements. Exact path lists and before/after text are in the two diffs. | Rollout timestamp unverified. Early follow-up is mixed/provisional; intentional content cuts must not be restored or treated as a defect. |
+| SEO-20260823-02 | 2026-08-23, `1a4e620` | Eight homepages: remove incomplete SoftwareApplication structured data. | Rollout unverified; technical correction, no isolated search-lift claim. |
+| SEO-20260823-03 | 2026-08-23, `f118276` | Responsive homepage hero images and associated assets. | Rollout unverified; performance-related confounder for overlapping content comparisons, not a measured ranking win. |
+| SEO-20260825-01 | 2026-08-25, `15b4ff7` | Per-page sitemap modification-date generation and verification. | Rollout unverified. Content modification dates are not production or crawl dates. |
+| UX-20260829-01 | 2026-08-29, `a78eec6` (merge `881aa98`) | Privacy-minimized website PostHog instrumentation and privacy explanations across locales. | Exact deployment time unverified. A measurement change, not evidence of increased traffic; subsequent metric definitions must be compared consistently. |
+| CONTENT-20260829-01 | 2026-08-29–30, `8b7c8d5`, `24a5e5a`, `242e508`, `4560cbd` | Science hub/history episode creation, localization, content and argument-map revisions. | Rollout times unverified. Record as concurrent content/discovery changes; do not attribute all whole-site movement to calculators. |
+| DECISION-20260831-01 | 2026-08-31 recorded owner decision | Reject direct-store calculator/answer-page conversion redesign; retain the Explore Mindrink educational journey. | Not implemented. This decision is not a deployed SEO action. |
+| UX-20260901-01 | 2026-09-01, `cb7ad1f` | Navigation/translation fixes: German, Spanish and Italian answer-page breadcrumbs; Japanese homepage and English FAQ links. | Rollout timestamp unverified. Exact affected pages are in the commit diff. |
+| CONTENT-20260912-01 | 2026-09-12, `0fecb5c` | Revised history episode synchronized across all eight languages. Pre-existing local commit before the SEO/UX implementation below. | Local `dev` commit, not pushed by this task as of this record. Must be included as a concurrent change if released with `c23908f`. |
+
+Historical source records:
+
+- [Canonical-host closeout in Atrium](../../mindrink-atrium/docs/atrium/archive/mindrink-website/seo-canonical-host-sitemap-2026-05-28/closeout.md).
+- [German/French comparison closeout in Atrium](../../mindrink-atrium/docs/atrium/archive/mindrink-website/seo-de-fr-comparison-pages-content-2026-05-28/final-synthesis.md).
+- [Calculator ticket batch in Atrium](../../mindrink-atrium/docs/atrium/active/website-calculator-seo-2026-08-23/).
+- [Shared multilingual UX decision](../../mindrink-atrium/docs/marketing/website-multilingual-ux-contract-2026-09-12.md).
+
+## 2026-09-12 implementation batch
+
+### Release envelope — RELEASE-20260912-SEO-UX
+
+| Field | Record |
+|---|---|
+| Implementation | `c23908fecda4ac4ca97f385bdcebc739ec34af5f` — Improve multilingual SEO copy, calculator clarity and CTA measurement |
+| Commit timestamp | 2026-09-12T18:59:14+02:00; source implementation time only |
+| Before revision | `0fecb5c`; the preceding history-episode change is preserved |
+| Branch/status at recording | Website `dev`; implemented and locally verified; not pushed or deployed by this task |
+| Actual production revision/time | **Pending verification — do not start a post-release window from the commit date** |
+| Deployment evidence | Pending: successful production deployment/run and revision, plus representative live-page verification |
+| Crawl observations after release | Not yet recorded; earlier inspection dates cannot describe this unreleased batch |
+| Outcome | Not yet measurable; no production effect claimed |
+| Verification | 73 tests, build, 200-page analytics-loader check and 200-URL sitemap check passed; 32 responsive layout checks across eight languages |
+| Detailed local closeout | [Implementation closeout](Ai/active/seo-ux-2026-09-12/closeout.md), gitignored |
+
+#### SEO-20260912-01 — Portuguese calculator description
+
+- URL: `/pt/alcohol-unit-calculator/`.
+- Existing slots changed: meta description and Open Graph description. Title and H1 preserved.
+- Hypothesis: retain the existing volume/strength-to-result promise but make comparison more concrete with beer/wine examples. The previous description already explained the task; this is a candidate refinement, not a repair of an absent promise. Low observed click capture supports investigation, but incomplete detailed query/market data does not prove the snippet is the cause.
+- After: “Calcule os gramas de álcool puro e as unidades de cada bebida a partir do volume e do teor alcoólico. Compare as medidas com exemplos de cerveja e vinho.”
+- Before: “Indique o volume e o teor alcoólico para calcular unidades e gramas de álcool puro — não a alcoolemia — e comparar referências do Reino Unido e dos EUA.”
+- Measurement: exact-page clicks, impressions and CTR, with position and available query/device/country context. Record an actually observed Google result separately; the meta description is only a candidate, not guaranteed displayed text.
+- Confounding: shared calculator content and UX in SEO-20260912-03 changed in the same commit. This is not a description-only experiment if shipped together.
+
+#### SEO-20260912-02 — Spanish calculator UBE-first search promise
+
+- URL: `/es/alcohol-unit-calculator/`.
+- Title before: “Calculadora de gramos de alcohol y UBE | Mindrink”.
+- Title after: “Calculadora de UBE y gramos de alcohol | Mindrink”.
+- H1 before: “Calculadora de gramos de alcohol y unidades”.
+- H1 after: “Calculadora de UBE y gramos de alcohol”. Open Graph title aligned; meta description preserved.
+- Hypothesis: give the visible UBE calculation-query cluster clearer priority while keeping grams and convention limits explicit. Named-query observations are a suppressed subset, not a complete demand estimate.
+- Measurement: page-level performance and available UBE versus grams query groups; do not assign anonymous page clicks to a named keyword or confuse blended page position with that keyword's rank.
+
+#### SEO-20260912-03 — Shared calculator clarity and on-page wording
+
+- URLs: all eight calculator pages.
+- Existing slots refined equivalently: introduction, alcohol-strength label, explicit 10 g reference, add-this-drink wording, and explanatory unit definition. Add a matching empty-total status within the existing controls in every locale; correct hidden-total display behavior.
+- English existing FAQ: clarify one-drink UK-unit/gram formulas and quantity handling; synchronize the corresponding structured answers. No new English-only FAQ or explanation added.
+- Unchanged: formulas, input fields, main sections/order, canonical/hreflang, current FAQ counts and Italian/Japanese titles. Existing locale structural drift is preserved and documented, not expanded or approved as a future pattern.
+- Hypothesis: users can understand inputs and results without mistaking a reference convention for a universal standard. This is a shared usability improvement, not a keyword-specific ranking test.
+- Measurement: calculator-start/completion and CTA-exposure counts using the documented event definitions; repeated result events are not unique people. GSC separately measures page acquisition.
+
+#### UX-20260912-01 — Existing app journey and measurement
+
+- URLs: CTA bridge text on all eight calculators; privacy explanation on all eight privacy pages; instrumentation on existing homepage/comparison store buttons.
+- Content: distinguish calculating a drink from recording patterns over time. Same Explore Mindrink CTA position, role and same-language homepage destination; no direct-store calculator CTA.
+- Added `app_cta_viewed`: once per page load when at least half the existing calculator CTA button intersects the viewport in an active document. Exposure is not attention.
+- Added `app_store_clicked`: exact existing Mindrink Apple/Google store destinations only, with allowlisted store, placement and page-family categories. A click is not an install.
+- Privacy constraints unchanged: no drink values, full destination URLs, persistent identity, replay, autocapture or cross-page person tracking; honor existing GPC/DNT/opt-out vetoes.
+- All 200 pages have an analytics-loader version change. Only eight calculators, eight comparisons and eight privacy pages have substantive page-copy changes in this batch; loader-only changes do not reset all sitemap dates.
+- Measurement dependency: after deployment, the Atrium reporting adapter must recognize both new events and distinguish their introduction date. Earlier missing events are **unmeasured**, not zero conversions. This website implementation did not modify that adapter.
+- Verification after release still needed: first live event payloads, privacy vetoes and event availability in reporting. No production events were sent during local verification.
+- Contract: [Analytics documentation](ANALYTICS.md).
+
+#### SEO-20260912-04 — Multilingual comparison credibility
+
+- URLs: all eight `blog/best-alcohol-tracking-apps.html` pages.
+- Existing slots: app descriptions, pros/considerations, fit descriptions, selection questions and article-purpose/publisher disclosure.
+- Correct Try Dry's year-round use, DrinkControl statistics and backup/sync distinction, and Reframe's logging/program scope. Clarify Mindrink local drink-record privacy and backup limitations; remove unsupported competitor tradeoffs.
+- Add corresponding official source links and publisher disclosure within existing slots; keep the four-app order and existing CTA journey. No new comparison table, section, or language-only depth.
+- Titles preserved, including the working French and Japanese app-selection intent. Local source revision is the exact before/after archive.
+- Hypothesis: visitors can make a more informed choice and recognize the publisher's interest. Search benefit remains unproven; assess each comparison page and existing store clicks separately.
+- Official source verification and responsive checks are recorded in the local closeout. Vendor facts may change; later corrections need their own dated entry.
+
+### Evidence linked to this batch
+
+- [Longer SEO history](../../mindrink-atrium/reports/gsc/2026-09-12/seo-history-review-2026-09-12.md): final returned daily history through 2026-09-10; includes older data-anomaly and deployment-date caveats.
+- [Earlier same-day page/query refinement](../../mindrink-atrium/reports/gsc/2026-09-12/seo-live-refinement-2026-09-12.md): explicitly uses 2026-08-13–2026-09-09 versus 2026-07-16–2026-08-12. Do not relabel its figures as the later rolling window.
+- [PostHog observations](../../mindrink-atrium/reports/local-analytics-pull/posthog-browser-2026-09-12/findings.md): pre-release evidence with low counts and possible QA influence; not cross-page visitor or organic-search attribution.
+- Raw exports remain in Atrium's ignored inputs; these private links may be unavailable in a website-only clone. Use the report on disk, not an invented or reconstructed baseline.
+
+### Follow-up protocol — manual, not a scheduled task
+
+1. Record the actual production revision/time and all action IDs included in that release. If a release contains intervening changes, list them rather than assuming it exactly equals `c23908f`.
+2. Verify representative live versions for every changed language/page family. Record later URL Inspection observations with query time and returned crawl time; latest crawl alone does not identify the first processing of new copy.
+3. Freeze an appropriate pre-release baseline from complete finalized GSC days, using source-native date conventions. Start a post-release comparison only after the actual release, exclude its partial day, and clearly distinguish any optional post-crawl window.
+4. Prefer equal, non-overlapping 28-day windows with matching weekday coverage. At low volume, extend to 56 days if needed; an early 7/14-day check is directional, not a winner declaration or universal waiting rule.
+5. Compare exact pages first, then explicitly defined URL families. Report clicks and impressions alongside CTR; compare available query groups, devices/countries and impression-weighted position without treating suppressed rows as zero. Record coverage and concurrent site/search changes.
+6. Evaluate PostHog separately with stable definitions. New-event introduction, consent/privacy vetoes, QA traffic and changing instrumentation affect counts. GSC clicks do not identify which PostHog observations came from organic search; store clicks do not establish installs.
+7. Append the analysis date, actual coverage windows, private report link, conclusion/confidence, and decision: retain, revise, revert, or insufficient evidence. Bundle-level observations must not be advertised as a causal effect of one sentence.
+
+## 2026-09-12 follow-up — SEO-20260912-05
+
+### French, Japanese and Indonesian calculator descriptions
+
+| Field | Record |
+|---|---|
+| Approval | Owner approved the proposed additional language improvements and a local `dev` commit on 2026-09-12 |
+| Status | Implemented and locally verified; not pushed or deployed by this task |
+| Implementation revision | The commit containing this entry and the unique trailer `SEO-Action: SEO-20260912-05`; parent `c23908f`. Resolve its hash and source timestamp with `git log -1 --format="%H %cI" --fixed-strings --grep="SEO-Action: SEO-20260912-05"` |
+| Changed URLs | `/fr/alcohol-unit-calculator/`, `/ja/alcohol-unit-calculator/`, `/id/alcohol-unit-calculator/` |
+| Changed slots | Exactly one meta description and matching Open Graph description per page |
+| Shared promise | Enter a drink's volume and alcohol strength, calculate pure alcohol grams, and compare named unit conventions |
+| Preserved | Entire remainder of each HTML page, including title/H1, visible content, examples, FAQs, formulas, controls, links, canonical/hreflang and CTA journey. No other language or comparison page rewritten |
+| Production revision/time and crawl evidence | Not yet recorded; implementation date is not a deployment or recrawl date |
+| Evaluation | Pending post-release evidence; no traffic gain claimed |
+
+Exact wording applied to both description tags:
+
+| Language | Before | After |
+|---|---|---|
+| French | Calculez les unités standard, unités UK, verres standard US, grammes d'alcool pur, calories et totaux hebdomadaires facultatifs. | Saisissez le volume et le degré d’alcool d’une boisson pour calculer les grammes d’alcool pur et comparer les unités de 10 g, britanniques et américaines. |
+| Japanese | 標準単位、UK単位、米国標準ドリンク、純アルコール量、カロリー、任意の週合計を計算します。 | お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。 |
+| Indonesian | Hitung unit standar, unit UK, minuman standar AS, gram alkohol murni, kalori, dan total mingguan sukarela. | Masukkan volume dan kadar alkohol minuman untuk menghitung gram alkohol murni, lalu bandingkan unit 10 g, unit Inggris, dan minuman standar AS. |
+
+Reason and limits:
+
+- Replace a list of outputs with a straightforward description of the task; remove the awkward Indonesian “voluntary weekly total” wording. This is an editorial relevance hypothesis, not a data-proven high-volume keyword opportunity.
+- Preserve the Italian calculator and French/Japanese comparison titles; defer the German grams-focused title idea. This approval does not implement those deferred ideas or authorize page consolidation.
+- Google can select other visible content for the snippet. Open Graph consistency is social metadata hygiene, not a guarantee about the Google result. See [Google's snippet guidance](https://developers.google.com/search/docs/appearance/snippet).
+- Source proposal: [dated language review](Ai/active/seo-ux-2026-09-12/remaining-language-review.md), gitignored. Existing private GSC evidence is linked above; no new analytics extraction was performed for this implementation.
+
+Verification on 2026-09-12:
+
+- 76 tests passed, including three new checks for exact approved meta/OG descriptions and the existing eight-language title, structure and routing checks.
+- Build passed with analytics disabled; verified the loader on 200 HTML pages and the sitemap on 200 URLs. No production analytics events were sent.
+- Per-page comparison against `c23908f` confirms no differences after excluding the two description tags. No layout change requires a new responsive baseline.
+- Sitemap updater reported all values current: these pages already had the 2026-09-12 content date from the earlier batch. No sitemap URLs or dates were rewritten for this follow-up.
+- This commit also establishes the sanitized historical action log and its discoverability/maintenance rule in `docs/AI_CONTEXT.md`. Private reports remain untracked.
+
+Follow-up: if deployed with RELEASE-20260912-SEO-UX, list SEO-20260912-05 under that same actual release. The three pages also received the shared earlier content/UX changes, so their outcomes cannot isolate these descriptions. Apply the manual comparison protocol above and append a dated result linked to the actual release and private analysis. No recurring monitoring or production deployment was created here.
+
+## Reusable action entry
+
+```text
+ID / short name:
+Recorded date / owner:
+Status: proposed | implemented | deployed | evaluated | superseded
+Page family / locales / exact URLs:
+Reason / evidence link / confidence:
+Changed slots and exact before/after text (or revision diff):
+Shared-frame parity / deliberately unchanged elements:
+Implementation revision and timestamp:
+Production revision / timestamp / verification evidence: unknown until verified
+Concurrent action IDs / confounders:
+Crawl observation time / returned crawl time: unknown until inspected
+Baseline and follow-up dates / coverage / source definitions:
+Success measure / guardrails:
+Dated evaluation / private report / conclusion / next decision:
+Superseded by (if applicable; retain earlier record):
+```

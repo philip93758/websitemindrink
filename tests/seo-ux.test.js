@@ -73,6 +73,24 @@ test('targeted Portuguese description and Spanish title remain aligned with thei
   assert.ok(es.includes('<meta property="og:title" content="Calculadora de UBE y gramos de alcohol">'));
 });
 
+const taskFirstCalculatorDescriptions = {
+  fr: 'Saisissez le volume et le degré d’alcool d’une boisson pour calculer les grammes d’alcool pur et comparer les unités de 10 g, britanniques et américaines.',
+  ja: 'お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。',
+  id: 'Masukkan volume dan kadar alkohol minuman untuk menghitung gram alkohol murni, lalu bandingkan unit 10 g, unit Inggris, dan minuman standar AS.',
+};
+
+for (const [locale, description] of Object.entries(taskFirstCalculatorDescriptions)) {
+  test(`${locale}: calculator has one approved task-first description and a matching social description`, () => {
+    const html = read(`${locale}/alcohol-unit-calculator/index.html`);
+    assert.deepEqual(matches(html, /<meta name="description"[^>]*>/g), [
+      `<meta name="description" content="${description}">`,
+    ]);
+    assert.deepEqual(matches(html, /<meta property="og:description"[^>]*>/g), [
+      `<meta property="og:description" content="${description}">`,
+    ]);
+  });
+}
+
 test('English FAQ structured answers match the visible revised answers', () => {
   const html = read('alcohol-unit-calculator/index.html');
   const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
