@@ -20,6 +20,11 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## RELEASE-20260913-01 — Episode 1.2 release-date preparation
+
+- User-approved intended release date: 2026-09-13. Set Episode 1.2 publication/modification metadata to that date in all eight languages; social timestamps explicitly use the local +02:00 offset. Earlier episodes and articles retain their original publication dates.
+- The importer preserves explicitly set matching-date social timestamps on no-op imports. This is release preparation, not evidence of a live publication. Dev push/CI is requested; main deployment is not authorized in this step. Record the actual deployment separately and revisit the date if release slips.
+
 ## QA-20260913-01 — Pre-release corrections on dev
 
 - Scope: fix Q01/Q02/R01/R02/R03/N01 from the local release audits. Implemented on local `dev` after `a002bb5`; recorded in the commit adding this entry, not pushed or deployed by this task. The older QA entries below describe the state at the time they were written, not the current corrected candidate.

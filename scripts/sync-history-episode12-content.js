@@ -160,6 +160,11 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   const isNew = !template.includes('history-records-page');
   const published = isNew ? today : existingArticle.datePublished;
   const modified = isNew ? today : existingArticle.dateModified;
+  // Retain an explicitly set release timestamp/offset on no-op imports.
+  const socialDate = (property, date) => {
+    const existing = template.match(new RegExp(`<meta property="article:${property}_time" content="([^"]+)"`))?.[1];
+    return !isNew && existing?.slice(0, 10) === date ? existing : `${date}T00:00:00Z`;
+  };
   page = page.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (_match, json) => {
     const schema = JSON.parse(json);
     if (schema['@type'] === 'Article') {
@@ -171,10 +176,10 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
     }
     return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n    </script>`;
   });
-  page = page.replace(/(<meta property="article:published_time" content=")[^"]+/, `$1${published}T00:00:00Z`)
-    .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${modified}T00:00:00Z`);
+  page = page.replace(/(<meta property="article:published_time" content=")[^"]+/, `$1${socialDate('published', published)}`)
+    .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', modified)}`);
   if (page !== template) page = page.replace(/("dateModified": ")[^"]+/, `$1${today}`)
-    .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${today}T00:00:00Z`);
+    .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', today)}`);
   return page;
 }
 
