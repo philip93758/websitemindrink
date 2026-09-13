@@ -1,7 +1,7 @@
 export const EPISODE12_SLUG = 'mesopotamia-beer-written-records.html';
 export const EPISODE12_SOURCE = 'Mesopotamia - What the First Written Records Tell Us About Beer';
 export const EPISODE12_ASSETS = 'assets/science/history/episode-1-2';
-export const EPISODE12_STYLES = 'science-20260912-episode12';
+export const EPISODE12_STYLES = 'qa-20260913a';
 
 // Interface copy only. Article titles, prose, captions and references come from
 // the approved Atrium Markdown, not from a second editorial copy in this repo.

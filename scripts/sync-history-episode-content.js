@@ -236,7 +236,7 @@ function figureHtml(key, edition) {
   const portraitClass = figure.portrait ? ' history-figure--portrait' : '';
   return [
     `<figure class="history-figure${portraitClass}">`,
-    `    <img src="/assets/science/history/${figure.file}" alt="${escapeHtml(edition.alt[key])}" width="${figure.width}" height="${figure.height}" loading="lazy" decoding="async">`,
+    `    <img src="/assets/science/history/${figure.file}" alt="${escapeHtml(edition.alt[key])}" width="${figure.width}" height="${figure.height}" style="--history-image-ratio: ${figure.width} / ${figure.height}" loading="lazy" decoding="async">`,
     `    <figcaption>${escapeHtml(edition.captions[key])} <span class="history-image-credit">${creditHtml(key)}</span></figcaption>`,
     '</figure>',
   ].join('\n');

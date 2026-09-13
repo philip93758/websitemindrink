@@ -254,7 +254,7 @@ function getInputHint({ volumeMl, abvPercent, quantity }) {
     return copy.enterDetails;
   }
 
-  if (quantity < MIN_ADD_QUANTITY) {
+  if (quantity < MIN_ADD_QUANTITY || !Number.isInteger(quantity)) {
     return copy.enterDetails;
   }
 
@@ -527,24 +527,26 @@ function syncAddButton() {
   addRowBtn.disabled = hint !== '' || !result.isValid;
 }
 
-function renderCalculator() {
-  syncEditorFields();
+function renderCalculator(syncFields = true) {
+  if (syncFields) syncEditorFields();
   renderDraftResults();
   renderTotalRows();
   renderTotalTotals();
   syncAddButton();
 }
 
-function parseNumericInput(value, integer = false) {
+function parseNumericInput(value) {
   if (value === '') return null;
-  const parsed = integer ? parseInt(value, 10) : parseFloat(value);
+  const parsed = Number(value);
   return Number.isNaN(parsed) ? null : parsed;
 }
 
-function updateDraft(updater) {
+function updateDraft(updater, syncFields = false) {
   trackCalculatorStarted();
   updater(calculatorState.draftDrink);
-  renderCalculator();
+  // Preserve the active editor's raw text and caret while typing, including
+  // intermediate decimal values. Preset changes explicitly replace fields.
+  renderCalculator(syncFields);
 }
 
 function trackCompletedDraft() {
@@ -594,7 +596,7 @@ function setupEditorEvents() {
         draft.drinkType = preset.id;
         draft.volumeMl = preset.defaultVolumeMl;
         draft.abvPercent = preset.defaultAbvPercent;
-      });
+      }, true);
       trackCompletedDraft();
     });
   }
@@ -620,7 +622,7 @@ function setupEditorEvents() {
   if (quantityInput) {
     quantityInput.addEventListener('input', (event) => {
       updateDraft((draft) => {
-        draft.quantity = parseNumericInput(event.target.value, true);
+        draft.quantity = parseNumericInput(event.target.value);
       });
     });
     quantityInput.addEventListener('change', trackCompletedDraft);

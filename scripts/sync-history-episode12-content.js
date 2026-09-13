@@ -35,7 +35,7 @@ function figureHtml(block, locale, key) {
     : '(max-width: 480px) 72vw, (max-width: 767px) 480px, (max-width: 900px) calc(100vw - 40px), 840px';
   const srcset = widths.map(width => `/${EPISODE12_ASSETS}/${imageVariant(image, width)} ${width}w`).join(', ');
   return `<figure class="${classes}" data-illustration="${key}">
-    <img src="/${EPISODE12_ASSETS}/${imageVariant(image, widths[1])}" srcset="${srcset}" sizes="${sizes}" alt="${escapeHtml(alt)}" width="${image.width}" height="${image.height}" ${key === 'ur-ziggurat' ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async">
+    <img src="/${EPISODE12_ASSETS}/${imageVariant(image, widths[1])}" srcset="${srcset}" sizes="${sizes}" alt="${escapeHtml(alt)}" width="${image.width}" height="${image.height}" style="--history-image-ratio: ${image.width} / ${image.height}" ${key === 'ur-ziggurat' ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async">
     <figcaption>${inline(caption.replace(/\n/g, ' '), locale, false)} <span class="history-image-credit">${inline(credit.replace(/\n/g, ' '), locale, false)}</span></figcaption>
 </figure>`;
 }

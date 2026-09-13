@@ -2652,13 +2652,14 @@ body.history-article-page {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: var(--history-image-ratio);
     border: 1px solid #dedad3;
     border-radius: 1px;
     background: var(--white);
 }
 
 .history-figure--portrait img {
-    width: auto;
+    width: min(100%, calc(760px * var(--history-image-ratio)));
     max-width: 100%;
     max-height: 760px;
     margin: 0 auto;
@@ -2852,8 +2853,13 @@ body.history-article-page {
     line-height: 1.4;
 }
 
-.history-records-page [id] {
+.history-article-page [id] {
     scroll-margin-top: 100px;
+}
+
+/* Source URLs are text spans, not just links. Keep them inside phone layouts. */
+.methodology-page .small-muted {
+    overflow-wrap: anywhere;
 }
 
 @media (max-width: 600px) {
@@ -3074,8 +3080,12 @@ body.history-article-page {
         margin: 38px auto 44px;
     }
 
-    .history-figure img {
-        width: auto;
+    .history-figure img,
+    .history-figure--portrait img {
+        /* Definite width reserves lazy-image space before decoding. Limit
+           width by the proportional height cap, instead of stretching. */
+        width: min(100%, calc(50vh * var(--history-image-ratio)), calc(420px * var(--history-image-ratio)));
+        width: min(100%, calc(50svh * var(--history-image-ratio)), calc(420px * var(--history-image-ratio)));
         max-width: 100%;
         max-height: min(50vh, 420px);
         max-height: min(50svh, 420px);
@@ -3096,7 +3106,10 @@ body.history-article-page {
         width: min(72vw, 320px);
     }
 
-    .history-figure img {
+    .history-figure img,
+    .history-figure--portrait img {
+        width: min(100%, calc(44vh * var(--history-image-ratio)), calc(360px * var(--history-image-ratio)));
+        width: min(100%, calc(44svh * var(--history-image-ratio)), calc(360px * var(--history-image-ratio)));
         max-height: min(44vh, 360px);
         max-height: min(44svh, 360px);
     }
