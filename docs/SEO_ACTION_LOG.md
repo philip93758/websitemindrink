@@ -37,6 +37,16 @@ Recorded 2026-09-13 after live verification. This is the production evidence for
 | Not claimed | Search ranking, crawl processing, or traffic effect. Sitemap `lastmod` is not this deployment timestamp. |
 | Not done in this closeout | Google Search Console URL Inspection or sitemap resubmission; Atrium PostHog adapter allowlist for `app_cta_viewed` and `app_store_clicked`; post-release GSC comparison windows |
 
+## CONTENT-20260913-01 — Episode 1.2 French revision
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` and `IMAGE_SELECTION.md` (“French revision, 13 September 2026”). The Atrium French markdown was not edited from this repo.
+- Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions keep their published prose and the original Puabi-seal / Hammurabi-inscription figures.
+- Structure: French standfirst (`###` heading plus four paragraphs) now sits under the title; the ziggurat photograph follows that standfirst. Extra `###` subsections are preserved. Hub card title/description and Episode 1.1 next-link title are unchanged.
+- Images: French figures 4–5 become the Met straw-drinking seal (`met-324572-straw-seal`) and Mbzt Hammurabi stele (`hammurabi-stele-mbzt`). Original JPEGs are stored byte-for-byte; WebP variants are proportional quality-84 resizes. The replaced photographs remain in the asset folder for the other seven languages. [Provenance](../assets/science/history/episode-1-2/README.md).
+- Metadata: keep French `datePublished` 2026-09-13 and `+02:00` social timestamps. `dateModified` may stay 2026-09-13 when the revision lands on that calendar date.
+- Publication remains a separate step. Do not treat this French-only import as a production release or as a recrawl date.
+
 ## RELEASE-20260913-01 — Episode 1.2 release-date preparation
 
 - User-approved intended release date: 2026-09-13. Set Episode 1.2 publication/modification metadata to that date in all eight languages; social timestamps explicitly use the local +02:00 offset. Earlier episodes and articles retain their original publication dates.

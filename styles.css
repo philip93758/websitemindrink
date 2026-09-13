@@ -2774,6 +2774,28 @@ body.history-article-page {
     margin-bottom: 0;
 }
 
+.history-records-page .history-subtitle {
+    max-width: 740px;
+    margin: 18px 0 20px;
+}
+
+.history-records-page .history-standfirst {
+    max-width: 740px;
+    margin: 0 0 8px;
+}
+
+.history-records-page .history-standfirst p {
+    margin: 0 0 18px;
+    color: #373431;
+    font-size: 18px;
+    line-height: 1.68;
+}
+
+.history-records-page [data-illustration="hammurabi-stele"] img {
+    max-width: min(100%, 1215px);
+    margin-inline: auto;
+}
+
 .history-source-comparison {
     margin: 54px 0;
 }

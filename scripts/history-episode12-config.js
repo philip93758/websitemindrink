@@ -1,7 +1,7 @@
 export const EPISODE12_SLUG = 'mesopotamia-beer-written-records.html';
 export const EPISODE12_SOURCE = 'Mesopotamia - What the First Written Records Tell Us About Beer';
 export const EPISODE12_ASSETS = 'assets/science/history/episode-1-2';
-export const EPISODE12_STYLES = 'qa-20260913a';
+export const EPISODE12_STYLES = 'fr-20260913a';
 
 // Interface copy only. Article titles, prose, captions and references come from
 // the approved Atrium Markdown, not from a second editorial copy in this repo.
@@ -24,7 +24,15 @@ export const EPISODE12_IMAGES = {
   'ur-houses': { file: 'ur-houses-courtyard-1932.jpg', width: 4537, height: 3379, sha256: 'df11094226def97c1383e9f681c6a4499ab97b85d18c013aa10a4edc0a071ec7' },
   'puabi-related-seal': { file: 'puabi-inscribed-seal-mcphee.jpg', width: 816, height: 399, sha256: 'a531b5376d527f2b7638749afb8ff03d649e8815eb555c3d4477cb92cd4f3502' },
   'hammurabi-inscription': { file: 'hammurabi-inscription-rama.jpg', width: 5616, height: 3744, sha256: 'e93e208606fab1e2fb307da97fea03235177630ce34396929b111638bd7799c7' },
+  'straw-drinking-seal': { file: 'met-324572-straw-seal.jpg', width: 4000, height: 2825, sha256: '2c62664b2c3186711e706b3be0fa7a70cb530d6a7d8ab2467bf82572426f2794' },
+  'hammurabi-stele': { file: 'hammurabi-stele-mbzt.jpg', width: 1215, height: 2000, sha256: 'bd1724079537e76a56215f9a3b5dde69ee508a3b40ae2ca657bebc0af2653442' },
 };
+
+export const EPISODE12_DEFAULT_FIGURES = ['ur-ziggurat', 'malt-barley-tablet', 'ur-houses', 'puabi-related-seal', 'hammurabi-inscription'];
+export const EPISODE12_LOCALE_FIGURES = {
+  fr: ['ur-ziggurat', 'malt-barley-tablet', 'ur-houses', 'straw-drinking-seal', 'hammurabi-stele'],
+};
+export const episode12Figures = locale => EPISODE12_LOCALE_FIGURES[locale] || EPISODE12_DEFAULT_FIGURES;
 
 export const editionPrefix = locale => locale === 'en' ? '' : `${locale}/`;
 export const imageWidths = image => [...new Set([480, Math.min(960, image.width), Math.min(1440, image.width)])];

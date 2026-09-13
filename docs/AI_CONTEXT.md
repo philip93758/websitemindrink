@@ -85,14 +85,15 @@ The approved eight-language source is Atrium's `docs/marketing/Content/History s
 
 ```bash
 npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2"
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2" --locale fr
 npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2" --check
 npm run sitemap:update
 npm run build
 npm test
 ```
 
-- The route is `science/mesopotamia-beer-written-records.html` under each language prefix. The importer updates the matching Science hub card/CollectionPage, Episode 1.1 next link, and missing sitemap entries. It does not publish or commit.
-- Source markers control all five image positions and the source-comparison table. Preserve the opening image below the title and before the first paragraph, the five introduction paragraphs, four main headings (including references), all 11 references and the comparison's four source types. Unsupported structural changes must fail for review, not silently omit content.
+- The route is `science/mesopotamia-beer-written-records.html` under each language prefix. The importer always validates all eight sources and all seven approved originals before writing. `--locale fr` writes only the French article (and French hub/Episode 1.1 only if their substance changed). A full sync still writes all eight editions. Missing sitemap entries are added; `sitemap:update` refreshes `lastmod` after a significant page change. It does not publish or commit.
+- Source markers control all five image positions and the source-comparison table. English and the six other translations keep the opening image immediately below the title, five introduction paragraphs, four main headings (including references), all 11 references and the comparison's four source types. The French file is a documented structural variant from 13 September 2026: a `###` standfirst of four paragraphs, then the opening image, extra `###` subsections, and two replacement figures (`straw-drinking-seal`, `hammurabi-stele`). Do not restyle French to match English. Unsupported structural changes must fail for review, not silently omit content.
 - The comparison is a semantic table on desktop and stacks with localized labels on mobile. Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
 - Approved original images and responsive derivatives live in `assets/science/history/episode-1-2/`. Its [provenance record](../assets/science/history/episode-1-2/README.md) documents rights, hashes and regeneration. Normal content sync needs no image-processing dependency.
 - Run both episode importers with `--check` after changing series navigation. Episode 1.1 now uses the approved next page title/number rather than its outdated planned teaser.

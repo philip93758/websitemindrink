@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, EPISODE12_STYLES, editionPrefix, imageVariant, imageWidths } from './history-episode12-config.js';
+import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, EPISODE12_STYLES, editionPrefix, episode12Figures, imageVariant, imageWidths } from './history-episode12-config.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const ORIGIN = 'https://mindrink.me';
@@ -69,7 +69,7 @@ export function parseEpisode12(markdown, locale) {
     figures.push({ key, html: figureHtml(block.trim(), locale, key) });
     return `FIGURETOKEN${figures.length - 1}ENDTOKEN`;
   });
-  if (figures.map(figure => figure.key).join() !== Object.keys(EPISODE12_IMAGES).join()) throw new Error(`Review figure order: ${locale}`);
+  if (figures.map(figure => figure.key).join() !== episode12Figures(locale).join()) throw new Error(`Review figure order: ${locale}`);
   const comparisons = [];
   source = source.replace(/<!-- comparison: reading-the-sources -->\s*([\s\S]*?)\s*<!-- \/comparison -->/g, (_match, block) => {
     comparisons.push(comparisonHtml(block, locale));
@@ -77,11 +77,37 @@ export function parseEpisode12(markdown, locale) {
   });
   if (comparisons.length !== 1 || /<!--|!\[/.test(source)) throw new Error(`Unsupported source markers: ${locale}`);
   const blocks = source.split(/\n\s*\n/).map(block => block.trim()).filter(Boolean);
-  if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') throw new Error(`Expected opening image immediately below title: ${locale}`);
-  const intro = [];
-  while (blocks.length && !blocks[0].startsWith('## ')) intro.push(blocks.shift());
-  if (intro.length !== 5) throw new Error(`Review introduction structure: ${locale}`);
-  const html = intro.slice(1).map(text => `<p>${inline(text.replace(/\n/g, ' '), locale)}</p>`);
+  const usedIds = new Set(['accounts-title', 'vessel-title', 'people-gods-title', 'references-title', 'reading-sources-title']);
+  const headingId = text => {
+    const base = text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48).replace(/-+$/g, '') || 'subhead';
+    let id = base;
+    let n = 2;
+    while (usedIds.has(id)) id = `${base}-${n++}`;
+    usedIds.add(id);
+    return id;
+  };
+  let standfirst = null;
+  if (blocks[0]?.startsWith('### ')) {
+    const heading = inline(blocks.shift().slice(4).replace(/\n/g, ' '), locale, false);
+    const paragraphs = [];
+    while (blocks.length && !blocks[0].startsWith('## ') && !blocks[0].startsWith('### ') && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0]) && blocks[0] !== '---') {
+      paragraphs.push(inline(blocks.shift().replace(/\n/g, ' '), locale));
+    }
+    if (paragraphs.length !== 4) throw new Error(`Review standfirst structure: ${locale}`);
+    standfirst = { heading, paragraphs };
+  }
+  if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') {
+    throw new Error(standfirst ? `Expected opening image after standfirst: ${locale}` : `Expected opening image immediately below title: ${locale}`);
+  }
+  let deck = null;
+  const html = [];
+  if (!standfirst) {
+    const intro = [];
+    while (blocks.length && !blocks[0].startsWith('## ')) intro.push(blocks.shift());
+    if (intro.length !== 5) throw new Error(`Review introduction structure: ${locale}`);
+    deck = inline(intro[0].replace(/\n/g, ' '), locale);
+    html.push(...intro.slice(1).map(text => `<p>${inline(text.replace(/\n/g, ' '), locale)}</p>`));
+  }
   const ids = ['accounts-title', 'vessel-title', 'people-gods-title', 'references-title'];
   let section = -1;
   let open = false;
@@ -107,6 +133,9 @@ export function parseEpisode12(markdown, locale) {
       if (open) html.push('</section>');
       open = false;
       html.push('<hr class="history-section-break">');
+    } else if (block.startsWith('### ')) {
+      const heading = block.slice(4).replace(/\n/g, ' ');
+      html.push(`<h3 id="${headingId(heading)}">${inline(heading, locale, false)}</h3>`);
     } else {
       if (/^(#|\||\*\*|<!--)/.test(block)) throw new Error(`Unsupported Markdown block: ${locale}: ${block.slice(0, 60)}`);
       html.push(`<p>${inline(block.replace(/\n/g, ' '), locale)}</p>`);
@@ -116,7 +145,7 @@ export function parseEpisode12(markdown, locale) {
   html.push('</ol>', '</section>');
   const body = html.join('\n');
   if ([...body.matchAll(/href="#ref-(\d+)"/g)].some(match => Number(match[1]) > referenceCount)) throw new Error(`Unresolved citation: ${locale}`);
-  return { title, lead: figures[0].html, deck: inline(intro[0].replace(/\n/g, ' '), locale), body };
+  return { title, lead: figures[0].html, deck, standfirst, body };
 }
 
 function renderPage(template, previous, parsed, locale, today) {
@@ -141,8 +170,12 @@ function renderPage(template, previous, parsed, locale, today) {
                 <p class="history-series-label">${series}</p>
                 <h1 class="history-title">${escapeHtml(parsed.title)}</h1>
                 ${meta}
+                ${parsed.standfirst ? `<p class="history-subtitle">${parsed.standfirst.heading}</p>
+                <div class="history-standfirst">
+                    ${parsed.standfirst.paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('\n                    ')}
+                </div>` : ''}
                 ${parsed.lead}
-                <p class="history-deck">${parsed.deck}</p>
+                ${parsed.deck ? `<p class="history-deck">${parsed.deck}</p>` : ''}
             </div>
         </header>
         <article class="history-article">
@@ -183,8 +216,12 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   return page;
 }
 
-export function syncEpisode12(sourceDirectory, { check = false } = {}) {
+export function syncEpisode12(sourceDirectory, { check = false, locales } = {}) {
   const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());
+  const requested = locales || Object.keys(EPISODE12_LOCALES);
+  for (const locale of requested) {
+    if (!EPISODE12_LOCALES[locale]) throw new Error(`Unknown Episode 1.2 locale: ${locale}`);
+  }
   const changes = [];
   const queue = (path, text) => { if (!existsSync(path) || read(path) !== text) changes.push({ path, text }); };
   // Validate every source/asset before writing any of the eight editions.
@@ -196,8 +233,12 @@ export function syncEpisode12(sourceDirectory, { check = false } = {}) {
       if (!existsSync(join(ROOT, EPISODE12_ASSETS, imageVariant(image, width)))) throw new Error('Run the Episode 1.2 image builder first.');
     }
   }
-  for (const locale of Object.keys(EPISODE12_LOCALES)) {
-    const parsed = parseEpisode12(read(join(sourceDirectory, `${EPISODE12_SOURCE}${locale === 'en' ? '' : '.' + locale}.md`)), locale);
+  const parsedByLocale = Object.fromEntries(Object.keys(EPISODE12_LOCALES).map(locale => [
+    locale,
+    parseEpisode12(read(join(sourceDirectory, `${EPISODE12_SOURCE}${locale === 'en' ? '' : '.' + locale}.md`)), locale),
+  ]));
+  for (const locale of requested) {
+    const parsed = parsedByLocale[locale];
     const prefix = editionPrefix(locale);
     const previousPath = join(ROOT, prefix, 'science/who-invented-alcohol.html');
     const previous = read(previousPath);
@@ -206,28 +247,35 @@ export function syncEpisode12(sourceDirectory, { check = false } = {}) {
     queue(path, renderPage(template, previous, parsed, locale, today));
 
     const hubPath = join(ROOT, prefix, 'science/index.html');
-    let hub = refreshStyles(read(hubPath));
-    const firstCard = hub.match(/<article class="science-episode-card">[\s\S]*?<\/article>/)[0];
+    const hubSource = read(hubPath);
+    const firstCard = hubSource.match(/<article class="science-episode-card">[\s\S]*?<\/article>/)[0];
     const card = firstCard.replaceAll('1.1', '1.2').replaceAll('who-invented-alcohol.html', EPISODE12_SLUG)
       .replace(/<h3>[^<]+<\/h3>/, `<h3>${escapeHtml(parsed.title)}</h3>`)
       .replace(/(<\/h3>\s*<p>)[\s\S]*?(<\/p>)/, `$1${escapeHtml(EPISODE12_LOCALES[locale].description)}$2`);
-    const currentCard = [...hub.matchAll(/<article class="science-episode-card">[\s\S]*?<\/article>/g)].map(match => match[0]).find(html => html.includes(EPISODE12_SLUG));
-    hub = currentCard ? hub.replace(currentCard, card) : hub.replace(firstCard, `${firstCard}\n                ${card}`);
-    hub = hub.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_match, json) => {
-      const schema = JSON.parse(json);
-      const url = `${ORIGIN}/${prefix}science/${EPISODE12_SLUG}`;
-      schema.hasPart = schema.hasPart.filter(part => part.url !== url);
-      schema.hasPart.push({ '@type': 'Article', headline: parsed.title, url });
-      return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
-    });
-    queue(hubPath, hub);
+    const currentCard = [...hubSource.matchAll(/<article class="science-episode-card">[\s\S]*?<\/article>/g)].map(match => match[0]).find(html => html.includes(EPISODE12_SLUG));
+    if (!currentCard || currentCard !== card) {
+      let hub = refreshStyles(hubSource);
+      hub = currentCard ? hub.replace(currentCard, card) : hub.replace(firstCard, `${firstCard}\n                ${card}`);
+      hub = hub.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_match, json) => {
+        const schema = JSON.parse(json);
+        const url = `${ORIGIN}/${prefix}science/${EPISODE12_SLUG}`;
+        schema.hasPart = schema.hasPart.filter(part => part.url !== url);
+        schema.hasPart.push({ '@type': 'Article', headline: parsed.title, url });
+        return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
+      });
+      queue(hubPath, hub);
+    }
 
-    const nextLabel = previous.match(/<div class="history-next">\s*<p>([^<]+)<\/p>/)[1];
     const episodeLabel = previous.match(/<p class="history-meta"><span>[^<]+<\/span><span>([^<]+)<\/span>/)[1].replace('1.1', '1.2');
-    let linkedPrevious = refreshStyles(previous).replace(/<div class="history-next">[\s\S]*?<\/div>/, `<div class="history-next">\n                        <p>${nextLabel}</p>\n                        <strong><a href="/${prefix}science/${EPISODE12_SLUG}" rel="next">${episodeLabel} — ${escapeHtml(parsed.title)}</a></strong>\n                    </div>`);
-    if (linkedPrevious !== previous) linkedPrevious = linkedPrevious.replace(/("dateModified": ")[^"]+/, `$1${today}`)
-      .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${today}T00:00:00Z`);
-    queue(previousPath, linkedPrevious);
+    const nextTitle = `${episodeLabel} — ${escapeHtml(parsed.title)}`;
+    if (!previous.includes(`rel="next">${nextTitle}`)) {
+      const nextLabel = previous.match(/<div class="history-next">\s*<p>([^<]+)<\/p>/)[1];
+      const currentNext = previous.match(/<div class="history-next">[\s\S]*?<\/div>/)[0];
+      let linkedPrevious = refreshStyles(previous).replace(currentNext, `<div class="history-next">\n                        <p>${nextLabel}</p>\n                        <strong><a href="/${prefix}science/${EPISODE12_SLUG}" rel="next">${nextTitle}</a></strong>\n                    </div>`);
+      linkedPrevious = linkedPrevious.replace(/("dateModified": ")[^"]+/, `$1${today}`)
+        .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${today}T00:00:00Z`);
+      queue(previousPath, linkedPrevious);
+    }
   }
   const sitemapPath = join(ROOT, 'sitemap.xml');
   let sitemap = read(sitemapPath);
@@ -240,10 +288,16 @@ export function syncEpisode12(sourceDirectory, { check = false } = {}) {
   queue(sitemapPath, sitemap);
   if (check && changes.length) throw new Error(`Episode 1.2 differs from source: ${changes.map(change => change.path).join(', ')}`);
   if (!check) for (const { path, text } of changes) writeFileSync(path, text.replaceAll('\n', '\r\n'));
-  console.log(check ? 'Verified all eight Episode 1.2 editions, navigation and approved originals.' : `Synchronized Episode 1.2: ${changes.length} files updated.`);
+  const scope = requested.length === Object.keys(EPISODE12_LOCALES).length ? 'all eight Episode 1.2 editions' : requested.join(', ');
+  console.log(check ? `Verified ${scope}, navigation and approved originals.` : `Synchronized Episode 1.2 (${scope}): ${changes.length} files updated.`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  if (!process.argv[2]) throw new Error('Usage: node scripts/sync-history-episode12-content.js <source-directory> [--check]');
-  syncEpisode12(resolve(process.argv[2]), { check: process.argv.includes('--check') });
+  const argv = process.argv.slice(2);
+  const check = argv.includes('--check');
+  const localeIndex = argv.indexOf('--locale');
+  const locales = localeIndex >= 0 ? [argv[localeIndex + 1]].filter(Boolean) : undefined;
+  const source = argv.find((arg, index) => !arg.startsWith('--') && argv[index - 1] !== '--locale');
+  if (!source) throw new Error('Usage: node scripts/sync-history-episode12-content.js <source-directory> [--check] [--locale fr]');
+  syncEpisode12(resolve(source), { check, locales });
 }
