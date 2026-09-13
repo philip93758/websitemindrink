@@ -20,10 +20,28 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## RELEASE-20260913-PROD — Verified production deployment
+
+Recorded 2026-09-13 after live verification. This is the production evidence for the September website batch. Commit dates, article `datePublished`/`dateModified`, and sitemap `lastmod` remain separate and do not replace this timestamp.
+
+| Field | Record |
+|---|---|
+| Production revision | `2e32be5d6e6a5875ec04a283470c440572736a7a` — Align Episode 1.2 metadata with planned September 13 release |
+| Previous live revision | `cb7ad1f` (GitHub Pages deploy 2026-09-01) |
+| Production time | 2026-09-13 12:25:03 +02:00 (deploy job completed 2026-09-13T10:25:03Z) |
+| Workflow | [Deploy website to GitHub Pages #21](https://github.com/philip93758/websitemindrink/actions/runs/34751766880), `workflow_dispatch` on `main`. Build and deploy succeeded. Same-commit push run [#20](https://github.com/philip93758/websitemindrink/actions/runs/34749295825) stayed queued and never published. |
+| Host | `https://mindrink.me` |
+| Live `Last-Modified` | Sun, 13 Sep 2026 10:24:58 GMT |
+| Action IDs in this release | CONTENT-20260912-01; RELEASE-20260912-SEO-UX (SEO-20260912-01, SEO-20260912-02, SEO-20260912-03, UX-20260912-01, SEO-20260912-04); SEO-20260912-05; SEO-20260912-06; CONTENT-20260912-02; QA-20260913-01; RELEASE-20260913-01 |
+| Live verification | All eight Episode 1.2 URLs 200; Science hub Episode 1.2 card present; sitemap lists the eight Mesopotamia URLs with alternates; opening WebP 200; homepage and calculator 200; EN article inspected in-browser. Live Episode 1.2 `datePublished`/`dateModified` is 2026-09-13 (`article:published_time`/`article:modified_time` `2026-09-13T00:00:00+02:00`). |
+| Not claimed | Search ranking, crawl processing, or traffic effect. Sitemap `lastmod` is not this deployment timestamp. |
+| Not done in this closeout | Google Search Console URL Inspection or sitemap resubmission; Atrium PostHog adapter allowlist for `app_cta_viewed` and `app_store_clicked`; post-release GSC comparison windows |
+
 ## RELEASE-20260913-01 — Episode 1.2 release-date preparation
 
 - User-approved intended release date: 2026-09-13. Set Episode 1.2 publication/modification metadata to that date in all eight languages; social timestamps explicitly use the local +02:00 offset. Earlier episodes and articles retain their original publication dates.
 - The importer preserves explicitly set matching-date social timestamps on no-op imports. This is release preparation, not evidence of a live publication. Dev push/CI is requested; main deployment is not authorized in this step. Record the actual deployment separately and revisit the date if release slips.
+- Production (2026-09-13): shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Live Episode 1.2 publication/modification metadata matches the prepared 2026-09-13 values. The verified first-publication time is the Pages deploy above, not this metadata-prep commit.
 
 ## QA-20260913-01 — Pre-release corrections on dev
 
@@ -36,10 +54,11 @@ For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `bl
 - Regression coverage: 25 additional default tests protect the fixes. Optional `npm run test:browser` exercises actual typing and delayed/cold image layout in all eight languages and both episodes; its runner stays under `tools/`, outside the public deployment inventory. The existing content/structure baseline still applies, with only stylesheet cache tokens and independently tested modification timestamps normalized.
 - Verified locally: 178 default tests, 88 durable browser checks and the earlier 90-check interactive journey suite pass. Both source importers pass read-only checks; build, analytics-loader and sitemap validation pass. The refreshed 208-page SEO/link audit has no errors or FAQ mismatch warnings; all 5,061 internal links and 972 fragments resolve. The seven logo-click browser tests retain locale. Only the pre-existing optional methodology Article-image recommendation remains in that schema scan. EN desktop and FR mobile article screenshots inspected; no cropping, stretching or overflow observed.
 - Publication remains a separate step: confirm Episode 1.2's real first-publication date and validate the live deployment after release. No production analytics, GSC requests or deployment actions performed here.
+- Production (2026-09-13): shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Live checks covered all eight Episode 1.2 editions, the Science hub card, sitemap entries and the opening image. Calculator typing and cold-load citation jumps were not re-tested on production in this closeout.
 
 ## CONTENT-20260912-02 — History Episode 1.2
 
-- Status: implemented on local website `dev`, based on `a9be5c1`; implementation is recorded in the commit adding this entry. **Not pushed or deployed by this task**. Actual production revision/time and deployment evidence remain pending. Article source dates and sitemap dates do not establish a production release.
+- Status: implemented on local website `dev`, based on `a9be5c1`; implementation is recorded in the commit adding this entry. **Not pushed or deployed by this task**. Article source dates and sitemap dates do not establish a production release. Production evidence was added later under [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment).
 - Approved source: Atrium `docs/marketing/Content/History series/Ep 1.2/`, eight language editions of *Mesopotamia: What the First Written Records Tell Us About Beer*, including the 2026-09-12 illustration selection. Latest source-content revision at intake: `5f7f160` (prose polish across eight languages).
 - New URLs: `science/mesopotamia-beer-written-records.html` under each of the eight language prefixes above. Existing URLs updated: each localized `science/` hub and `science/who-invented-alcohol.html`.
 - Content: preserve the approved article prose, five captioned/credited images, all 11 numbered references and four-row source comparison. Same section roles and interface coverage in every language. The opening photograph precedes the introduction; the comparison is a semantic table that stacks with localized labels on phones. No new claims, medical advice, calculator CTA or unpublished next-episode teaser.
@@ -49,7 +68,8 @@ For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `bl
 - Reproducibility: dedicated Episode 1.2 importer with read-only `--check`, validation before writes and no-op date preservation; Episode 1.1 importer retains the approved next-page link/title. [Workflow](AI_CONTEXT.md#episode-12--mesopotamia), [image provenance](../assets/science/history/episode-1-2/README.md).
 - Local verification: build, 208-page analytics-loader and sitemap checks; 153 regression tests passed after updating the old 200-page inventory expectation. Browser checks compared every approved source paragraph/caption/credit/table cell and image alt in all eight languages, exercised 40 layouts (320/375/390/768/1280 px) and eight hub → Episode 1.2 → previous → next journeys. No missing local resources, unresolved citations, horizontal page overflow or browser errors. EN desktop and FR/JA mobile visuals reviewed. Local artifacts are gitignored in `docs/Ai/reviews/episode-1-2-2026-09-12/`.
 - Release follow-up: record the actual deployment revision/time and verify all eight live editions, sitemap and image loads before treating this as published. No search-traffic or ranking effect is claimed.
-- QA follow-up (2026-09-13): committing this implementation is not release sign-off. Fresh browser QA found decimal ABV typing corruption in all eight calculators (also reproduced on main) and cold-load mobile citation jumps missing Episode 1.2 references as lazy images acquire layout space. The earlier stale article modification metadata, FAQ schema/content mismatches and methodology source-URL overflow also remain open. No fixes for these findings are included in this content commit. Build and 153 regression tests pass, but do not cover these browser failures. Local evidence: `docs/Ai/reviews/qa-round-2026-09-12/report.md` (gitignored). Confirm Episode 1.2's actual first-publication date at release.
+- Production (2026-09-13): shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). All eight live editions, sitemap entries and the opening image were verified. Treat this as first publication of Episode 1.2. No search-traffic or ranking effect is claimed.
+- QA follow-up (2026-09-13): committing this implementation is not release sign-off. Fresh browser QA found decimal ABV typing corruption in all eight calculators (also reproduced on main) and cold-load mobile citation jumps missing Episode 1.2 references as lazy images acquire layout space. The earlier stale article modification metadata, FAQ schema/content mismatches and methodology source-URL overflow also remain open. No fixes for these findings are included in this content commit. Build and 153 regression tests pass, but do not cover these browser failures. Local evidence: `docs/Ai/reviews/qa-round-2026-09-12/report.md` (gitignored). Those QA items were later corrected in `01f98b2` (QA-20260913-01) and shipped in the same production release. First-publication date is recorded in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment).
 
 ## Historical register — backfilled 2026-09-12
 
@@ -67,7 +87,7 @@ Dates below are source-record or commit dates, not verified production timestamp
 | CONTENT-20260829-01 | 2026-08-29–30, `8b7c8d5`, `24a5e5a`, `242e508`, `4560cbd` | Science hub/history episode creation, localization, content and argument-map revisions. | Rollout times unverified. Record as concurrent content/discovery changes; do not attribute all whole-site movement to calculators. |
 | DECISION-20260831-01 | 2026-08-31 recorded owner decision | Reject direct-store calculator/answer-page conversion redesign; retain the Explore Mindrink educational journey. | Not implemented. This decision is not a deployed SEO action. |
 | UX-20260901-01 | 2026-09-01, `cb7ad1f` | Navigation/translation fixes: German, Spanish and Italian answer-page breadcrumbs; Japanese homepage and English FAQ links. | Rollout timestamp unverified. Exact affected pages are in the commit diff. |
-| CONTENT-20260912-01 | 2026-09-12, `0fecb5c` | Revised history episode synchronized across all eight languages. Pre-existing local commit before the SEO/UX implementation below. | Local `dev` commit, not pushed by this task as of this record. Must be included as a concurrent change if released with `c23908f`. |
+| CONTENT-20260912-01 | 2026-09-12, `0fecb5c` | Revised history episode synchronized across all eight languages. Pre-existing local commit before the SEO/UX implementation below. | Shipped with [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment) as a concurrent change alongside `c23908f`. Implementation date is not the production date. |
 
 Historical source records:
 
@@ -86,9 +106,9 @@ Historical source records:
 | Commit timestamp | 2026-09-12T18:59:14+02:00; source implementation time only |
 | Before revision | `0fecb5c`; the preceding history-episode change is preserved |
 | Branch/status at recording | Website `dev`; implemented and locally verified; not pushed or deployed by this task |
-| Actual production revision/time | **Pending verification — do not start a post-release window from the commit date** |
-| Deployment evidence | Pending: successful production deployment/run and revision, plus representative live-page verification |
-| Crawl observations after release | Not yet recorded; earlier inspection dates cannot describe this unreleased batch |
+| Actual production revision/time | `2e32be5` at 2026-09-13 12:25:03 +02:00 — see [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Do not start a post-release GSC window from the 2026-09-12 commit date. Exclude the partial 2026-09-13 release day. |
+| Deployment evidence | Pages run [#21](https://github.com/philip93758/websitemindrink/actions/runs/34751766880) succeeded; live `mindrink.me` verified 2026-09-13. This batch shipped with later September actions listed in that release record, not as `c23908f` alone. |
+| Crawl observations after release | Not yet recorded; URL Inspection crawl times are still unknown. |
 | Outcome | Not yet measurable; no production effect claimed |
 | Verification | 73 tests, build, 200-page analytics-loader check and 200-URL sitemap check passed; 32 responsive layout checks across eight languages |
 | Detailed local closeout | [Implementation closeout](Ai/active/seo-ux-2026-09-12/closeout.md), gitignored |
@@ -131,7 +151,7 @@ Historical source records:
 - Privacy constraints unchanged: no drink values, full destination URLs, persistent identity, replay, autocapture or cross-page person tracking; honor existing GPC/DNT/opt-out vetoes.
 - All 200 pages have an analytics-loader version change. Only eight calculators, eight comparisons and eight privacy pages have substantive page-copy changes in this batch; loader-only changes do not reset all sitemap dates.
 - Measurement dependency: after deployment, the Atrium reporting adapter must recognize both new events and distinguish their introduction date. Earlier missing events are **unmeasured**, not zero conversions. This website implementation did not modify that adapter.
-- Verification after release still needed: first live event payloads, privacy vetoes and event availability in reporting. No production events were sent during local verification.
+- Verification after release still needed: first live event payloads, privacy vetoes and event availability in reporting. No production events were sent during local verification. Production HTML/instrumentation shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment); live payload and Atrium adapter checks remain outstanding.
 - Contract: [Analytics documentation](ANALYTICS.md).
 
 #### SEO-20260912-04 — Multilingual comparison credibility
@@ -153,7 +173,7 @@ Historical source records:
 
 ### Follow-up protocol — manual, not a scheduled task
 
-1. Record the actual production revision/time and all action IDs included in that release. If a release contains intervening changes, list them rather than assuming it exactly equals `c23908f`.
+1. Record the actual production revision/time and all action IDs included in that release. If a release contains intervening changes, list them rather than assuming it exactly equals `c23908f`. Done for this batch in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment).
 2. Verify representative live versions for every changed language/page family. Record later URL Inspection observations with query time and returned crawl time; latest crawl alone does not identify the first processing of new copy.
 3. Freeze an appropriate pre-release baseline from complete finalized GSC days, using source-native date conventions. Start a post-release comparison only after the actual release, exclude its partial day, and clearly distinguish any optional post-crawl window.
 4. Prefer equal, non-overlapping 28-day windows with matching weekday coverage. At low volume, extend to 56 days if needed; an early 7/14-day check is directional, not a winner declaration or universal waiting rule.
@@ -168,13 +188,13 @@ Historical source records:
 | Field | Record |
 |---|---|
 | Approval | Owner approved the proposed additional language improvements and a local `dev` commit on 2026-09-12 |
-| Status | Implemented and locally verified; not pushed or deployed by this task |
+| Status | Implemented and locally verified at recording; later shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment) |
 | Implementation revision | The commit containing this entry and the unique trailer `SEO-Action: SEO-20260912-05`; parent `c23908f`. Resolve its hash and source timestamp with `git log -1 --format="%H %cI" --fixed-strings --grep="SEO-Action: SEO-20260912-05"` |
 | Changed URLs | `/fr/alcohol-unit-calculator/`, `/ja/alcohol-unit-calculator/`, `/id/alcohol-unit-calculator/` |
 | Changed slots | Exactly one meta description and matching Open Graph description per page |
 | Shared promise | Enter a drink's volume and alcohol strength, calculate pure alcohol grams, and compare named unit conventions |
 | Preserved | Entire remainder of each HTML page, including title/H1, visible content, examples, FAQs, formulas, controls, links, canonical/hreflang and CTA journey. No other language or comparison page rewritten |
-| Production revision/time and crawl evidence | Not yet recorded; implementation date is not a deployment or recrawl date |
+| Production revision/time and crawl evidence | Production: `2e32be5` / 2026-09-13 12:25:03 +02:00 in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Crawl evidence not yet recorded; implementation date is not a recrawl date. |
 | Evaluation | Pending post-release evidence; no traffic gain claimed |
 
 Exact wording applied to both description tags:
@@ -200,7 +220,7 @@ Verification on 2026-09-12:
 - Sitemap updater reported all values current: these pages already had the 2026-09-12 content date from the earlier batch. No sitemap URLs or dates were rewritten for this follow-up.
 - This commit also establishes the sanitized historical action log and its discoverability/maintenance rule in `docs/AI_CONTEXT.md`. Private reports remain untracked.
 
-Follow-up: if deployed with RELEASE-20260912-SEO-UX, list SEO-20260912-05 under that same actual release. The three pages also received the shared earlier content/UX changes, so their outcomes cannot isolate these descriptions. Apply the manual comparison protocol above and append a dated result linked to the actual release and private analysis. No recurring monitoring or production deployment was created here.
+Follow-up: SEO-20260912-05 shipped with RELEASE-20260912-SEO-UX in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). The three pages also received the shared earlier content/UX changes, so their outcomes cannot isolate these descriptions. Apply the manual comparison protocol above and append a dated result linked to the actual release and private analysis. No recurring monitoring was created here.
 
 ## 2026-09-12 follow-up — SEO-20260912-06
 
@@ -209,11 +229,11 @@ Follow-up: if deployed with RELEASE-20260912-SEO-UX, list SEO-20260912-05 under 
 | Field | Record |
 |---|---|
 | Approval | Owner approved the bounded accuracy/internal-link pass, website `dev` implementation, change-log update and local commit |
-| Status | Implemented and locally verified; not pushed or deployed by this task |
+| Status | Implemented and locally verified at recording; later shipped in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment) |
 | Implementation revision | Commit containing the unique trailer `SEO-Action: SEO-20260912-06`, based on `d6bb958`. Resolve its hash/time with `git log -1 --format="%H %cI" --fixed-strings --grep="SEO-Action: SEO-20260912-06"` |
 | Exact affected page families | `methodology.html`, `alcohol-units.html`, `blog/what-counts-as-a-drink-alcohol-units.html`, under each of the eight prefixes defined above: 24 pages |
 | Preserved | All titles/descriptions, headings, sections, table/list structure, existing link destinations, calculator code/controls, and app CTA journeys. No new FAQ questions or language-only sections |
-| Production revision/time and crawl evidence | Unknown until a separately authorized release is verified |
+| Production revision/time and crawl evidence | Production: `2e32be5` / 2026-09-13 12:25:03 +02:00 in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Crawl evidence not yet recorded. |
 | Search outcome | Not measured; this is a content-correctness and navigation improvement, not a demonstrated ranking lift |
 
 Accuracy changes within existing slots:
@@ -247,7 +267,7 @@ Verification on 2026-09-12:
 
 Primary references checked for the unit definitions (not a review of all medical guidance on these pages): [NHS alcohol units](https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/), [NIAAA US standard drinks](https://www.niaaa.nih.gov/alcohols-effects-health/what-standard-drink), [Australian standard drinks guide](https://www.health.gov.au/topics/alcohol/about-alcohol/standard-drinks-guide). Existing application risk thresholds, source editions and wider health recommendations remain outside this pass.
 
-Follow-up: add this action to the actual release record if shipped with earlier September actions. Use the dated baseline/report links and manual evaluation protocol above; correct explanatory text and links cannot be credited separately when released as a bundle. Later analysis should distinguish editorial correctness, crawler discovery, and measured traffic change.
+Follow-up: SEO-20260912-06 shipped with earlier September actions in [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). Use the dated baseline/report links and manual evaluation protocol above; correct explanatory text and links cannot be credited separately when released as a bundle. Later analysis should distinguish editorial correctness, crawler discovery, and measured traffic change.
 
 ## Reusable action entry
 
