@@ -37,15 +37,33 @@ Recorded 2026-09-13 after live verification. This is the production evidence for
 | Not claimed | Search ranking, crawl processing, or traffic effect. Sitemap `lastmod` is not this deployment timestamp. |
 | Not done in this closeout | Google Search Console URL Inspection or sitemap resubmission; Atrium PostHog adapter allowlist for `app_cta_viewed` and `app_store_clicked`; post-release GSC comparison windows |
 
+## RELEASE-20260913-PROD-FR — Verified French Episode 1.2 production deployment
+
+Recorded 2026-09-13 after live verification. This is a second production deploy the same day as [RELEASE-20260913-PROD](#release-20260913-prod--verified-production-deployment). It ships CONTENT-20260913-01 only; the other seven Episode 1.2 editions are unchanged.
+
+| Field | Record |
+|---|---|
+| Production revision | `e5c78325b1280dfc9973afde3f4bb305115d3012` — Import the approved French Episode 1.2 text and replacement images |
+| Also included | `080a846` — Record verified 13 September production deployment in the SEO action log (documentation only; not a public page change) |
+| Previous live revision | `2e32be5` at 2026-09-13 12:25:03 +02:00 |
+| Production time | 2026-09-13 17:25:32 +02:00 (deploy job completed 2026-09-13T15:25:28Z; live `Last-Modified` 15:25:32 GMT) |
+| Workflow | [Deploy website to GitHub Pages](https://github.com/philip93758/websitemindrink/actions/runs/34765531501), push to `main`. Build and deploy succeeded. |
+| Host | `https://mindrink.me` |
+| Live `Last-Modified` | Sun, 13 Sep 2026 15:25:32 GMT |
+| Action IDs in this release | CONTENT-20260913-01 |
+| Live verification | French Episode 1.2 200 with standfirst, straw-drinking seal and Hammurabi stele; both new WebPs 200; French Science hub 200; English Episode 1.2 200 still using the Puabi seal and Rama inscription close-up. French `datePublished` remains 2026-09-13 (`article:published_time` `2026-09-13T00:00:00+02:00`). |
+| Not claimed | Search ranking, crawl processing, or traffic effect. Sitemap `lastmod` is not this deployment timestamp. |
+| Not done in this closeout | Google Search Console URL Inspection or sitemap resubmission |
+
 ## CONTENT-20260913-01 — Episode 1.2 French revision
 
-- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Status: implemented on local website `dev`, then shipped in [RELEASE-20260913-PROD-FR](#release-20260913-prod-fr--verified-french-episode-12-production-deployment). Article dates and sitemap `lastmod` remain separate from the verified production time.
 - Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` and `IMAGE_SELECTION.md` (“French revision, 13 September 2026”). The Atrium French markdown was not edited from this repo.
 - Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions keep their published prose and the original Puabi-seal / Hammurabi-inscription figures.
 - Structure: French standfirst (`###` heading plus four paragraphs) now sits under the title; the ziggurat photograph follows that standfirst. Extra `###` subsections are preserved. Hub card title/description and Episode 1.1 next-link title are unchanged.
 - Images: French figures 4–5 become the Met straw-drinking seal (`met-324572-straw-seal`) and Mbzt Hammurabi stele (`hammurabi-stele-mbzt`). Original JPEGs are stored byte-for-byte; WebP variants are proportional quality-84 resizes. The replaced photographs remain in the asset folder for the other seven languages. [Provenance](../assets/science/history/episode-1-2/README.md).
 - Metadata: keep French `datePublished` 2026-09-13 and `+02:00` social timestamps. `dateModified` may stay 2026-09-13 when the revision lands on that calendar date.
-- Publication remains a separate step. Do not treat this French-only import as a production release or as a recrawl date.
+- Production (2026-09-13): shipped in [RELEASE-20260913-PROD-FR](#release-20260913-prod-fr--verified-french-episode-12-production-deployment). Do not treat sitemap `lastmod` or article dates as the live publication time. No search-traffic or ranking effect is claimed.
 
 ## RELEASE-20260913-01 — Episode 1.2 release-date preparation
 
