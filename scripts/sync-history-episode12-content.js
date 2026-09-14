@@ -93,7 +93,7 @@ export function parseEpisode12(markdown, locale) {
     while (blocks.length && !blocks[0].startsWith('## ') && !blocks[0].startsWith('### ') && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0]) && blocks[0] !== '---') {
       paragraphs.push(inline(blocks.shift().replace(/\n/g, ' '), locale));
     }
-    if (paragraphs.length !== 4) throw new Error(`Review standfirst structure: ${locale}`);
+    if (paragraphs.length !== 2) throw new Error(`Review standfirst structure: ${locale}`);
     standfirst = { heading, paragraphs };
   }
   if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') {

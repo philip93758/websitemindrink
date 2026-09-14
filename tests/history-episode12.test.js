@@ -30,6 +30,7 @@ for (const locale of Object.keys(EPISODE12_LOCALES)) {
       assert.ok(html.includes('class="history-standfirst"'));
       assert.ok(html.indexOf('class="history-subtitle"') < html.indexOf('data-illustration="ur-ziggurat"'));
       assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('id="accounts-title"'));
+      assert.equal((html.match(/<div class="history-standfirst">[\s\S]*?<\/div>/)[0].match(/<p>/g) || []).length, 2);
       assert.doesNotMatch(html, /class="history-deck"/);
     } else {
       assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('class="history-deck"'));
@@ -130,7 +131,7 @@ test('Episode 1.2 importer preserves captions, emphasis and encoded source links
 
 test('Episode 1.2 importer accepts the French standfirst and replacement figures', () => {
   const figure = key => `<!-- illustration: ${key} -->\n![Description](_assets/selected/${EPISODE12_IMAGES[key].file})\n\n*Caption with a qualification.*\n\nPhoto: Artist. [Source](https://example.org/photo_%28detail%29.jpg).\n<!-- /illustration -->`;
-  const source = ['# A source-led article', '### Standfirst heading', 'Lead 1.', 'Lead 2.', 'Lead 3.', 'Lead 4.', figure('ur-ziggurat'),
+  const source = ['# A source-led article', '### Standfirst heading', 'Lead 1.', 'Lead 2.', figure('ur-ziggurat'),
     '## Accounts', 'A claim.[1]', figure('malt-barley-tablet'), 'A second claim.[2]', figure('ur-houses'),
     '## Ingredients', '### Vessel contents', 'Ingredients with *emphasis*.', '## People and gods', figure('straw-drinking-seal'), figure('hammurabi-stele'),
     '<!-- comparison: reading-the-sources -->\n### Reading sources\n\n| Source | Can show | Cannot show |\n|---|---|---|\n| Accounts[1] | Quantities | Taste |\n| Images[2] | Representation | Typicality |\n| Hymns[3] | Celebration | A recipe |\n| Laws[4] | Rules | Enforcement |\n\n<!-- /comparison -->',
@@ -138,12 +139,13 @@ test('Episode 1.2 importer accepts the French standfirst and replacement figures
   const parsed = parseEpisode12(source, 'fr');
   assert.equal(parsed.deck, null);
   assert.equal(parsed.standfirst.heading, 'Standfirst heading');
-  assert.equal(parsed.standfirst.paragraphs.length, 4);
+  assert.equal(parsed.standfirst.paragraphs.length, 2);
   assert.match(parsed.body, /id="vessel-contents"/);
   assert.match(parsed.lead, /met-324572-straw-seal|ur-ziggurat-lubinski/);
   assert.match(parsed.body, /met-324572-straw-seal/);
   assert.match(parsed.body, /hammurabi-stele-mbzt/);
   assert.doesNotMatch(parsed.body, /puabi-inscribed-seal-mcphee|hammurabi-inscription-rama/);
+  assert.throws(() => parseEpisode12(source.replace('Lead 2.', 'Lead 2.\n\nLead 3.\n\nLead 4.'), 'fr'));
 });
 
 test('Episode 1.2 importer rejects unsupported structure instead of dropping source content', () => {

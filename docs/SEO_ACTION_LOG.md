@@ -20,6 +20,15 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260914-01 — Episode 1.2 French standfirst adaptation
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` (uncommitted 14 September adaptation). The Atrium French markdown was not edited from this repo.
+- Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions are unchanged.
+- Copy: the standfirst is now two paragraphs. The proto-cuneiform / earliest-accounts passage moves into the first section, after Agu’a and before “Neuf sortes de bière”. Title, images, captions, hub card and Episode 1.1 next-link are unchanged.
+- Metadata: keep French `datePublished` 2026-09-13. `dateModified` and sitemap `lastmod` may move to 2026-09-14 for this significant copy change.
+- Publication remains a separate step.
+
 ## RELEASE-20260913-PROD — Verified production deployment
 
 Recorded 2026-09-13 after live verification. This is the production evidence for the September website batch. Commit dates, article `datePublished`/`dateModified`, and sitemap `lastmod` remain separate and do not replace this timestamp.
