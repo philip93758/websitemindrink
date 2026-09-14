@@ -11,34 +11,27 @@ const read = path => readFileSync(join(ROOT, path), 'utf8');
 const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
 
 for (const locale of Object.keys(EPISODE12_LOCALES)) {
-  test(`Episode 1.2 ${locale}: complete article, responsive images and accessible source table`, () => {
+  test(`Episode 1.2 ${locale}: continuous essay, responsive images and replacement figures`, () => {
     const prefix = editionPrefix(locale);
     const html = read(`${prefix}science/${EPISODE12_SLUG}`);
     assert.match(html, new RegExp(`<html lang="${locale}">`));
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
     assert.equal((html.match(/<h2\b/g) || []).length, 4);
-    assert.equal((html.match(/<h3\b/g) || []).length, locale === 'fr' ? 0 : 1);
+    assert.equal((html.match(/<h3\b/g) || []).length, 0);
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(new Set(ids).size, ids.length, 'IDs must be unique');
     const refs = [...html.matchAll(/<li id="ref-(\d+)">/g)].map(match => Number(match[1]));
     assert.deepEqual(refs, Array.from({ length: 11 }, (_, index) => index + 1));
     for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), `Unresolved anchor: ${match[1]}`);
     const figures = [...html.matchAll(/<figure[^>]+data-illustration="([^"]+)"/g)].map(match => match[1]);
-    assert.deepEqual(figures, episode12Figures(locale));
+    assert.deepEqual(figures, episode12Figures());
     assert.ok(html.indexOf('<h1') < html.indexOf('data-illustration="ur-ziggurat"'));
-    if (locale === 'fr') {
-      assert.ok(html.includes('class="history-standfirst"'));
-      assert.ok(html.indexOf('class="history-subtitle"') < html.indexOf('data-illustration="ur-ziggurat"'));
-      assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('id="accounts-title"'));
-      assert.equal((html.match(/<div class="history-standfirst">[\s\S]*?<\/div>/)[0].match(/<p>/g) || []).length, 1);
-      assert.doesNotMatch(html, /class="history-deck"/);
-      assert.doesNotMatch(html, /class="history-source-table"/);
-    } else {
-      assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('class="history-deck"'));
-      assert.match(html, /<table class="history-source-table" aria-labelledby="reading-sources-title" role="table">/);
-      assert.equal((html.match(/scope="row" role="rowheader"/g) || []).length, 4);
-      assert.equal((html.match(/class="history-source-label" aria-hidden="true"/g) || []).length, 8);
-    }
+    assert.ok(html.includes('class="history-standfirst"'));
+    assert.ok(html.indexOf('class="history-subtitle"') < html.indexOf('data-illustration="ur-ziggurat"'));
+    assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('id="accounts-title"'));
+    assert.equal((html.match(/<div class="history-standfirst">[\s\S]*?<\/div>/)[0].match(/<p>/g) || []).length, 1);
+    assert.doesNotMatch(html, /class="history-deck"/);
+    assert.doesNotMatch(html, /class="history-source-table"/);
     assert.equal((html.match(/loading="eager" fetchpriority="high"/g) || []).length, 1);
     assert.equal((html.match(/loading="lazy"/g) || []).length, 4);
     assert.equal((html.match(/srcset="[^"]+" sizes="[^"]+"/g) || []).length, 5);
@@ -46,17 +39,10 @@ for (const locale of Object.keys(EPISODE12_LOCALES)) {
     assert.match(html, /Michael Lubinski/);
     assert.match(html, /Tmtriumph/);
     assert.match(html, /wwws\.loc\.gov\/rr\/print\/res\/258_mats\.html/);
-    if (locale === 'fr') {
-      assert.match(html, /metmuseum\.org\/art\/collection\/search\/324572/);
-      assert.match(html, /Mbzt/);
-      assert.match(html, /creativecommons\.org\/licenses\/by\/3\.0\//);
-      assert.doesNotMatch(html, /Nic McPhee|Johnbod|hammurabi-inscription-rama|puabi-inscribed-seal-mcphee/);
-    } else {
-      assert.match(html, /Nic McPhee/);
-      assert.match(html, /Johnbod/);
-      assert.match(html, /creativecommons\.org\/licenses\/by-sa\/3\.0\/fr\//);
-      assert.match(html, /creativecommons\.org\/licenses\/by-sa\/2\.0\//);
-    }
+    assert.match(html, /metmuseum\.org\/art\/collection\/search\/324572/);
+    assert.match(html, /Mbzt/);
+    assert.match(html, /creativecommons\.org\/licenses\/by\/3\.0\//);
+    assert.doesNotMatch(html, /Nic McPhee|Johnbod|hammurabi-inscription-rama|puabi-inscribed-seal-mcphee/);
   });
 
   test(`Episode 1.2 ${locale}: localized discovery, previous/next links and search metadata`, () => {
@@ -110,54 +96,41 @@ test('Episode 1.2 preserves approved originals and ships bounded web variants', 
   }
 });
 
-function fixture() {
+function essayFixture() {
   const figure = key => `<!-- illustration: ${key} -->\n![Description](_assets/selected/${EPISODE12_IMAGES[key].file})\n\n*Caption with a qualification.*\n\nPhoto: Artist. [Source](https://example.org/photo_%28detail%29.jpg).\n<!-- /illustration -->`;
-  return ['# A source-led article', figure('ur-ziggurat'), ...Array.from({ length: 5 }, (_, i) => `Intro ${i + 1}.`),
-    '## Accounts', 'A claim.[1]', figure('malt-barley-tablet'), 'A second claim.[2]', figure('ur-houses'),
-    '## Ingredients', 'Ingredients with *emphasis*.', '## People and gods', figure('puabi-related-seal'), figure('hammurabi-inscription'),
-    '<!-- comparison: reading-the-sources -->\n### Reading sources\n\n| Source | Can show | Cannot show |\n|---|---|---|\n| Accounts[1] | Quantities | Taste |\n| Images[2] | Representation | Typicality |\n| Hymns[3] | Celebration | A recipe |\n| Laws[4] | Rules | Enforcement |\n\n<!-- /comparison -->',
-    '---', 'A qualified conclusion.', '## References', ...Array.from({ length: 11 }, (_, i) => `${i + 1}. Source ${i + 1}. [Full text](https://example.org/${i + 1}).`)].join('\n\n');
-}
-
-test('Episode 1.2 importer preserves captions, emphasis and encoded source links', () => {
-  const parsed = parseEpisode12(fixture(), 'en');
-  assert.equal(parsed.title, 'A source-led article');
-  assert.equal(parsed.deck, 'Intro 1.');
-  assert.equal(parsed.standfirst, null);
-  assert.doesNotMatch(parsed.body, /Intro 1\./);
-  assert.match(parsed.body, /<em>emphasis<\/em>/);
-  assert.match(parsed.lead, /https:\/\/example\.org\/photo_%28detail%29\.jpg/);
-  assert.match(parsed.body, /href="#ref-1" aria-label="Reference 1"/);
-});
-
-test('Episode 1.2 importer accepts the French continuous essay and replacement figures', () => {
-  const figure = key => `<!-- illustration: ${key} -->\n![Description](_assets/selected/${EPISODE12_IMAGES[key].file})\n\n*Caption with a qualification.*\n\nPhoto: Artist. [Source](https://example.org/photo_%28detail%29.jpg).\n<!-- /illustration -->`;
-  const source = ['# A source-led article', '### Standfirst heading', 'Lead 1.', figure('ur-ziggurat'),
+  return ['# A source-led article', '### Standfirst heading', 'Lead 1.', figure('ur-ziggurat'),
     'Essay continuum after the lead image.', '---',
     '## Accounts', 'A claim.[1]', figure('malt-barley-tablet'), 'A second claim.[2]', figure('ur-houses'),
     '## Ingredients', 'Ingredients with *emphasis*.', '## People and gods', figure('straw-drinking-seal'), figure('hammurabi-stele'),
     '---', 'A qualified conclusion.', '## References', ...Array.from({ length: 11 }, (_, i) => `${i + 1}. Source ${i + 1}. [Full text](https://example.org/${i + 1}).`)].join('\n\n');
-  const parsed = parseEpisode12(source, 'fr');
+}
+
+test('Episode 1.2 importer accepts the continuous essay and replacement figures', () => {
+  const parsed = parseEpisode12(essayFixture(), 'en');
+  assert.equal(parsed.title, 'A source-led article');
   assert.equal(parsed.deck, null);
   assert.equal(parsed.standfirst.heading, 'Standfirst heading');
   assert.equal(parsed.standfirst.paragraphs.length, 1);
   assert.match(parsed.body, /Essay continuum after the lead image/);
+  assert.match(parsed.body, /<em>emphasis<\/em>/);
   assert.doesNotMatch(parsed.body, /history-source-table|vessel-contents/);
+  assert.match(parsed.lead, /https:\/\/example\.org\/photo_%28detail%29\.jpg/);
   assert.match(parsed.lead, /met-324572-straw-seal|ur-ziggurat-lubinski/);
   assert.match(parsed.body, /met-324572-straw-seal/);
   assert.match(parsed.body, /hammurabi-stele-mbzt/);
   assert.doesNotMatch(parsed.body, /puabi-inscribed-seal-mcphee|hammurabi-inscription-rama/);
-  assert.throws(() => parseEpisode12(source.replace('Lead 1.', 'Lead 1.\n\nLead 2.'), 'fr'));
+  assert.match(parsed.body, /href="#ref-1" aria-label="Reference 1"/);
+  assert.throws(() => parseEpisode12(essayFixture().replace('Lead 1.', 'Lead 1.\n\nLead 2.'), 'en'));
 });
 
 test('Episode 1.2 importer rejects unsupported structure instead of dropping source content', () => {
   for (const [before, after] of [
-    ['Intro 5.', ''],
+    ['Lead 1.', ''],
     ['<!-- illustration: ur-houses -->', '<!-- illustration: unknown -->'],
     ['*Caption with a qualification.*', 'Missing caption markup'],
     ['11. Source 11.', '12. Source 11.'],
     ['A claim.[1]', 'A claim.[99]'],
-    ['| Laws[4] | Rules | Enforcement |', '| Laws[4] | Rules |'],
+    ['Ingredients with *emphasis*.', '### Unreviewed body subsection'],
     ['Ingredients with *emphasis*.', '#### Unreviewed extra section'],
-  ]) assert.throws(() => parseEpisode12(fixture().replace(before, after), 'en'), `${before} should require review`);
+  ]) assert.throws(() => parseEpisode12(essayFixture().replace(before, after), 'en'), `${before} should require review`);
 });

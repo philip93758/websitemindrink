@@ -242,33 +242,6 @@ function figureHtml(key, edition) {
   ].join('\n');
 }
 
-function argumentMapHtml(blocks) {
-  const rows = blocks.map((block, index) => {
-    const match = block.match(/^\*\*(.+?)\s*[:：]\*\*\s*(.+)$/s);
-    if (!match) throw new Error(`Could not parse argument row: ${block}`);
-    const conciseLabel = match[1].replace(/^.*?(?:—|–|――)\s*/u, '').trim();
-    const label = conciseLabel
-      ? `${conciseLabel[0].toLocaleUpperCase()}${conciseLabel.slice(1)}`
-      : conciseLabel;
-    const parts = match[2].split(/\s*(→|↔)\s*/);
-    const path = parts
-      .map((part, partIndex) =>
-        partIndex % 2
-          ? `<span class="history-argument-arrow">${part}</span>`
-          : `<span class="history-argument-step">${inline(part, { citations: false })}</span>`,
-      )
-      .join('');
-    const variants = ['thesis', 'antithesis', 'synthesis'];
-    return [
-      `    <div class="history-argument-row history-argument-row--${variants[index]}">`,
-      `        <p class="history-argument-label">${inline(label, { citations: false })}</p>`,
-      `        <div class="history-argument-path">${path}</div>`,
-      '    </div>',
-    ].join('\n');
-  });
-  return `<div class="history-argument-map">\n${rows.join('\n')}\n</div>`;
-}
-
 function nextHtml(block, edition) {
   const text = block.replace(/^\*\*|\*\*$/g, '');
   const match = text.match(/^(.+?)\s*[:：]\s*(.+)$/s);
@@ -295,6 +268,10 @@ function nextHtml(block, edition) {
   ].join('\n');
 }
 
+function indentedFigure(key, edition) {
+  return figureHtml(key, edition).split('\n').map((line) => `                    ${line}`).join('\n');
+}
+
 function parseEdition(markdown, edition) {
   const blocks = markdown
     .replaceAll('\r\n', '\n')
@@ -314,11 +291,10 @@ function parseEdition(markdown, edition) {
   const html = intro.slice(1).map((paragraph) => `                <p>${inline(paragraph)}</p>`);
 
   const sectionIds = ['when-title', 'what-title', 'why-title', 'conclusion-title', 'references-title'];
+  const figuresPlaced = new Set();
   let sectionIndex = -1;
   let sectionOpen = false;
   let referenceOpen = false;
-  let subsectionIndex = 0;
-  let afterFirstParagraph = null;
 
   for (let index = 0; index < blocks.length; index += 1) {
     const block = blocks[index].replace(/\n/g, ' ');
@@ -335,6 +311,7 @@ function parseEdition(markdown, edition) {
       sectionIndex += 1;
       const heading = block.slice(3);
       const id = sectionIds[sectionIndex];
+      if (!id) throw new Error(`Unexpected extra section in ${edition.target}: ${heading}`);
       if (sectionIndex === 4) {
         html.push(`                <section class="history-references" aria-labelledby="${id}">`);
         html.push(`                    <h2 id="${id}">${inline(heading, { citations: false })}</h2>`);
@@ -357,29 +334,11 @@ function parseEdition(markdown, edition) {
     }
 
     if (block.startsWith('### ')) {
-      subsectionIndex += 1;
-      html.push(`                    <h3>${inline(block.slice(4), { citations: false })}</h3>`);
-      if (subsectionIndex === 6) {
-        html.push(figureHtml('enclosure', edition).split('\n').map((line) => `                    ${line}`).join('\n'));
-        afterFirstParagraph = 'pillar';
-      } else if (subsectionIndex === 2) {
-        afterFirstParagraph = 'jiahu';
-      } else if (subsectionIndex === 4) {
-        afterFirstParagraph = 'georgia';
-      } else {
-        afterFirstParagraph = null;
-      }
-      continue;
+      throw new Error(`Unexpected subsection in ${edition.target}; Episode 1.1 is continuous essay sections only`);
     }
 
     if (/^\*\*/.test(block) && /[→↔]/.test(block)) {
-      const argumentBlocks = [block, blocks[index + 1]?.replace(/\n/g, ' '), blocks[index + 2]?.replace(/\n/g, ' ')];
-      if (argumentBlocks.some((entry) => !entry || !/[→↔]/.test(entry))) {
-        throw new Error(`Expected a three-row argument map in ${edition.target}`);
-      }
-      html.push(argumentMapHtml(argumentBlocks).split('\n').map((line) => `                    ${line}`).join('\n'));
-      index += 2;
-      continue;
+      throw new Error(`Unexpected argument map in ${edition.target}; diagrams were removed from the continuous essay`);
     }
 
     if (/^\*\*/.test(block)) {
@@ -387,11 +346,35 @@ function parseEdition(markdown, edition) {
       continue;
     }
 
-    html.push(`                    <p>${inline(block)}</p>`);
-    if (afterFirstParagraph) {
-      html.push(figureHtml(afterFirstParagraph, edition).split('\n').map((line) => `                    ${line}`).join('\n'));
-      afterFirstParagraph = null;
+    const inFigureSections = sectionIndex >= 0 && sectionIndex <= 2;
+    if (inFigureSections && !figuresPlaced.has('jiahu') && /Jiahu|賈湖/.test(block)) {
+      html.push(`                    <p>${inline(block)}</p>`);
+      html.push(indentedFigure('jiahu', edition));
+      figuresPlaced.add('jiahu');
+      continue;
     }
+
+    if (
+      inFigureSections
+      && !figuresPlaced.has('georgia')
+      && /Khramis|Gadachrili|Shulaveris|フラミス|ガダチリ|シュラヴェリ/.test(block)
+    ) {
+      html.push(`                    <p>${inline(block)}</p>`);
+      html.push(indentedFigure('georgia', edition));
+      figuresPlaced.add('georgia');
+      continue;
+    }
+
+    if (inFigureSections && !figuresPlaced.has('enclosure') && /Göbekli|Gobekli|ギョベクリ/.test(block)) {
+      html.push(indentedFigure('enclosure', edition));
+      html.push(`                    <p>${inline(block)}</p>`);
+      html.push(indentedFigure('pillar', edition));
+      figuresPlaced.add('enclosure');
+      figuresPlaced.add('pillar');
+      continue;
+    }
+
+    html.push(`                    <p>${inline(block)}</p>`);
   }
 
   if (referenceOpen) {
@@ -401,7 +384,7 @@ function parseEdition(markdown, edition) {
     html.push('                </section>');
   }
 
-  if (sectionIndex !== sectionIds.length - 1 || subsectionIndex !== 6) {
+  if (sectionIndex !== sectionIds.length - 1 || figuresPlaced.size !== 4) {
     throw new Error(`Review section and image placement for the changed structure in ${edition.target}`);
   }
 

@@ -28,11 +28,11 @@ export const EPISODE12_IMAGES = {
   'hammurabi-stele': { file: 'hammurabi-stele-mbzt.jpg', width: 1215, height: 2000, sha256: 'bd1724079537e76a56215f9a3b5dde69ee508a3b40ae2ca657bebc0af2653442' },
 };
 
-export const EPISODE12_DEFAULT_FIGURES = ['ur-ziggurat', 'malt-barley-tablet', 'ur-houses', 'puabi-related-seal', 'hammurabi-inscription'];
-export const EPISODE12_LOCALE_FIGURES = {
-  fr: ['ur-ziggurat', 'malt-barley-tablet', 'ur-houses', 'straw-drinking-seal', 'hammurabi-stele'],
-};
-export const episode12Figures = locale => EPISODE12_LOCALE_FIGURES[locale] || EPISODE12_DEFAULT_FIGURES;
+// All eight continuous-essay editions use the same five figures, including the
+// straw-drinking seal and Hammurabi stele replacements selected for French and
+// then rolled out across languages in Atrium.
+export const EPISODE12_DEFAULT_FIGURES = ['ur-ziggurat', 'malt-barley-tablet', 'ur-houses', 'straw-drinking-seal', 'hammurabi-stele'];
+export const episode12Figures = () => EPISODE12_DEFAULT_FIGURES;
 
 export const editionPrefix = locale => locale === 'en' ? '' : `${locale}/`;
 export const imageWidths = image => [...new Set([480, Math.min(960, image.width), Math.min(1440, image.width)])];

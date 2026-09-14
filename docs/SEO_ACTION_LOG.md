@@ -20,9 +20,27 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
-## CONTENT-20260914-02 — Episode 1.2 French continuous-essay rewrite
+## CONTENT-20260914-04 — Episode 1.2 continuous-essay rewrite (eight languages)
 
 - Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.2/` (`308ab1f` align translations with French essay; `9e6cf75` native-essay polish; `cc8158f` etages/calques wording; French Roth/claim calibrations already in tree). Atrium markdown was not edited from this repo.
+- Scope: all eight `/…/science/mesopotamia-beer-written-records.html` editions. Hub card titles update from the approved article titles; descriptions stay the interface strings in the Episode 1.2 config.
+- Structure: one-paragraph standfirst; essay continuum after the ziggurat; three body sections without `###` subsections; no source-comparison table; shared five-figure set including `straw-drinking-seal` and `hammurabi-stele`.
+- Metadata: keep existing `datePublished`. `dateModified` and sitemap `lastmod` may move to 2026-09-14 for this significant copy change.
+- Publication remains a separate step.
+
+## CONTENT-20260914-03 — Episode 1.1 continuous-essay rewrite (eight languages)
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.1/` (`504402b` English tighten; `10922be` localized native essays). Atrium markdown was not edited from this repo.
+- Scope: all eight `/…/science/who-invented-alcohol.html` editions. Hub card titles/descriptions unchanged unless the sync detects a title change.
+- Structure: five `##` sections including references; no body `###` subsections; argument-map diagrams removed; same four credited figures, placed by first-mention anchors.
+- Metadata: keep existing `datePublished`. `dateModified` and sitemap `lastmod` may move to 2026-09-14 for this significant copy change.
+- Publication remains a separate step.
+
+## CONTENT-20260914-02 — Episode 1.2 French continuous-essay rewrite
+
+- Status: implemented on local website `dev`, then shipped to production on 2026-09-14 (`7940ccf` on `main`). Article dates and sitemap `lastmod` are not production evidence.
 - Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` (`9cdf5d2`, “rewrite Ep 1.2 French article as a continuous essay”). The Atrium French markdown was not edited from this repo.
 - Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions are unchanged.
 - Structure: one-paragraph standfirst; essay continuum after the ziggurat; three body sections without `###` subsections; no source-comparison table. Title, images, hub card description and Episode 1.1 next-link title are unchanged.

@@ -73,10 +73,9 @@ npm run build
 npm test
 ```
 
-- Keep the first source paragraph as the article introduction in the hero; the remaining introductory paragraphs belong in the article body.
-- Preserve the responsive flowcharts and credited images. The importer removes the translated thesis/antithesis/synthesis prefixes from visible chart labels.
-- Keep the source's five main sections and six subsections in their current order: image placement relies on that structure. If the structure changes, update the importer before running it.
-- When references or the opening change, reconcile the article checks with the approved source. Verify that every citation resolves and review the page on mobile and desktop.
+- Keep the first source paragraph as the article deck in the hero; the remaining introductory paragraphs belong in the article body.
+- All eight editions are continuous essays: five `##` sections (including references), no body `###` subsections, and no argument-map diagrams. Image placement follows first-mention anchors (Jiahu, Georgian jar sites, Göbekli Tepe enclosure then pillar). If that structure changes, update the importer before running it.
+- Preserve credited images and captions. When references or the opening change, reconcile the article checks with the approved source. Verify that every citation resolves and review the page on mobile and desktop.
 - `--check` verifies article content without writing files. Re-importing unchanged content preserves its article modification date.
 
 ### Episode 1.2 — Mesopotamia
@@ -93,8 +92,8 @@ npm test
 ```
 
 - The route is `science/mesopotamia-beer-written-records.html` under each language prefix. The importer always validates all eight sources and all seven approved originals before writing. `--locale fr` writes only the French article (and French hub/Episode 1.1 only if their substance changed). A full sync still writes all eight editions. Missing sitemap entries are added; `sitemap:update` refreshes `lastmod` after a significant page change. It does not publish or commit.
-- Source markers control all five image positions and the source-comparison table. English and the six other translations keep the opening image immediately below the title, five introduction paragraphs, four main headings (including references), all 11 references and the comparison's four source types. The French file is a documented structural variant: a `###` standfirst of one paragraph, opening image, continuous essay paragraphs before the first section, three body sections without `###` subsections or the source-comparison table, and two replacement figures (`straw-drinking-seal`, `hammurabi-stele`). Do not restyle French to match English. Unsupported structural changes must fail for review, not silently omit content.
-- The comparison is a semantic table on desktop and stacks with localized labels on mobile. Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
+- Source markers control all five image positions. All eight editions are continuous essays: a one-paragraph `###` standfirst, opening image, continuum paragraphs before the first section, three body sections without `###` subsections or the source-comparison table, and the shared figure set (`straw-drinking-seal`, `hammurabi-stele` rather than the earlier Puabi/Rama pair). Unsupported structural changes must fail for review, not silently omit content.
+- Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
 - Approved original images and responsive derivatives live in `assets/science/history/episode-1-2/`. Its [provenance record](../assets/science/history/episode-1-2/README.md) documents rights, hashes and regeneration. Normal content sync needs no image-processing dependency.
 - Run both episode importers with `--check` after changing series navigation. Episode 1.1 now uses the approved next page title/number rather than its outdated planned teaser.
 - `--check` is read-only; repeat imports preserve publication/modification dates when content is unchanged. Source dates are not verified deployment dates. Record actual release evidence separately in the action log.

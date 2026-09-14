@@ -69,53 +69,30 @@ export function parseEpisode12(markdown, locale) {
     figures.push({ key, html: figureHtml(block.trim(), locale, key) });
     return `FIGURETOKEN${figures.length - 1}ENDTOKEN`;
   });
-  if (figures.map(figure => figure.key).join() !== episode12Figures(locale).join()) throw new Error(`Review figure order: ${locale}`);
+  if (figures.map(figure => figure.key).join() !== episode12Figures().join()) throw new Error(`Review figure order: ${locale}`);
   const comparisons = [];
   source = source.replace(/<!-- comparison: reading-the-sources -->\s*([\s\S]*?)\s*<!-- \/comparison -->/g, (_match, block) => {
     comparisons.push(comparisonHtml(block, locale));
     return 'COMPARISONTOKEN';
   });
-  // French continuous essay omits the source-comparison table; other locales keep it.
-  const expectedComparisons = locale === 'fr' ? 0 : 1;
-  if (comparisons.length !== expectedComparisons || /<!--|!\[/.test(source)) throw new Error(`Unsupported source markers: ${locale}`);
+  // All eight continuous-essay editions omit the source-comparison table.
+  if (comparisons.length !== 0 || /<!--|!\[/.test(source)) throw new Error(`Unsupported source markers: ${locale}`);
   const blocks = source.split(/\n\s*\n/).map(block => block.trim()).filter(Boolean);
-  const usedIds = new Set(['accounts-title', 'vessel-title', 'people-gods-title', 'references-title', 'reading-sources-title']);
-  const headingId = text => {
-    const base = text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48).replace(/-+$/g, '') || 'subhead';
-    let id = base;
-    let n = 2;
-    while (usedIds.has(id)) id = `${base}-${n++}`;
-    usedIds.add(id);
-    return id;
-  };
-  let standfirst = null;
-  if (blocks[0]?.startsWith('### ')) {
-    const heading = inline(blocks.shift().slice(4).replace(/\n/g, ' '), locale, false);
-    const paragraphs = [];
-    while (blocks.length && !blocks[0].startsWith('## ') && !blocks[0].startsWith('### ') && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0]) && blocks[0] !== '---') {
-      paragraphs.push(inline(blocks.shift().replace(/\n/g, ' '), locale));
-    }
-    if (paragraphs.length !== 1) throw new Error(`Review standfirst structure: ${locale}`);
-    standfirst = { heading, paragraphs };
+  if (!blocks[0]?.startsWith('### ')) throw new Error(`Expected standfirst heading: ${locale}`);
+  const standfirstHeading = inline(blocks.shift().slice(4).replace(/\n/g, ' '), locale, false);
+  const standfirstParagraphs = [];
+  while (blocks.length && !blocks[0].startsWith('## ') && !blocks[0].startsWith('### ') && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0]) && blocks[0] !== '---') {
+    standfirstParagraphs.push(inline(blocks.shift().replace(/\n/g, ' '), locale));
   }
-  if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') {
-    throw new Error(standfirst ? `Expected opening image after standfirst: ${locale}` : `Expected opening image immediately below title: ${locale}`);
-  }
-  let deck = null;
+  if (standfirstParagraphs.length !== 1) throw new Error(`Review standfirst structure: ${locale}`);
+  const standfirst = { heading: standfirstHeading, paragraphs: standfirstParagraphs };
+  if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') throw new Error(`Expected opening image after standfirst: ${locale}`);
   const html = [];
-  if (!standfirst) {
-    const intro = [];
-    while (blocks.length && !blocks[0].startsWith('## ')) intro.push(blocks.shift());
-    if (intro.length !== 5) throw new Error(`Review introduction structure: ${locale}`);
-    deck = inline(intro[0].replace(/\n/g, ' '), locale);
-    html.push(...intro.slice(1).map(text => `<p>${inline(text.replace(/\n/g, ' '), locale)}</p>`));
-  } else {
-    // French continuous essay continues under the lead figure before the first section.
-    while (blocks.length && !blocks[0].startsWith('## ') && blocks[0] !== '---' && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0])) {
-      const block = blocks.shift();
-      if (/^(#|\||\*\*|<!--)/.test(block)) throw new Error(`Unsupported Markdown block: ${locale}: ${block.slice(0, 60)}`);
-      html.push(`<p>${inline(block.replace(/\n/g, ' '), locale)}</p>`);
-    }
+  // Continuous essay continues under the lead figure before the first section.
+  while (blocks.length && !blocks[0].startsWith('## ') && blocks[0] !== '---' && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0])) {
+    const block = blocks.shift();
+    if (/^(#|\||\*\*|<!--)/.test(block)) throw new Error(`Unsupported Markdown block: ${locale}: ${block.slice(0, 60)}`);
+    html.push(`<p>${inline(block.replace(/\n/g, ' '), locale)}</p>`);
   }
   const ids = ['accounts-title', 'vessel-title', 'people-gods-title', 'references-title'];
   let section = -1;
@@ -137,14 +114,13 @@ export function parseEpisode12(markdown, locale) {
     } else if (/^FIGURETOKEN\d+ENDTOKEN$/.test(block)) {
       html.push(figures[Number(block.match(/\d+/)[0])].html);
     } else if (block === 'COMPARISONTOKEN') {
-      html.push(comparisons[0]);
+      throw new Error(`Unexpected source-comparison table: ${locale}`);
     } else if (block === '---') {
       if (open) html.push('</section>');
       open = false;
       html.push('<hr class="history-section-break">');
     } else if (block.startsWith('### ')) {
-      const heading = block.slice(4).replace(/\n/g, ' ');
-      html.push(`<h3 id="${headingId(heading)}">${inline(heading, locale, false)}</h3>`);
+      throw new Error(`Unexpected subsection in ${locale}; Episode 1.2 is continuous essay sections only`);
     } else {
       if (/^(#|\||\*\*|<!--)/.test(block)) throw new Error(`Unsupported Markdown block: ${locale}: ${block.slice(0, 60)}`);
       html.push(`<p>${inline(block.replace(/\n/g, ' '), locale)}</p>`);
@@ -154,7 +130,7 @@ export function parseEpisode12(markdown, locale) {
   html.push('</ol>', '</section>');
   const body = html.join('\n');
   if ([...body.matchAll(/href="#ref-(\d+)"/g)].some(match => Number(match[1]) > referenceCount)) throw new Error(`Unresolved citation: ${locale}`);
-  return { title, lead: figures[0].html, deck, standfirst, body };
+  return { title, lead: figures[0].html, deck: null, standfirst, body };
 }
 
 function renderPage(template, previous, parsed, locale, today) {

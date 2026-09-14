@@ -71,8 +71,9 @@ test('publishes Episode 1.1 with its full reference apparatus', () => {
   assert.doesNotMatch(episode, /class="history-opening"/);
   assert.match(episode, /href="\/science\/mesopotamia-beer-written-records\.html" rel="next">Episode 1\.2 — Mesopotamia: What the First Written Records Tell Us About Beer/);
   assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 13);
-  assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2);
-  assert.doesNotMatch(episode, /history-argument-label">(?:Thesis|Antithesis|Synthesis)\b/);
+  assert.equal((episode.match(/<h2\b/g) ?? []).length, 5);
+  assert.equal((episode.match(/<h3\b/g) ?? []).length, 0);
+  assert.doesNotMatch(episode, /history-argument-map/);
   assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4);
   assert.match(episode, /German Archaeological Institute, Nico Becker/);
   assert.match(episode, /CC BY-NC-ND 4\.0/);
@@ -92,8 +93,9 @@ test('publishes every approved translation as a localized hub and episode', () =
     assert.ok(episode.includes(`<h1 class="history-title">${expected.title}</h1>`), `${locale} title is missing`);
     assert.doesNotMatch(episode, /class="history-opening"/, `${locale} opening is duplicated in the body`);
     assert.equal((episode.match(/<li id="ref-\d+">/g) ?? []).length, 13, `${locale} reference count`);
-    assert.equal((episode.match(/<div class="history-argument-map">/g) ?? []).length, 2, `${locale} argument maps`);
-    assert.doesNotMatch(episode, /history-argument-label">[^<]+(?:—|–|――)/, `${locale} argument-map prefixes`);
+    assert.equal((episode.match(/<h2\b/g) ?? []).length, 5, `${locale} section count`);
+    assert.equal((episode.match(/<h3\b/g) ?? []).length, 0, `${locale} has no subsections`);
+    assert.doesNotMatch(episode, /history-argument-map/, `${locale} argument maps`);
     assert.equal((episode.match(/<figure class="history-figure/g) ?? []).length, 4, `${locale} figure count`);
     assert.equal((episode.match(/loading="lazy" decoding="async">/g) ?? []).length, 4, `${locale} lazy images`);
     assert.doesNotMatch(episode, /<img[^>]+alt=""/, `${locale} contains an empty image description`);
