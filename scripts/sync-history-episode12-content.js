@@ -75,7 +75,9 @@ export function parseEpisode12(markdown, locale) {
     comparisons.push(comparisonHtml(block, locale));
     return 'COMPARISONTOKEN';
   });
-  if (comparisons.length !== 1 || /<!--|!\[/.test(source)) throw new Error(`Unsupported source markers: ${locale}`);
+  // French continuous essay omits the source-comparison table; other locales keep it.
+  const expectedComparisons = locale === 'fr' ? 0 : 1;
+  if (comparisons.length !== expectedComparisons || /<!--|!\[/.test(source)) throw new Error(`Unsupported source markers: ${locale}`);
   const blocks = source.split(/\n\s*\n/).map(block => block.trim()).filter(Boolean);
   const usedIds = new Set(['accounts-title', 'vessel-title', 'people-gods-title', 'references-title', 'reading-sources-title']);
   const headingId = text => {
@@ -93,7 +95,7 @@ export function parseEpisode12(markdown, locale) {
     while (blocks.length && !blocks[0].startsWith('## ') && !blocks[0].startsWith('### ') && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0]) && blocks[0] !== '---') {
       paragraphs.push(inline(blocks.shift().replace(/\n/g, ' '), locale));
     }
-    if (paragraphs.length !== 2) throw new Error(`Review standfirst structure: ${locale}`);
+    if (paragraphs.length !== 1) throw new Error(`Review standfirst structure: ${locale}`);
     standfirst = { heading, paragraphs };
   }
   if (blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') {
@@ -107,6 +109,13 @@ export function parseEpisode12(markdown, locale) {
     if (intro.length !== 5) throw new Error(`Review introduction structure: ${locale}`);
     deck = inline(intro[0].replace(/\n/g, ' '), locale);
     html.push(...intro.slice(1).map(text => `<p>${inline(text.replace(/\n/g, ' '), locale)}</p>`));
+  } else {
+    // French continuous essay continues under the lead figure before the first section.
+    while (blocks.length && !blocks[0].startsWith('## ') && blocks[0] !== '---' && !/^FIGURETOKEN\d+ENDTOKEN$/.test(blocks[0])) {
+      const block = blocks.shift();
+      if (/^(#|\||\*\*|<!--)/.test(block)) throw new Error(`Unsupported Markdown block: ${locale}: ${block.slice(0, 60)}`);
+      html.push(`<p>${inline(block.replace(/\n/g, ' '), locale)}</p>`);
+    }
   }
   const ids = ['accounts-title', 'vessel-title', 'people-gods-title', 'references-title'];
   let section = -1;

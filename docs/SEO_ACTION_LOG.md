@@ -20,6 +20,15 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260914-02 — Episode 1.2 French continuous-essay rewrite
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` (`9cdf5d2`, “rewrite Ep 1.2 French article as a continuous essay”). The Atrium French markdown was not edited from this repo.
+- Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions are unchanged.
+- Structure: one-paragraph standfirst; essay continuum after the ziggurat; three body sections without `###` subsections; no source-comparison table. Title, images, hub card description and Episode 1.1 next-link title are unchanged.
+- Metadata: keep French `datePublished` 2026-09-13. `dateModified` and sitemap `lastmod` may move to 2026-09-14 for this significant copy change.
+- Publication remains a separate step.
+
 ## RELEASE-20260914-PROD-FR — Verified French Episode 1.2 standfirst production deployment
 
 Recorded 2026-09-14 after live verification. This ships CONTENT-20260914-01 only; the other seven Episode 1.2 editions are unchanged.

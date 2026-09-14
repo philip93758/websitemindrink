@@ -17,7 +17,7 @@ for (const locale of Object.keys(EPISODE12_LOCALES)) {
     assert.match(html, new RegExp(`<html lang="${locale}">`));
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
     assert.equal((html.match(/<h2\b/g) || []).length, 4);
-    assert.equal((html.match(/<h3\b/g) || []).length, locale === 'fr' ? 10 : 1);
+    assert.equal((html.match(/<h3\b/g) || []).length, locale === 'fr' ? 0 : 1);
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(new Set(ids).size, ids.length, 'IDs must be unique');
     const refs = [...html.matchAll(/<li id="ref-(\d+)">/g)].map(match => Number(match[1]));
@@ -30,18 +30,19 @@ for (const locale of Object.keys(EPISODE12_LOCALES)) {
       assert.ok(html.includes('class="history-standfirst"'));
       assert.ok(html.indexOf('class="history-subtitle"') < html.indexOf('data-illustration="ur-ziggurat"'));
       assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('id="accounts-title"'));
-      assert.equal((html.match(/<div class="history-standfirst">[\s\S]*?<\/div>/)[0].match(/<p>/g) || []).length, 2);
+      assert.equal((html.match(/<div class="history-standfirst">[\s\S]*?<\/div>/)[0].match(/<p>/g) || []).length, 1);
       assert.doesNotMatch(html, /class="history-deck"/);
+      assert.doesNotMatch(html, /class="history-source-table"/);
     } else {
       assert.ok(html.indexOf('data-illustration="ur-ziggurat"') < html.indexOf('class="history-deck"'));
+      assert.match(html, /<table class="history-source-table" aria-labelledby="reading-sources-title" role="table">/);
+      assert.equal((html.match(/scope="row" role="rowheader"/g) || []).length, 4);
+      assert.equal((html.match(/class="history-source-label" aria-hidden="true"/g) || []).length, 8);
     }
     assert.equal((html.match(/loading="eager" fetchpriority="high"/g) || []).length, 1);
     assert.equal((html.match(/loading="lazy"/g) || []).length, 4);
     assert.equal((html.match(/srcset="[^"]+" sizes="[^"]+"/g) || []).length, 5);
     assert.doesNotMatch(html, /<img[^>]+alt=""|<!-- illustration|<!-- comparison|\]\(https?:|\*\*/);
-    assert.match(html, /<table class="history-source-table" aria-labelledby="reading-sources-title" role="table">/);
-    assert.equal((html.match(/scope="row" role="rowheader"/g) || []).length, 4);
-    assert.equal((html.match(/class="history-source-label" aria-hidden="true"/g) || []).length, 8);
     assert.match(html, /Michael Lubinski/);
     assert.match(html, /Tmtriumph/);
     assert.match(html, /wwws\.loc\.gov\/rr\/print\/res\/258_mats\.html/);
@@ -129,23 +130,24 @@ test('Episode 1.2 importer preserves captions, emphasis and encoded source links
   assert.match(parsed.body, /href="#ref-1" aria-label="Reference 1"/);
 });
 
-test('Episode 1.2 importer accepts the French standfirst and replacement figures', () => {
+test('Episode 1.2 importer accepts the French continuous essay and replacement figures', () => {
   const figure = key => `<!-- illustration: ${key} -->\n![Description](_assets/selected/${EPISODE12_IMAGES[key].file})\n\n*Caption with a qualification.*\n\nPhoto: Artist. [Source](https://example.org/photo_%28detail%29.jpg).\n<!-- /illustration -->`;
-  const source = ['# A source-led article', '### Standfirst heading', 'Lead 1.', 'Lead 2.', figure('ur-ziggurat'),
+  const source = ['# A source-led article', '### Standfirst heading', 'Lead 1.', figure('ur-ziggurat'),
+    'Essay continuum after the lead image.', '---',
     '## Accounts', 'A claim.[1]', figure('malt-barley-tablet'), 'A second claim.[2]', figure('ur-houses'),
-    '## Ingredients', '### Vessel contents', 'Ingredients with *emphasis*.', '## People and gods', figure('straw-drinking-seal'), figure('hammurabi-stele'),
-    '<!-- comparison: reading-the-sources -->\n### Reading sources\n\n| Source | Can show | Cannot show |\n|---|---|---|\n| Accounts[1] | Quantities | Taste |\n| Images[2] | Representation | Typicality |\n| Hymns[3] | Celebration | A recipe |\n| Laws[4] | Rules | Enforcement |\n\n<!-- /comparison -->',
+    '## Ingredients', 'Ingredients with *emphasis*.', '## People and gods', figure('straw-drinking-seal'), figure('hammurabi-stele'),
     '---', 'A qualified conclusion.', '## References', ...Array.from({ length: 11 }, (_, i) => `${i + 1}. Source ${i + 1}. [Full text](https://example.org/${i + 1}).`)].join('\n\n');
   const parsed = parseEpisode12(source, 'fr');
   assert.equal(parsed.deck, null);
   assert.equal(parsed.standfirst.heading, 'Standfirst heading');
-  assert.equal(parsed.standfirst.paragraphs.length, 2);
-  assert.match(parsed.body, /id="vessel-contents"/);
+  assert.equal(parsed.standfirst.paragraphs.length, 1);
+  assert.match(parsed.body, /Essay continuum after the lead image/);
+  assert.doesNotMatch(parsed.body, /history-source-table|vessel-contents/);
   assert.match(parsed.lead, /met-324572-straw-seal|ur-ziggurat-lubinski/);
   assert.match(parsed.body, /met-324572-straw-seal/);
   assert.match(parsed.body, /hammurabi-stele-mbzt/);
   assert.doesNotMatch(parsed.body, /puabi-inscribed-seal-mcphee|hammurabi-inscription-rama/);
-  assert.throws(() => parseEpisode12(source.replace('Lead 2.', 'Lead 2.\n\nLead 3.\n\nLead 4.'), 'fr'));
+  assert.throws(() => parseEpisode12(source.replace('Lead 1.', 'Lead 1.\n\nLead 2.'), 'fr'));
 });
 
 test('Episode 1.2 importer rejects unsupported structure instead of dropping source content', () => {
