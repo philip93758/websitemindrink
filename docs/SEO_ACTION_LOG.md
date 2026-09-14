@@ -20,14 +20,32 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## RELEASE-20260914-PROD-FR — Verified French Episode 1.2 standfirst production deployment
+
+Recorded 2026-09-14 after live verification. This ships CONTENT-20260914-01 only; the other seven Episode 1.2 editions are unchanged.
+
+| Field | Record |
+|---|---|
+| Production revision | `96ab7e08805f75e74f5f4e3212185c2c9fa9f50d` — Import the adapted French Episode 1.2 standfirst |
+| Also included | `b08aa4e` — Record verified French Episode 1.2 production deployment (documentation only; not a public page change) |
+| Previous live revision | `e5c7832` at 2026-09-13 17:25:32 +02:00 |
+| Production time | 2026-09-14 08:22:54 +02:00 (deploy job completed 2026-09-14T06:22:59Z; live `Last-Modified` 06:22:54 GMT) |
+| Workflow | [Deploy website to GitHub Pages](https://github.com/philip93758/websitemindrink/actions/runs/34813187284), push to `main`. Build and deploy succeeded. |
+| Host | `https://mindrink.me` |
+| Live `Last-Modified` | Mon, 14 Sep 2026 06:22:54 GMT |
+| Action IDs in this release | CONTENT-20260914-01 |
+| Live verification | French Episode 1.2 200 with the two-paragraph standfirst; writing-history passage in the first section; old four-paragraph lead absent. English Episode 1.2 200 still using the deck, Puabi seal and Rama inscription. French `datePublished` remains 2026-09-13 (`article:published_time` `2026-09-13T00:00:00+02:00`); `dateModified` is 2026-09-14. |
+| Not claimed | Search ranking, crawl processing, or traffic effect. Sitemap `lastmod` is not this deployment timestamp. |
+| Not done in this closeout | Google Search Console URL Inspection or sitemap resubmission |
+
 ## CONTENT-20260914-01 — Episode 1.2 French standfirst adaptation
 
-- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Status: implemented on local website `dev`, then shipped in [RELEASE-20260914-PROD-FR](#release-20260914-prod-fr--verified-french-episode-12-standfirst-production-deployment). Article dates and sitemap `lastmod` remain separate from the verified production time.
 - Source: Atrium `docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.fr.md` (uncommitted 14 September adaptation). The Atrium French markdown was not edited from this repo.
 - Scope: French `/fr/science/mesopotamia-beer-written-records.html` only. English and the six other editions are unchanged.
 - Copy: the standfirst is now two paragraphs. The proto-cuneiform / earliest-accounts passage moves into the first section, after Agu’a and before “Neuf sortes de bière”. Title, images, captions, hub card and Episode 1.1 next-link are unchanged.
 - Metadata: keep French `datePublished` 2026-09-13. `dateModified` and sitemap `lastmod` may move to 2026-09-14 for this significant copy change.
-- Publication remains a separate step.
+- Production (2026-09-14): shipped in [RELEASE-20260914-PROD-FR](#release-20260914-prod-fr--verified-french-episode-12-standfirst-production-deployment). Do not treat sitemap `lastmod` or article dates as the live publication time. No search-traffic or ranking effect is claimed.
 
 ## RELEASE-20260913-PROD — Verified production deployment
 
