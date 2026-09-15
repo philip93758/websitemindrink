@@ -20,6 +20,15 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260915-02 — Episodes 1.1 and 1.2 native-voice / idiomatic passes (eight languages)
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.1/` (`2cacd61`, native-voice pass; archaeology yields traces, not experiments) and `Ep 1.2/` (`cc0edfa`, residual idiomatic pass across eight languages). Atrium markdown was not edited from this repo.
+- Scope: all eight `/…/science/who-invented-alcohol.html` and `/…/science/mesopotamia-beer-written-records.html` editions.
+- Change: idiomatic / native-voice copy only. Continuous-essay structures, figures, standfirsts, and section counts unchanged.
+- Metadata: keep existing `datePublished`. `dateModified` and sitemap `lastmod` may move to 2026-09-15 for this copy change.
+- Publication remains a separate step.
+
 ## CONTENT-20260915-01 — Episode 1.2 calque localization (seven languages)
 
 - Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
