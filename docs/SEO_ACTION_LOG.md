@@ -20,6 +20,15 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260915-01 — Episode 1.2 calque localization (seven languages)
+
+- Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
+- Source: Atrium `docs/marketing/Content/History series/Ep 1.2/` (`3158b9c`, “localize Ep 1.2 calques by meaning, not French syntax”). Atrium markdown was not edited from this repo.
+- Scope: English, German, Spanish, Portuguese, Indonesian, Italian, Japanese `/…/science/mesopotamia-beer-written-records.html`. French unchanged.
+- Change: meaning-first calque fixes (DE/ES/PT/IT patches; JA/ID line edits; light English polish). Structure, figures and standfirst pattern unchanged.
+- Metadata: keep existing `datePublished`. `dateModified` and sitemap `lastmod` may move to 2026-09-15 for this copy change.
+- Publication remains a separate step.
+
 ## CONTENT-20260914-05 — Episode 1.2 Japanese closing couplet
 
 - Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
