@@ -20,6 +20,15 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260920-14 — Episode 1.2 localized flow and readability
+
+- Status: local Atrium raw content and website `dev`, based on `86db13b`; not committed, pushed or deployed. Owner explicitly froze English and requested natural local-language prose in the other seven editions.
+- Final owner-requested review (2026-09-20): refined remaining literal transitions, the Agu'a passage and natural idioms in each language; repaired Japanese court-hymn sentence grammar and clarified Indonesian brewing prose. English remains unchanged. Owner subsequently authorized committing and deploying this package; actual deployment evidence is separate from this pre-release record.
+- Reviewed German, French, Spanish, Italian, European Portuguese, Indonesian and Japanese individually. First pass aligned the synopsis, institutional limits, southern Mesopotamian writing scope, special provisions and conclusion argument with frozen English. Second pass addressed sentence rhythm, literal phrasing, repeated abstractions, transitions and jargon; Indonesian brewing terms received short explanations. Final proofreading checked consistency and rendered synopsis readability on phone and desktop. No independent native-speaker review is claimed.
+- Retained title/subtitle, the three argumentative sections and conclusion structure. Preserved every citation in its original order, all eleven bibliography entries, all five complete image/credit blocks and original publication dates. English raw content is unchanged relative to its committed source; English HTML retains Git blob `907d7db890496946a21db84d764057b7889cd913`. Episode 1.1 is unchanged.
+- Raw sources: the seven `Mesopotamia - What the First Written Records Tell Us About Beer.{de,fr,es,it,pt,id,ja}.md` files in `../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/`. Website pages: `/{de,fr,es,it,pt,id,ja}/science/mesopotamia-beer-written-records.html` on `https://mindrink.me`.
+- Import changed exactly seven HTML files. Updated only their seven sitemap lastmod values to 2026-09-20 and corresponding article modification metadata; canonicals, hreflang and navigation remain unchanged. Both episode source-sync checks, build, sitemap validation, 187 automated tests and 88 browser regressions passed. Inspected 390/1280 px screenshots for every edited locale: no horizontal overflow or broken citation targets. Existing unrelated Atrium changes were preserved.
+
 ## CONTENT-20260920-13 — Final bounded English Episode 1.2 edits
 
 - Status: local Atrium raw content and website `dev`; not committed, pushed or deployed. English only, based on website `6437fef`.
