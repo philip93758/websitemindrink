@@ -94,6 +94,7 @@ test('preserves the bounded English Episode 1.1 scientific corrections', () => {
   assert.match(episode, /interpreted the site in 2012 primarily as a sanctuary/);
   assert.match(episode, /permanent settlement with a strong ritual component\.<a class="citation" href="#ref-15"/);
   assert.match(episode, /Fermented drink is a possible component of that system, not its demonstrated cause/);
+  assert.doesNotMatch(episode, /before agriculture became established in the region/);
   assert.match(episode, /id="ref-14"[^\n]+10\.1073\/pnas\.1612797113/);
   assert.match(episode, /id="ref-15"[^\n]+https:\/\/www\.dainst\.org\/en\/research\/projects\/noslug\/5746/);
   const referenceIds = new Set([...episode.matchAll(/<li id="(ref-\d+)">/g)].map(match => match[1]));
@@ -142,6 +143,64 @@ test('all Episode 1.1 languages cite the cultivation distinction and updated set
     }
   }
 });
+
+test('French Episode 1.1 keeps the approved conclusion and caption corrections', () => {
+  const episode = read('fr/science/who-invented-alcohol.html');
+  const conclusion = episode.match(/<section aria-labelledby="conclusion-title">([\s\S]*?)<div class="history-next">/)[1];
+  assert.equal((conclusion.match(/<p>/g) ?? []).length, 4);
+  assert.match(conclusion, /n’est probablement pas une invention unique/);
+  assert.match(conclusion, /festins collectifs sont bien mieux attestés que l’alcool lui-même/);
+  assert.match(conclusion, /pourquoi recommencer à en boire, le partager/);
+  assert.doesNotMatch(episode, /avant l’établissement de l’agriculture|av\. J\.-C\.\./);
+  assert.match(episode, /récoltées à l’état sauvage ou cultivées/);
+});
+
+test('German Episode 1.1 preserves the final editorial corrections', () => {
+  const episode = read('de/science/who-invented-alcohol.html');
+  const conclusion = episode.match(/<section aria-labelledby="conclusion-title">([\s\S]*?)<div class="history-next">/)[1];
+  assert.equal((conclusion.match(/<p>/g) ?? []).length, 4);
+  assert.match(conclusion, /keine einmalige Erfindung/);
+  assert.match(conclusion, /gemeinschaftliche Feste wesentlich besser belegt als Alkohol/);
+  assert.match(episode, /konnten die Bewohner von Jiahu um 7\.000 v\. Chr\. gezielt eine Gärung auslösen/);
+  assert.doesNotMatch(episode, /bevor sich die Landwirtschaft in der Region etablierte|passt in keine dieser Kategorien eindeutig|Ein Topf aus einem Wohnhaus/);
+});
+
+test('Indonesian Episode 1.1 preserves its final conclusion and consistency fixes', () => {
+  const episode = read('id/science/who-invented-alcohol.html');
+  const conclusion = episode.match(/<section aria-labelledby="conclusion-title">([\s\S]*?)<div class="history-next">/)[1];
+  assert.equal((conclusion.match(/<p>/g) ?? []).length, 4);
+  assert.match(conclusion, /oleh satu orang di satu tempat/);
+  assert.match(conclusion, /bukti tentang jamuan bersama jauh lebih kuat daripada bukti tentang alkohol/);
+  assert.match(episode, /penduduk Jiahu sudah dapat memicu fermentasi secara sengaja/);
+  assert.doesNotMatch(episode, /sebelum pertanian berkembang di wilayah tersebut|penduduk Jiahu sudah belajar memicu/);
+  assert.match(episode, /Menanam serealia tidak sama dengan mendomestikasinya/);
+});
+
+test('Portuguese Episode 1.1 preserves its final conclusion and consistency fixes', () => {
+  const episode = read('pt/science/who-invented-alcohol.html');
+  const conclusion = episode.match(/<section aria-labelledby="conclusion-title">([\s\S]*?)<div class="history-next">/)[1];
+  assert.equal((conclusion.match(/<p>/g) ?? []).length, 4);
+  assert.match(conclusion, /não tenha sido uma invenção única/);
+  assert.match(episode, /já preparavam deliberadamente bebidas fermentadas/);
+  assert.doesNotMatch(episode, /antes de a agricultura se estabelecer|já tinham aprendido a preparar|\b(?:9750|7000|5500|6000|9600|8200)\b/);
+  assert.match(episode, /Cultivar cereais não é o mesmo que domesticá-los/);
+});
+
+for (const [locale, thesis, obsolete] of [
+  ['es', 'el alcohol no fuera una invención única', /habrían aprendido a preparar|antes de que la agricultura se estableciera/],
+  ['it', 'l’alcol non sia stato un’invenzione unica', /avevano imparato ad avviare|prima che l’agricoltura si affermasse/],
+  ['ja', '誰かが一度だけ「発明」したものではない', /方法を身につけていた|農耕がこの地域に定着する以前/],
+]) {
+  test(`${locale} Episode 1.1 preserves its final conclusion and consistency fixes`, () => {
+    const episode = read(`${locale}/science/who-invented-alcohol.html`);
+    const conclusion = episode.match(/<section aria-labelledby="conclusion-title">([\s\S]*?)<div class="history-next">/)[1];
+    assert.equal((conclusion.match(/<p>/g) ?? []).length, 4);
+    assert.ok(conclusion.includes(thesis));
+    assert.doesNotMatch(episode, obsolete);
+    assert.ok(episode.includes('id="ref-14"'));
+    assert.ok(episode.includes('id="ref-15"'));
+  });
+}
 
 test('routes every English Science navigation item through the hub', () => {
   const failures = [];

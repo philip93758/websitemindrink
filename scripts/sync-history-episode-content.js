@@ -62,7 +62,7 @@ const editions = {
     captions: {
       jiahu: 'The Jiahu storage jar analysed for traces of a fermented drink appears at upper left; the remaining panels show a later bronze vessel and examples of the chemical evidence used to identify ancient contents.',
       georgia: 'An early Neolithic jar from Khramis Didi-Gora, shown alongside jar-base fragments from the Georgian sites studied for ancient wine residues. One base preserves a textile impression.',
-      enclosure: 'Göbekli Tepe’s main excavation area, with Enclosure D in the foreground. Its monumental T-shaped pillars were erected by hunter-gatherer communities before agriculture became established in the region.',
+      enclosure: 'Göbekli Tepe’s main excavation area, with Enclosure D in the foreground. Its monumental T-shaped pillars were erected by hunter-gatherer communities.',
       pillar: 'Pillar 56 in Göbekli Tepe’s Enclosure H. The close view reveals the monumental T-shape and the dense procession of animals carved across its surface.',
     },
     alt: {
@@ -78,7 +78,7 @@ const editions = {
     captions: {
       jiahu: 'Oben links ist der Vorratskrug aus Jiahu zu sehen, der auf Spuren eines Gärgetränks untersucht wurde; die übrigen Felder zeigen ein späteres Bronzegefäß und Beispiele der chemischen Befunde, mit denen antike Inhalte bestimmt wurden.',
       georgia: 'Ein frühneolithischer Krug aus Khramis Didi-Gora neben Bodenfragmenten von Krügen aus den georgischen Fundorten, die auf alte Weinrückstände untersucht wurden. Ein Boden bewahrt den Abdruck eines Textils.',
-      enclosure: 'Das Hauptgrabungsareal von Göbekli Tepe mit Anlage D im Vordergrund. Die monumentalen T-förmigen Pfeiler wurden von Jäger-und-Sammler-Gemeinschaften errichtet, bevor sich die Landwirtschaft in der Region etablierte.',
+      enclosure: 'Das Hauptgrabungsareal von Göbekli Tepe mit Anlage D im Vordergrund. Die monumentalen T-förmigen Pfeiler wurden von Jäger-und-Sammler-Gemeinschaften errichtet.',
       pillar: 'Pfeiler 56 in Anlage H von Göbekli Tepe. Die Nahaufnahme zeigt die monumentale T-Form und die dichte Folge von Tierdarstellungen auf seiner Oberfläche.',
     },
     alt: {
@@ -94,7 +94,7 @@ const editions = {
     captions: {
       jiahu: 'En la parte superior izquierda aparece la jarra de almacenamiento de Jiahu analizada en busca de restos de una bebida fermentada; los demás paneles muestran un recipiente de bronce posterior y ejemplos de las pruebas químicas utilizadas para identificar contenidos antiguos.',
       georgia: 'Una jarra del Neolítico temprano de Khramis Didi-Gora, junto a fragmentos de bases de jarras procedentes de los yacimientos georgianos estudiados en busca de residuos de vino antiguo. Una de las bases conserva la impresión de un tejido.',
-      enclosure: 'La principal zona de excavación de Göbekli Tepe, con el recinto D en primer plano. Sus monumentales pilares en forma de T fueron erigidos por comunidades de cazadores-recolectores antes de que la agricultura se estableciera en la región.',
+      enclosure: 'La principal zona de excavación de Göbekli Tepe, con el recinto D en primer plano. Sus monumentales pilares en forma de T fueron erigidos por comunidades de cazadores-recolectores.',
       pillar: 'El pilar 56 del recinto H de Göbekli Tepe. La vista de cerca muestra la monumental forma de T y la densa sucesión de animales tallados en su superficie.',
     },
     alt: {
@@ -110,7 +110,7 @@ const editions = {
     captions: {
       jiahu: 'La jarre de stockage de Jiahu analysée pour rechercher les traces d’une boisson fermentée apparaît en haut à gauche ; les autres panneaux montrent un récipient en bronze plus récent et des exemples des indices chimiques utilisés pour identifier des contenus anciens.',
       georgia: 'Une jarre du Néolithique ancien provenant de Khramis Didi-Gora, accompagnée de fragments de fonds de jarres issus des sites géorgiens étudiés pour leurs anciens résidus de vin. L’un des fonds conserve l’empreinte d’un textile.',
-      enclosure: 'La principale zone de fouilles de Göbekli Tepe, avec l’enceinte D au premier plan. Ses piliers monumentaux en forme de T ont été dressés par des communautés de chasseurs-cueilleurs avant l’établissement de l’agriculture dans la région.',
+      enclosure: 'La principale zone de fouilles de Göbekli Tepe, avec l’enceinte D au premier plan. Ses piliers monumentaux en forme de T ont été dressés par des communautés de chasseurs-cueilleurs.',
       pillar: 'Le pilier 56 de l’enceinte H de Göbekli Tepe. Cette vue rapprochée révèle sa forme monumentale en T et la dense procession d’animaux sculptés sur sa surface.',
     },
     alt: {
@@ -126,7 +126,7 @@ const editions = {
     captions: {
       jiahu: 'Kendi penyimpanan dari Jiahu yang dianalisis untuk mencari jejak minuman fermentasi terlihat di kiri atas; panel lainnya menampilkan bejana perunggu dari masa yang lebih kemudian serta contoh bukti kimia yang digunakan untuk mengenali isi benda purba.',
       georgia: 'Kendi Neolitikum awal dari Khramis Didi-Gora, ditampilkan bersama pecahan dasar kendi dari situs-situs Georgia yang diteliti untuk mencari residu anggur kuno. Salah satu dasarnya menyimpan jejak tenunan.',
-      enclosure: 'Area penggalian utama Göbekli Tepe, dengan Kompleks D di bagian depan. Pilar-pilar monumental berbentuk T didirikan oleh komunitas pemburu-peramu sebelum pertanian berkembang di wilayah tersebut.',
+      enclosure: 'Area penggalian utama Göbekli Tepe, dengan Kompleks D di bagian depan. Pilar-pilar monumental berbentuk T didirikan oleh komunitas pemburu-peramu.',
       pillar: 'Pilar 56 di Kompleks H, Göbekli Tepe. Tampilan dekat memperlihatkan bentuk T yang monumental serta barisan padat hewan yang dipahat pada permukaannya.',
     },
     alt: {
@@ -142,7 +142,7 @@ const editions = {
     captions: {
       jiahu: 'In alto a sinistra compare l’orcio di Jiahu analizzato per individuare tracce di una bevanda fermentata; gli altri riquadri mostrano un recipiente in bronzo più tardo ed esempi delle prove chimiche utilizzate per riconoscere contenuti antichi.',
       georgia: 'Un orcio del primo Neolitico proveniente da Khramis Didi-Gora, accanto a frammenti di fondi di orci dei siti georgiani studiati per i residui di vino antico. Uno dei fondi conserva l’impronta di un tessuto.',
-      enclosure: 'La principale area di scavo di Göbekli Tepe, con il Recinto D in primo piano. I monumentali pilastri a forma di T furono eretti da comunità di cacciatori-raccoglitori prima che l’agricoltura si affermasse nella regione.',
+      enclosure: 'La principale area di scavo di Göbekli Tepe, con il Recinto D in primo piano. I monumentali pilastri a forma di T furono eretti da comunità di cacciatori-raccoglitori.',
       pillar: 'Il pilastro 56 del Recinto H di Göbekli Tepe. La vista ravvicinata mostra la monumentale forma a T e la fitta processione di animali scolpiti sulla superficie.',
     },
     alt: {
@@ -158,7 +158,7 @@ const editions = {
     captions: {
       jiahu: '左上は発酵飲料の痕跡が分析された賈湖の貯蔵甕。ほかのパネルには後代の青銅器と、古代の内容物を特定するために用いられた化学的証拠の例が示されている。',
       georgia: 'フラミス・ディディ・ゴラ出土の新石器時代初期の甕と、古代ワインの残留物が調べられたジョージア各地の遺跡の甕底片。甕底の一つには織物の圧痕が残っている。',
-      enclosure: 'ギョベクリ・テペの主要発掘区。手前は囲い込みD。農耕がこの地域に定着する以前、狩猟採集民の共同体が記念碑的なT字形の柱を築いた。',
+      enclosure: 'ギョベクリ・テペの主要発掘区。手前は囲い込みD。巨大なT字形の柱は、狩猟採集民の共同体によって築かれた。',
       pillar: 'ギョベクリ・テペ、囲い込みHの第56号柱。近景から、巨大なT字形と、表面に密集して刻まれた動物の列が分かる。',
     },
     alt: {
@@ -174,7 +174,7 @@ const editions = {
     captions: {
       jiahu: 'No canto superior esquerdo aparece o jarro de armazenamento de Jiahu analisado em busca de vestígios de uma bebida fermentada; os restantes painéis mostram um recipiente de bronze posterior e exemplos dos indícios químicos usados para identificar conteúdos antigos.',
       georgia: 'Um jarro do Neolítico antigo de Khramis Didi-Gora, ao lado de fragmentos de bases de jarros dos sítios georgianos estudados em busca de resíduos de vinho antigo. Uma das bases conserva a impressão de um tecido.',
-      enclosure: 'A principal área de escavação de Göbekli Tepe, com o Recinto D em primeiro plano. Os seus pilares monumentais em forma de T foram erguidos por comunidades de caçadores-recoletores antes de a agricultura se estabelecer na região.',
+      enclosure: 'A principal área de escavação de Göbekli Tepe, com o Recinto D em primeiro plano. Os seus pilares monumentais em forma de T foram erguidos por comunidades de caçadores-recoletores.',
       pillar: 'O pilar 56 do Recinto H de Göbekli Tepe. A vista aproximada revela a forma monumental em T e a densa sucessão de animais esculpidos na sua superfície.',
     },
     alt: {
