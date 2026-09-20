@@ -20,6 +20,18 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260920-01 — Episode 1.2 English editorial refinement
+
+- Status: implemented locally on website `dev`; not committed, pushed or deployed at recording.
+- Owner request: edit the Atrium English source first, then sync the website. Episode 1.1 English is the frozen style benchmark; translations are outside this pass.
+- Source: `../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.md`, revised in the separately scoped Atrium `dev` working tree before import.
+- Exact URL: `https://mindrink.me/science/mesopotamia-beer-written-records.html`.
+- Changed slots: three-sentence synopsis, city/surplus/record-keeping introduction, more direct wording throughout the three existing body sections and conclusion. Preserve the uncertainty around reconstruction and drinking straws; retain the Agu'a example and final payoff.
+- Preserved: title, subtitle, section headings/order, all eleven references, five illustrations with captions/credits, publication date, descriptions, canonical/hreflang and navigation. No changes to Episode 1.1, translated pages, hub, shared styles or importer.
+- Implementation: the revision containing this action ID, based on `26ea217`; the matching raw-source edit remains in Atrium. English article `dateModified` and only its sitemap `lastmod` advance to 2026-09-20. These are modification dates, not deployment evidence.
+- Validation on 2026-09-20: English source-sync check and build passed; 178 automated tests and 88 browser checks passed without failures. Inspected English opening/intro at 390 and 1280 px. Compared figures, reference entries, headings and citation sequence against HEAD (line-ending normalized): unchanged. Source hashes confirm all 21 other Markdown files in the two episode folders are untouched by this pass. Local QA artifacts: `docs/Ai/reviews/english-episode12-2026-09-20/` (ignored).
+- Production revision/time, crawl observation and search outcome: not yet recorded. This is an editorial readability change, not a claimed ranking improvement.
+
 ## CONTENT-20260915-02 — Episodes 1.1 and 1.2 native-voice / idiomatic passes (eight languages)
 
 - Status: implemented on local website `dev`. **Not pushed or deployed.** Article dates and sitemap `lastmod` are not production evidence.
