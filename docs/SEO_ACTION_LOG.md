@@ -20,6 +20,13 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20260920-13 — Final bounded English Episode 1.2 edits
+
+- Status: local Atrium raw content and website `dev`; not committed, pushed or deployed. English only, based on website `6437fef`.
+- Applied the owner's ten targeted edits: synopsis thesis; limited institutional scope in the introduction; southern Mesopotamian scope for early writing; narrower special-distribution wording without “temporary workers”; concrete institutional archive bias; drinking rather than holding the jar; plain Ninkasi payoff; grammatical Hammurabi penalty phrasing; and two conclusion micro-edits. No restructuring, cuts, new research section or conclusion rewrite.
+- Source: `../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/Mesopotamia - What the First Written Records Tell Us About Beer.md`. Page: `https://mindrink.me/science/mesopotamia-beer-written-records.html`. Preserved all references, figures, credits, headings, original publication date and canonical/hreflang; other languages and Episode 1.1 unchanged.
+- Validation: English-only import updated one HTML file. Both episode source checks, build, sitemap check and 187 tests passed. Mobile/desktop checks at 390/1280 px found no overflow or broken citation targets; inspected the synopsis rendering. Same-day modification and sitemap dates remain current. No independent source re-review or live deployment claimed.
+
 ## CONTENT-20260920-12 — Final Japanese, Italian and Spanish Episode 1.1 pass
 
 - Status: local Atrium raw content and website `dev`; not committed, pushed or deployed. Preserved all pending edits to the other five editions and unrelated Atrium work.
