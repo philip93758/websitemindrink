@@ -53,6 +53,17 @@ npm run sitemap:check
 - Keep the existing sitemap URL, canonical, and hreflang structure intact. The updater changes `<lastmod>` values only.
 - `npm test` includes the sitemap synchronization check and will direct the agent to run `sitemap:update` when significant page sources are newer.
 
+## Automated static SEO gate
+
+The check belongs in this website repository, not Atrium. Run `npm run seo:check` to check the public source inventory without network access or credentials. `npm run build` includes it, and the existing GitHub Actions deployment depends on a successful build. A failure exits nonzero and prevents that release from deploying; it does not run continuously against the live site.
+
+- `tools/check-site-seo.js` checks exactly the directories/root files staged by `.github/workflows/deploy-pages.yml`. Its tests guard that contract. Private docs, dependencies and authoring tools are not public targets, and the checker itself is not published.
+- Every current public HTML page requires one non-empty title, description and H1, its expected document language and self-canonical, consistent Open Graph URL when present, and no `noindex`. The current site contract is eight equivalent language versions plus English `x-default`; language targets must be published, self-inclusive, reciprocal and consistent within each family.
+- Internal hyperlinks must resolve to published files, including relative links, query strings, encoded fragments and cross-page anchor IDs. The sitemap must contain each published canonical exactly once, with the same language alternatives as its HTML. Existing `sitemap:check` separately validates modification dates.
+- This is a bounded static HTML/XML scanner, not a browser crawler or general schema validator. It does not verify external-site availability, robots.txt/server headers, deployed HTTP behaviour, Google crawl/indexing/snippet choices, copy quality or traffic impact. Keep live GSC analysis in Atrium; do not put analytics credentials into this gate.
+- `npm test` exercises positive and deliberately broken fixtures, failure exit status, the real website inventory and deployment wiring. If changing the publishing contract or adding a new language/page family, update the checker and tests deliberately rather than bypassing failures.
+- `tests/methodology-references.test.js` protects the equivalent WHO edition notes. Keep the 2018 citation distinct from the newer 2024 background link; editing a reference does not authorize changing calculator thresholds or formulas.
+
 ## Multilingual SEO and UX changes
 
 - Record meaningful SEO/content/UX changes in [SEO_ACTION_LOG.md](SEO_ACTION_LOG.md), including affected URLs/locales, changed slots, implementation revision and the separate actual deployment evidence when known. Append dated analysis outcomes; never treat a commit or sitemap date as the production release date. Keep raw/private analytics in Atrium, linked rather than copied into Git.

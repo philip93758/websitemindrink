@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run analytics:build && npm run analytics:pages:check && npm run sitemap:check",
+    "build": "npm run analytics:build && npm run analytics:pages:check && npm run sitemap:check && npm run seo:check",
+    "seo:check": "node tools/check-site-seo.js",
     "analytics:build": "node scripts/build-analytics-assets.js",
     "analytics:pages:update": "node scripts/update-analytics-loaders.js",
     "analytics:pages:check": "node scripts/update-analytics-loaders.js --check",
