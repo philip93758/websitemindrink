@@ -72,6 +72,13 @@ The check belongs in this website repository, not Atrium. Run `npm run seo:check
 - `tests/seo-ux.test.js` and its locale fixture protect the current sections, heading hierarchy, language routing, calculator labels, CTA meaning and comparison disclosures. Existing differences in localized FAQs and comparison introductions are preserved by the baseline, not endorsed as a pattern for new divergence. Update that structural baseline only for an approved change.
 - Keep the calculator CTA pointed at the same-language homepage. Store-click measurement belongs on existing homepage/comparison buttons. See [ANALYTICS.md](ANALYTICS.md) for event meaning and privacy constraints.
 
+### Calculator reference units
+
+- The owner-approved Italian localization uses **12 g per Italian UA** in the website calculator's existing reference slot. `CALCULATOR_REFERENCE_GRAMS_BY_LOCALE` in `shared/alcohol/constants.js` selects this only for document language `it`; the other seven languages and default formula callers retain 10 g.
+- `calculateDrinkResult(input, referenceGrams)` returns `referenceUnits`; `calculateTotals(rows, referenceGrams)` returns `totalReferenceUnits`. Quantity is included before conversion, and totals use unrounded grams. Round only the display results. The existing `globalStandardDrinks` / `totalGlobalStandardDrinks` fields and `GLOBAL_STANDARD_DRINK_GRAMS = 10` retain the app comparison reference. UK units remain based on 10 ml of pure alcohol; US standard drinks remain 14 g; calories represent alcohol alone.
+- The Italian methodology's app thresholds, source editions and quantities in grams remain unchanged. Do not relabel its 10 g threshold tables as 12 g units or imply that the app changed convention. The Italian explanation cites [ISS/PASSI's 12 g definition](https://www.epicentro.iss.it/passi/indicatori/alcol); this is a measurement definition, not a new drinking recommendation.
+- The Italian entries in the accuracy/SEO fixtures were deliberately refreshed for this localization on 2026-10-12. Formula, table, FAQ-schema and browser checks protect the Italian conversion, unrounded totals, unchanged app threshold table, and calculations in the other seven languages. Cache versions and sitemap dependency dates do not establish deployment or Google crawl dates.
+
 ## History episode content sync
 
 Episode 1.1's approved Markdown is in Atrium's `docs/marketing/Content/History series/Ep 1.1/` folder. From this website repository, import and verify all eight editions with:

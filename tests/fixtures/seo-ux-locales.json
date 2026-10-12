@@ -672,12 +672,12 @@
     },
     "it": {
       "abv": "Gradazione alcolica (% vol.)",
-      "unit": "Unità da 10 g",
+      "unit": "Unità alcoliche italiane (12 g)",
       "empty": "Nessuna bevanda aggiunta.",
       "add": "Aggiungi questa bevanda al totale",
-      "intro": "Inserisci volume e gradazione per calcolare grammi di alcol, unità da 10 g, unità UK e drink standard USA. Questo strumento non calcola il tasso alcolemico.",
+      "intro": "Inserisci volume e gradazione per calcolare grammi di alcol puro, unità alcoliche italiane da 12 g, unità UK e drink standard USA. Questo strumento non calcola il tasso alcolemico.",
       "bridge": "Il calcolatore mostra l’alcol contenuto in una bevanda. Mindrink ti aiuta a registrare le bevande e a osservare le tue abitudini nel tempo.",
-      "definition": "<li><strong>Unità da 10 g:</strong> ogni unità rappresenta 10 g di alcol puro. È un riferimento per il confronto, non una definizione universale di unità alcolica.</li>"
+      "definition": "<li><strong>Unità alcoliche italiane (12 g):</strong> 1 UA corrisponde a 12 g di alcol puro, secondo l’<a href=\"https://www.epicentro.iss.it/passi/indicatori/alcol\">Istituto Superiore di Sanità (ISS), sorveglianza PASSI</a>.</li>"
     },
     "id": {
       "abv": "Kadar alkohol (% ABV)",

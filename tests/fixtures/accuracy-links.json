@@ -47,13 +47,18 @@
       "ukFaq": "Uma unidade britânica equivale a 10 ml de álcool puro, aproximadamente 8 g."
     },
     "it": {
-      "intro": "Mindrink usa un’unità di riferimento di 10 g di alcol puro per confrontare le bevande. La definizione di bevanda standard può variare da paese a paese.",
+      "intro": "L’app Mindrink usa un’unità di riferimento di 10 g di alcol puro per confrontare le bevande e applicare le proprie soglie. In Italia, l’unità alcolica (UA) corrisponde invece a 12 g di alcol puro, secondo l’<a href=\"https://www.epicentro.iss.it/passi/indicatori/alcol\">Istituto Superiore di Sanità (ISS), sorveglianza PASSI</a>.",
       "reference": "Anche una bevanda standard australiana contiene 10 g di alcol puro.<br> Questo riferimento permette di confrontare birra, vino, superalcolici e cocktail sulla stessa scala.",
       "formula": "Unità da 10 g = (Volume in ml × (gradazione alcolica (%) ÷ 100) × 0,789) ÷ 10",
       "hint": "Per calcolare le unità da 10 g, inserisci la gradazione come numero (per esempio, 5 per il 5%):",
-      "answerIntro": "Mindrink usa un’unità di riferimento di 10 g di alcol puro. La definizione di bevanda standard varia da paese a paese. Una lattina di birra da 330 ml al 5% equivale a circa 1,3 unità, un calice di vino da 175 ml al 13% a circa 1,8 unità e una dose di superalcolico da 40 ml al 40% a circa 1,3 unità. Per una bevanda specifica, inserisci volume e gradazione nel <a href=\"/it/alcohol-unit-calculator/\">calcolatore di unità alcoliche</a>.",
-      "faq": "Qui Mindrink usa un’unità di riferimento di 10 g di alcol puro. Le definizioni nazionali possono variare.",
-      "ukFaq": "Un’unità britannica corrisponde a 10 ml di alcol puro, circa 8 g."
+      "answerIntro": "In Italia, 1 unità alcolica (UA) contiene 12 g di alcol puro, secondo l’<a href=\"https://www.epicentro.iss.it/passi/indicatori/alcol\">Istituto Superiore di Sanità (ISS), sorveglianza PASSI</a>. Una lattina di birra da 330 ml al 5% equivale a circa 1,1 UA italiane, un calice di vino da 175 ml al 13% a circa 1,5 UA italiane e una dose di superalcolico da 40 ml al 40% a circa 1,1 UA italiane. Per una bevanda specifica, inserisci volume e gradazione nel <a href=\"/it/alcohol-unit-calculator/\">calcolatore di unità alcoliche</a>.",
+      "faq": "In Italia, 1 unità alcolica (UA) corrisponde a 12 g di alcol puro. L’app Mindrink mantiene il proprio riferimento da 10 g.",
+      "ukFaq": "Un’unità britannica corrisponde a 10 ml di alcol puro, circa 8 g.",
+      "guide": {
+        "intro": "In Italia, 1 unità alcolica (UA) corrisponde a 12 g di alcol puro, secondo l’<a href=\"https://www.epicentro.iss.it/passi/indicatori/alcol\">Istituto Superiore di Sanità (ISS), sorveglianza PASSI</a>. L’app Mindrink usa invece un riferimento da 10 g per confrontare le bevande e applicare le proprie soglie.",
+        "hint": "Per calcolare le UA italiane da 12 g, inserisci la gradazione come numero (per esempio, 5 per il 5%):",
+        "formula": "UA italiane = (Volume in ml × (gradazione alcolica (%) ÷ 100) × 0,789) ÷ 12"
+      }
     },
     "ja": {
       "intro": "Mindrinkでは、お酒を比較するために純アルコール10gを1単位とする基準を使います。標準ドリンクの定義は国によって異なります。",
@@ -1358,7 +1363,7 @@
         "<meta name=\"keywords\" content=\"alcohol units calculation, drinking methodology, alcohol tracking science, mindful drinking research\">",
         "<meta name=\"robots\" content=\"index, follow\">",
         "<title>Metodologia di Mindrink – Le unità alcoliche spiegate</title>",
-        "<link rel=\"preload\" href=\"/styles.css\" as=\"style\">",
+        "<link rel=\"preload\" href=\"/styles.css?v=qa-20260913a\" as=\"style\">",
         "<link rel=\"icon\" type=\"image/png\" sizes=\"256x256\" href=\"/assets/favicons/favicon-256x256.png\">",
         "<link rel=\"icon\" type=\"image/png\" sizes=\"512x512\" href=\"/assets/favicons/favicon-512x512.png\">",
         "<link rel=\"apple-touch-icon\" sizes=\"1024x1024\" href=\"/assets/favicons/apple-touch-icon.png\">",
@@ -1399,7 +1404,7 @@
         "<meta name=\"twitter:description\" content=\"Scopri come Mindrink calcola le unità alcoliche, interpreta le abitudini e usa una metodologia trasparente per bere con più consapevolezza.\">",
         "<meta name=\"twitter:image\" content=\"https://mindrink.me/assets/app-mindrink-way-social.jpg\">",
         "<meta name=\"twitter:image:alt\" content=\"Mindrink app helping you enjoy drinking mindfully\">",
-        "<link rel=\"stylesheet\" href=\"/styles.css\">"
+        "<link rel=\"stylesheet\" href=\"/styles.css?v=qa-20260913a\">"
       ],
       "headings": [
         "<h1 class=\"page-title\">⭐ Metodologia Mindrink: come definiamo limiti, unità alcoliche e livelli di rischio</h1>",
@@ -1441,12 +1446,16 @@
         "/id/methodology.html",
         "/it/methodology.html",
         "/ja/methodology.html",
+        "https://www.epicentro.iss.it/passi/indicatori/alcol",
+        "/it/alcohol-unit-calculator/",
         "/it/blog/what-counts-as-a-drink-alcohol-units.html",
         "https://www.ccsa.ca/canadas-guidance-alcohol-and-health",
         "https://www.nhmrc.gov.au/health-advice/alcohol",
         "https://www2.hse.ie/living-well/alcohol/health/improve-your-health/weekly-low-risk-alcohol-guidelines/",
         "https://www.rethinkingdrinking.niaaa.nih.gov/",
         "https://www.who.int/publications/i/item/9789241565639",
+        "https://www.who.int/publications/i/item/9789240096745",
+        "https://www.epicentro.iss.it/passi/indicatori/alcol",
         "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext",
         "/it/discover/",
         "/it/science/",
@@ -1459,7 +1468,7 @@
       "metadata": [
         "<meta charset=\"UTF-8\">",
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
-        "<meta name=\"description\" content=\"Calcola unità alcoliche da 10 g per birra, vino e superalcolici, con esempi e equivalenze tra Regno Unito e USA.\">",
+        "<meta name=\"description\" content=\"Calcola le unità alcoliche italiane da 12 g per birra, vino e superalcolici, con esempi e confronti con le unità UK e i drink standard USA.\">",
         "<meta name=\"robots\" content=\"index, follow\">",
         "<title>Quante unità alcoliche ci sono nelle bevande comuni? | Mindrink</title>",
         "<link rel=\"preload\" href=\"/styles.css\" as=\"style\">",
@@ -1469,7 +1478,7 @@
         "<meta property=\"og:type\" content=\"article\">",
         "<meta property=\"og:url\" content=\"https://mindrink.me/it/alcohol-units.html\">",
         "<meta property=\"og:title\" content=\"Quante unità alcoliche ci sono nelle bevande comuni?\">",
-        "<meta property=\"og:description\" content=\"Calcola unità alcoliche da 10 g per birra, vino e superalcolici, con esempi e equivalenze tra Regno Unito e USA.\">",
+        "<meta property=\"og:description\" content=\"Calcola le unità alcoliche italiane da 12 g per birra, vino e superalcolici, con esempi e confronti con le unità UK e i drink standard USA.\">",
         "<meta property=\"og:image\" content=\"https://mindrink.me/assets/app-mindrink-way-social.jpg\">",
         "<link rel=\"canonical\" href=\"https://mindrink.me/it/alcohol-units.html\">",
         "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-units.html\">",
@@ -1508,6 +1517,9 @@
         "/it/alcohol-units.html",
         "/ja/alcohol-units.html",
         "/it/discover/",
+        "https://www.epicentro.iss.it/passi/indicatori/alcol",
+        "/it/alcohol-unit-calculator/",
+        "/it/methodology.html",
         "/it/dry-day.html",
         "/it/discover/",
         "/it/science/",
@@ -1519,11 +1531,11 @@
       "metadata": [
         "<meta charset=\"UTF-8\">",
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
-        "<meta name=\"description\" content=\"Cosa conta come un drink? Una guida semplice per capire le unità alcoliche e le bevande standard, con esempi per birra, vino e superalcolici.\">",
+        "<meta name=\"description\" content=\"Cosa conta come un drink? Scopri le unità alcoliche italiane da 12 g, il riferimento Mindrink da 10 g e gli esempi per birra, vino e superalcolici.\">",
         "<meta name=\"keywords\" content=\"unità alcoliche, bevande standard, calcolo ABV, cosa conta come un drink, guida unità alcol\">",
         "<meta name=\"robots\" content=\"index, follow\">",
         "<title>Cosa conta come un drink? Guida alle unità alcoliche | Blog Mindrink</title>",
-        "<link rel=\"preload\" href=\"/styles.css\" as=\"style\">",
+        "<link rel=\"preload\" href=\"/styles.css?v=qa-20260913a\" as=\"style\">",
         "<link rel=\"icon\" type=\"image/png\" sizes=\"256x256\" href=\"/assets/favicons/favicon-256x256.png\">",
         "<link rel=\"icon\" type=\"image/png\" sizes=\"512x512\" href=\"/assets/favicons/favicon-512x512.png\">",
         "<link rel=\"apple-touch-icon\" sizes=\"1024x1024\" href=\"/assets/favicons/apple-touch-icon.png\">",
@@ -1532,7 +1544,7 @@
         "<meta property=\"og:type\" content=\"article\">",
         "<meta property=\"og:url\" content=\"https://mindrink.me/it/blog/what-counts-as-a-drink-alcohol-units.html\">",
         "<meta property=\"og:title\" content=\"Cosa conta come un drink? Guida alle unità alcoliche | Blog Mindrink\">",
-        "<meta property=\"og:description\" content=\"Cosa conta come un drink? Una guida semplice per capire le unità alcoliche e le bevande standard, con esempi per birra, vino e superalcolici.\">",
+        "<meta property=\"og:description\" content=\"Cosa conta come un drink? Scopri le unità alcoliche italiane da 12 g, il riferimento Mindrink da 10 g e gli esempi per birra, vino e superalcolici.\">",
         "<meta property=\"og:image\" content=\"https://mindrink.me/assets/app-mindrink-way-social.jpg\">",
         "<meta property=\"og:image:secure_url\" content=\"https://mindrink.me/assets/app-mindrink-way-social.jpg\">",
         "<meta property=\"og:image:type\" content=\"image/jpeg\">",
@@ -1542,7 +1554,7 @@
         "<meta property=\"og:site_name\" content=\"Mindrink\">",
         "<meta property=\"og:locale\" content=\"it_IT\">",
         "<meta property=\"article:published_time\" content=\"2026-02-09T00:00:00Z\">",
-        "<meta property=\"article:modified_time\" content=\"2026-02-09T00:00:00Z\">",
+        "<meta property=\"article:modified_time\" content=\"2026-10-12T00:00:00+02:00\">",
         "<link rel=\"canonical\" href=\"https://mindrink.me/it/blog/what-counts-as-a-drink-alcohol-units.html\">",
         "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/blog/what-counts-as-a-drink-alcohol-units.html\">",
         "<link rel=\"alternate\" hreflang=\"fr\" href=\"https://mindrink.me/fr/blog/what-counts-as-a-drink-alcohol-units.html\">",
@@ -1556,15 +1568,15 @@
         "<meta name=\"twitter:card\" content=\"summary_large_image\">",
         "<meta name=\"twitter:url\" content=\"https://mindrink.me/it/blog/what-counts-as-a-drink-alcohol-units.html\">",
         "<meta name=\"twitter:title\" content=\"Cosa conta come un drink? Guida alle unità alcoliche | Blog Mindrink\">",
-        "<meta name=\"twitter:description\" content=\"Cosa conta come un drink? Una guida semplice per capire le unità alcoliche e le bevande standard, con esempi per birra, vino e superalcolici.\">",
+        "<meta name=\"twitter:description\" content=\"Cosa conta come un drink? Scopri le unità alcoliche italiane da 12 g, il riferimento Mindrink da 10 g e gli esempi per birra, vino e superalcolici.\">",
         "<meta name=\"twitter:image\" content=\"https://mindrink.me/assets/app-mindrink-way-social.jpg\">",
         "<meta name=\"twitter:image:alt\" content=\"L'app Mindrink ti aiuta a capire le unità alcoliche\">",
-        "<link rel=\"stylesheet\" href=\"/styles.css\">"
+        "<link rel=\"stylesheet\" href=\"/styles.css?v=qa-20260913a\">"
       ],
       "headings": [
         "<h1 class=\"page-title\">Cosa conta come un drink? Capire le unità alcoliche e le bevande standard</h1>",
         "<h2 class=\"feature-title\">Cos'è un'unità alcolica?</h2>",
-        "<h2 class=\"feature-title\">🍺 Esempi (usando 1 unità = 10 g di etanolo)</h2>",
+        "<h2 class=\"feature-title\">🍺 Esempi (usando 1 UA italiana = 12 g di etanolo)</h2>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Birra</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">🍷 Vino</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">🥃 Superalcolici</h3>",
@@ -1575,7 +1587,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Regno Unito</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">USA</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Canada</h3>",
-        "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Mindrink (sistema in stile OMS)</h3>",
+        "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Mindrink (riferimento dell’app da 10 g)</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Perché Mindrink usa lo standard di 10 g</h3>",
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Cosa significa per gli utenti</h3>",
         "<h2 class=\"feature-title\">Un passo successivo naturale: riflettere sulle tue abitudini senza giudizio</h2>"
@@ -1596,9 +1608,12 @@
         "/ja/blog/what-counts-as-a-drink-alcohol-units.html",
         "/it/discover/",
         "/it/blog/",
+        "https://www.epicentro.iss.it/passi/indicatori/alcol",
         "/it/alcohol-unit-calculator/",
         "/it/methodology.html",
         "/it/blog/how-alcohol-guidelines-are-created.html",
+        "https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/",
+        "https://www.niaaa.nih.gov/alcohols-effects-health/what-standard-drink",
         "/it/blog/am-i-drinking-too-much-without-judgment.html",
         "/it/discover/",
         "/it/science/",
@@ -2114,5 +2129,6 @@
         "https://tally.so/r/WOr06N?source=website_footer"
       ]
     }
-  }
+  },
+  "italianThresholdTableHash": "478f0180200f85ca4a2a77059d224345be257742f50e0abf2c083b3a02307645"
 }

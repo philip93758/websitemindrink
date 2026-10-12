@@ -3,7 +3,7 @@ import {
   calculateDrinkResult,
   calculateEquivalents,
   calculateTotals,
-} from '/shared/alcohol/formulas.js?v=calculator-20260816c';
+} from '/shared/alcohol/formulas.js?v=calculator-20261012it';
 import {
   trackAppCtaClicked,
   trackAppCtaViewed,
@@ -14,10 +14,12 @@ import {
 import { observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20260912a';
 import {
   ETHANOL_DENSITY_G_PER_ML,
+  GLOBAL_STANDARD_DRINK_GRAMS,
+  CALCULATOR_REFERENCE_GRAMS_BY_LOCALE,
   MAX_ABV_PERCENT,
   MAX_QUANTITY,
   MAX_VOLUME_ML,
-} from '/shared/alcohol/constants.js?v=calculator-20260816c';
+} from '/shared/alcohol/constants.js?v=calculator-20261012it';
 
 const MIN_ADD_QUANTITY = 1;
 
@@ -172,10 +174,10 @@ const LOCALES = {
     totalEmpty: "Nessuna bevanda aggiunta.",
     totalOptional: 'Facoltativo: aggiungi la bevanda sopra per stimare un totale.',
     rowDetail: '{quantity} x {volume} ml al {abv}%',
-    standardUnits: "Unità da 10 g",
+    standardUnits: "Unità alcoliche italiane (12 g)",
     remove: 'Rimuovi',
     byDrinkType: 'Per tipo di bevanda:',
-    breakdown: '{count} bevande, {standard} unità standard, {uk} unità UK, {calories} calorie',
+    breakdown: '{count} bevande, {standard} UA italiane (12 g), {uk} unità UK, {calories} calorie dell’alcol',
     totalIncomplete: 'Alcune righe richiedono volume, ABV e quantità.',
     addToTotal: "Aggiungi questa bevanda al totale",
     equivalents: {
@@ -223,6 +225,7 @@ function t(template, values = {}) {
 }
 
 const copy = getLocaleCopy();
+const referenceGrams = CALCULATOR_REFERENCE_GRAMS_BY_LOCALE[document.documentElement.lang] || GLOBAL_STANDARD_DRINK_GRAMS;
 
 const calculatorState = {
   draftDrink: { drinkType: 'beer', volumeMl: 500, abvPercent: 5, quantity: 1 },
@@ -233,7 +236,8 @@ const calculatorState = {
 
 function formatNumber(value, decimals = 1) {
   if (value === null || value === undefined) return '';
-  return value.toFixed(decimals);
+  const formatted = value.toFixed(decimals);
+  return document.documentElement.lang === 'it' ? formatted.replace('.', ',') : formatted;
 }
 
 function formatCalories(value) {
@@ -363,7 +367,7 @@ function fillEquivalentCards(ids, alcoholGrams, visible) {
 
 function renderEquivalents() {
   const draft = calculatorState.draftDrink;
-  const result = calculateDrinkResult(draft);
+  const result = calculateDrinkResult(draft, referenceGrams);
   const hint = getInputHint(draft);
   fillEquivalentCards(
     {
@@ -386,7 +390,7 @@ function renderEquivalents() {
 function renderDraftResults() {
   const draft = calculatorState.draftDrink;
   const hint = getInputHint(draft);
-  const result = calculateDrinkResult(draft);
+  const result = calculateDrinkResult(draft, referenceGrams);
   const statusEl = document.getElementById('selected-calculator-status');
   const resultIds = [
     'selected-uk-units',
@@ -408,7 +412,7 @@ function renderDraftResults() {
   }
 
   setText('selected-uk-units', formatNumber(result.ukUnits));
-  setText('selected-global', formatNumber(result.globalStandardDrinks));
+  setText('selected-global', formatNumber(result.referenceUnits));
   setText('selected-us', formatNumber(result.usStandardDrinks));
   setText('selected-grams', formatNumber(result.alcoholGrams));
   setText('selected-calories', formatCalories(result.calories));
@@ -425,7 +429,7 @@ function renderTotalRows() {
   if (!hasRows) return;
 
   calculatorState.totalRows.forEach((row) => {
-    const result = calculateDrinkResult(row);
+    const result = calculateDrinkResult(row, referenceGrams);
     const item = document.createElement('div');
     item.className = 'total-row drink-list-row';
 
@@ -444,7 +448,7 @@ function renderTotalRows() {
     const units = document.createElement('span');
     units.className = 'drink-list-units';
     units.textContent = result.isValid
-      ? `${formatNumber(result.globalStandardDrinks)} ${copy.standardUnits}`
+      ? `${formatNumber(result.referenceUnits)} ${copy.standardUnits}`
       : copy.incomplete;
 
     const remove = document.createElement('button');
@@ -478,7 +482,7 @@ function renderTotalTotals() {
     emptyState.textContent = copy.totalEmpty;
     emptyState.hidden = hasRows;
   }
-  const totals = calculateTotals(calculatorState.totalRows);
+  const totals = calculateTotals(calculatorState.totalRows, referenceGrams);
   const rowHints = calculatorState.totalRows.map(getInputHint).filter(Boolean);
   const blockingHint = rowHints.find((message) => message !== copy.enterDetails) || '';
   const totalHint = blockingHint ||
@@ -494,7 +498,7 @@ function renderTotalTotals() {
   }
 
   if (totals.isValid && totalHint === '') {
-    setText('total-global', formatNumber(totals.totalGlobalStandardDrinks));
+    setText('total-global', formatNumber(totals.totalReferenceUnits));
     setText('total-uk-units', formatNumber(totals.totalUkUnits));
     setText('total-us', formatNumber(totals.totalUsStandardDrinks));
     setText('total-grams', formatNumber(totals.totalAlcoholGrams));
@@ -523,7 +527,7 @@ function syncAddButton() {
   if (!addRowBtn) return;
 
   const hint = getInputHint(calculatorState.draftDrink);
-  const result = calculateDrinkResult(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink, referenceGrams);
   addRowBtn.disabled = hint !== '' || !result.isValid;
 }
 
@@ -551,7 +555,7 @@ function updateDraft(updater, syncFields = false) {
 
 function trackCompletedDraft() {
   const hint = getInputHint(calculatorState.draftDrink);
-  const result = calculateDrinkResult(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink, referenceGrams);
   if (hint !== '' || !result.isValid) return;
 
   // The signature stays in page memory only and is never passed to analytics.
@@ -564,7 +568,7 @@ function trackCompletedDraft() {
 function addDraftToTotal() {
   trackCalculatorStarted();
   const hint = getInputHint(calculatorState.draftDrink);
-  const result = calculateDrinkResult(calculatorState.draftDrink);
+  const result = calculateDrinkResult(calculatorState.draftDrink, referenceGrams);
   if (hint !== '' || !result.isValid) {
     renderCalculator();
     return;

@@ -20,6 +20,7 @@ const faqs = html => [...html.matchAll(/<details[^>]*>[\s\S]*?<summary>([\s\S]*?
   .map(match => ({ name: match[1], text: match[2] }));
 
 // This pre-edit snapshot intentionally preserves existing locale differences.
+// Italian entries were explicitly refreshed for the approved 2026-10-12 12 g localization.
 // Regenerate only after an approved structural change, not to silence a failure.
 for (const [path, before] of Object.entries(fixture.baseline)) {
   test(`${path}: accuracy edits preserve metadata, headings, structure and existing destinations`, () => {
@@ -43,12 +44,12 @@ for (const [locale, copy] of Object.entries(fixture.locales)) {
   const calculator = `/${prefix}alcohol-unit-calculator/`;
 
   test(`${locale}: both formula explanations explicitly convert percent to a fraction`, () => {
-    for (const path of [methodPath, guidePath]) {
+    for (const [path, expected] of [[methodPath, copy], [guidePath, copy.guide || copy]]) {
       const text = paragraphs(read(path));
-      assert.ok(text.includes(copy.formula));
-      assert.ok(text.includes(copy.hint));
-      assert.ok(text.includes(copy.intro));
-      assert.match(copy.formula, /÷ 100\) × 0[.,]789\) ÷ 10$/);
+      assert.ok(text.includes(expected.formula));
+      assert.ok(text.includes(expected.hint));
+      assert.ok(text.includes(expected.intro));
+      assert.match(expected.formula, /÷ 100\) × 0[.,]789\) ÷ (10|12)$/);
     }
     assert.ok(paragraphs(read(methodPath)).includes(copy.reference));
   });
@@ -77,12 +78,13 @@ for (const [locale, copy] of Object.entries(fixture.locales)) {
     }
   });
 
-  test(`${locale}: all four guide examples agree with the unchanged calculator math`, () => {
-    const examples = [...read(guidePath).matchAll(/= (\d+) × (0[.,]\d+) × 0[.,]789 ÷ 10\s*<br>\s*≈ <strong>(\d+[.,]\d+)/g)];
+  test(`${locale}: all four guide examples agree with the locale reference`, () => {
+    const examples = [...read(guidePath).matchAll(/= (\d+) × (0[.,]\d+) × 0[.,]789 ÷ (10|12)\s*<br>\s*≈ <strong>(\d+[.,]\d+)/g)];
     assert.equal(examples.length, 4);
-    for (const [, volume, fraction, displayed] of examples) {
+    for (const [, volume, fraction, denominator, displayed] of examples) {
       const grams = calculateAlcoholGrams(Number(volume), Number(fraction.replace(',', '.')) * 100);
-      assert.equal(calculateGlobalStandardDrinks(grams).toFixed(1), displayed.replace(',', '.'));
+      assert.equal(Number(denominator), locale === 'it' ? 12 : 10);
+      assert.equal((grams / Number(denominator)).toFixed(1), displayed.replace(',', '.'));
     }
   });
 }

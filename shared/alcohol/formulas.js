@@ -168,9 +168,10 @@ function roundByType(value, type) {
 /**
  * Calculate complete drink result
  * @param {Object} input - Object with volumeMl, abvPercent, quantity
+ * @param {number} referenceGrams - Website reference grams per unit (default 10; Italian 12)
  * @returns {Object} - Complete result object
  */
-export function calculateDrinkResult({ volumeMl, abvPercent, quantity }) {
+export function calculateDrinkResult({ volumeMl, abvPercent, quantity }, referenceGrams = GLOBAL_STANDARD_DRINK_GRAMS) {
   const normalized = normalizeAlcoholInput({ volumeMl, abvPercent, quantity });
 
   if (normalized.volumeMl === null || normalized.abvPercent === null || normalized.quantity === null) {
@@ -181,6 +182,7 @@ export function calculateDrinkResult({ volumeMl, abvPercent, quantity }) {
       alcoholGrams: null,
       ukUnits: null,
       globalStandardDrinks: null,
+      referenceUnits: null,
       usStandardDrinks: null,
       calories: null,
       isValid: false,
@@ -201,6 +203,7 @@ export function calculateDrinkResult({ volumeMl, abvPercent, quantity }) {
     alcoholGrams: roundByType(totalAlcoholGrams, 'grams'),
     ukUnits: roundByType(totalUkUnits, 'ukUnits'),
     globalStandardDrinks: roundByType(totalGlobal, 'global'),
+    referenceUnits: roundByType(totalAlcoholGrams / referenceGrams, 'global'),
     usStandardDrinks: roundByType(totalUs, 'us'),
     calories: roundByType(totalCalories, 'calories'),
     isValid: true,
@@ -230,13 +233,15 @@ function calculateRawDrinkResult(row) {
 /**
  * Calculate totals from an array of drink rows
  * @param {Array} rows - Array of drink row objects
+ * @param {number} referenceGrams - Website reference grams per unit; app/global result stays 10 g
  * @returns {Object} - Totals
  */
-export function calculateTotals(rows) {
+export function calculateTotals(rows, referenceGrams = GLOBAL_STANDARD_DRINK_GRAMS) {
   if (!rows || rows.length === 0) {
     return {
       totalUkUnits: null,
       totalGlobalStandardDrinks: null,
+      totalReferenceUnits: null,
       totalUsStandardDrinks: null,
       totalAlcoholGrams: null,
       totalCalories: null,
@@ -267,6 +272,7 @@ export function calculateTotals(rows) {
     return {
       totalUkUnits: null,
       totalGlobalStandardDrinks: null,
+      totalReferenceUnits: null,
       totalUsStandardDrinks: null,
       totalAlcoholGrams: null,
       totalCalories: null,
@@ -277,6 +283,8 @@ export function calculateTotals(rows) {
   return {
     totalUkUnits: roundByType(totalUkUnits, 'ukUnits'),
     totalGlobalStandardDrinks: roundByType(totalGlobalStandardDrinks, 'global'),
+    totalReferenceUnits: roundByType(referenceGrams === GLOBAL_STANDARD_DRINK_GRAMS
+      ? totalGlobalStandardDrinks : totalAlcoholGrams / referenceGrams, 'global'),
     totalUsStandardDrinks: roundByType(totalUsStandardDrinks, 'us'),
     totalAlcoholGrams: roundByType(totalAlcoholGrams, 'grams'),
     totalCalories: roundByType(totalCalories, 'calories'),

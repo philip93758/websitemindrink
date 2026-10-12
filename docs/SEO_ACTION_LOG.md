@@ -20,6 +20,46 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## SEO-20261012-03 — Italian 12 g alcohol-unit localization
+
+- Owner approval and local implementation: 2026-10-12 on website `dev`, based on `11958768a35ef9036908ae7ac2781ab5ed1d9b1b`. Status: implemented and locally verified; owner authorized a local commit on 2026-10-12. Implementation revision: the commit carrying `SEO-Action: SEO-20261012-03`. No push, merge or deployment authorized for this action. Implementation and sitemap dates are source dates, not production or Google crawl dates.
+- Affected URLs: `/it/alcohol-unit-calculator/`, `/it/methodology.html`, `/it/blog/what-counts-as-a-drink-alcohol-units.html`, `/it/alcohol-units.html`. Shared changes: calculator renderer, alcohol constants/formulas, calculation/content/browser tests, Italian fixture entries and `docs/AI_CONTEXT.md`. The other seven languages retain their 10 g reference and existing HTML content.
+- Primary sources checked on 2026-10-12: [ISS/PASSI — consumo di bevande alcoliche](https://www.epicentro.iss.it/passi/indicatori/alcol), whose definition is **12 g of ethanol per Italian UA**; [NHS — alcohol units](https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/) for UK units of 10 ml pure alcohol; [NIAAA — standard drink](https://www.niaaa.nih.gov/alcohols-effects-health/what-standard-drink) for US standard drinks of 14 g. These checks support measurement definitions; no new Italian drinking recommendations or revised app thresholds are introduced. ISS links sit beside each Italian definition and within the existing methodology reference area.
+- Calculation/display: the existing reference result slot becomes Italian 12 g UA for document language `it`. Grams remain `volume ml × (ABV % ÷ 100) × 0.789 × quantity`; Italian UA are unrounded grams divided by 12. Added-drink summaries, quantities, totals and tables use the same convention. Totals sum raw grams before display rounding. Italian results/tables use decimal commas. UK units, US standard drinks, alcohol grams, alcohol-only calories, presets, equivalents, validation, editor state and analytics calls are preserved. `GLOBAL_STANDARD_DRINK_GRAMS` and existing global-result fields remain 10 g; default callers and the other seven language references remain unchanged.
+- Explanations: calculator, guide examples and short-answer table/FAQ now use 12 g Italian UA. The methodology retains its 10 g formula, worked app examples and entire threshold table, with explicit app labels and a conversion explanation: 20 Mindrink units = 200 g = approximately 16.7 Italian UA. This does not change the underlying gram quantity or app behavior. The existing WHO 2018 citation and 2024 background note remain unchanged. No new sections, measurement selector, country detection or local serving presets were added; original publication dates, titles/H1s, canonicals, hreflang, navigation and article journey remain intact. Applicable article modification dates are 2026-10-12.
+
+Representative copy changes:
+
+| Slot | Before | After |
+|---|---|---|
+| Calculator result labels and examples heading | Unità da 10 g | Unità alcoliche italiane (12 g) |
+| Guide definition | 1 unità = 10 grammi di alcol puro | 1 UA italiana = 12 grammi di alcol puro |
+| Guide formula | Unità da 10 g = (Volume in ml × (gradazione alcolica (%) ÷ 100) × 0,789) ÷ 10 | UA italiane = (Volume in ml × (gradazione alcolica (%) ÷ 100) × 0,789) ÷ 12 |
+| Methodology definition | 1 unità = 10 grammi di alcol puro | 1 unità Mindrink = 10 grammi di alcol puro |
+| Short-answer table heading | Unità da 10 g | UA italiane (12 g) |
+
+Exact description changes (all existing matching social/schema description slots were synchronized):
+
+| Page | Before | After |
+|---|---|---|
+| Calculator: meta/OG | Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità da 10 g, le unità UK e i drink standard USA. | Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità alcoliche italiane da 12 g, le unità UK e i drink standard USA. |
+| Guide: meta/OG/Twitter/BlogPosting | Cosa conta come un drink? Una guida semplice per capire le unità alcoliche e le bevande standard, con esempi per birra, vino e superalcolici. | Cosa conta come un drink? Scopri le unità alcoliche italiane da 12 g, il riferimento Mindrink da 10 g e gli esempi per birra, vino e superalcolici. |
+| Short explainer: meta/OG | Calcola unità alcoliche da 10 g per birra, vino e superalcolici, con esempi e equivalenze tra Regno Unito e USA. | Calcola le unità alcoliche italiane da 12 g per birra, vino e superalcolici, con esempi e confronti con le unità UK e i drink standard USA. |
+
+Calculation examples, rounded only for display:
+
+| Drink | Raw alcohol grams | Italian 12 g UA | Existing 10 g reference |
+|---|---|---|---|
+| 500 ml beer, 5% | 19.725 | 1.6 | 2.0 |
+| 175 ml wine, 12% | 16.569 | 1.4 | 1.7 |
+| 25 ml spirits, 40% | 7.89 | 0.7 | 0.8 |
+| Two 500 ml beers, 5% | 39.45 | 3.3 | 3.9 |
+
+- Baseline/publication check on 2026-10-12: local HEAD is `1195876`, a committed baseline one commit ahead of both remote branches; fresh `git ls-remote` returns `2601d9d` for `dev` and `main`. Public Actions runs also show successful `2601d9d` runs ([main release run](https://github.com/philip93758/websitemindrink/actions/runs/38295384267), [dev validation run](https://github.com/philip93758/websitemindrink/actions/runs/38295383319)). A direct production GET of the Italian calculator returned HTTP 200, the earlier `Calorie` label and neither contextual article link. Thus UX-20261012-01 and SEO-20261012-02 are preserved locally but are not yet verified live. This localization also retains both new article links and the bottom same-language app invitation.
+- Validation on 2026-10-12: 235 automated tests passed, including 12 g conversion/quantity/unrounded totals, default/seven-language calculation protection, table values, FAQ schema parity and a hash check protecting the complete existing app threshold table. Italian content baselines were deliberately updated; the other locale entries were preserved. Sitemap update/check and build passed with analytics disabled: 208 pages/URLs, 4,918 internal links and 811 fragment links. Only three sitemap dates changed because all eight calculator dependency dates already read 2026-10-12 from the baseline.
+- Browser validation: all **104 checks passed**, with no page errors or missing files. This includes the required eight-language decimal-typing, image/citation/navigation and methodology regressions; seven-language/Italian reference and raw-total checks; and Italian labels, quantity, preset/input validation, added-row summaries, removal, equivalents, both article links and bottom CTA at 375/1280 px. All four Italian pages were checked for page overflow and visible ISS links at both widths. Phone/desktop screenshots were inspected for calculator result/summary wrapping and explanatory text/table readability; the wide calculator comparison table retains its existing horizontal scroll on phones. Browser requests to external origins were blocked; no production analytics events were sent. Local screenshots are in gitignored `docs/Ai/active/italian-units-20261012/screenshots/`.
+- Production deployment revision/time for this localization: pending a separate request and verified release. Google crawl observation/time and displayed snippets: unknown; no new GSC inspection performed. No independent native-speaker review claimed. The Italian visibility decline is context, not evidence of causation or a promise that unit localization will recover traffic. Any later release/follow-up should record this action alongside the two pending baseline actions and distinguish implementation, deployment, crawl and measured outcome dates.
+
 ## SEO-20261012-02 — Contextual calculator links into the article path
 
 - Owner approval and implementation: 2026-10-12 on website `dev`, based on `2601d9dc7f7779899d9aa9d3bc6a97a8f74864b1`, alongside the calorie wording correction UX-20261012-01. Owner authorized committing both actions on 2026-10-12. Implementation revision: the commit introducing these two entries. Production deployment and Google crawl dates remain pending.

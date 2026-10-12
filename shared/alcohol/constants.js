@@ -3,6 +3,8 @@
 
 export const ETHANOL_DENSITY_G_PER_ML = 0.789;
 export const GLOBAL_STANDARD_DRINK_GRAMS = 10;
+// Website reference slot only; Mindrink's app methodology remains 10 g.
+export const CALCULATOR_REFERENCE_GRAMS_BY_LOCALE = Object.freeze({ it: 12 });
 export const US_STANDARD_DRINK_GRAMS = 14;
 export const ALCOHOL_KCAL_PER_GRAM = 7;
 
