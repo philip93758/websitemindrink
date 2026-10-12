@@ -41,13 +41,18 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
       const prefix = locale === 'en' ? '/' : `/${locale}/`;
       await check(`${locale}: real decimal typing, editing, limits and presets`, async () => {
         await page.goto(origin + prefix + 'alcohol-unit-calculator/');
-        await page.waitForFunction(() => document.querySelector('#selected-uk-units').textContent.replace(',', '.') === '2.5');
-        assert.equal(await page.locator('#selected-global').textContent(), locale === 'it' ? '1,6' : '2.0');
+        await page.waitForFunction(() => document.querySelector('#selected-global').textContent.replace(',', '.') === '2.0');
+        if (locale === 'it') assert.equal(await page.locator('#selected-italian').textContent(), '1,6');
+        else assert.equal(await page.locator('#selected-uk-units').textContent(), '2.5');
         const abv = page.locator('#selected-abv');
         for (const value of ['4.5','0.5','12.5']) {
           await abv.fill(''); await abv.pressSequentially(value);
           assert.equal(await abv.inputValue(), value);
-          assert.equal((await page.locator('#selected-uk-units').textContent()).replace(',', '.'), (500 * Number(value) / 1000).toFixed(1));
+          const resultId = locale === 'it' ? '#selected-italian' : '#selected-uk-units';
+          const expected = locale === 'it'
+            ? (Math.round((500 * Number(value) / 100 * 0.789 / 12) * 10) / 10).toFixed(1)
+            : (500 * Number(value) / 1000).toFixed(1);
+          assert.equal((await page.locator(resultId).textContent()).replace(',', '.'), expected);
         }
         await abv.press('Backspace'); await abv.pressSequentially('6');
         assert.equal(await abv.inputValue(), '12.6');
@@ -63,13 +68,15 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         const number = async id => Number((await page.locator(`#${id}`).textContent()).replace(',', '.'));
         await page.locator('#total-add-row').click();
         await page.locator('#total-add-row').click();
-        assert.equal(await number('total-global'), locale === 'it' ? 3.3 : 3.9);
-        assert.equal(await number('total-uk-units'), 5);
+        assert.equal(await number('total-global'), 3.9);
+        if (locale === 'it') assert.equal(await number('total-italian'), 3.3);
+        else assert.equal(await number('total-uk-units'), 5);
         assert.equal(await number('total-us'), 2.8);
         assert.equal(await number('total-calories'), 276);
         assert.equal(await number('total-equivalent-beer'), 2);
         await page.locator('.total-remove').first().click();
-        assert.equal(await number('total-global'), locale === 'it' ? 1.6 : 2);
+        assert.equal(await number('total-global'), 2);
+        if (locale === 'it') assert.equal(await number('total-italian'), 1.6);
         await page.locator('.total-remove').click();
         assert.ok(await page.locator('#total-totals').isHidden());
         assert.ok(await page.locator('#total-empty').isVisible());
@@ -109,36 +116,48 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
       await check(`it/${width}: labels, quantities, decimal precision and article journey`, async () => {
         await page.setViewportSize({width,height:844});
         await page.goto(origin+'/it/alcohol-unit-calculator/');
-        await page.waitForFunction(() => document.querySelector('#selected-global').textContent === '1,6');
+        await page.waitForFunction(() => document.querySelector('#selected-global').textContent === '2,0');
+        assert.equal(await page.locator('#selected-italian').textContent(), '1,6');
+        assert.equal(await page.locator('.result-label').filter({hasText:'Unità Mindrink (10 g)'}).count(), 2);
         assert.equal(await page.locator('.result-label').filter({hasText:'Unità alcoliche italiane (12 g)'}).count(), 2);
+        assert.equal(await page.locator('#selected-uk-units, #total-uk-units').count(), 0);
         assert.equal(await page.locator('.result-label').filter({hasText:'Calorie dell’alcol'}).count(), 2);
         const number = async id => Number((await page.locator(`#${id}`).textContent()).replace(',', '.'));
         await page.locator('#selected-quantity').fill('2');
-        assert.equal(await number('selected-global'), 3.3);
+        assert.equal(await number('selected-global'), 3.9);
+        assert.equal(await number('selected-italian'), 3.3);
         await page.locator('#total-add-row').click();
-        assert.equal(await number('total-global'), 3.3);
-        assert.match(await page.locator('.drink-list-units').textContent(), /3,3 Unità alcoliche italiane \(12 g\)/);
+        assert.equal(await number('total-global'), 3.9);
+        assert.equal(await number('total-italian'), 3.3);
+        assert.match(await page.locator('.drink-list-units').textContent(), /3,9 Unità Mindrink \(10 g\) · 3,3 UA italiane \(12 g\)/);
         await page.locator('#selected-drink-type').selectOption('wine');
-        assert.equal(await number('selected-global'), 2.8); // quantity remains 2
+        assert.equal(await number('selected-global'), 3.3); // quantity remains 2
+        assert.equal(await number('selected-italian'), 2.8);
         await page.locator('#selected-quantity').fill('1');
-        assert.equal(await number('selected-global'), 1.4);
+        assert.equal(await number('selected-global'), 1.7);
+        assert.equal(await number('selected-italian'), 1.4);
         await page.locator('#selected-drink-type').selectOption('spirits');
-        assert.equal(await number('selected-global'), 0.7);
+        assert.equal(await number('selected-global'), 0.8);
+        assert.equal(await number('selected-italian'), 0.7);
         await page.locator('#selected-drink-type').selectOption('beer');
         await page.locator('#selected-abv').fill('');
         await page.locator('#selected-abv').pressSequentially('5.01');
-        assert.equal(await number('selected-global'), 1.6);
+        assert.equal(await number('selected-global'), 2);
+        assert.equal(await number('selected-italian'), 1.6);
         assert.equal(await number('selected-grams'), 19.8);
         await page.locator('#selected-quantity').fill('0');
         assert.ok(await page.locator('#total-add-row').isDisabled());
         await page.locator('#selected-quantity').fill('1');
         await page.locator('#selected-volume').fill('');
         assert.equal(await page.locator('#selected-global').textContent(), '');
+        assert.equal(await page.locator('#selected-italian').textContent(), '');
         assert.ok(await page.locator('#total-add-row').isDisabled());
         await page.locator('#selected-volume').fill('500');
-        assert.equal(await number('selected-global'), 1.6);
+        assert.equal(await number('selected-global'), 2);
+        assert.equal(await number('selected-italian'), 1.6);
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth<=innerWidth));
         if (process.env.MINDRINK_QA_SCREENSHOT_DIR) {
+          await page.evaluate(() => { document.activeElement.blur(); scrollTo({top:0, behavior:'instant'}); });
           await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `calculator-${width}.png`), fullPage:true});
         }
         assert.equal(await page.locator('.answer-cta a').getAttribute('href'), '/it/');

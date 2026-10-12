@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità alcoliche italiane da 12 g, le unità UK e i drink standard USA.">
+    <meta name="description" content="Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità Mindrink da 10 g, le UA italiane da 12 g e i drink standard USA.">
     <meta name="robots" content="index, follow">
     <title>Calcolatore unità alcoliche | Mindrink</title>
     <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261012it" as="script">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261012it2" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/it/alcohol-unit-calculator/">
     <meta property="og:title" content="Calcolatore unità alcoliche">
-    <meta property="og:description" content="Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità alcoliche italiane da 12 g, le unità UK e i drink standard USA.">
+    <meta property="og:description" content="Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità Mindrink da 10 g, le UA italiane da 12 g e i drink standard USA.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="canonical" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -69,7 +69,7 @@
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/it/discover/">Scopri</a> / Calcolatore unità alcoliche</p>
                 <h1>Calcolatore unità alcoliche</h1>
-                <p class="hero-intro">Inserisci volume e gradazione per calcolare grammi di alcol puro, unità alcoliche italiane da 12 g, unità UK e drink standard USA. Questo strumento non calcola il tasso alcolemico.</p>
+                <p class="hero-intro">Inserisci volume e gradazione per calcolare grammi di alcol puro, unità Mindrink da 10 g, UA italiane da 12 g e drink standard USA. Questo strumento non calcola il tasso alcolemico.</p>
             </div>
         </section>
 
@@ -102,12 +102,12 @@
                         <div class="calculator-results selected-results">
                             <h3 class="results-panel-title">Questa bevanda</h3>
                             <div class="calculator-result">
-                                <span class="result-label">Unità alcoliche italiane (12 g)</span>
+                                <span class="result-label">Unità Mindrink (10 g)</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Unità UK</span>
-                                <span class="result-value" id="selected-uk-units"></span>
+                                <span class="result-label">Unità alcoliche italiane (12 g)</span>
+                                <span class="result-value" id="selected-italian"></span>
                             </div>
                             <div class="calculator-result">
                                 <span class="result-label">Drink USA</span>
@@ -156,12 +156,12 @@
                             <h3 class="results-panel-title" id="totals-heading">Il tuo totale</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">Unità alcoliche italiane (12 g)</span>
+                                <span class="result-label">Unità Mindrink (10 g)</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">Unità UK</span>
-                                <span class="result-value" id="total-uk-units"></span>
+                                <span class="result-label">Unità alcoliche italiane (12 g)</span>
+                                <span class="result-value" id="total-italian"></span>
                             </div>
                             <div class="calculator-result">
                                 <span class="result-label">Drink USA</span>
@@ -204,12 +204,12 @@
                     <h2>Cosa sono le unità alcoliche?</h2>
                     <p>I paesi usano riferimenti diversi. Questo calcolatore li separa:</p>
                     <ul class="answer-list">
+                        <li><strong>Unità Mindrink (10 g):</strong> 1 unità corrisponde a 10 g di alcol puro, il riferimento usato nell’app. Anche l’<a href="https://www.who.int/docs/librariesprovider2/default-document-library/sbi-2-pager-%28a4%29_final.pdf?download=true&amp;sfvrsn=6c5dfc5b_4">AUDIT dell’OMS</a> usa 10 g per bevanda standard.</li>
                         <li><strong>Unità alcoliche italiane (12 g):</strong> 1 UA corrisponde a 12 g di alcol puro, secondo l’<a href="https://www.epicentro.iss.it/passi/indicatori/alcol">Istituto Superiore di Sanità (ISS), sorveglianza PASSI</a>.</li>
-                        <li><strong>Unità UK:</strong> 10 ml, circa 8 g, di alcol puro.</li>
                         <li><strong>Drink USA:</strong> 14 g di alcol puro.</li>
                         <li><strong>Grammi di alcol puro:</strong> base neutra per confrontare tutti i sistemi.</li>
                     </ul>
-                    <p>Le UA italiane si calcolano dividendo i grammi di alcol puro per 12, dopo aver incluso la quantità di bevande. I totali si calcolano prima di arrotondare i risultati. L’app Mindrink mantiene il proprio riferimento da 10 g, descritto nella <a href="/it/methodology.html">metodologia</a>. Per capire meglio porzioni e unità, leggi <a href="/it/blog/what-counts-as-a-drink-alcohol-units.html">cosa conta come un drink</a>.</p>
+                    <p>Il calcolatore mostra la stessa quantità di alcol in unità Mindrink (grammi ÷ 10) e UA italiane (grammi ÷ 12), dopo aver incluso la quantità di bevande. I totali si calcolano prima di arrotondare i risultati. Le soglie dell’app restano in unità Mindrink da 10 g, come spiega la <a href="/it/methodology.html">metodologia</a>. Per capire meglio porzioni e unità, leggi <a href="/it/blog/what-counts-as-a-drink-alcohol-units.html">cosa conta come un drink</a>.</p>
                 </section>
 
                 <section class="answer-block">
@@ -221,8 +221,8 @@
                                     <th>Bevanda</th>
                                     <th>Volume</th>
                                     <th>ABV</th>
-                                    <th>Unità alcoliche italiane (12 g)</th>
-                                    <th>Unità UK</th>
+                                    <th>Unità Mindrink (10 g)</th>
+                                    <th>UA italiane (12 g)</th>
                                     <th>Drink USA</th>
                                     <th>Grammi di alcol</th>
                                 </tr>
@@ -232,8 +232,8 @@
                                     <td>Birra</td>
                                     <td>500ml</td>
                                     <td>5%</td>
+                                    <td>2,0</td>
                                     <td>1,6</td>
-                                    <td>2,5</td>
                                     <td>1,4</td>
                                     <td>19,7g</td>
                                 </tr>
@@ -241,8 +241,8 @@
                                     <td>Vino</td>
                                     <td>175ml</td>
                                     <td>12%</td>
+                                    <td>1,7</td>
                                     <td>1,4</td>
-                                    <td>2,1</td>
                                     <td>1,2</td>
                                     <td>16,6g</td>
                                 </tr>
@@ -250,8 +250,8 @@
                                     <td>Distillato</td>
                                     <td>25ml</td>
                                     <td>40%</td>
+                                    <td>0,8</td>
                                     <td>0,7</td>
-                                    <td>1,0</td>
                                     <td>0,6</td>
                                     <td>7,9g</td>
                                 </tr>
@@ -287,7 +287,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20261012it"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20261012it2"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 

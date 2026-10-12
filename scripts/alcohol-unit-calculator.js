@@ -174,10 +174,11 @@ const LOCALES = {
     totalEmpty: "Nessuna bevanda aggiunta.",
     totalOptional: 'Facoltativo: aggiungi la bevanda sopra per stimare un totale.',
     rowDetail: '{quantity} x {volume} ml al {abv}%',
-    standardUnits: "Unità alcoliche italiane (12 g)",
+    standardUnits: "Unità Mindrink (10 g)",
+    italianUnits: 'UA italiane (12 g)',
     remove: 'Rimuovi',
     byDrinkType: 'Per tipo di bevanda:',
-    breakdown: '{count} bevande, {standard} UA italiane (12 g), {uk} unità UK, {calories} calorie dell’alcol',
+    breakdown: '{count} bevande, {standard} unità Mindrink (10 g), {calories} calorie dell’alcol',
     totalIncomplete: 'Alcune righe richiedono volume, ABV e quantità.',
     addToTotal: "Aggiungi questa bevanda al totale",
     equivalents: {
@@ -243,6 +244,13 @@ function formatNumber(value, decimals = 1) {
 function formatCalories(value) {
   if (value === null || value === undefined) return '';
   return Math.round(value).toString();
+}
+
+function formatUnitSummary(result) {
+  const mindrink = `${formatNumber(result.globalStandardDrinks)} ${copy.standardUnits}`;
+  return copy.italianUnits
+    ? `${mindrink} · ${formatNumber(result.referenceUnits)} ${copy.italianUnits}`
+    : mindrink;
 }
 
 function generateRowId() {
@@ -394,6 +402,7 @@ function renderDraftResults() {
   const statusEl = document.getElementById('selected-calculator-status');
   const resultIds = [
     'selected-uk-units',
+    'selected-italian',
     'selected-global',
     'selected-us',
     'selected-grams',
@@ -412,7 +421,8 @@ function renderDraftResults() {
   }
 
   setText('selected-uk-units', formatNumber(result.ukUnits));
-  setText('selected-global', formatNumber(result.referenceUnits));
+  setText('selected-global', formatNumber(result.globalStandardDrinks));
+  setText('selected-italian', formatNumber(result.referenceUnits));
   setText('selected-us', formatNumber(result.usStandardDrinks));
   setText('selected-grams', formatNumber(result.alcoholGrams));
   setText('selected-calories', formatCalories(result.calories));
@@ -448,7 +458,7 @@ function renderTotalRows() {
     const units = document.createElement('span');
     units.className = 'drink-list-units';
     units.textContent = result.isValid
-      ? `${formatNumber(result.referenceUnits)} ${copy.standardUnits}`
+      ? formatUnitSummary(result)
       : copy.incomplete;
 
     const remove = document.createElement('button');
@@ -498,13 +508,14 @@ function renderTotalTotals() {
   }
 
   if (totals.isValid && totalHint === '') {
-    setText('total-global', formatNumber(totals.totalReferenceUnits));
+    setText('total-global', formatNumber(totals.totalGlobalStandardDrinks));
+    setText('total-italian', formatNumber(totals.totalReferenceUnits));
     setText('total-uk-units', formatNumber(totals.totalUkUnits));
     setText('total-us', formatNumber(totals.totalUsStandardDrinks));
     setText('total-grams', formatNumber(totals.totalAlcoholGrams));
     setText('total-calories', formatCalories(totals.totalCalories));
   } else {
-    ['total-global', 'total-uk-units', 'total-us', 'total-grams', 'total-calories']
+    ['total-global', 'total-italian', 'total-uk-units', 'total-us', 'total-grams', 'total-calories']
       .forEach((id) => setText(id, ''));
   }
 
