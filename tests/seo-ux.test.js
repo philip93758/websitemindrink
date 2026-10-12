@@ -75,7 +75,7 @@ test('targeted Portuguese description and Spanish title remain aligned with thei
 
 const taskFirstCalculatorDescriptions = {
   fr: 'Saisissez le volume et le degré d’alcool d’une boisson pour calculer les grammes d’alcool pur et comparer les unités de 10 g, britanniques et américaines.',
-  ja: 'お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。',
+  ja: 'お酒の容量・アルコール度数・数量から純アルコール量（g）を計算。ドリンク（10 g）、英国単位、米国標準ドリンクへの換算と、ビール・日本酒・缶チューハイの例を確認できます。',
   id: 'Masukkan volume dan kadar alkohol minuman untuk menghitung gram alkohol murni, lalu bandingkan unit 10 g, unit Inggris, dan minuman standar AS.',
   it: 'Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità Mindrink da 10 g, le UA italiane da 12 g e i drink standard USA.',
 };

@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。">
+    <meta name="description" content="お酒の容量・アルコール度数・数量から純アルコール量（g）を計算。ドリンク（10 g）、英国単位、米国標準ドリンクへの換算と、ビール・日本酒・缶チューハイの例を確認できます。">
     <meta name="robots" content="index, follow">
-    <title>アルコール単位計算機 | Mindrink</title>
+    <title>純アルコール量計算機 | Mindrink</title>
     <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a" as="script">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261012ja" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/ja/alcohol-unit-calculator/">
-    <meta property="og:title" content="アルコール単位計算機">
-    <meta property="og:description" content="お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。">
+    <meta property="og:title" content="純アルコール量計算機">
+    <meta property="og:description" content="お酒の容量・アルコール度数・数量から純アルコール量（g）を計算。ドリンク（10 g）、英国単位、米国標準ドリンクへの換算と、ビール・日本酒・缶チューハイの例を確認できます。">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="canonical" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -47,7 +47,7 @@
                 <a href="/ja/science/" class="nav-link">科学</a>
                 <a href="/ja/about.html" class="nav-link">Mindrinkについて</a>
                 <details class="language-dropdown">
-                    <summary class="language-toggle" aria-label="Language selector">JA</summary>
+                    <summary class="language-toggle" aria-label="言語を選択">JA</summary>
                     <div class="language-menu">
                         <a href="/alcohol-unit-calculator/" class="language-option">English</a>
                         <a href="/fr/alcohol-unit-calculator/" class="language-option">Français</a>
@@ -60,16 +60,16 @@
                     </div>
                 </details>
             </nav>
-            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </header>
 
     <main>
         <section class="answer-hero">
             <div class="container narrow">
-                <p class="breadcrumb"><a href="/ja/discover/">ガイド</a> / アルコール単位計算機</p>
-                <h1>アルコール単位計算機</h1>
-                <p class="hero-intro">容量とアルコール度数を入力すると、純アルコール量（g）、10g単位、英国単位、米国標準ドリンクに換算できます。血中アルコール濃度を計算するものではありません。</p>
+                <p class="breadcrumb"><a href="/ja/discover/">ガイド</a> / 純アルコール量計算機</p>
+                <h1>純アルコール量計算機</h1>
+                <p class="hero-intro">お酒の容量・アルコール度数・数量を入力すると、純アルコール量（g）とドリンク（10 g）、英国単位、米国標準ドリンクへの換算結果を確認できます。血中アルコール濃度を計算するものではありません。</p>
             </div>
         </section>
 
@@ -92,7 +92,7 @@
                                 <input type="number" id="selected-abv" class="calculator-input" inputmode="decimal" min="0" max="100" step="0.1" value="5">
                             </div>
                             <div class="calculator-field">
-                                <label for="selected-quantity">杯数</label>
+                                <label for="selected-quantity">数量（杯・本など）</label>
                                 <input type="number" id="selected-quantity" class="calculator-input" inputmode="numeric" min="1" max="100" step="1" value="1">
                             </div>
                         </div>
@@ -100,9 +100,9 @@
                         <p id="selected-calculator-status" class="calculator-status" aria-live="polite" hidden></p>
 
                         <div class="calculator-results selected-results">
-                            <h3 class="results-panel-title">この飲み物</h3>
+                            <h3 class="results-panel-title">入力した数量の結果</h3>
                             <div class="calculator-result">
-                                <span class="result-label">10g単位</span>
+                                <span class="result-label">ドリンク（10 g）</span>
                                 <span class="result-value" id="selected-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -110,11 +110,11 @@
                                 <span class="result-value" id="selected-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">USドリンク</span>
+                                <span class="result-label">米国標準ドリンク</span>
                                 <span class="result-value" id="selected-us"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">アルコール量</span>
+                                <span class="result-label">純アルコール量（g）</span>
                                 <span class="result-value" id="selected-grams"></span>
                             </div>
                             <div class="calculator-result">
@@ -156,7 +156,7 @@
                             <h3 class="results-panel-title" id="totals-heading">合計</h3>
                             <div id="total-rows" class="total-rows"></div>
                             <div class="calculator-result">
-                                <span class="result-label">10g単位</span>
+                                <span class="result-label">ドリンク（10 g）</span>
                                 <span class="result-value" id="total-global"></span>
                             </div>
                             <div class="calculator-result">
@@ -164,11 +164,11 @@
                                 <span class="result-value" id="total-uk-units"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">USドリンク</span>
+                                <span class="result-label">米国標準ドリンク</span>
                                 <span class="result-value" id="total-us"></span>
                             </div>
                             <div class="calculator-result">
-                                <span class="result-label">アルコール量</span>
+                                <span class="result-label">純アルコール量（g）</span>
                                 <span class="result-value" id="total-grams"></span>
                             </div>
                             <div class="calculator-result">
@@ -201,30 +201,30 @@
                 </section>
 
                 <section class="answer-block">
-                    <h2>アルコール単位とは？</h2>
-                    <p>国によって基準が異なります。この計算機では分けて表示します:</p>
+                    <h2>純アルコール量とドリンクとは？</h2>
+                    <p>飲酒量を比べるには、まず純アルコール量（g）を確認します。換算の基準は国や資料によって異なります。</p>
                     <ul class="answer-list">
-                        <li><strong>10g単位:</strong> 1単位は純アルコール10gです。比較のための基準であり、標準ドリンクの定義は国によって異なります。</li>
+                        <li><strong>ドリンク（10 g）:</strong> 1ドリンクは純アルコール10 g。この計算機では、<a href="https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html">厚生労働省 e-ヘルスネット「飲酒量の単位」</a>で使われる10 g基準を表示します。</li>
                         <li><strong>UK単位:</strong> 純アルコール10ml、約8g。</li>
                         <li><strong>米国標準ドリンク:</strong> 純アルコール14g。</li>
-                        <li><strong>純アルコールのグラム数:</strong> すべての方式を比較するための中立的な基準。</li>
+                        <li><strong>純アルコール量（g）:</strong> お酒に含まれるアルコールの重さ。異なる換算方式でも、この量は変わりません。</li>
                     </ul>
-                    <p>飲む量と単位の関係については、<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html">「1杯」はどのくらいなのか</a>をご覧ください。</p>
+                    <p>日本で従来使われてきた「1単位」は約20 gです。「1合」は容量180 mlで、純アルコール量は度数によって変わります。ドリンクや単位は比較の基準であり、推奨量や安全な飲酒量ではありません。<a href="https://www.mhlw.go.jp/stf/newpage_38541.html">厚生労働省「健康に配慮した飲酒に関するガイドライン」</a>も純アルコール量に着目しています。<br>飲む量と換算の関係については、<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html">「1杯」はどのくらいなのか</a>をご覧ください。計算式の係数については<a href="/ja/methodology.html">算出方法</a>で説明しています。</p>
                 </section>
 
                 <section class="answer-block">
                     <h2>よくある例</h2>
                     <div class="answer-table-wrap">
-                        <table class="answer-table">
+                        <table class="answer-table" style="min-width: 600px;">
                             <thead>
                                 <tr>
                                     <th>飲み物</th>
                                     <th>容量</th>
-                                    <th>ABV</th>
-                                    <th>10g単位</th>
+                                    <th>アルコール度数</th>
+                                    <th>ドリンク（10 g）</th>
                                     <th>UK単位</th>
-                                    <th>USドリンク</th>
-                                    <th>アルコール量</th>
+                                    <th>米国標準ドリンク</th>
+                                    <th>純アルコール量（g）</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -238,33 +238,33 @@
                                     <td>19.7g</td>
                                 </tr>
                                 <tr>
-                                    <td>ワイン</td>
-                                    <td>175ml</td>
-                                    <td>12%</td>
-                                    <td>1.7</td>
+                                    <td>日本酒（1合）</td>
+                                    <td>180ml</td>
+                                    <td>15%</td>
                                     <td>2.1</td>
-                                    <td>1.2</td>
-                                    <td>16.6g</td>
+                                    <td>2.7</td>
+                                    <td>1.5</td>
+                                    <td>21.3g</td>
                                 </tr>
                                 <tr>
-                                    <td>蒸留酒</td>
-                                    <td>25ml</td>
-                                    <td>40%</td>
-                                    <td>0.8</td>
-                                    <td>1.0</td>
-                                    <td>0.6</td>
-                                    <td>7.9g</td>
+                                    <td>缶チューハイ</td>
+                                    <td>350ml</td>
+                                    <td>7%</td>
+                                    <td>1.9</td>
+                                    <td>2.5</td>
+                                    <td>1.4</td>
+                                    <td>19.3g</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <p>1杯の量だけでは飲酒習慣の全体像は分かりません。<a href="/ja/blog/why-weekly-drinking-patterns-matter.html">週単位の飲酒パターンを見る理由</a>もご覧ください。</p>
+                    <p>表は1本・1杯分を係数0.789で計算し、小数第1位に丸めた値です。公式資料の係数0.8による概算では、ビール500 ml・5%は20 g、この計算機では19.725 g（表示は19.7 g）になります。<a href="https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/">東京都「とうきょう健康ステーション」の飲酒情報</a>でも容量と度数から飲酒量を確認できます。<br>1回の飲酒量だけでは習慣の全体像は分かりません。<a href="/ja/blog/why-weekly-drinking-patterns-matter.html">週単位の飲酒パターンを見る理由</a>もご覧ください。</p>
                 </section>
 
                 <section class="answer-cta">
                     <div class="container narrow">
                         <h2>時間とともにパターンを理解する</h2>
-                        <p>この計算機では、1杯に含まれるアルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。</p>
+                        <p>この計算機では、お酒に含まれる純アルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。</p>
                         <a href="/ja/" class="cta-button">Mindrinkを見る</a>
                     </div>
                 </section>
@@ -281,13 +281,13 @@
                     <a href="/ja/science/" class="footer-link">科学</a>
                     <a href="/ja/about.html" class="footer-link">Mindrinkについて</a>
                     <a href="/ja/#how-it-works" class="footer-link">使い方</a>
-                    <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">Feedback</a>
+                    <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">フィードバック</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20261012ja"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 

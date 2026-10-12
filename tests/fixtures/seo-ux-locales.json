@@ -59,10 +59,10 @@
           "<h2>",
           "<h2>"
         ],
-        "h1": "<h1>アルコール単位計算機</h1>",
+        "h1": "<h1>純アルコール量計算機</h1>",
         "lists": 4,
         "canonical": "<link rel=\"canonical\" href=\"https://mindrink.me/ja/alcohol-unit-calculator/\">",
-        "title": "<title>アルコール単位計算機 | Mindrink</title>",
+        "title": "<title>純アルコール量計算機 | Mindrink</title>",
         "alternates": [
           "<link rel=\"alternate\" hreflang=\"en\" href=\"https://mindrink.me/alcohol-unit-calculator/\">",
           "<link rel=\"alternate\" hreflang=\"de\" href=\"https://mindrink.me/de/alcohol-unit-calculator/\">",
@@ -690,12 +690,12 @@
     },
     "ja": {
       "abv": "アルコール度数（%）",
-      "unit": "10g単位",
+      "unit": "ドリンク（10 g）",
       "empty": "まだ飲み物が追加されていません。",
       "add": "この飲み物を合計に追加",
-      "intro": "容量とアルコール度数を入力すると、純アルコール量（g）、10g単位、英国単位、米国標準ドリンクに換算できます。血中アルコール濃度を計算するものではありません。",
-      "bridge": "この計算機では、1杯に含まれるアルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。",
-      "definition": "<li><strong>10g単位:</strong> 1単位は純アルコール10gです。比較のための基準であり、標準ドリンクの定義は国によって異なります。</li>"
+      "intro": "お酒の容量・アルコール度数・数量を入力すると、純アルコール量（g）とドリンク（10 g）、英国単位、米国標準ドリンクへの換算結果を確認できます。血中アルコール濃度を計算するものではありません。",
+      "bridge": "この計算機では、お酒に含まれる純アルコール量を確認できます。Mindrinkでは飲み物を記録し、日々の飲酒パターンを振り返ることができます。",
+      "definition": "<li><strong>ドリンク（10 g）:</strong> 1ドリンクは純アルコール10 g。この計算機では、<a href=\"https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html\">厚生労働省 e-ヘルスネット「飲酒量の単位」</a>で使われる10 g基準を表示します。</li>"
     }
   },
   "comparison": {

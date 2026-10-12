@@ -21,6 +21,8 @@ const faqs = html => [...html.matchAll(/<details[^>]*>[\s\S]*?<summary>([\s\S]*?
 
 // This pre-edit snapshot intentionally preserves existing locale differences.
 // Italian entries were explicitly refreshed for the approved 2026-10-12 12 g localization.
+// Japanese copy/metadata was refreshed for the approved 2026-10-12 localization;
+// its original structural hashes, destinations and threshold cells are retained.
 // Regenerate only after an approved structural change, not to silence a failure.
 for (const [path, before] of Object.entries(fixture.baseline)) {
   test(`${path}: accuracy edits preserve metadata, headings, structure and existing destinations`, () => {

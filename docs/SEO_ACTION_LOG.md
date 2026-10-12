@@ -20,6 +20,60 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## SEO-20261012-04 — Japanese pure-alcohol and 10 g drink localization
+
+- Owner request and implementation date: 2026-10-12. Started on local website branch `dev`, based on `11958768a35ef9036908ae7ac2781ab5ed1d9b1b` (“Clarify calculator calories and link localized reading paths”). Japanese implementation commit: pending; this chat did not commit, push, merge or deploy. During final validation the separate, owner-authorized Italian action was committed as `b6f1f05`; the Japanese work remains uncommitted for review against that HEAD. The Italian 12 g changes (SEO-20261012-03), calorie wording and both localized calculator article links were preserved.
+- Affected public pages: `https://mindrink.me/ja/alcohol-unit-calculator/`, `https://mindrink.me/ja/methodology.html`, `https://mindrink.me/ja/blog/what-counts-as-a-drink-alcohol-units.html`, and `https://mindrink.me/ja/alcohol-units.html`. Related files: Japanese copy in the shared calculator script, Japanese copy fixtures, `tests/japanese-units.test.js`, shared browser QA, this log and `docs/AI_CONTEXT.md`. Reused the pending Italian reference configuration/formulas; no separate Japanese calculator or change to shared constants/formula behavior.
+- Primary sources checked on 2026-10-12: [MHLW/e-Health Net — 飲酒量の単位](https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html) explicitly shows final update **2022-12-23**, distinguishes the traditional approximately 20 g 単位 from the 10 g ドリンク, and illustrates the 0.8 approximation. [MHLW — 健康に配慮した飲酒に関するガイドライン](https://www.mhlw.go.jp/stf/newpage_38541.html) and its linked [final guideline PDF](https://www.mhlw.go.jp/content/12200000/001223643.pdf) emphasize pure alcohol grams and use 0.8; the [official publication announcement](https://www.mhlw.go.jp/stf/newpage_37908.html) is dated **2024-02-19**. Used the final published guideline, not consultation drafts or the older “moderate drinking” recommendation as a safe allowance. [Tokyo — 飲酒](https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/) uses 純アルコール量, quantity/volume/strength inputs and 0.8, including 日本酒1合 = 180 ml and canned chūhai. No explicit publication/update date was visible on the Tokyo page; the access date is not its update date.
+- Research decision: lead with 純アルコール量（g） and use ドリンク（10 g） for the unchanged Japanese reference result. Explain the traditional approximately 20 g 単位 separately; 合 is a volume of 180 ml, whose alcohol grams depend on strength. Neither reference is a recommended or safe allowance, and Japan is not described as having one universally used “20 g standard drink.” Official terminology informed the copy; no keyword-volume or SEO-uplift claim is made. All three requested sources are linked next to relevant explanations and in the existing methodology reference area.
+
+Important exact copy changes:
+
+| Slot | Before | After |
+|---|---|---|
+| Calculator title/H1/OG title | アルコール単位計算機 | 純アルコール量計算機 (HTML title retains `\| Mindrink`) |
+| Selected results, totals, added-row reference labels and examples heading | 10g単位 / 標準単位 | ドリンク（10 g） |
+| Grams result label | アルコール量 | 純アルコール量（g） |
+| Quantity / selected-result heading | 杯数 / この飲み物 | 数量（杯・本など） / 入力した数量の結果 |
+| Guide and methodology highlighted definition | 1単位 = 純アルコール10グラム | 1ドリンク = 純アルコール10 g |
+| Both formula explanations | 10g単位 = (容量（ml） × (アルコール度数（%） ÷ 100) × 0.789) ÷ 10 | ドリンク（10 g） = (容量（ml） × (アルコール度数（%） ÷ 100) × 0.789) ÷ 10 |
+| Guide H1/BlogPosting headline | 1杯はどのくらい？アルコール単位と基準量を理解する | 1杯はどのくらい？純アルコール量とドリンクを理解する |
+| Guide title/OG/Twitter title | 1杯はどのくらい？アルコール単位ガイド \| Mindrink ブログ | 1杯はどのくらい？純アルコール量とドリンク \| Mindrink ブログ |
+| Short explainer title/H1/OG title | 一般的な飲み物には何単位のアルコールがありますか？ | ビール・日本酒・缶チューハイの純アルコール量は？ (HTML title retains `\| Mindrink`) |
+| Methodology title/OG/Twitter title | Mindrinkの算出方法 – アルコール単位の計算方法 | Mindrinkの算出方法 – 純アルコール量と10 gドリンク |
+
+Exact description changes; existing meta, OG, Twitter and Article/BlogPosting descriptions were synchronized where present:
+
+| Page | Before | After |
+|---|---|---|
+| Calculator | お酒の量とアルコール度数から純アルコール量（g）を計算。10g単位、英国のアルコール単位、米国の標準ドリンクにも換算できます。 | お酒の容量・アルコール度数・数量から純アルコール量（g）を計算。ドリンク（10 g）、英国単位、米国標準ドリンクへの換算と、ビール・日本酒・缶チューハイの例を確認できます。 |
+| Methodology | Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、国ごとのガイドラインや上限値をどう扱うかを説明します。根拠を公開し、日々の記録を安心して読み解ける透明性のある算出方法と判断基準を紹介します。 | Mindrinkの純アルコール量（g）と10 gドリンクの計算方法、アプリの上限値とその根拠を説明します。日本で従来使われてきた単位（約20 g）との違い、公式資料の係数0.8とMindrinkの0.789による計算の違いも確認できます。 |
+| Guide | 1杯はどのくらいなのかを、アルコール単位と標準ドリンクの考え方から解説します。ビール、ワイン、スピリッツの具体例を通じて、飲んだ量を比べやすくし、日々の記録や振り返り、週ごとの確認に活かすためのガイドです。換算の目安も学べます。 | 「1杯」の飲酒量を純アルコール量（g）で比較。ドリンク（10 g）、従来の単位（約20 g）、容量を表す合の違いを、ビール・日本酒・焼酎・缶チューハイの例で解説します。 |
+| Short explainer | ビール、ワイン、蒸留酒を10g単位で比較し、英国単位や米国標準ドリンクとの違いも確認できます。 | ビール・日本酒・焼酎・缶チューハイの純アルコール量（g）とドリンク（10 g）を比較。従来の単位（約20 g）や英国・米国の基準との違いも解説します。 |
+
+- Calculation behavior: retained density **0.789 g/ml**, Japanese **10 g** drinks, UK units from 10 ml pure alcohol, US standard drinks from 14 g, and alcohol-only calories. Quantity is included before conversion; totals sum unrounded inputs before display rounding. Two 500 ml/5% beers total 39.45 g → 39.5 g displayed and 3.9 drinks, not 4.0 from adding rounded rows. Official 0.8 examples are identified as approximations: beer500 ml/5% → 20 g, while the site's formula gives 19.725 g → 19.7 g displayed. The calculator is not forced to return the official rounded illustration.
+
+Worked examples in existing slots:
+
+| Input (one serving) | Unrounded grams using 0.789 | Displayed grams | Drinks of 10 g |
+|---|---|---|---|
+| Beer 500 ml, 5% | 19.725 | 19.7 | 2.0 |
+| Sake 1合 = 180 ml, 15% | 21.303 | 21.3 | 2.1 |
+| Shōchū 100 ml, 25%, before dilution | 19.725 | 19.7 | 2.0 |
+| Canned chūhai 350 ml, 7% | 19.3305 | 19.3 | 1.9 |
+| Canned chūhai 500 ml, 9% | 35.505 | 35.5 | 3.6 |
+
+- Methodology protection: renamed its Japanese 10 g reference to ドリンク consistently while retaining the actual app thresholds and gram quantities. The complete principal threshold table is byte-identical after line-ending normalization (SHA-256 `74332e90d1bd637dccf9dee414f2c33c42b4c455e30df5f1d798cdfda5380548`); the explanatory note explicitly says 20 drinks = 200 g and that these are not replacement Japanese national limits. Corrected the existing Canadian example's one-decimal conversion from 80.7 g → 8.0 to approximately 8.1 drinks; the gram input and app thresholds are unchanged. Removed universal/“WHO-style” claims about the 10 g convention. Existing WHO 2018/2024 reference distinction remains intact.
+- Common UX: retained all four pages' section roles, heading hierarchy, table-row/example counts, navigation, canonicals/hreflang, calculator controls/presets, both contextual article links and the bottom same-language app invitation. Japanese source prose/examples fit existing slots; no promotional section, appendix, country detection, geolocation, selector, serving shortcut or restored removed content. Corrected サイダー to シードル in the existing cider option. The Japanese calculator comparison table has a local 600 px minimum width within its existing horizontal scroll wrapper to prevent long Japanese headings collapsing into single-character columns; shared styles and other languages are unchanged.
+- Content dates: Japanese methodology and guide `dateModified` are 2026-10-12; the guide's matching social modification timestamp uses `+02:00`. Original publication dates are preserved. Sitemap update/check was run; only the three changed Japanese article/explainer dates needed updating because calculator dependency dates were already 2026-10-12. Concurrent Italian dates remain intact.
+- Final validation on 2026-10-12: **240 automated tests passed**, including Japanese raw/rounded examples, quantity/unrounded totals, calculator/short tables, metadata alignment, five visible/structured FAQ answers, unchanged Japanese structure/thresholds and Italian 12 g behavior. Analytics-disabled build passed with 208 pages/URLs, 4,920 internal links and 811 fragments; sitemap and diff-whitespace checks passed. All **116 browser checks passed**, with no page errors or missing files: required eight-language decimal typing/presets/limits, totals/removal, history figures/citations, methodology overflow and localized logo regressions; Italian 12 g cases; and Japanese examples, quantity validation, added-row labels, unrounded totals, both article links, bottom CTA, official sources and all four pages' reflow at 320/390/1280 px. The local table minimum width was checked for phone scrolling and desktop fit after screenshot review exposed cramped headings. Japanese phone/desktop screenshots were inspected for the calculator results/summary/table and all four pages' explanatory copy; methodology formula and references were inspected in readable crops. External browser requests were blocked, with no production analytics events sent. Local screenshots and test/browser results are in gitignored `docs/Ai/active/japanese-localization-2026-10-12/qa/`.
+- Production deployment revision/time: pending a separately requested release. Google crawl date/snippet adoption: unknown, with no GSC extraction. Remaining limitations: no independent Japanese native-speaker review; Tokyo's update date is not exposed; input strength/volume still comes from labels/user entries. No traffic improvement or deployed change is claimed.
+
+### 2026-10-12 local commit approval
+
+- Owner approved committing this Japanese package to `dev`. Implementation revision: the commit carrying `SEO-Action: SEO-20261012-04`. The final parent is `2a78483310c7a3399f767ae7ec80e3ad8884938f`, preserving the separate Italian follow-up that keeps Mindrink's 10 g result alongside Italian 12 g UA. This supersedes the earlier uncommitted handoff status for Japan; push, merge and deployment remain unrequested.
+- Rechecked the final combined working tree: 242 automated tests, analytics-disabled build, sitemap update/check and static SEO checks passed (208 pages/URLs, 4,920 internal links, 811 fragments). All 116 browser checks passed again, with no page errors or missing local files; external traffic was blocked. Production release time and Google crawl dates remain separate and unverified.
+
 ## SEO-20261012-03 — Italian 12 g alcohol-unit localization
 
 ### 2026-10-12 owner correction — retain the Mindrink result alongside Italian UA

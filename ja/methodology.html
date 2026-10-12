@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、国ごとのガイドラインや上限値をどう扱うかを説明します。根拠を公開し、日々の記録を安心して読み解ける透明性のある算出方法と判断基準を紹介します。">
-    <meta name="keywords" content="アルコール単位の計算, 飲酒算出方法, アルコール記録の根拠, お酒との上手な付き合い方の研究">
+    <meta name="description" content="Mindrinkの純アルコール量（g）と10 gドリンクの計算方法、アプリの上限値とその根拠を説明します。日本で従来使われてきた単位（約20 g）との違い、公式資料の係数0.8とMindrinkの0.789による計算の違いも確認できます。">
+    <meta name="keywords" content="純アルコール量の計算, 飲酒算出方法, アルコール記録の根拠, お酒との上手な付き合い方の研究">
     <meta name="robots" content="index, follow">
-    <title>Mindrinkの算出方法 – アルコール単位の計算方法</title>
+    <title>Mindrinkの算出方法 – 純アルコール量と10 gドリンク</title>
     <!-- Resource Hints for Performance -->
     <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
     <!-- Favicons -->
@@ -18,8 +18,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/ja/methodology.html">
-    <meta property="og:title" content="Mindrinkの算出方法 – アルコール単位の計算方法">
-    <meta property="og:description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、国ごとのガイドラインや上限値をどう扱うかを説明します。根拠を公開し、日々の記録を安心して読み解ける透明性のある算出方法と判断基準を紹介します。">
+    <meta property="og:title" content="Mindrinkの算出方法 – 純アルコール量と10 gドリンク">
+    <meta property="og:description" content="Mindrinkの純アルコール量（g）と10 gドリンクの計算方法、アプリの上限値とその根拠を説明します。日本で従来使われてきた単位（約20 g）との違い、公式資料の係数0.8とMindrinkの0.789による計算の違いも確認できます。">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta property="og:image:secure_url" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -50,8 +50,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://mindrink.me/ja/methodology.html">
-    <meta name="twitter:title" content="Mindrinkの算出方法 – アルコール単位の計算方法">
-    <meta name="twitter:description" content="Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、国ごとのガイドラインや上限値をどう扱うかを説明します。根拠を公開し、日々の記録を安心して読み解ける透明性のある算出方法と判断基準を紹介します。">
+    <meta name="twitter:title" content="Mindrinkの算出方法 – 純アルコール量と10 gドリンク">
+    <meta name="twitter:description" content="Mindrinkの純アルコール量（g）と10 gドリンクの計算方法、アプリの上限値とその根拠を説明します。日本で従来使われてきた単位（約20 g）との違い、公式資料の係数0.8とMindrinkの0.789による計算の違いも確認できます。">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta name="twitter:image:alt" content="Mindrinkアプリでお酒との付き合い方をサポート">
     <!-- Schema.org Structured Data -->
@@ -59,11 +59,11 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "算出方法 – Mindrinkのアルコール単位の計算方法",
-      "description": "Mindrinkがアルコール単位をどのように計算し、飲酒パターンをどう解釈し、国ごとのガイドラインや上限値をどう扱うかを説明します。根拠を公開し、日々の記録を安心して読み解ける透明性のある算出方法と判断基準を紹介します。",
+      "headline": "算出方法 – Mindrinkの純アルコール量と10 gドリンク",
+      "description": "Mindrinkの純アルコール量（g）と10 gドリンクの計算方法、アプリの上限値とその根拠を説明します。日本で従来使われてきた単位（約20 g）との違い、公式資料の係数0.8とMindrinkの0.789による計算の違いも確認できます。",
       "url": "https://mindrink.me/ja/methodology.html",
       "datePublished": "2026-04-11",
-      "dateModified": "2026-10-02",
+      "dateModified": "2026-10-12",
       "author": {
         "@type": "Person",
         "name": "Mindrink Team"
@@ -188,9 +188,9 @@
     <!-- Hero/Intro Section -->
     <section class="philosophy">
         <div class="container narrow">
-            <h1 class="page-title">⭐ Mindrinkの算出方法：上限値、アルコール単位、リスクレベルの考え方</h1>
+            <h1 class="page-title">⭐ Mindrinkの算出方法：上限値、純アルコール量、リスクレベルの考え方</h1>
             <p class="feature-text" style="text-align: center; margin-top: 24px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                このページでは、Mindrinkがアルコール単位をどのように計算し、上限値をどう定義しているかをご説明します。参照している国際ガイドラインと、Mindrink独自の導出部分についても明らかにしています。<br>
+                このページでは、Mindrinkが純アルコール量をどのように計算し、上限値をどう定義しているかをご説明します。参照している国際ガイドラインと、Mindrink独自の導出部分についても明らかにしています。<br>
                 透明性を何より大切にしています。数値の根拠と、それが日常生活で何を意味するのかを常にお伝えしたいと考えています。
             </p>
         </div>
@@ -199,41 +199,41 @@
     <!-- 1. What is an alcohol unit -->
     <section class="how-it-works methodology-frame-section">
         <div class="container narrow">
-            <h2 class="section-title">1. アルコール単位とは？</h2>
+            <h2 class="section-title">1. 純アルコール量と10 gドリンクとは？</h2>
             <div class="feature">
                 <p class="feature-text" style="margin-bottom: 16px;">
-                    Mindrinkでは、お酒を比較するために純アルコール10gを1単位とする基準を使います。標準ドリンクの定義は国によって異なります。
+                    Mindrinkのアプリでは、純アルコール10 gを1ドリンクとして計算します。<a href="https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html">厚生労働省 e-ヘルスネット「飲酒量の単位」</a>も10 gのドリンクを紹介しています。従来の「1単位」（約20 g）とは区別してください。
                 </p>
                 <p style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small); text-align: center;">
-                    1単位 = 純アルコール10グラム
+                    1ドリンク = 純アルコール10 g
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
                     オーストラリアの標準ドリンクも純アルコール10gに相当します。<br>
-                    この基準でビール、ワイン、スピリッツ、カクテルを同じ尺度で比較できます。
+                    この基準でビール、日本酒、焼酎、缶チューハイを同じ尺度で比較できます。ドリンクの定義は推奨量や安全な飲酒量を示すものではありません。
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    10g単位を計算するには、アルコール度数を数値で入力します（5%なら5）：
+                    ドリンク（10 g）を計算するには、アルコール度数を数値で入力します（5%なら5）：
                 </p>
                 <p style="font-size: 18px; font-weight: 600; color: var(--text-dark); margin: 24px 0 16px; padding: 16px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    10g単位 = (容量（ml） × (アルコール度数（%） ÷ 100) × 0.789) ÷ 10
+                    ドリンク（10 g） = (容量（ml） × (アルコール度数（%） ÷ 100) × 0.789) ÷ 10
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
-                    Mindrinkが自動で計算しますが、いくつか例を挙げます：
+                    Mindrinkはエタノールの密度0.789 g/mlを使います。<a href="https://www.mhlw.go.jp/stf/newpage_38541.html">厚生労働省「健康に配慮した飲酒に関するガイドライン」</a>や<a href="https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/">東京都「とうきょう健康ステーション」の飲酒情報</a>は、概算に0.8を使います。ビール500 ml・5%は、0.8なら20 g、0.789なら19.725 g（表示は19.7 g、約2.0ドリンク）です。<br>以下は0.789で計算した例です：
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>ビール</strong>（中ジョッキ 500 ml、5%）→ 約2.0単位
+                        <strong>ビール</strong>（500 ml、5%）→ 19.725 g、約2.0ドリンク
                     </li>
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        <strong>ワイン</strong>（175 ml、12%）→ 約1.7単位
+                        <strong>日本酒</strong>（1合・180 ml、15%）→ 21.303 g、約2.1ドリンク
                     </li>
                     <li style="padding: 8px 0;">
-                        <strong>スピリッツ</strong>（25 ml、40%）→ 約0.8単位
+                        <strong>焼酎</strong>（100 ml、25%、水などで割る前）→ 19.725 g、約2.0ドリンク
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 24px;">
-                    国によって単位の数え方は異なります。<br>
-                    具体的なお酒の容量とアルコール度数を<a href="/ja/alcohol-unit-calculator/" class="footer-link">アルコール単位計算機</a>に入力して計算できます。<br>
+                    「1合」は容量180 mlです。グラス1杯や缶1本も、容量と度数を確認しなければドリンク数は分かりません。日本酒や缶チューハイは、計算機の「その他」を選んで入力できます。<br>
+                    具体的なお酒の容量とアルコール度数を<a href="/ja/alcohol-unit-calculator/" class="footer-link">純アルコール量計算機</a>に入力して計算できます。<br>
                     詳しくは<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html" class="footer-link">「1杯とは何か」ガイド</a>をご覧ください。
                 </p>
             </div>
@@ -275,7 +275,7 @@
         <div class="container narrow">
             <h2 class="section-title">3. 上限値の一覧表</h2>
             <p class="feature-text" style="text-align: center; margin-bottom: 24px;">
-                （すべての値は単位表記; 1単位 = 10 g）
+                （すべてアプリの10 gドリンク表記。日本の従来の約20 g単位ではありません。20ドリンクは純アルコール200 gです。日本の飲酒ガイドラインに置き換えた上限値ではありません。）
             </p>
             <div class="table-wrapper">
                 <table class="methodology-table">
@@ -374,7 +374,7 @@
                 <h3 class="feature-title">A. 公式の公衆衛生ガイドラインから直接採用した値</h3>
                 <p class="feature-text" style="margin-bottom: 16px;">
                     以下は、Mindrinkが公式発表そのままに使用しているガイドラインの構成要素です。統一のために1つだけ変換を行っています：<br>
-                    すべてをMindrink単位 = エタノール10 gに変換し、異なる国の基準を直接比較できるようにしています。
+                    すべてをMindrinkドリンク = エタノール10 gに変換し、異なる国の基準を直接比較できるようにしています。
                 </p>
                 <p class="feature-text">
                     以下に、元の数値、変換の根拠、各ソースをMindrinkのモデルに含めた理由を示します。
@@ -392,10 +392,10 @@
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        0〜2杯/週 → 低リスク
+                        0〜2カナダ標準ドリンク/週 → 低リスク
                     </li>
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        3〜6杯/週 → 中リスク
+                        3〜6カナダ標準ドリンク/週 → 中リスク
                     </li>
                     <li style="padding: 8px 0;">
                         7杯以上/週 → リスクが高まる
@@ -408,29 +408,29 @@
                     エタノール13.45 g
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    <strong>Mindrink単位への変換</strong>
+                    <strong>Mindrinkドリンクへの変換</strong>
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
-                    低リスク帯域（0〜2杯/週）：<br>
-                    2 × 13.45 g = 26.9 g → 2.7単位
+                    低リスク帯域（0〜2カナダ標準ドリンク/週）：<br>
+                    2 × 13.45 g = 26.9 g → 2.7ドリンク
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
-                    中リスク帯域（3〜6杯/週）：<br>
-                    3杯 = 40.35 g → 4.0単位<br>
-                    6杯 = 80.7 g → 8.0単位
+                    中リスク帯域（3〜6カナダ標準ドリンク/週）：<br>
+                    3カナダ標準ドリンク = 40.35 g → 4.0ドリンク<br>
+                    6カナダ標準ドリンク = 80.7 g → 約8.1ドリンク
                 </p>
                 <p class="feature-text" style="margin-top: 16px;">
-                    カナダのモデルをMindrink単位に換算すると：
+                    カナダのモデルをMindrinkドリンクに換算すると：
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        低リスク：約0〜2.7単位
+                        低リスク：約0〜2.7ドリンク
                     </li>
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        中リスク：約4〜8単位
+                        中リスク：約4〜8ドリンク
                     </li>
                     <li style="padding: 8px 0;">
-                        高リスク：8単位/週超
+                        高リスク：8ドリンク/週超
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
@@ -441,10 +441,10 @@
                     実用的かつ科学的根拠のある厳格レベルを作るため、Mindrinkでは以下のように設定しています：
                 </p>
                 <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    厳格レベルの週間上限 = 5単位/週以下
+                    厳格レベルの週間上限 = 5ドリンク/週以下
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
-                    <strong>5単位/週：</strong>
+                    <strong>5ドリンク/週：</strong>
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
@@ -496,17 +496,17 @@
                     エタノール10 g
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    <strong>Mindrink単位への変換</strong>
+                    <strong>Mindrinkドリンクへの変換</strong>
                 </p>
                 <p class="feature-text">
                     直接対応：
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        10ドリンク/週 → 10単位/週
+                        10オーストラリア標準ドリンク/週 → 10 Mindrinkドリンク/週
                     </li>
                     <li style="padding: 8px 0;">
-                        4ドリンク/日 → 4単位/日
+                        4オーストラリア標準ドリンク/日 → 4 Mindrinkドリンク/日
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
@@ -517,7 +517,7 @@
                         1日と1週間の両方の上限を提供しています
                     </li>
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        すでに10 gドリンクを採用しており、Mindrink単位と同一です
+                        すでに10 gドリンクを採用しており、Mindrinkドリンクと同一です
                     </li>
                     <li style="padding: 8px 0;">
                         バランスレベルの構造的な基盤となっています
@@ -548,14 +548,14 @@
                     1基準量（スタンダードドリンク）= エタノール10 g
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    <strong>Mindrink単位への変換</strong>
+                    <strong>Mindrinkドリンクへの変換</strong>
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        男性：17 × 10 g = 17単位/週
+                        男性：17 × 10 g = 17ドリンク/週
                     </li>
                     <li style="padding: 8px 0;">
-                        女性：11 × 10 g = 11単位/週
+                        女性：11 × 10 g = 11ドリンク/週
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
@@ -569,7 +569,7 @@
                         明確な3段階モデル（厳格 → バランス → ゆるやか）を完成させます
                     </li>
                     <li style="padding: 8px 0;">
-                        世界共通の10 g基準量に一致しています
+                        Mindrinkが使う10 g基準量に一致しています
                     </li>
                 </ul>
             </div>
@@ -595,10 +595,10 @@
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        女性：4 × 14 g = 56 g → 5.6単位
+                        女性：4 × 14 g = 56 g → 5.6ドリンク
                     </li>
                     <li style="padding: 8px 0;">
-                        男性：5 × 14 g = 70 g → 7単位
+                        男性：5 × 14 g = 70 g → 7ドリンク
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px;">
@@ -606,10 +606,10 @@
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        女性：6単位/日以上
+                        女性：6ドリンク/日以上
                     </li>
                     <li style="padding: 8px 0;">
-                        男性：7単位/日以上
+                        男性：7ドリンク/日以上
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
@@ -617,7 +617,7 @@
                 </p>
                 <p class="feature-text">
                     1回の飲酒で60 g以上のエタノール<br>
-                    → 6単位
+                    → 6ドリンク
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
                     <strong>採用理由</strong>
@@ -674,49 +674,49 @@
                     1日の上限がなければ、その日の飲酒が適度なのかビンジに近いのかをユーザーが判断できません。
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    <strong>厳格レベル — 2単位/日（導出値）</strong>
+                    <strong>厳格レベル — 2ドリンク/日（導出値）</strong>
                 </p>
                 <p class="feature-text">
                     厳格レベルは、カナダのモデルに基づく非常に少ない飲酒量を表します：
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        0〜2カナダドリンク/週 = 低リスク<br>
-                        → 約0〜2.7単位/週
+                        0〜2カナダ標準ドリンク/週 = 低リスク<br>
+                        → 約0〜2.7ドリンク/週
                     </li>
                     <li style="padding: 8px 0;">
-                        3〜6杯/週 = 中リスク<br>
-                        → 約4〜8単位/週
+                        3〜6カナダ標準ドリンク/週 = 中リスク<br>
+                        → 約4〜8ドリンク/週
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px;">
-                    1日2単位の上限により、たまに多めに飲む日があっても、中リスクや高リスクの週間パターンに蓄積しないようにしています。
+                    1日2ドリンクの上限により、たまに多めに飲む日があっても、中リスクや高リスクの週間パターンに蓄積しないようにしています。
                 </p>
                 <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    厳格レベルの1日青上限 = 2単位/日
+                    厳格レベルの1日青上限 = 2ドリンク/日
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
                     これにより、厳格レベルはどの国の公式上限よりも低く、真に厳格なものになっています。
                 </p>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
-                    <strong>バランス・ゆるやか — 4単位/日（オーストラリアより）</strong>
+                    <strong>バランス・ゆるやか — 4ドリンク/日（オーストラリアより）</strong>
                 </p>
                 <p class="feature-text">
                     オーストラリア（NHMRC 2020）は、エビデンスに基づく明確な1日上限を示す唯一の主要ガイドラインです：
                 </p>
                 <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    4ドリンク/日以下<br>
-                    = 4単位/日
+                    4オーストラリア標準ドリンク/日以下<br>
+                    = 4 Mindrinkドリンク/日
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
                     Mindrinkは一貫性のため、両レベルに適用しています：
                 </p>
                 <ul style="list-style: none; padding: 0; margin: 16px 0;">
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(26, 26, 26, 0.1);">
-                        バランスの1日青上限 = 4単位/日
+                        バランスの1日青上限 = 4ドリンク/日
                     </li>
                     <li style="padding: 8px 0;">
-                        ゆるやかの1日青上限 = 4単位/日
+                        ゆるやかの1日青上限 = 4ドリンク/日
                     </li>
                 </ul>
                 <p class="feature-text" style="margin-top: 16px; margin-bottom: 8px;">
@@ -733,15 +733,15 @@
                         <tbody>
                             <tr>
                                 <td class="table-cell-tier">厳格</td>
-                                <td>2単位/日</td>
+                                <td>2ドリンク/日</td>
                             </tr>
                             <tr>
                                 <td class="table-cell-tier">バランス</td>
-                                <td>4単位/日</td>
+                                <td>4ドリンク/日</td>
                             </tr>
                             <tr>
                                 <td class="table-cell-tier">ゆるやか</td>
-                                <td>4単位/日</td>
+                                <td>4ドリンク/日</td>
                             </tr>
                         </tbody>
                     </table>
@@ -786,7 +786,7 @@
                     <strong>Mindrinkの導出</strong>
                 </p>
                 <p style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 16px 0; padding: 12px; background: var(--soft-amber-bg); border-radius: var(--border-radius-small);">
-                    週間赤閾値 = 20単位/週以上<br>
+                    週間赤閾値 = 20ドリンク/週以上<br>
                     (20 × 10 g = エタノール200 g)
                 </p>
                 <p class="feature-text" style="margin-top: 8px;">
@@ -857,9 +857,9 @@
                         <strong>🔴 赤</strong> — 高リスクの飲酒量：
                         <ul style="list-style: none; padding: 0; margin: 8px 0 0 20px;">
                             <li style="padding: 4px 0;">ビンジ日</li>
-                            <li style="padding: 4px 0;">女性 ≥ 6単位</li>
-                            <li style="padding: 4px 0;">男性 ≥ 7単位</li>
-                            <li style="padding: 4px 0;">高リスク週：≥ 20単位</li>
+                            <li style="padding: 4px 0;">女性 ≥ 6ドリンク</li>
+                            <li style="padding: 4px 0;">男性 ≥ 7ドリンク</li>
+                            <li style="padding: 4px 0;">高リスク週：≥ 20ドリンク</li>
                         </ul>
                     </li>
                 </ul>
@@ -1037,6 +1037,7 @@
                 </div>
 
                 <div style="margin-bottom: 24px;">
+                    <p class="feature-text" style="margin-bottom: 24px;">日本の表記・計算の参考：<a href="https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html">厚生労働省 e-ヘルスネット「飲酒量の単位」</a>（最終更新2022年12月23日）、<a href="https://www.mhlw.go.jp/stf/newpage_38541.html">厚生労働省「健康に配慮した飲酒に関するガイドライン」</a>（2024年2月19日公表の確定版）、<a href="https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/">東京都「とうきょう健康ステーション」の飲酒情報</a>。これらは日本の飲酒量の説明に用いており、アプリの上限値やその根拠を変更するものではありません。</p>
                     <h3 class="feature-title">Lancet (2018) — アルコール消費のリスク閾値</h3>
                     <p class="feature-text">
                         <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30134-X/fulltext" target="_blank" rel="noopener noreferrer" class="footer-link">Wood et al., Lancet 2018</a><br>

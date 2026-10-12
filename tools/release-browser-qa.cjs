@@ -180,6 +180,88 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         });
       }
     }
+    for (const width of [320,390,1280]) {
+      await check(`ja/${width}: 10 g labels, exact inputs, quantities and unrounded totals`, async () => {
+        await page.setViewportSize({width,height:844});
+        await page.goto(origin+'/ja/alcohol-unit-calculator/');
+        await page.waitForFunction(() => document.querySelector('#selected-global').textContent === '2.0');
+        assert.equal(await page.locator('h1').textContent(), '純アルコール量計算機');
+        assert.equal(await page.locator('.result-label').filter({hasText:'ドリンク（10 g）'}).count(), 2);
+        assert.equal(await page.locator('.result-label').filter({hasText:'アルコール由来のカロリー'}).count(), 2);
+        assert.equal(await page.locator('label[for="selected-quantity"]').textContent(), '数量（杯・本など）');
+        const number = async id => Number(await page.locator(`#${id}`).textContent());
+        await page.locator('#total-add-row').click();
+        await page.locator('#total-add-row').click();
+        assert.equal(await number('total-global'), 3.9);
+        assert.equal(await number('total-grams'), 39.5);
+        assert.match(await page.locator('.drink-list-units').first().textContent(), /2\.0 ドリンク（10 g）/);
+        assert.match(await page.locator('.drink-list-detail').first().textContent(), /500 ml・5% × 1/);
+        await page.locator('.total-remove').first().click();
+        assert.equal(await number('total-global'), 2);
+        await page.locator('.total-remove').click();
+        assert.ok(await page.locator('#total-totals').isHidden());
+        await page.locator('#selected-drink-type').selectOption('custom');
+        for (const [volume,abv,grams,drinks] of [[500,5,19.7,2],[180,15,21.3,2.1],[100,25,19.7,2],[350,7,19.3,1.9],[500,9,35.5,3.6]]) {
+          await page.locator('#selected-volume').fill(String(volume));
+          await page.locator('#selected-abv').fill('');
+          await page.locator('#selected-abv').pressSequentially(String(abv));
+          assert.equal(await number('selected-grams'), grams);
+          assert.equal(await number('selected-global'), drinks);
+        }
+        await page.locator('#selected-volume').fill('500');
+        await page.locator('#selected-abv').fill('5');
+        await page.locator('#selected-quantity').fill('2');
+        assert.equal(await number('selected-global'), 3.9);
+        await page.locator('#total-add-row').click();
+        assert.equal(await number('total-global'), 3.9);
+        assert.equal(await number('total-uk-units'), 5);
+        assert.equal(await number('total-us'), 2.8);
+        assert.equal(await number('total-calories'), 276);
+        assert.match(await page.locator('.drink-list-detail').textContent(), /500 ml・5% × 2/);
+        await page.locator('#selected-quantity').fill('0');
+        assert.ok(await page.locator('#total-add-row').isDisabled());
+        await page.locator('#selected-quantity').fill('1.5');
+        assert.ok(await page.locator('#total-add-row').isDisabled());
+        await page.locator('#selected-quantity').fill('1');
+        await page.locator('#selected-volume').fill('');
+        assert.equal(await page.locator('#selected-grams').textContent(), '');
+        assert.ok(await page.locator('#total-add-row').isDisabled());
+        await page.locator('#selected-volume').fill('500');
+        assert.equal(await number('selected-grams'), 19.7);
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+        const comparison = page.locator('.answer-table-wrap');
+        const tableSizes = await comparison.evaluate(el => ({viewport:el.clientWidth, table:el.querySelector('table').getBoundingClientRect().width}));
+        assert.ok(tableSizes.table >= 600); // Japanese headings must not become single-character columns.
+        if (width < 600) assert.ok(tableSizes.table > tableSizes.viewport);
+        else assert.ok(tableSizes.table <= tableSizes.viewport + 1);
+        if (process.env.MINDRINK_QA_SCREENSHOT_DIR) {
+          await page.evaluate(() => scrollTo(0,0));
+          await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `ja-calculator-${width}.png`),fullPage:true});
+        }
+        assert.equal(await page.locator('.answer-cta a').getAttribute('href'), '/ja/');
+        for (const slug of ['what-counts-as-a-drink-alcohol-units.html','why-weekly-drinking-patterns-matter.html']) {
+          await page.locator(`main a[href="/ja/blog/${slug}"]`).click();
+          assert.equal(new URL(page.url()).pathname, `/ja/blog/${slug}`);
+          assert.equal(await page.locator('html').getAttribute('lang'), 'ja');
+          await page.goto(origin+'/ja/alcohol-unit-calculator/');
+        }
+      });
+      for (const path of ['methodology.html','alcohol-units.html','blog/what-counts-as-a-drink-alcohol-units.html']) {
+        await check(`ja/${path}/${width}: official references, localized calculator link and text reflow`, async () => {
+          await page.setViewportSize({width,height:844});
+          await page.goto(origin+'/ja/'+path);
+          for (const source of ['https://kennet.mhlw.go.jp/information/information/alcohol/a-02-001.html','https://www.mhlw.go.jp/stf/newpage_38541.html','https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/']) {
+            assert.ok(await page.locator(`main a[href="${source}"]`).first().isVisible());
+          }
+          assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+          if (process.env.MINDRINK_QA_SCREENSHOT_DIR) {
+            await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `ja-${path.replace(/\//g,'-')}-${width}.png`),fullPage:true});
+          }
+          await page.locator('main a[href="/ja/alcohol-unit-calculator/"]').first().click();
+          assert.equal(new URL(page.url()).pathname, '/ja/alcohol-unit-calculator/');
+        });
+      }
+    }
   } finally { await browser.close(); }
   console.log(JSON.stringify({passed,failures,errors,missing},null,2));
   if(failures.length || errors.length || missing.length) process.exitCode=1;
