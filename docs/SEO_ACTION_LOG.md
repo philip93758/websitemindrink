@@ -20,6 +20,16 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## RELEASE-20261012-01 — October SEO corrections published
+
+- Owner authorized pre-deployment checks and promotion to main on 2026-10-12. Implementation revision: [`6cbc5ee91bdcf46317f581dd42fe2140768669bb`](https://github.com/philip93758/websitemindrink/commit/6cbc5ee91bdcf46317f581dd42fe2140768669bb), committed on 2026-10-02. The three actions below shipped together; assess them as one release package.
+- Pre-release verification (2026-10-12): all 225 automated tests, build and all 88 browser regressions passed, with no browser page errors or missing local resources. The static SEO gate verified 208 pages, 4,900 internal links and 811 fragment links, including metadata, canonicals, reciprocal hreflang and sitemap coverage. Sitemap lastmod validation passed for all 208 URLs. Source modification dates remain 2026-10-02 for the nine changed pages; they are not the publication date.
+- Episode 1.2's eight source-sync checks passed. Episode 1.1's legacy source-sync command could not run because Atrium's originals have moved into the separate ongoing editorial workflow. Neither episode's website pages changed in this release; their existing article and browser regression checks passed. No pending Atrium editorial content was imported.
+- Hosted dev CI: [run 38294900112](https://github.com/philip93758/websitemindrink/actions/runs/38294900112), successful for the implementation revision. Main was then fast-forwarded to the same revision.
+- Verified production release: [run 38295127650](https://github.com/philip93758/websitemindrink/actions/runs/38295127650), build and deployment successful. The [GitHub Pages deployment job](https://github.com/philip93758/websitemindrink/actions/runs/38295127650/job/114964377963) completed on **2026-10-12 at 19:04:24 UTC** (21:04:24 Europe/Berlin).
+- Live verification (2026-10-12): all eight methodology pages, the Italian calculator page, sitemap.xml and robots.txt returned HTTP 200 and matched the released source after newline normalization. The deployed analytics configuration was present and configured for the EU host; no credentials or production analytics events were recorded by this check.
+- This follow-up records actual release evidence and supersedes the unpublished status in the historical implementation entries below. Its documentation-only commit does not change public content or sitemap dates. Subsequent Google crawl, displayed snippets and traffic impact remain unverified.
+
 ## SEO-20261002-02 — Automatic website SEO release gate
 
 - Approval/implementation: 2026-10-02, on local website `dev` based on `6d2bb37475c55ea1172495b436bee58d1d2d5aad`. Not committed, pushed or deployed. The gate will run in hosted CI only after this change is committed/pushed; it does not continuously monitor production.
@@ -28,6 +38,7 @@ For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `bl
 - Release wiring: `npm run seo:check` is part of `npm run build`; the existing GitHub Actions build precedes the production deployment job. Regression tests also verify the public inventory against the staging commands, so private docs/tools are not treated as valid public destinations. The check fails with nonzero exit status rather than silently warning.
 - Limits: a bounded offline HTML/XML scanner, not a live crawler, external-link checker, schema validator or guarantee of Google indexing/ranking. No live robots/header, crawl-date or traffic observations were made. This is preventive quality control, not an SEO experiment with a claimed uplift.
 - Verification (2026-10-02): all 225 tests passed, including deliberately broken SEO fixtures, CLI failure/success status and deployment-inventory agreement. Analytics-disabled build passed; the new gate checked 208 pages, 4,900 internal links and 811 fragment links. Existing browser QA passed all 88 checks with no page errors or missing local resources; external traffic was blocked. Production revision/time and Google crawl date: not applicable to the unpublished tooling; record the release separately if shipped with public content changes.
+- Release follow-up (2026-10-12): committed as `6cbc5ee`, pushed and exercised successfully in both dev and main CI. Production deployment is verified in RELEASE-20261012-01 above.
 
 ## SEO-20261002-01 — WHO edition wording across all languages
 
@@ -38,6 +49,7 @@ For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `bl
 - Preserved: existing sections/headings, page metadata other than Article modification date, original sources, thresholds, formulas, worked examples, calculator behaviour, CTA journeys, canonical/hreflang and tracking. No locale-only explanation or section. This is source accuracy, not a new health recommendation or promised traffic gain.
 - Concurrent pending work: SEO-20260929-01's Italian calculator meta/OG correction remains intact and unpublished. The sitemap updater refreshes that still-uncommitted page's source date to 2026-10-02 as well; it does not prove any release on either date. If shipped together, assess them as one release package, not isolated experiments.
 - Verification (2026-10-02): all eight localized reference regressions and all 225 full-suite tests passed; build, loader, sitemap and new SEO gate passed. Pre-edit content hashes confirm all eight methodology pages remain identical outside the WHO reference block and Article modification date. The pending Italian calculator still differs from HEAD only in its two approved descriptions. Sitemap changes are limited to those nine pages. Existing browser QA passed 88 checks; 16 additional reference-block checks passed across eight locales at 375/1280 px (link visibility, no page/block overflow), with English/Japanese phone screenshot spot-checks. No independent native-speaker review is claimed. Actual production revision/time, subsequent Google crawl and search-result display: unknown until a separately approved release and verification.
+- Release follow-up (2026-10-12): all eight corrections are verified live from implementation revision `6cbc5ee`; see RELEASE-20261012-01 above for the deployment time and evidence.
 
 ## SEO-20260929-01 — Italian calculator description accuracy
 
@@ -53,6 +65,7 @@ For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `bl
 - Production revision/time, subsequent Google crawl and displayed snippet: pending a separately approved release and verification. Keep these distinct from today's source/sitemap date; no traffic gain is claimed. Compare release-aligned periods when available, record any concurrent changes and do not assume Google displays the meta description.
 - Context: [Atrium proposal reconciliation](../../mindrink-atrium/docs/atrium/active/website-calculator-seo-2026-08-23/proposal-next-round-2026-09-12.md); [private 29 September SEO analysis](../../mindrink-atrium/reports/gsc/2026-09-29/seo-results-2026-09-29.md). No new analytics extraction performed.
 - Follow-up (2026-10-02): copy and its regression remain unchanged and unpublished. The existing updater moved this still-dirty page's sitemap source date from 2026-09-29 to 2026-10-02 alongside the eight methodology corrections (SEO-20261002-01). The earlier verification record above is retained; neither source date is deployment evidence.
+- Release follow-up (2026-10-12): both corrected Italian descriptions are verified live from implementation revision `6cbc5ee`; see RELEASE-20261012-01 above. Google crawl and snippet adoption remain unverified.
 
 ## CONTENT-20260920-14 — Episode 1.2 localized flow and readability
 
