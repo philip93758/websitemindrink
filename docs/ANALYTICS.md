@@ -42,6 +42,12 @@ The two events are introduced in the 2026-09-12 dev implementation. Before evalu
 
 `internal_navigation_clicked` describes an aggregate edge such as `/discover/` → `/about.html`. The destination page receives a new memory-only identifier, so these events do not create a stitched multi-page visitor journey. PostHog can still show the most common transitions by grouping the explicit from/to paths.
 
+### Calculator links into the nine-step article path
+
+The 2026-10-12 dev change adds ordinary contextual links from every calculator language to the corresponding `blog/what-counts-as-a-drink-alcohol-units.html` (step 3) and `blog/why-weekly-drinking-patterns-matter.html` (step 6). The existing document-level click handler records them as `internal_navigation_clicked`, with the calculator's `from_page_path`, the same-language article's `to_page_path`, and `locale`. No new event or identity storage is required.
+
+After deployment, compare calculator page-load counts with the counts of these two outgoing links by language over complete periods. Report this as link clicks per recorded page load, not unique-visitor conversion: repeated clicks can count more than once, and a click does not prove the destination loaded or was read. Article page loads, onward internal-link clicks, and existing store-click events can be reported separately. These aggregates cannot establish that one person progressed from calculator through articles to a store, or attribute that progression to Google Search. Analytics opt-out, browser privacy signals and blocking still reduce coverage. Record the actual release date before evaluating this change.
+
 ## Privacy behavior
 
 - PostHog uses `persistence: memory`; its ephemeral distinct and device identifiers are not written to cookies, local storage, or session storage and do not survive a page load.
