@@ -82,17 +82,20 @@ The check belongs in this website repository, not Atrium. Run `npm run seo:check
 
 ## History episode content sync
 
-Episode 1.1's approved Markdown is in Atrium's `docs/marketing/Content/History series/Ep 1.1/` folder. From this website repository, import and verify all eight editions with:
+Episode 1.1's approved Markdown is in Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` folder. From this website repository, import the six revised editions and verify all eight with:
 
 ```bash
-npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1"
-npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1" --check
+npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1/approved" --approved --locales de,es,it,pt,id,ja
+npm run science:episode:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.1/approved" --approved --check
 npm run sitemap:update
 npm run build
 npm test
 ```
 
 - Keep the first source paragraph as the article deck in the hero; the remaining introductory paragraphs belong in the article body.
+- `--approved` requires exactly one canonical or dated `pipeline-polished` source per language in the explicitly supplied directory. Multiple candidates stop the import; do not silently select the latest draft. It validates all eight sources before writing and reuses the website's existing credited images. Legacy canonical filenames plus `_assets/selected` remain supported without this flag.
+- `--locales` limits the write/check set. English and French were frozen for the 13 October 2026 six-language refresh; keep the scoped write command above unless the owner explicitly includes them in a subsequent edit. A full `--check` remains read-only and confirms they match their approved originals.
+- Editorial `<!-- section:... -->` markers are validated and omitted from rendered headings and prose. Preserve all fifteen references and the source's paragraph divisions, including the five-paragraph Spanish/Italian conclusions. Next-episode teaser variants link to Episode 1.2's actual localized title, not its superseded planned title.
 - All eight editions are continuous essays: five `##` sections (including references), no body `###` subsections, and no argument-map diagrams. Image placement follows first-mention anchors (Jiahu, Georgian jar sites, Göbekli Tepe enclosure then pillar). If that structure changes, update the importer before running it.
 - Preserve credited images and captions. When references or the opening change, reconcile the article checks with the approved source. Verify that every citation resolves and review the page on mobile and desktop.
 - `--check` verifies article content without writing files. Re-importing unchanged content preserves its article modification date.

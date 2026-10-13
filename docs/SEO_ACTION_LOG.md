@@ -20,6 +20,26 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20261013-01 — Approved Episode 1.1 revisions in six languages
+
+- Owner authorized importing revised Episode 1.1 text from Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` into website `dev`, preserving English and French. Implemented locally from website baseline `52e340a5ef8433ec792163efc3cb732959339abd`. Not committed, pushed or deployed; source dates are not production dates. Atrium files were read only.
+- Affected pages: `/{de,es,it,pt,id,ja}/science/who-invented-alcohol.html` on `https://mindrink.me`. Imported the approved title/subtitle, deck, continuous essay and references without further rewriting. The source's next-episode wording remains linked to Episode 1.2's existing localized title and route rather than the outdated planned teaser. No hub, Episode 1.2, calculator, navigation destination or shared style changed.
+- Exact source editions and byte hashes:
+
+| Language | File in the approved folder | SHA-256 |
+|---|---|---|
+| German | `Who Invented Alcohol.de.pipeline-polished-2026-10-12.md` | `308dec55612b7eb700728b40352f4ebd436899c848111b23f61f58b95b079358` |
+| Spanish | `Who Invented Alcohol.es.pipeline-polished-2026-10-11.md` | `99ab9cd57118881eaee250e8993d5a0dab0f1bed40ea243c50f6cd0e6744a65a` |
+| Italian | `Who Invented Alcohol.it.pipeline-polished-2026-10-12-v2.md` | `56e0a39cb5c12fd398422ce00cfdf87804013a0c366d0caddf3eefaed32e5ce8` |
+| Portuguese | `Who Invented Alcohol.pt.pipeline-polished-2026-10-12-v2.md` | `4d1e2f185712784c79f6d00b7d20b8bbe0405522bf45a77d43d0918138198c58` |
+| Indonesian | `Who Invented Alcohol.id.pipeline-polished-2026-10-12-v2.md` | `c680563149231d5ff3cec8084230e818ba39ad3d604cb40a4324e46c345c70e6` |
+| Japanese | `Who Invented Alcohol.ja.pipeline-polished-2026-10-13-v2.md` | `b6f7e6e6f8322dee9066bc34aa017d13fd84cedfede783936fd2078d306934ef` |
+
+- Importer maintenance: explicit `--approved` source selection requires exactly one canonical or dated polished file per locale and refuses ambiguous candidates. `--locales de,es,it,pt,id,ja` limits writes while all eight sources are parsed before any write. Approved editorial section markers are validated and omitted from rendered text. Existing credited figures are reused. The Italian inline-bold next-episode sentence is recognized as navigation, not duplicated body prose. Original publication dates remain intact; only the six changed articles' Article/social modification metadata and sitemap lastmod changed to **2026-10-13**. Canonicals and the complete reciprocal eight-language/x-default hreflang set remain intact.
+- Frozen-edition verification: the approved English/French source checks passed, and both complete website files stayed byte-identical before/after (SHA-256 English `5fe2971a15cd15056ec30fa81c1f2096c66c7bbcd69b9cb6e022f4786614050f`, French `a9d458258a492979cdeeef68847a9619b3d8b300815d8a24fa38328982d9ead5`). No source content was copied back into Atrium or into those two pages.
+- Validation: all eight approved-source comparisons passed; **246 automated tests**, build and **116 browser checks** passed, with no browser page errors or missing resources. Static SEO checks passed for 208 pages, 4,968 internal links and 859 fragments; all 208 sitemap dates were current. Independent raw-source-to-HTML comparisons verified every prose paragraph including the deck (DE 29, ES 32, IT 34, PT 33, ID 31, JA 33), all fifteen complete bibliography entries per edition, and unchanged four-figure markup/captions/credits. Regression assertions now protect the approved scientific distinctions and the five-paragraph Spanish/Italian conclusions rather than requiring superseded September phrases. Browser checks cover cold citation jumps, reserved image space and page reflow at 320/390/768/1280 px. External browser requests were blocked; no production analytics events were sent.
+- Scope/limits: this is faithful implementation of the human-selected editions, not a new translation or scientific review. The authoring closeout's optional Indonesian note was retained in the approved bytes. Actual publication revision/time, Google crawl, snippets and traffic outcomes remain pending a separate release.
+
 ## RELEASE-20261012-02 — Calculator clarity, reading links and Italian/Japanese localization
 
 - Owner authorized pre-deployment checks and deployment to main on 2026-10-12. Released the four commits `1195876`, `b6f1f05`, `2a78483` and [`738664fb3646a4470df4aaa1e116c1198de19bde`](https://github.com/philip93758/websitemindrink/commit/738664fb3646a4470df4aaa1e116c1198de19bde); [combined implementation diff](https://github.com/philip93758/websitemindrink/compare/2601d9d...738664f). Actions UX-20261012-01, SEO-20261012-02, SEO-20261012-03 with its dual-unit follow-up, and SEO-20261012-04 shipped together. Evaluate them as one release package.

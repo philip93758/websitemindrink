@@ -1,12 +1,7 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { EPISODE12_SLUG } from './history-episode12-config.js';
-
-const sourceDirectory = process.argv[2];
-
-if (!sourceDirectory) {
-  throw new Error('Usage: node scripts/sync-history-episode-content.js <episode-content-directory>');
-}
 
 const ROOT = resolve(import.meta.dirname, '..');
 const modifiedDateParts = Object.fromEntries(new Intl.DateTimeFormat('en', {
@@ -186,6 +181,43 @@ const editions = {
   },
 };
 
+export function parseSyncOptions(args) {
+  const [directory, ...flags] = args;
+  if (!directory || directory.startsWith('--')) {
+    throw new Error('Usage: node scripts/sync-history-episode-content.js <episode-content-directory> [--approved] [--locales de,es,it,pt,id,ja] [--check]');
+  }
+  const options = { sourceDirectory: resolve(directory), approved: false, check: false, locales: Object.keys(editions) };
+  for (let index = 0; index < flags.length; index += 1) {
+    const flag = flags[index];
+    if (flag === '--approved') options.approved = true;
+    else if (flag === '--check') options.check = true;
+    else if (flag === '--locales') {
+      const locales = flags[++index]?.split(',').map(locale => locale.trim());
+      if (!locales?.length || locales.some(locale => !editions[locale]) || new Set(locales).size !== locales.length) {
+        throw new Error('--locales must list distinct supported language codes.');
+      }
+      options.locales = locales;
+    } else throw new Error(`Unknown argument: ${flag}`);
+  }
+  return options;
+}
+
+export function sourceFileForEdition(directory, locale, approved = false) {
+  const edition = editions[locale];
+  if (!edition) throw new Error(`Unknown locale: ${locale}`);
+  if (!approved) return join(directory, edition.source);
+  // The caller explicitly selects the approved directory. Never guess the
+  // newest draft or choose silently between several approved candidates.
+  const revised = new RegExp(`^Who Invented Alcohol\\.${locale}\\.pipeline-polished-\\d{4}-\\d{2}-\\d{2}(?:-v\\d+)?\\.md$`);
+  const candidates = readdirSync(directory, { withFileTypes: true })
+    .filter(entry => entry.isFile() && (entry.name === edition.source || revised.test(entry.name)))
+    .map(entry => entry.name);
+  if (candidates.length !== 1) {
+    throw new Error(`Expected exactly one approved ${locale} source; found ${candidates.length}: ${candidates.join(', ')}`);
+  }
+  return join(directory, candidates[0]);
+}
+
 function escapeHtml(value) {
   return value
     .replaceAll('&', '&amp;')
@@ -243,8 +275,9 @@ function figureHtml(key, edition) {
 }
 
 function nextHtml(block, edition) {
-  const text = block.replace(/^\*\*|\*\*$/g, '');
+  const text = block.replaceAll('**', '').replace(/\.$/, '');
   const match = text.match(/^(.+?)\s*[:：]\s*(.+)$/s);
+  if (!match) throw new Error(`Missing next-episode label in ${edition.target}`);
   const nextPath = edition.target.replace('who-invented-alcohol.html', EPISODE12_SLUG);
   if (existsSync(join(ROOT, nextPath))) {
     // The source's planned teaser predates Episode 1.2's approved title. Once
@@ -259,7 +292,6 @@ function nextHtml(block, edition) {
       '</div>',
     ].join('\n');
   }
-  if (!match) return `<div class="history-next"><strong>${inline(text, { citations: false })}</strong></div>`;
   return [
     '<div class="history-next">',
     `    <p>${inline(match[1], { citations: false })}</p>`,
@@ -272,7 +304,16 @@ function indentedFigure(key, edition) {
   return figureHtml(key, edition).split('\n').map((line) => `                    ${line}`).join('\n');
 }
 
-function parseEdition(markdown, edition) {
+export function parseEpisode11(markdown, locale) {
+  const edition = editions[locale];
+  if (!edition) throw new Error(`Unknown locale: ${locale}`);
+  const markerIds = [...markdown.matchAll(/^<!-- section:([\w-]+) -->[ \t]*\r?$/gm)].map(match => match[1]);
+  const expectedMarkers = ['earliest-drinks', 'ingredients-preparations', 'communal-life', 'unrecoverable-beginnings'];
+  if (markerIds.length && JSON.stringify(markerIds) !== JSON.stringify(expectedMarkers)) {
+    throw new Error(`Unexpected editorial section markers in ${edition.target}`);
+  }
+  markdown = markdown.replace(/^<!-- section:[\w-]+ -->[ \t]*\r?$/gm, '');
+  if (markdown.includes('<!--')) throw new Error(`Unsupported source comment in ${edition.target}`);
   const blocks = markdown
     .replaceAll('\r\n', '\n')
     .split(/\n\s*\n/)
@@ -295,6 +336,8 @@ function parseEdition(markdown, edition) {
   let sectionIndex = -1;
   let sectionOpen = false;
   let referenceOpen = false;
+  const referenceIds = [];
+  let nextCount = 0;
 
   for (let index = 0; index < blocks.length; index += 1) {
     const block = blocks[index].replace(/\n/g, ' ');
@@ -329,6 +372,7 @@ function parseEdition(markdown, edition) {
     if (referenceOpen) {
       const match = block.match(/^(\d+)\.\s+(.+)$/s);
       if (!match) throw new Error(`Could not parse reference in ${edition.target}: ${block}`);
+      referenceIds.push(Number(match[1]));
       html.push(`                        <li id="ref-${match[1]}">${inline(match[2], { citations: false })}</li>`);
       continue;
     }
@@ -341,8 +385,10 @@ function parseEdition(markdown, edition) {
       throw new Error(`Unexpected argument map in ${edition.target}; diagrams were removed from the continuous essay`);
     }
 
-    if (/^\*\*/.test(block)) {
+    if (/^\*\*/.test(block) || (sectionIndex === 3 && /^.+?[:：]\s*\*\*.+\*\*\.?$/.test(block))) {
+      if (sectionIndex !== 3) throw new Error(`Unexpected next-episode block in ${edition.target}`);
       html.push(nextHtml(block, edition).split('\n').map((line) => `                    ${line}`).join('\n'));
+      nextCount += 1;
       continue;
     }
 
@@ -387,6 +433,12 @@ function parseEdition(markdown, edition) {
   if (sectionIndex !== sectionIds.length - 1 || figuresPlaced.size !== 4) {
     throw new Error(`Review section and image placement for the changed structure in ${edition.target}`);
   }
+  if (nextCount !== 1 || JSON.stringify(referenceIds) !== JSON.stringify(Array.from({ length: 15 }, (_, index) => index + 1))) {
+    throw new Error(`Review next-episode navigation and all fifteen references in ${edition.target}`);
+  }
+  for (const match of markdown.split(/^## /m).slice(0, -1).join('\n').matchAll(/\[(\d+)\]/g)) {
+    if (!referenceIds.includes(Number(match[1]))) throw new Error(`Unresolved citation ${match[1]} in ${edition.target}`);
+  }
 
   return { title, subtitle, deck: intro[0], body: html.join('\n') };
 }
@@ -402,52 +454,67 @@ const descriptions = {
   pt: 'Quem inventou o álcool? Vestígios arqueológicos e questões em aberto sobre as primeiras bebidas fermentadas em Raqefet, Jiahu e na Geórgia.',
 };
 
-// Parse every edition before writing, so an unsupported source structure cannot
-// leave the website with only some of its languages updated.
-const updates = [];
+export function main(args = process.argv.slice(2)) {
+  const options = parseSyncOptions(args);
+  // Parse every edition before writing. Only explicitly selected locales can
+  // enter the write set, so a partial import cannot rewrite a frozen language.
+  const updates = [];
+  for (const [locale, edition] of Object.entries(editions)) {
+    const markdown = readFileSync(sourceFileForEdition(options.sourceDirectory, locale, options.approved), 'utf8');
+    const parsed = parseEpisode11(markdown, locale);
+    if (!options.locales.includes(locale)) continue;
+    const target = join(ROOT, edition.target);
+    let page = readFileSync(target, 'utf8').replaceAll('\r\n', '\n');
 
-for (const [locale, edition] of Object.entries(editions)) {
-  const markdown = readFileSync(join(resolve(sourceDirectory), edition.source), 'utf8');
-  const parsed = parseEdition(markdown, edition);
-  const target = join(ROOT, edition.target);
-  let page = readFileSync(target, 'utf8').replaceAll('\r\n', '\n');
-
-  const original = page;
-  page = page
-    .replace(/(<meta (?:name|property)="(?:description|og:description|twitter:description)" content=")[^"]*(">)/g,
-      (_match, prefix, suffix) => `${prefix}${escapeHtml(descriptions[locale])}${suffix}`)
-    .replace(/"headline": "[^"]+"/, () => `"headline": ${JSON.stringify(parsed.title)}`)
-    .replace(/"alternativeHeadline": "[^"]+"/, () => `"alternativeHeadline": ${JSON.stringify(parsed.subtitle)}`)
-    .replace(/"description": "[^"]+"/, () => `"description": ${JSON.stringify(descriptions[locale])}`)
-    .replace(/<h1 class="history-title">[\s\S]*?<\/h1>/, `<h1 class="history-title">${inline(parsed.title, { citations: false })}</h1>`)
-    .replace(/<p class="history-subtitle">[\s\S]*?<\/p>/, `<p class="history-subtitle">${inline(parsed.subtitle, { citations: false })}</p>`)
-    .replace(/<p class="history-deck">[\s\S]*?<\/p>/, `<p class="history-deck">${inline(parsed.deck)}</p>`)
-    .replace(
-      /<div class="history-copy">[\s\S]*?<\/div>\s*<\/article>/,
-      `<div class="history-copy">\n${parsed.body}\n            </div>\n        </article>`,
-    );
-
-  if (page !== original) {
+    const original = page;
     page = page
-      .replace(/<meta property="article:modified_time" content="[^"]+">/, `<meta property="article:modified_time" content="${MODIFIED_TIME}">`)
-      .replace(/"dateModified": "[^"]+"/, `"dateModified": "${MODIFIED_DATE}"`);
-    updates.push({ locale, target, page });
+      .replace(/(<meta (?:name|property)="(?:description|og:description|twitter:description)" content=")[^"]*(">)/g,
+        (_match, prefix, suffix) => `${prefix}${escapeHtml(descriptions[locale])}${suffix}`)
+      .replace(/"headline": "[^"]+"/, () => `"headline": ${JSON.stringify(parsed.title)}`)
+      .replace(/"alternativeHeadline": "[^"]+"/, () => `"alternativeHeadline": ${JSON.stringify(parsed.subtitle)}`)
+      .replace(/"description": "[^"]+"/, () => `"description": ${JSON.stringify(descriptions[locale])}`)
+      .replace(/<h1 class="history-title">[\s\S]*?<\/h1>/, `<h1 class="history-title">${inline(parsed.title, { citations: false })}</h1>`)
+      .replace(/<p class="history-subtitle">[\s\S]*?<\/p>/, `<p class="history-subtitle">${inline(parsed.subtitle, { citations: false })}</p>`)
+      .replace(/<p class="history-deck">[\s\S]*?<\/p>/, `<p class="history-deck">${inline(parsed.deck)}</p>`)
+      .replace(
+        /<div class="history-copy">[\s\S]*?<\/div>\s*<\/article>/,
+        `<div class="history-copy">\n${parsed.body}\n            </div>\n        </article>`,
+      );
+
+    if (page !== original) {
+      page = page
+        .replace(/<meta property="article:modified_time" content="[^"]+">/, `<meta property="article:modified_time" content="${MODIFIED_TIME}">`)
+        .replace(/"dateModified": "[^"]+"/, `"dateModified": "${MODIFIED_DATE}"`);
+      updates.push({ locale, target, page });
+    }
+  }
+
+  if (options.check) {
+    if (updates.length) throw new Error(`Content differs from source: ${updates.map(({ locale }) => locale).join(', ')}`);
+    console.log(`Verified ${options.locales.length} selected editions against the source Markdown; all eight sources parsed.`);
+  } else {
+    const sourceAssetDirectory = join(options.sourceDirectory, '_assets', 'selected');
+    const targetAssetDirectory = join(ROOT, 'assets', 'science', 'history');
+    if (options.approved) {
+      // Approved text imports reuse the website's existing credited figures.
+      for (const figure of Object.values(figures)) {
+        if (!existsSync(join(targetAssetDirectory, figure.file))) throw new Error(`Missing published figure: ${figure.file}`);
+      }
+    } else {
+      for (const figure of Object.values(figures)) {
+        if (!existsSync(join(sourceAssetDirectory, figure.file))) throw new Error(`Missing source figure: ${figure.file}`);
+      }
+      mkdirSync(targetAssetDirectory, { recursive: true });
+      for (const figure of Object.values(figures)) {
+        copyFileSync(join(sourceAssetDirectory, figure.file), join(targetAssetDirectory, figure.file));
+      }
+    }
+
+    for (const { locale, target, page } of updates) {
+      writeFileSync(target, page.replaceAll('\n', '\r\n'));
+      console.log(`Updated ${locale}: ${target}`);
+    }
   }
 }
 
-if (process.argv.includes('--check')) {
-  if (updates.length) throw new Error(`Content differs from source: ${updates.map(({ locale }) => locale).join(', ')}`);
-  console.log(`Verified all ${Object.keys(editions).length} editions against the source Markdown.`);
-} else {
-  const sourceAssetDirectory = join(resolve(sourceDirectory), '_assets', 'selected');
-  const targetAssetDirectory = join(ROOT, 'assets', 'science', 'history');
-  mkdirSync(targetAssetDirectory, { recursive: true });
-  for (const figure of Object.values(figures)) {
-    copyFileSync(join(sourceAssetDirectory, figure.file), join(targetAssetDirectory, figure.file));
-  }
-
-  for (const { locale, target, page } of updates) {
-    writeFileSync(target, page.replaceAll('\n', '\r\n'));
-    console.log(`Updated ${locale}: ${target}`);
-  }
-}
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) main();
