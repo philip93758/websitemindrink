@@ -20,6 +20,27 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20261014-01 — Episode 1.1 approved v3 text refresh
+
+- Owner requested importing the newly revised editions from Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` into website `dev`, keeping English and French unchanged. Implemented locally on 2026-10-14 from baseline `0361656b5232752694ebe4c0aaee6ceb0cd9ec6b`. Not committed, pushed or deployed. Atrium sources were read only; no additional writing, translation or provider review was performed.
+- Affected pages: `/{de,es,it,pt,id,ja}/science/who-invented-alcohol.html` on `https://mindrink.me`. Each imported source is named `Who Invented Alcohol.<locale>.pipeline-polished-2026-10-13-v3.md`. These replace the prior editions implemented and deployed under CONTENT-20261013-01; that earlier release evidence remains historical.
+
+| Language | Approved v3 SHA-256 |
+|---|---|
+| German | `21cc2475dcc191b0661085a4e5dfc007aaba5da4463ff0e3083089453d51d011` |
+| Spanish | `cd6e6eac3742d13f74c18cdf48bb7f1055d0f2dda0349d48ca98b2db26a1eb5e` |
+| Italian | `57dcbe133454c236a05568449dbc38eca7d02be0dd9bfdad068de4508af46a85` |
+| Portuguese | `b2eaa1e199cc8fc47fd5f9f5cc3b7d5dca76d3d8db424a02234ebf6f19a50690` |
+| Indonesian | `b70e13c9128f73523bd038c41bb3d118318ede4fc99ddb94c8ea559b2ec26adb` |
+| Japanese | `983b2d71da544ae6fa4737c62009433e0bbd80e348df51a622c7bf5ac46157e2` |
+
+- Used the existing scoped importer with `--approved --locales de,es,it,pt,id,ja`; no importer, fixture, test or style changes were needed. Independent comparisons confirmed all approved prose paragraphs and all fifteen complete bibliography entries per locale reached the HTML. Paragraph counts including the deck remain DE 29, ES 32, IT 34, PT 33, ID 31, JA 33. Four-figure markup, captions and credits remain unchanged in every edition, as do canonicals, reciprocal hreflang, publication dates, section roles and Episode 1.2 destinations. Neither hub nor Episode 1.2 changed.
+- English and French approved source hashes remain `1396b4118dd5e76db3396d5d6dacb54ebcbbc3d81b05f1bfe1f6df4e91b71f3f` and `8c42b18a07f88adc8dfc2ff90cebeea34df561fab4e422dbed32a7d6bba4e29e`. Both complete website files remain byte-identical to the frozen copies (English `5fe2971a15cd15056ec30fa81c1f2096c66c7bbcd69b9cb6e022f4786614050f`, French `a9d458258a492979cdeeef68847a9619b3d8b300815d8a24fa38328982d9ead5`).
+- Only the six revised articles' Article/social modification metadata and sitemap lastmod changed to **2026-10-14**. The other 202 sitemap dates stayed unchanged. These are source modification dates, not verified publication dates.
+- Validation: all eight approved-source comparisons, **246 automated tests**, analytics-disabled build and **116 browser checks** passed, with no browser page errors or missing local resources. Static SEO checks passed for 208 pages, 4,968 internal links and 859 fragment links; all sitemap dates were current. Browser checks cover citation targets, cold image loading and sizing, navigation and mobile/desktop overflow. External browser traffic was blocked, with no production analytics events sent. Whitespace checks passed.
+- Actual deployment revision/time and subsequent Google crawl, snippets or traffic impact remain pending a separately requested release. No deployed change or performance gain is claimed.
+- Local commit follow-up (2026-10-14): owner authorized committing this validated package to `dev`. Implementation revision is the commit carrying `SEO-Action: CONTENT-20261014-01`. This supersedes the earlier uncommitted status; push and production deployment have not been requested or performed.
+
 ## CONTENT-20261013-01 — Approved Episode 1.1 revisions in six languages
 
 - Owner authorized importing revised Episode 1.1 text from Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` into website `dev`, preserving English and French. Implemented locally from website baseline `52e340a5ef8433ec792163efc3cb732959339abd`. Not committed, pushed or deployed; source dates are not production dates. Atrium files were read only.
