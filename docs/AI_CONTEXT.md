@@ -102,18 +102,19 @@ npm test
 
 ### Episode 1.2 — Mesopotamia
 
-The approved eight-language source is Atrium's `docs/marketing/Content/History series/Ep 1.2/`. Import without editing that sibling repository:
+The approved eight-language source is Atrium's `docs/marketing/Content/History series/Ep 1.2/approved/`. Import without editing that sibling repository:
 
 ```bash
-npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2"
-npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2" --locale fr
-npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2" --check
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/approved" --approved
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/approved" --approved --locale fr
+npm run science:episode12:sync -- "../mindrink-atrium/docs/marketing/Content/History series/Ep 1.2/approved" --approved --check
 npm run sitemap:update
 npm run build
 npm test
 ```
 
 - The route is `science/mesopotamia-beer-written-records.html` under each language prefix. The importer always validates all eight sources and all seven approved originals before writing. `--locale fr` writes only the French article (and French hub/Episode 1.1 only if their substance changed). A full sync still writes all eight editions. Missing sitemap entries are added; `sitemap:update` refreshes `lastmod` after a significant page change. It does not publish or commit.
+- `--approved` requires exactly one canonical or dated `pipeline-output` file per locale in the selected directory; missing or ambiguous candidates stop the import rather than selecting a draft. Its original image assets are validated in the parent episode's `_assets/selected/` and against the website copies. Legacy canonical filenames and assets directly inside the source directory remain supported without the flag. Editorial `<!-- section:... -->` markers must identify the three body sections in order and are omitted from the rendered text.
 - Source markers control all five image positions. All eight editions are continuous essays: a one-paragraph `###` standfirst, opening image, continuum paragraphs before the first section, three body sections without `###` subsections or the source-comparison table, and the shared figure set (`straw-drinking-seal`, `hammurabi-stele` rather than the earlier Puabi/Rama pair). Unsupported structural changes must fail for review, not silently omit content.
 - Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
 - Approved original images and responsive derivatives live in `assets/science/history/episode-1-2/`. Its [provenance record](../assets/science/history/episode-1-2/README.md) documents rights, hashes and regeneration. Normal content sync needs no image-processing dependency.

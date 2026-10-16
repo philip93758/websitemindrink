@@ -20,6 +20,29 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20261016-01 — Episode 1.2 approved eight-language source import
+
+- Owner requested implementing the ready Episode 1.2 files from Atrium's `docs/marketing/Content/History series/Ep 1.2/approved/` in website `dev`. Implemented locally on 2026-10-16 from baseline `e60296c822cfc02bb48842c90b2c8bf59ef989a2`, preserving its already committed Episode 1.1 v3 work. This package is not committed, pushed or deployed. Atrium sources were read only; no new translation, editorial rewriting or model calls were performed.
+- All eight approved sources were imported/verified. English already matched the approved source and remains byte-identical. Changed pages are `/{de,es,fr,id,it,ja,pt}/science/mesopotamia-beer-written-records.html` on `https://mindrink.me`. The shared filename stem is `Mesopotamia - What the First Written Records Tell Us About Beer`; English is the canonical `.md`, six localized files use `.<locale>.pipeline-output-2026-10-15-v2.md`, and Japanese uses `.ja.pipeline-output-2026-10-15-v3.md`.
+
+| Language | Exact approved source SHA-256 |
+|---|---|
+| English | `0cd5885259871c571a29e300e7f6d6a03d2fec5fbeed39caea0dbdfc003f9fc8` |
+| German | `7bb16101dc5e38a0fcbb963f8bfa4ee122b78c2df6b4db2bb54826820b363639` |
+| Spanish | `3de70df3116fcb9457d0e639869088da15ecd06800957f85cb209f3c9a76f972` |
+| French | `4833e12973d1dbe540fd1c9f3f3b49602880910c140322d0ba4848715a357252` |
+| Indonesian | `520b22ddeeeb93055f88ba76c49de545f6041837e758f4fa84011668251931ba` |
+| Italian | `8190fdbbdc84e8fa4cc9c1a18edeae8a521115edbe982c28fc12abb9eb02aa55` |
+| Japanese | `ae608ed3bec668e120531f2463df60061931a1c6ea39166afcaada562b44da5e` |
+| Portuguese | `7ec3a7bd4fcc20dda1b944436da537394f5f6b4cd9f4f33ae2d5ca39795964c0` |
+
+- Extended the existing Episode 1.2 importer with explicit `--approved` selection. It requires exactly one canonical or dated `pipeline-output` file per locale, refuses missing/ambiguous candidates and unknown CLI options, and validates all eight sources before any page write. The three editorial section markers must appear after their matching body headings in order and never render as text. Original image hashes are still validated both in the parent episode's `_assets/selected/` and in the website, with responsive variants checked before writing. Updated the website agent instructions and added focused regression tests for selection, ambiguity and markers.
+- Independent raw-source comparisons verified every prose paragraph including the standfirst (31 per edition, except Indonesian and Japanese with 32), all eleven complete references, five images with their exact approved alt text/captions/credits, and every external source URL. Source titles, publication dates, descriptions, canonicals and reciprocal eight-language/x-default hreflang are preserved. All eight Episode 1.1 pages and science hubs remain byte-identical to the baseline; article image assets and shared styles are unchanged.
+- Only the seven changed articles' Article/social modification dates and sitemap lastmod changed to **2026-10-16**. The remaining 201 sitemap dates are unchanged. These are source modification dates, not publication or deployment evidence. Both approved-source checks pass and a repeat import is a no-op.
+- Validation: **249 automated tests**, the analytics-disabled build and **116 browser checks** pass with no page errors or missing local resources. The static SEO gate passes for 208 pages, 4,968 internal links and 859 fragment links. All sitemap dates are current; whitespace checks pass. Browser coverage includes cold citation jumps, delayed image loading, reserved image sizing, navigation and overflow at 320/390/768/1280 px. The first browser launch was blocked by the Windows sandbox; the same local QA passed outside it, with all external browser traffic blocked. No production analytics events were sent.
+- Actual implementation revision, production deployment/time, subsequent crawl and performance outcomes remain pending separately requested commit/release steps. No deployed change or SEO gain is claimed.
+- Release authorization (2026-10-16): owner requested deployment to main after the fresh pre-deployment checks passed (249 automated tests, build and 116 browser checks). The release also includes the previously committed CONTENT-20261014-01 package. The Episode 1.2 implementation is identified by the commit carrying `SEO-Action: CONTENT-20261016-01`; hosted CI and actual production evidence will be appended after verification. The pre-existing literal asterisks in the reference 11 link label are a known cosmetic issue, not changed by this release.
+
 ## CONTENT-20261014-01 — Episode 1.1 approved v3 text refresh
 
 - Owner requested importing the newly revised editions from Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` into website `dev`, keeping English and French unchanged. Implemented locally on 2026-10-14 from baseline `0361656b5232752694ebe4c0aaee6ceb0cd9ec6b`. Not committed, pushed or deployed. Atrium sources were read only; no additional writing, translation or provider review was performed.

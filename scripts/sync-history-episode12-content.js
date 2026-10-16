@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, EPISODE12_STYLES, editionPrefix, episode12Figures, imageVariant, imageWidths } from './history-episode12-config.js';
 
@@ -9,6 +9,42 @@ const ORIGIN = 'https://mindrink.me';
 const read = path => readFileSync(path, 'utf8').replaceAll('\r\n', '\n');
 const refreshStyles = html => html.replace(/href="\/styles\.css(?:\?[^\"]*)?"/g, `href="/styles.css?v=${EPISODE12_STYLES}"`);
 export const escapeHtml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+
+export function parseEpisode12Options(args) {
+  const [directory, ...flags] = args;
+  if (!directory || directory.startsWith('--')) {
+    throw new Error('Usage: node scripts/sync-history-episode12-content.js <source-directory> [--approved] [--check] [--locale fr]');
+  }
+  const options = { sourceDirectory: resolve(directory), approved: false, check: false };
+  for (let index = 0; index < flags.length; index += 1) {
+    const flag = flags[index];
+    if (flag === '--approved') options.approved = true;
+    else if (flag === '--check') options.check = true;
+    else if (flag === '--locale') {
+      const locale = flags[++index];
+      if (!EPISODE12_LOCALES[locale] || options.locales) throw new Error('--locale requires one supported language code.');
+      options.locales = [locale];
+    } else throw new Error(`Unknown argument: ${flag}`);
+  }
+  return options;
+}
+
+export function sourceFileForEpisode12(directory, locale, approved = false) {
+  if (!EPISODE12_LOCALES[locale]) throw new Error(`Unknown Episode 1.2 locale: ${locale}`);
+  const canonical = `${EPISODE12_SOURCE}${locale === 'en' ? '' : '.' + locale}.md`;
+  if (!approved) return join(directory, canonical);
+  // Only use the explicitly selected directory; ambiguous approvals need review,
+  // not an automatic choice of the newest-looking filename.
+  const stem = EPISODE12_SOURCE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const revised = new RegExp(`^${stem}\\.${locale}\\.pipeline-output-\\d{4}-\\d{2}-\\d{2}(?:-v\\d+)?\\.md$`);
+  const candidates = readdirSync(directory, { withFileTypes: true })
+    .filter(entry => entry.isFile() && (entry.name === canonical || revised.test(entry.name)))
+    .map(entry => entry.name);
+  if (candidates.length !== 1) {
+    throw new Error(`Expected exactly one approved ${locale} source; found ${candidates.length}: ${candidates.join(', ')}`);
+  }
+  return join(directory, candidates[0]);
+}
 
 function inline(markdown, locale, citations = true) {
   const links = [];
@@ -60,7 +96,18 @@ ${rows.slice(2).map((row, i) => `            <tr role="row"><th id="source-row-$
 }
 
 export function parseEpisode12(markdown, locale) {
+  if (!EPISODE12_LOCALES[locale]) throw new Error(`Unknown Episode 1.2 locale: ${locale}`);
   let source = markdown.replaceAll('\r\n', '\n').trim();
+  const markerIds = [...source.matchAll(/^<!-- section:([\w-]+) -->[ \t]*$/gm)].map(match => match[1]);
+  if (markerIds.length) {
+    const expectedMarkers = ['beer-accounts', 'reconstructing-beer', 'drinking-society'];
+    const headingMarkers = source.split(/^## [^\n]+\n/gm).slice(1)
+      .map(block => block.trimStart().match(/^<!-- section:([\w-]+) -->[ \t]*(?:\n|$)/)?.[1] ?? null);
+    if (JSON.stringify(markerIds) !== JSON.stringify(expectedMarkers) || JSON.stringify(headingMarkers) !== JSON.stringify([...expectedMarkers, null])) {
+      throw new Error(`Unexpected editorial section markers: ${locale}`);
+    }
+    source = source.replace(/^<!-- section:[\w-]+ -->[ \t]*$/gm, '');
+  }
   const title = source.match(/^# ([^\n]+)\n/)?.[1];
   if (!title) throw new Error(`Missing title: ${locale}`);
   source = source.replace(/^# [^\n]+\n+/, '');
@@ -201,7 +248,7 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   return page;
 }
 
-export function syncEpisode12(sourceDirectory, { check = false, locales } = {}) {
+export function syncEpisode12(sourceDirectory, { check = false, locales, approved = false } = {}) {
   const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());
   const requested = locales || Object.keys(EPISODE12_LOCALES);
   for (const locale of requested) {
@@ -210,8 +257,10 @@ export function syncEpisode12(sourceDirectory, { check = false, locales } = {}) 
   const changes = [];
   const queue = (path, text) => { if (!existsSync(path) || read(path) !== text) changes.push({ path, text }); };
   // Validate every source/asset before writing any of the eight editions.
+  // Approved editions live one level below their original, credited assets.
+  const sourceAssets = join(approved ? dirname(sourceDirectory) : sourceDirectory, '_assets', 'selected');
   for (const image of Object.values(EPISODE12_IMAGES)) {
-    for (const path of [join(sourceDirectory, '_assets', 'selected', image.file), join(ROOT, EPISODE12_ASSETS, image.file)]) {
+    for (const path of [join(sourceAssets, image.file), join(ROOT, EPISODE12_ASSETS, image.file)]) {
       if (createHash('sha256').update(readFileSync(path)).digest('hex') !== image.sha256) throw new Error(`Unapproved original: ${path}`);
     }
     for (const width of imageWidths(image)) {
@@ -220,7 +269,7 @@ export function syncEpisode12(sourceDirectory, { check = false, locales } = {}) 
   }
   const parsedByLocale = Object.fromEntries(Object.keys(EPISODE12_LOCALES).map(locale => [
     locale,
-    parseEpisode12(read(join(sourceDirectory, `${EPISODE12_SOURCE}${locale === 'en' ? '' : '.' + locale}.md`)), locale),
+    parseEpisode12(read(sourceFileForEpisode12(sourceDirectory, locale, approved)), locale),
   ]));
   for (const locale of requested) {
     const parsed = parsedByLocale[locale];
@@ -278,11 +327,6 @@ export function syncEpisode12(sourceDirectory, { check = false, locales } = {}) 
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const argv = process.argv.slice(2);
-  const check = argv.includes('--check');
-  const localeIndex = argv.indexOf('--locale');
-  const locales = localeIndex >= 0 ? [argv[localeIndex + 1]].filter(Boolean) : undefined;
-  const source = argv.find((arg, index) => !arg.startsWith('--') && argv[index - 1] !== '--locale');
-  if (!source) throw new Error('Usage: node scripts/sync-history-episode12-content.js <source-directory> [--check] [--locale fr]');
-  syncEpisode12(resolve(source), { check, locales });
+  const { sourceDirectory, ...options } = parseEpisode12Options(process.argv.slice(2));
+  syncEpisode12(sourceDirectory, options);
 }

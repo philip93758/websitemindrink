@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
-import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, editionPrefix, episode12Figures, imageVariant, imageWidths } from '../scripts/history-episode12-config.js';
-import { parseEpisode12 } from '../scripts/sync-history-episode12-content.js';
+import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, editionPrefix, episode12Figures, imageVariant, imageWidths } from '../scripts/history-episode12-config.js';
+import { parseEpisode12, parseEpisode12Options, sourceFileForEpisode12 } from '../scripts/sync-history-episode12-content.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const read = path => readFileSync(join(ROOT, path), 'utf8');
@@ -133,4 +134,49 @@ test('Episode 1.2 importer rejects unsupported structure instead of dropping sou
     ['Ingredients with *emphasis*.', '### Unreviewed body subsection'],
     ['Ingredients with *emphasis*.', '#### Unreviewed extra section'],
   ]) assert.throws(() => parseEpisode12(essayFixture().replace(before, after), 'en'), `${before} should require review`);
+});
+
+test('Episode 1.2 approved selection is explicit and rejects accidental CLI scope', () => {
+  const options = parseEpisode12Options(['approved', '--approved', '--locale', 'ja', '--check']);
+  assert.deepEqual(options.locales, ['ja']);
+  assert.ok(options.approved && options.check);
+  assert.equal(parseEpisode12Options(['legacy']).approved, false);
+  for (const args of [[], ['--approved'], ['approved', '--locale'], ['approved', '--locale', 'xx'], ['approved', '--locale', 'ja', '--locale', 'fr'], ['approved', '--unknown'], ['approved', 'another-directory']]) {
+    assert.throws(() => parseEpisode12Options(args));
+  }
+});
+
+test('Episode 1.2 approved files resolve uniquely without falling back to drafts', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'mindrink-episode12-'));
+  try {
+    const filename = `${EPISODE12_SOURCE}.ja.pipeline-output-2026-10-15-v3.md`;
+    writeFileSync(join(directory, filename), 'Approved Japanese');
+    writeFileSync(join(directory, `${EPISODE12_SOURCE}.ja.pipeline-reviewed-2026-10-16.md`), 'Not approved');
+    writeFileSync(join(directory, `${EPISODE12_SOURCE}.md`), 'Approved English');
+    assert.equal(sourceFileForEpisode12(directory, 'ja', true), join(directory, filename));
+    assert.equal(sourceFileForEpisode12(directory, 'en', true), join(directory, `${EPISODE12_SOURCE}.md`));
+    assert.equal(sourceFileForEpisode12(directory, 'ja'), join(directory, `${EPISODE12_SOURCE}.ja.md`));
+    assert.throws(() => sourceFileForEpisode12(directory, 'fr', true), /exactly one/);
+    assert.throws(() => sourceFileForEpisode12(directory, 'xx', true), /Unknown/);
+    writeFileSync(join(directory, `${EPISODE12_SOURCE}.ja.pipeline-output-2026-10-16.md`), 'Ambiguous approval');
+    assert.throws(() => sourceFileForEpisode12(directory, 'ja', true), /exactly one/);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('Episode 1.2 editorial markers must match section headings and never render', () => {
+  const marked = essayFixture().replace('## Accounts', '## Accounts\n<!-- section:beer-accounts -->')
+    .replace('## Ingredients', '## Ingredients\n<!-- section:reconstructing-beer -->')
+    .replace('## People and gods', '## People and gods\n<!-- section:drinking-society -->');
+  assert.deepEqual(parseEpisode12(marked, 'en'), parseEpisode12(essayFixture(), 'en'));
+  assert.deepEqual(parseEpisode12(marked.replaceAll('\n', '\r\n'), 'en'), parseEpisode12(marked, 'en'));
+  for (const source of [
+    marked.replace('<!-- section:beer-accounts -->', '<!-- section:unexpected -->'),
+    marked.replace('<!-- section:reconstructing-beer -->', ''),
+    marked.replace('<!-- section:drinking-society -->', '<!-- section:drinking-society -->\n<!-- section:drinking-society -->'),
+    marked.replace('## Accounts\n<!-- section:beer-accounts -->', '<!-- section:beer-accounts -->\n## Accounts'),
+    marked.replace('## People and gods\n<!-- section:drinking-society -->', '## People and gods').replace('## References', '## References\n<!-- section:drinking-society -->'),
+    marked.replace('A claim.[1]', '<!-- Unapproved comment -->'),
+  ]) assert.throws(() => parseEpisode12(source, 'en'));
 });
