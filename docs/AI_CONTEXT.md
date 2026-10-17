@@ -121,6 +121,13 @@ npm test
 - Run both episode importers with `--check` after changing series navigation. Episode 1.1 now uses the approved next page title/number rather than its outdated planned teaser.
 - `--check` is read-only; repeat imports preserve publication/modification dates when content is unchanged. Source dates are not verified deployment dates. Record actual release evidence separately in the action log.
 
+### History-series foreword on the science hubs
+
+- The approved eight-language introduction is in Atrium's `docs/marketing/Content/History series/foreword/Approved/`: `foreword.en.md` plus one dated `foreword.<locale>.pipeline-output-*.md` per other language. Read the human-selected editions without editing Atrium or translating them again.
+- Replace only `.science-history-intro` on each science hub: its label, H2 and two paragraphs, preserving inline emphasis. Keep methodology prominent above it, the two episode cards below it, and the hub's H1, metadata, canonicals, hreflang and localized destinations unchanged. This is not a new page or an article-body update.
+- `tests/science-hub.test.js` reconstructs normalized Markdown from the rendered foreword and compares the approved source hashes. Change those expectations only after independently comparing the replacement approved files. Run `sitemap:update` for the eight changed hubs and both episode source checks to guard unrelated article/navigation changes.
+- Paragraph spacing is scoped to the history introduction. Refresh both hub stylesheet URLs together when changing that styling. Browser QA covers its separation from methodology, text reflow and same-language methodology/episode journeys at 320/390/768/1280 px.
+
 ## Pre-release QA regressions
 
 - `npm test` covers localized header-logo destinations, FAQ schema/visible-answer parity, corrected article modification metadata, calculator editor-state preservation and image-ratio markup. Keep original publication dates; maintain applicable Article/BlogPosting `dateModified` and `article:modified_time` separately from sitemap lastmod.

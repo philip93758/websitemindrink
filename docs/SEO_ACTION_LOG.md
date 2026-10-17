@@ -20,6 +20,29 @@ The eight language prefixes are: English `/`, German `/de/`, French `/fr/`, Span
 
 For each prefix, the calculator is `alcohol-unit-calculator/`, comparison is `blog/best-alcohol-tracking-apps.html`, privacy is `privacy.html`, and homepage is the prefix itself. This notation enumerates the affected URLs; it does not imply every page in the language changed.
 
+## CONTENT-20261017-01 — Approved history-series foreword on all science hubs
+
+- Owner requested replacing the history-series introduction on the science hub with the new approved foreword, on website `dev` only. Implemented locally on 2026-10-17 from baseline `a900ace8cf998abb7a2f73e1550ce9342ddba9d1`. Not committed, pushed or deployed. Atrium's `docs/marketing/Content/History series/foreword/Approved/` was read only; no new writing, translation or provider calls were performed.
+- Affected pages: `https://mindrink.me/science/` and `https://mindrink.me/{de,es,fr,id,it,ja,pt}/science/`. Replaced only `.science-history-intro` with the approved localized label, series heading and two paragraphs, preserving the italic series title. English's label is now “An evidence-led history series”; its first paragraph opens “Alcohol is deeply embedded in human civilization.” The Portuguese heading follows the approved title capitalization, “As Origens do Álcool”. Exact source byte hashes:
+
+| Language | Approved file | SHA-256 |
+|---|---|---|
+| English | `foreword.en.md` | `57207b132a808f6938d0f805892bab7408c8d5401f3c068fbb811415af5c74ff` |
+| German | `foreword.de.pipeline-output-2026-10-17-v2.md` | `1f6d64ca4233752a1cbc640c55456bcdf8d739717f84363132eb3a886b268509` |
+| Spanish | `foreword.es.pipeline-output-2026-10-17-v2.md` | `0503e2feea4450c65acede9989c92608cdccb44310814e0a712902346ca6f2c1` |
+| French | `foreword.fr.pipeline-output-2026-10-17-v2.md` | `a59fd7e5f4c7d72ad3f4cb3367ee379f765a0afcf72fa870711b12795eddc226` |
+| Indonesian | `foreword.id.pipeline-output-2026-10-17-v2.md` | `6b5d89df0a61c8e6bceff7b77b7bbcc3f5270dafc25417c71f7ad4c2ca4ebf12` |
+| Italian | `foreword.it.pipeline-output-2026-10-17-v2.md` | `b87a9b59a6a302ba34f66ed876272dc35fe49c4b5aa23884b3502f534a9e748b` |
+| Japanese | `foreword.ja.pipeline-output-2026-10-17-v2.md` | `3f88820b38608b45fac22881388ebd23df060bc6f9dcaaa2f418c35849de7284` |
+| Portuguese | `foreword.pt.pipeline-output-2026-10-17-v2.md` | `411fa7a7e80b8e8c7fafb19511a8862a4d7c5934f369a0c1cb21077f65f7a003` |
+
+- Independent reconstruction of normalized Markdown from each rendered block matches its entire approved source. Outside that block and the hub stylesheet cache version, every hub remains identical to the baseline: the science hero/H1, prominent methodology panel and CTA above the series, two episode cards below it, navigation, metadata, structured data, canonicals, hreflang and destinations are unchanged. All sixteen Episode 1.1/1.2 pages are unchanged and both approved-source checks pass. This is an introduction replacement, not a new page or episode revision.
+- Added a scoped 16 px gap between the two foreword paragraphs and refreshed both hub stylesheet URLs to `foreword-20261017a`. No other styling changed. The sitemap updater changed only the eight hubs' lastmod to **2026-10-17**; the other 200 dates and all sitemap URL/alternate structures remain unchanged. These source dates do not establish deployment.
+- Added eight exact approved-content regression checks and 32 browser checks covering hub reflow, methodology/series separation, paragraph spacing and same-language methodology/episode journeys at 320/390/768/1280 px. Updated the website agent instructions with the approved-source location and preservation rules; no additional importer or editorial content copy was introduced.
+- Validation: **257 automated tests**, analytics-disabled build and **148 browser checks** pass with no failures, page errors or missing local resources. Static SEO checks pass for 208 pages, 4,968 internal links and 859 fragment links. Sitemap dates and whitespace checks pass. English/Japanese mobile and desktop screenshots were visually inspected. The new checks confirm two separated foreword paragraphs, methodology above the series, episode cards below, no horizontal overflow and the localized methodology → hub → Episode 1.1 → Episode 1.2 → hub journeys. External browser traffic was blocked and no production analytics events were sent.
+- Implementation commit, push, production deployment/time and subsequent crawl or performance evidence remain pending separate authorization. No deployed change or SEO gain is claimed.
+- Release authorization (2026-10-17): owner requested deployment to main after a fresh pre-deployment round passed all 257 automated tests, the build and 148 browser checks. The implementation is identified by the commit carrying `SEO-Action: CONTENT-20261017-01`; hosted CI and actual production-release evidence will be appended after verification. Article pages, methodology and episode cards remain unchanged.
+
 ## CONTENT-20261016-01 — Episode 1.2 approved eight-language source import
 
 - Owner requested implementing the ready Episode 1.2 files from Atrium's `docs/marketing/Content/History series/Ep 1.2/approved/` in website `dev`. Implemented locally on 2026-10-16 from baseline `e60296c822cfc02bb48842c90b2c8bf59ef989a2`, preserving its already committed Episode 1.1 v3 work. This package is not committed, pushed or deployed. Atrium sources were read only; no new translation, editorial rewriting or model calls were performed.

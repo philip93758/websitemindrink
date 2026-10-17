@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import test from 'node:test';
@@ -61,6 +62,43 @@ test('turns the English Science route into a real hub', () => {
   assert.match(hub, /href="\/science\/who-invented-alcohol\.html">Read Episode 1\.1<\/a>/);
   assert.ok(hub.indexOf('science-methodology') < hub.indexOf('science-history-series'));
 });
+
+// SHA-256 of each approved Atrium foreword after CRLF normalization and trim.
+// Reconstruct Markdown from the rendered block to protect every approved word,
+// paragraph break and emphasis without depending on a sibling checkout in CI.
+for (const [locale, approvedHash] of Object.entries({
+  en: '4426a5403c2e842873148c12d24c23453cbf9ec21ba43a2ea92b39f8f8dd1fe1',
+  de: 'f85f18c06bcfabf9c81cbe105b2cc0a5823b80f75425532c06616e911c84320e',
+  es: 'd6f185d8384c39a0cdc39c4d3a08ba7157da4b082b76e1be4fa272c8e9f329bb',
+  fr: '19da01e1799dc55bad9ed94df66e935da2db85eb1f69f3f12045303325567719',
+  id: 'af119de47ce1ff6bc5935c0143084ab62b4c5f7ec38b8d05a65c0ea8456047f7',
+  it: '0237b2415cdd390bdb3b5e3a03058e4469b15d7bcaf4529d55d10222e04e14a8',
+  ja: 'bee4e291024109d126719336ddc4bba77bb17233aea9a245ddb37b5e8359ac72',
+  pt: '9447c3b894f372c0bc6f5387596ffc745f7d37f90a4558266a23e0306804e3d2',
+})) {
+  test(`${locale} science hub preserves the approved two-paragraph foreword below methodology`, () => {
+    const prefix = locale === 'en' ? '' : `${locale}/`;
+    const hub = read(`${prefix}science/index.html`);
+    const intro = hub.match(/<div class="science-history-intro">([\s\S]*?)<\/div>/)?.[1];
+    assert.ok(intro);
+    const label = intro.match(/<p class="science-card-label">([^<]+)<\/p>/)[1];
+    const title = intro.match(/<h2 id="science-history-title">([^<]+)<\/h2>/)[1];
+    const paragraphs = [...intro.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(match => match[1]);
+    assert.equal(paragraphs.length, 2);
+    assert.equal((intro.match(/<em>/g) || []).length, 1);
+    assert.ok(paragraphs[1].includes(`<em>${title}</em>`));
+    assert.doesNotMatch(intro, /<!--|\*|\]\(/);
+    const markdown = [`**${label}**`, `## ${title}`, ...paragraphs.map(p => p.replaceAll('<em>', '*').replaceAll('</em>', '*'))].join('\n\n');
+    assert.equal(createHash('sha256').update(markdown).digest('hex'), approvedHash);
+    assert.ok(hub.indexOf('class="science-methodology"') < hub.indexOf('class="science-history-intro"'));
+    assert.ok(hub.indexOf('class="science-history-intro"') < hub.indexOf('class="science-episode-card"'));
+    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 2);
+    for (const slug of ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html']) {
+      assert.ok(hub.includes(`class="science-card-link" href="/${prefix}science/${slug}"`));
+    }
+    assert.equal((hub.match(/\/styles\.css\?v=foreword-20261017a/g) || []).length, 2);
+  });
+}
 
 test('publishes Episode 1.1 with its full reference apparatus', () => {
   const episode = read('science/who-invented-alcohol.html');

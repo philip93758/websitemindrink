@@ -111,6 +111,45 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         assert.equal(new URL(page.url()).pathname, prefix);
         assert.equal(await page.locator('html').getAttribute('lang'), locale);
       });
+      for (const width of [320,390,768,1280]) await check(`${locale}/science/${width}: foreword reflow, hierarchy and localized journeys`, async () => {
+        await page.setViewportSize({width,height:844});
+        await page.goto(origin+prefix+'science/');
+        const intro = page.locator('.science-history-intro');
+        const paragraphs = intro.locator(':scope > p:not(.science-card-label)');
+        assert.equal(await paragraphs.count(), 2);
+        assert.equal(await intro.locator('em').count(), 1);
+        assert.equal(await page.locator('h1').count(), 1);
+        const layout = await page.evaluate(() => {
+          const intro = document.querySelector('.science-history-intro');
+          const paragraphs = intro.querySelectorAll(':scope > p:not(.science-card-label)');
+          return {
+            methodologyBottom:document.querySelector('.science-methodology-panel').getBoundingClientRect().bottom,
+            introTop:intro.getBoundingClientRect().top,
+            introBottom:intro.getBoundingClientRect().bottom,
+            firstEpisodeTop:document.querySelector('.science-episode-card').getBoundingClientRect().top,
+            paragraphGap:paragraphs[1].getBoundingClientRect().top-paragraphs[0].getBoundingClientRect().bottom,
+            overflow:document.documentElement.scrollWidth>innerWidth+1,
+          };
+        });
+        assert.ok(!layout.overflow, 'hub overflows horizontally');
+        assert.ok(layout.introTop>layout.methodologyBottom+32, 'methodology and history need clear separation');
+        assert.ok(layout.firstEpisodeTop>=layout.introBottom+24, 'episode cards overlap the foreword');
+        assert.ok(layout.paragraphGap>=15, 'foreword paragraphs need visible spacing');
+        if (width===390) {
+          await page.locator('.science-primary-link').click();
+          assert.equal(new URL(page.url()).pathname, prefix+'methodology.html');
+          await page.goto(origin+prefix+'science/');
+          await page.locator('.science-card-link').first().click();
+          assert.equal(new URL(page.url()).pathname, prefix+'science/who-invented-alcohol.html');
+          await page.locator('a[rel="next"]').click();
+          assert.equal(new URL(page.url()).pathname, prefix+'science/mesopotamia-beer-written-records.html');
+          await page.locator(`.history-series-navigation a[href="${prefix}science/"]`).click();
+          assert.equal(new URL(page.url()).pathname, prefix+'science/');
+        }
+        if (process.env.MINDRINK_QA_SCREENSHOT_DIR && [390,1280].includes(width) && ['en','ja'].includes(locale)) {
+          await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-science-${width}.png`),fullPage:true});
+        }
+      });
     }
     for (const width of [375,1280]) {
       await check(`it/${width}: labels, quantities, decimal precision and article journey`, async () => {

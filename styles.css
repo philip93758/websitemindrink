@@ -2359,6 +2359,10 @@ body.history-article-page {
     line-height: 1.75;
 }
 
+.science-history-intro > p:not(.science-card-label) + p {
+    margin-top: 16px;
+}
+
 .science-episode-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
