@@ -11,6 +11,8 @@
     "science:episode:sync": "node scripts/sync-history-episode-content.js",
     "science:episode12:sync": "node scripts/sync-history-episode12-content.js",
     "science:episode12:images": "node scripts/build-history-episode12-images.js",
+    "science:metadata:update": "node scripts/update-science-search-metadata.js",
+    "science:metadata:check": "node scripts/update-science-search-metadata.js --check",
     "test": "node --test",
     "test:browser": "node tools/release-browser-qa.cjs",
     "sitemap:update": "node scripts/update-sitemap-lastmod.js",

@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, EPISODE12_STYLES, editionPrefix, episode12Figures, imageVariant, imageWidths } from './history-episode12-config.js';
+import { applyScienceSearchMetadata } from './science-search-metadata.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const ORIGIN = 'https://mindrink.me';
@@ -243,6 +244,7 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   });
   page = page.replace(/(<meta property="article:published_time" content=")[^"]+/, `$1${socialDate('published', published)}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', modified)}`);
+  page = applyScienceSearchMetadata(page, locale, 'episode12');
   if (page !== template) page = page.replace(/("dateModified": ")[^"]+/, `$1${today}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', today)}`);
   return page;
@@ -297,7 +299,7 @@ export function syncEpisode12(sourceDirectory, { check = false, locales, approve
         schema.hasPart.push({ '@type': 'Article', headline: parsed.title, url });
         return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
       });
-      queue(hubPath, hub);
+      queue(hubPath, applyScienceSearchMetadata(hub, locale, 'hub'));
     }
 
     const episodeLabel = previous.match(/<p class="history-meta"><span>[^<]+<\/span><span>([^<]+)<\/span>/)[1].replace('1.1', '1.2');

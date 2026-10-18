@@ -2,6 +2,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFi
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { EPISODE12_SLUG } from './history-episode12-config.js';
+import { applyScienceSearchMetadata } from './science-search-metadata.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const modifiedDateParts = Object.fromEntries(new Intl.DateTimeFormat('en', {
@@ -481,6 +482,7 @@ export function main(args = process.argv.slice(2)) {
         `<div class="history-copy">\n${parsed.body}\n            </div>\n        </article>`,
       );
 
+    page = applyScienceSearchMetadata(page, locale, 'episode11');
     if (page !== original) {
       page = page
         .replace(/<meta property="article:modified_time" content="[^"]+">/, `<meta property="article:modified_time" content="${MODIFIED_TIME}">`)

@@ -128,6 +128,12 @@ npm test
 - `tests/science-hub.test.js` reconstructs normalized Markdown from the rendered foreword and compares the approved source hashes. Change those expectations only after independently comparing the replacement approved files. Run `sitemap:update` for the eight changed hubs and both episode source checks to guard unrelated article/navigation changes.
 - Paragraph spacing is scoped to the history introduction. Refresh both hub stylesheet URLs together when changing that styling. Browser QA covers its separation from methodology, text reflow and same-language methodology/episode journeys at 320/390/768/1280 px.
 
+### Search snippets for science pages
+
+- `scripts/science-search-metadata.js` owns the search/social title and description copy for all eight hubs and both history episodes. It is independent of approved article Markdown, editorial headings and visible hub-card copy. Episode 1.1 retains its existing question-led titles; Episode 1.2 uses a compact search title without replacing the long editorial H1.
+- Run `npm run science:metadata:update` and `npm run science:metadata:check` after an approved snippet change, then `sitemap:update`, build and tests. The updater validates all 24 pages before writing and only changes `<title>` and description/title meta tags inside `<head>`. It does not change body markup, JSON-LD, canonicals, hreflang, publication dates or article modification dates. A metadata-only edit is not an article rewrite; record its implementation and deployment separately.
+- Both article importers reapply this metadata before comparing output, so content syncs cannot restore old snippets or use new descriptions for visible hub cards. Keep `EPISODE12_LOCALES.description` as the existing editorial/card summary, not the SEO description. Run both approved article source checks after changing snippet handling; they must remain no-ops for unchanged content.
+
 ## Pre-release QA regressions
 
 - `npm test` covers localized header-logo destinations, FAQ schema/visible-answer parity, corrected article modification metadata, calculator editor-state preservation and image-ratio markup. Keep original publication dates; maintain applicable Article/BlogPosting `dateModified` and `article:modified_time` separately from sitemap lastmod.
