@@ -17,7 +17,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
   let passed = 0;
   async function check(name, fn) {
     try { await fn(); passed++; }
-    catch (error) { failures.push({name,error:error.message}); }
+    catch (error) { failures.push({name,error:error.message}); console.log(`Browser check failed: ${name}: ${error.message}`); }
   }
   try {
     const context = await browser.newContext({ viewport:{width:390,height:844}, serviceWorkers:'block' });
@@ -81,7 +81,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         assert.ok(await page.locator('#total-totals').isHidden());
         assert.ok(await page.locator('#total-empty').isVisible());
       });
-      for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html']) {
+      for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html']) {
         for (const width of [320,390,768,1280]) await check(`${locale}/${slug}/${width}: cold citation and image stability`, async () => {
           await page.setViewportSize({width,height:844});
           await page.goto(origin + prefix + 'science/' + slug);
@@ -143,6 +143,11 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
           assert.equal(new URL(page.url()).pathname, prefix+'science/who-invented-alcohol.html');
           await page.locator('a[rel="next"]').click();
           assert.equal(new URL(page.url()).pathname, prefix+'science/mesopotamia-beer-written-records.html');
+          await page.locator('a[rel="next"]').click();
+          assert.equal(new URL(page.url()).pathname, prefix+'science/egypt-drinking-with-the-gods.html');
+          assert.equal(await page.locator('html').getAttribute('lang'), locale);
+          await page.locator('a[rel="prev"]').click();
+          assert.equal(new URL(page.url()).pathname, prefix+'science/mesopotamia-beer-written-records.html');
           await page.locator(`.history-series-navigation a[href="${prefix}science/"]`).click();
           assert.equal(new URL(page.url()).pathname, prefix+'science/');
         }
@@ -150,6 +155,33 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
           await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-science-${width}.png`),fullPage:true});
         }
       });
+      for (const width of [390,1280]) await check(`${locale}/egypt/${width}: hierarchy, language switching and middle-episode navigation`, async () => {
+        await page.setViewportSize({width,height:844});
+        await page.goto(origin+prefix+'science/egypt-drinking-with-the-gods.html');
+        assert.equal(await page.locator('h1').count(), 1);
+        assert.equal(await page.locator('.history-copy h2').count(), 5);
+        assert.equal(await page.locator('.history-copy h3').count(), 9);
+        assert.equal(await page.locator('.history-references li').count(), 16);
+        assert.equal(await page.locator('figure').count(), 5);
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth<=innerWidth+1));
+        if (width < 768) await page.locator('.menu-toggle').click();
+        await page.locator('.language-toggle').click();
+        const target = locale === 'fr' ? '/' : '/fr/';
+        await page.locator(`.language-option[href="${target}science/egypt-drinking-with-the-gods.html"]`).click();
+        assert.equal(new URL(page.url()).pathname, target+'science/egypt-drinking-with-the-gods.html');
+        await page.goto(origin+prefix+'science/mesopotamia-beer-written-records.html');
+        assert.equal(await page.locator('.history-series-navigation a').count(), 3);
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth<=innerWidth+1));
+        if (process.env.MINDRINK_QA_SCREENSHOT_DIR && ['en','ja'].includes(locale)) {
+          await page.goto(origin+prefix+'science/egypt-drinking-with-the-gods.html');
+          await page.locator('figure img').evaluateAll(images => Promise.all(images.map(async im => {im.loading='eager';await im.decode();})));
+          await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-egypt-${width}.png`),fullPage:true});
+          await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-egypt-hero-${width}.png`)});
+          await page.locator('#unsettling-effects-title').scrollIntoViewIfNeeded();
+          await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-egypt-body-${width}.png`)});
+        }
+      });
+      console.log(`Completed ${locale} browser checks; ${passed} passed so far, ${failures.length} findings.`);
     }
     for (const width of [375,1280]) {
       await check(`it/${width}: labels, quantities, decimal precision and article journey`, async () => {

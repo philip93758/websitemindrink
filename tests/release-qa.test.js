@@ -35,8 +35,8 @@ for (const locale of locales) {
       if (social) assert.equal(social[1].slice(0,10), article.dateModified);
     }
   });
-  test(`${locale}: both history episodes reserve proportional figure space`, () => {
-    for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html']) {
+  test(`${locale}: all three history episodes reserve proportional figure space`, () => {
+    for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html']) {
       const html = read(prefix + 'science/' + slug);
       const images = [...html.matchAll(/<img[^>]+loading="(?:lazy|eager)"[^>]*>/g)];
       assert.equal(images.length, slug.startsWith('who-') ? 4 : 5);

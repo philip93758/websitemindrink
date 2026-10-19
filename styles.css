@@ -2879,6 +2879,30 @@ body.history-article-page {
     line-height: 1.4;
 }
 
+/* A middle episode offers both directions without displacing its hub link. */
+.history-series-navigation--with-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: start;
+}
+
+.history-series-navigation--with-next a:first-child {
+    max-width: none;
+}
+
+.history-series-navigation--with-next a[rel] span {
+    display: block;
+    margin-bottom: 8px;
+    color: #625e58;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .history-series-navigation--with-next {
+        grid-template-columns: 1fr;
+    }
+}
+
 .history-article-page [id] {
     scroll-margin-top: 100px;
 }

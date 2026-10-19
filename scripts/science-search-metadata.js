@@ -33,10 +33,22 @@ export const SCIENCE_SEARCH_METADATA = {
   },
 };
 
+SCIENCE_SEARCH_METADATA.episode13 = {
+  en: { title: 'Alcohol in Ancient Egypt: Drinking with the Gods | Mindrink', description: 'Why did ancient Egyptians enjoy drinking, warn against excess and seek sacred intoxication? Explore tomb paintings, scribal warnings and temple evidence.' },
+  de: { title: 'Alkohol im alten Ägypten: Trinken mit den Göttern | Mindrink', description: 'Genuss, Warnungen und heiliger Rausch im alten Ägypten: Was Grabmalereien, Schreibertexte und Tempelinschriften über das Trinken verraten.' },
+  es: { title: 'El alcohol en el antiguo Egipto: beber con los dioses | Mindrink', description: 'Placer, advertencias y embriaguez sagrada en Egipto: qué revelan las pinturas funerarias, los textos de escribas y las inscripciones de los templos.' },
+  fr: { title: 'L’alcool en Égypte ancienne : boire avec les dieux | Mindrink', description: 'Plaisir, mises en garde et ivresse sacrée : ce que les peintures funéraires, les textes de scribes et les inscriptions révèlent de l’alcool en Égypte.' },
+  id: { title: 'Alkohol di Mesir Kuno: Minum Bersama Para Dewa | Mindrink', description: 'Mengapa orang Mesir kuno menikmati minuman, mengingatkan bahayanya, dan mencari mabuk dalam ritual? Telusuri lukisan makam, nasihat juru tulis, dan prasasti.' },
+  it: { title: 'L’alcol nell’antico Egitto: bere con gli dèi | Mindrink', description: 'Piacere, ammonimenti ed ebbrezza sacra: cosa raccontano le pitture funerarie, i testi degli scribi e le iscrizioni dei templi sul bere nell’antico Egitto.' },
+  ja: { title: '古代エジプトの酒｜楽しみと戒め、聖なる酩酊 | Mindrink', description: '古代エジプトの人々は酒を楽しみ、その危険を戒めながら、なぜ礼拝では酔うことを求めたのか。墓の絵、書記の教訓、神殿の銘文から読み解きます。' },
+  pt: { title: 'O álcool no antigo Egito: beber com os deuses | Mindrink', description: 'Prazer, advertências e embriaguez sagrada no Egito: o que revelam as pinturas funerárias, os textos dos escribas e as inscrições dos templos.' },
+};
+
 export const SCIENCE_SEARCH_ROUTES = {
   hub: 'science/index.html',
   episode11: 'science/who-invented-alcohol.html',
   episode12: 'science/mesopotamia-beer-written-records.html',
+  episode13: 'science/egypt-drinking-with-the-gods.html',
 };
 
 export const escapeMetadata = text => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');

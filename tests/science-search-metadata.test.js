@@ -9,7 +9,7 @@ const ROOT = resolve(import.meta.dirname, '..');
 const read = path => readFileSync(resolve(ROOT, path), 'utf8');
 
 for (const locale of Object.keys(SCIENCE_SEARCH_METADATA.hub)) {
-  test(`${locale}: all three science-page families retain their intended search/social metadata`, () => {
+  test(`${locale}: all four science-page families retain their intended search/social metadata`, () => {
     for (const [family, route] of Object.entries(SCIENCE_SEARCH_ROUTES)) {
       const html = read(`${locale === 'en' ? '' : locale + '/'}${route}`);
       const copy = SCIENCE_SEARCH_METADATA[family][locale];
@@ -65,11 +65,11 @@ test('science metadata editor rejects missing/ambiguous tags and unknown edition
   ]) assert.throws(() => applyScienceSearchMetadata(source, 'en', 'hub'));
 });
 
-test('metadata CLI checks all 24 pages read-only and rejects accidental arguments', () => {
+test('metadata CLI checks all 32 pages read-only and rejects accidental arguments', () => {
   const script = resolve(ROOT, 'scripts/update-science-search-metadata.js');
   const check = spawnSync(process.execPath, [script, '--check'], { cwd: ROOT, encoding: 'utf8' });
   assert.equal(check.status, 0, check.stderr);
-  assert.match(check.stdout, /all 24 science pages/);
+  assert.match(check.stdout, /all 32 science pages/);
   const invalid = spawnSync(process.execPath, [script, '--unknown'], { cwd: ROOT, encoding: 'utf8' });
   assert.notEqual(invalid.status, 0);
 });

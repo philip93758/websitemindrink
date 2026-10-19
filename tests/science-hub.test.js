@@ -92,8 +92,8 @@ for (const [locale, approvedHash] of Object.entries({
     assert.equal(createHash('sha256').update(markdown).digest('hex'), approvedHash);
     assert.ok(hub.indexOf('class="science-methodology"') < hub.indexOf('class="science-history-intro"'));
     assert.ok(hub.indexOf('class="science-history-intro"') < hub.indexOf('class="science-episode-card"'));
-    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 2);
-    for (const slug of ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html']) {
+    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 3);
+    for (const slug of ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html']) {
       assert.ok(hub.includes(`class="science-card-link" href="/${prefix}science/${slug}"`));
     }
     assert.equal((hub.match(/\/styles\.css\?v=foreword-20261017a/g) || []).length, 2);

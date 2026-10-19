@@ -4,11 +4,12 @@ import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { EPISODE12_ASSETS, EPISODE12_IMAGES, EPISODE12_LOCALES, EPISODE12_SLUG, EPISODE12_SOURCE, EPISODE12_STYLES, editionPrefix, episode12Figures, imageVariant, imageWidths } from './history-episode12-config.js';
 import { applyScienceSearchMetadata } from './science-search-metadata.js';
+import { retainNextHistoryEpisode } from './history-series-navigation.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const ORIGIN = 'https://mindrink.me';
 const read = path => readFileSync(path, 'utf8').replaceAll('\r\n', '\n');
-const refreshStyles = html => html.replace(/href="\/styles\.css(?:\?[^\"]*)?"/g, `href="/styles.css?v=${EPISODE12_STYLES}"`);
+const refreshStyles = html => html.includes('history-series-navigation--with-next') ? html : html.replace(/href="\/styles\.css(?:\?[^\"]*)?"/g, `href="/styles.css?v=${EPISODE12_STYLES}"`);
 export const escapeHtml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
 export function parseEpisode12Options(args) {
@@ -245,6 +246,7 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   page = page.replace(/(<meta property="article:published_time" content=")[^"]+/, `$1${socialDate('published', published)}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', modified)}`);
   page = applyScienceSearchMetadata(page, locale, 'episode12');
+  page = retainNextHistoryEpisode(page, template);
   if (page !== template) page = page.replace(/("dateModified": ")[^"]+/, `$1${today}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${socialDate('modified', today)}`);
   return page;

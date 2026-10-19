@@ -71,7 +71,7 @@ for (const locale of Object.keys(EPISODE12_LOCALES)) {
     assert.ok(previous.includes(` — ${title}</a>`));
     assert.ok(html.includes(`<a href="/${prefix}science/who-invented-alcohol.html" rel="prev">`));
     const hub = read(`${prefix}science/index.html`);
-    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 2);
+    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 3);
     assert.ok(hub.indexOf('class="science-methodology"') < hub.indexOf('class="science-history-series"'));
     assert.ok(hub.includes(`<a class="science-card-link" href="/${route}">`));
     assert.ok(schemas(hub).find(schema => schema['@type'] === 'CollectionPage').hasPart.some(part => part.url === url && part.headline === title));
