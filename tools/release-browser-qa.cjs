@@ -172,7 +172,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         await page.goto(origin+prefix+'science/mesopotamia-beer-written-records.html');
         assert.equal(await page.locator('.history-series-navigation a').count(), 3);
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth<=innerWidth+1));
-        if (process.env.MINDRINK_QA_SCREENSHOT_DIR && ['en','ja'].includes(locale)) {
+        if (process.env.MINDRINK_QA_SCREENSHOT_DIR) {
           await page.goto(origin+prefix+'science/egypt-drinking-with-the-gods.html');
           await page.locator('figure img').evaluateAll(images => Promise.all(images.map(async im => {im.loading='eager';await im.decode();})));
           await page.screenshot({path:join(process.env.MINDRINK_QA_SCREENSHOT_DIR, `${locale}-egypt-${width}.png`),fullPage:true});

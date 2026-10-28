@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync, statSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
+import { tmpdir } from 'node:os';
 import test from 'node:test';
-import { EPISODE13_ASSETS, EPISODE13_IMAGES, EPISODE13_LOCALES, EPISODE13_SLUG, episode13Prefix, episode13Widths, episode13Variant } from '../scripts/history-episode13-config.js';
-import { parseEpisode13, parseEpisode13Options, episode13Inline } from '../scripts/sync-history-episode13-content.js';
+import { EPISODE13_ASSETS, EPISODE13_IMAGES, EPISODE13_LOCALES, EPISODE13_SLUG, EPISODE13_SOURCES, episode13Prefix, episode13Widths, episode13Variant } from '../scripts/history-episode13-config.js';
+import { parseEpisode13, parseEpisode13Options, episode13Inline, validateEpisode13Manifest, loadEpisode13Handoff } from '../scripts/sync-history-episode13-content.js';
 import { linkNextHistoryEpisode, retainNextHistoryEpisode } from '../scripts/history-series-navigation.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
@@ -42,17 +43,17 @@ export function reconstructEpisode13(html) {
   return blocks.join('\n\n');
 }
 
-// Hashes are of the selected English / 19 October V2 Markdown, with CRLF and
+// Hashes are of the manifest-selected web-handoff Markdown, with CRLF and
 // blank lines normalized and section comments removed, not of generated HTML.
 export const SELECTED_COPY_HASHES = {
-  en: '05a06789a29a56b3ae6a15fc78b941f22b7bb89a04e2e47ea017e916466246e0',
-  de: '2c6a316af9d77ce74d93ebc0aec9fb7c4c9163cc6e6a90ac61ac52b9f70ce581',
-  es: '63c391e4756c0f2337b7f26c51a6a9d06827080f61524a82007a6e81701750d3',
-  fr: '5fe42ff9c3fb6e62f1576ea57f8336ca939ea5722657987e7a0c97878b6cef5b',
-  id: 'c999539a06dd5e3d8edee10e159546d1fa985429bdb0a9e0213adc5e4418512d',
-  it: 'a7aae0f6261ded7d5760b01459821d7d021f3a61fcbe3dc84661efbffbe5f916',
-  ja: '24564fef5016f3ae42c9515a13a78027a546e6d9395ede6688be43033d5d83b7',
-  pt: '1dd1bec1a9a34751fa9c0b963393d076e042c7f649fc4371940cf73747d31c4b',
+  en: '773d0ee6c64a93b6cf76f5b34891c0a85d7457e224a75797fbf413e632e8a043',
+  de: '14898acf0638e2485050b80042bec1846d640cc14bc78d961f14f067c5ee54ff',
+  es: 'dee5fb6e2e867490d0906233a55c09644a1b22ada844da4d65c9399eb18a6674',
+  fr: 'ebffdfabc5f2ae45feb7ded6c996b193507ccbf60f88613324c0ba57bb5df859',
+  id: 'f97bc78199e14ec209470da4cc79b1e9b96a34ea452440b806c4280935657045',
+  it: '3a189b9aa2132cc75630722099d96f04299879f218e28f3024b58f2f223c8b7d',
+  ja: '96398eba847cf31f22b614b47c722f78aac1c6e450ec7e70ac895104130b3718',
+  pt: '166ef0764765a35e2f9071dcf934434f8426f7d8e617812a06601ec9a7011e3a',
 };
 
 for (const locale of Object.keys(EPISODE13_LOCALES)) {
@@ -71,7 +72,7 @@ for (const locale of Object.keys(EPISODE13_LOCALES)) {
     assert.doesNotMatch(html, /<!-- (?:section|illustration):|FIGURETOKEN|\]\(https?:|\*\*/);
     assert.ok(html.includes('https://commons.wikimedia.org/wiki/File:Manners_and_customs_of_the_Ancient_Egyptians_vol.2_(IA_in.gov.ignca.34709).pdf'));
     const introCount = (html.match(/<div class="history-standfirst">([\s\S]*?)<\/div>/)[1].match(/<p>/g) || []).length;
-    assert.equal(introCount, ['es','id','pt'].includes(locale) ? 1 : 3);
+    assert.equal(introCount, 3);
   });
 
   test(`Episode 1.3 ${locale}: five credited responsive figures, schema and localized discovery`, () => {
@@ -96,6 +97,7 @@ for (const locale of Object.keys(EPISODE13_LOCALES)) {
     assert.equal(article.inLanguage, locale);
     assert.equal(article.mainEntityOfPage['@id'], url);
     assert.match(article.datePublished, /^\d{4}-\d{2}-\d{2}$/);
+    assert.equal(article.datePublished, '2026-10-19', 'a content refresh must retain the original publication date');
     assert.ok(article.dateModified >= article.datePublished);
     for (const kind of ['published','modified']) assert.equal(html.match(new RegExp(`<meta property="article:${kind}_time" content="([^"]+)"`))[1].slice(0,10), article[kind === 'published' ? 'datePublished' : 'dateModified']);
     const hub = read(`${prefix}science/index.html`);
@@ -157,6 +159,53 @@ test('Egypt inline links preserve balanced URLs, emphasis and reference fragment
 test('Egypt source selection CLI is explicit and never chooses pipeline drafts', () => {
   assert.deepEqual(parseEpisode13Options(['root', '--check', '--locale', 'fr']).locale, 'fr');
   for (const args of [[], ['--check'], ['root', '--locale'], ['root', '--locale', 'xx'], ['root', '--approved'], ['root', '--check', '--check'], ['root', '--locale', 'de', '--locale', 'fr']]) assert.throws(() => parseEpisode13Options(args));
+});
+
+function handoffManifest() {
+  const local = EPISODE13_IMAGES['wilkinson-banquet-excess'];
+  return {
+    schema_version: 1, episode: '1.3', english_reference_language: 'en',
+    articles: Object.entries(EPISODE13_SOURCES).map(([language, selected]) => ({
+      language, locale: language === 'pt' ? 'pt-PT' : language,
+      edition: language === 'en' ? 'V4' : 'V5', ...selected,
+    })),
+    references_per_article: 16, illustration_ids_in_order: Object.keys(EPISODE13_IMAGES),
+    local_assets: [{file: local.source, sha256: local.sha256}],
+  };
+}
+
+test('Egypt handoff requires all exact files, hashes, editions, locales and illustration identities', () => {
+  const manifest = handoffManifest();
+  assert.equal(validateEpisode13Manifest(manifest), manifest);
+  assert.doesNotThrow(() => validateEpisode13Manifest({...manifest, articles: [...manifest.articles].reverse()}));
+  for (const alter of [
+    m => m.articles.pop(),
+    m => m.articles.push(m.articles[0]),
+    m => m.articles[1] = m.articles[0],
+    m => m.articles[0].file = 'Approved/Egypt - Drinking with the Gods.md',
+    m => m.articles[0].sha256 = '0'.repeat(64),
+    m => m.articles[0].edition = 'V2',
+    m => m.articles.find(a => a.language === 'pt').locale = 'pt-BR',
+    m => m.articles[0].file = '../outside.md',
+    m => m.references_per_article = 15,
+    m => m.illustration_ids_in_order.reverse(),
+    m => m.local_assets[0].sha256 = '0'.repeat(64),
+  ]) {
+    const changed = structuredClone(manifest);
+    alter(changed);
+    assert.throws(() => validateEpisode13Manifest(changed));
+  }
+});
+
+test('Egypt handoff refuses altered source bytes before any website write', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'mindrink-episode13-handoff-'));
+  try {
+    writeFileSync(join(directory, 'manifest.json'), JSON.stringify(handoffManifest()));
+    writeFileSync(join(directory, EPISODE13_SOURCES.en.file), fixture());
+    assert.throws(() => loadEpisode13Handoff(directory), /Selected source changed/);
+  } finally {
+    rmSync(directory, {recursive: true, force: true});
+  }
 });
 
 test('Middle-episode next navigation is stable and retained by later imports', () => {

@@ -6,18 +6,17 @@ export const episode13Prefix = locale => locale === 'en' ? '' : `${locale}/`;
 export const episode13Widths = image => [...new Set([480, Math.min(960, image.width), Math.min(1440, image.width)])];
 export const episode13Variant = (image, width) => `${image.file.replace(/\.(jpg|png)$/, '')}-${width}.webp`;
 
-// Explicit human-selected editions, not an automatic choice of the latest file.
-// V2 editorial handoffs are authorized for this dev implementation; no new
-// pipeline acceptance or production approval is implied.
+// Exact human-selected web handoff, checked against its manifest before import.
+// Source/edition dates do not authorize publication or set article dates.
 export const EPISODE13_SOURCES = {
-  en: { file: `Approved/${EPISODE13_SOURCE}.md`, sha256: 'd617d2daf9fa2fefb25c12a02ac9d58a390d2f281b518bc908111be2ed94a86a' },
-  de: { file: `editorial-review/${EPISODE13_SOURCE}.de.editorial-review-2026-10-19-v2.md`, sha256: '71dad7826315090d9bdee34cf436461bab73a57b0a50971a05a787b33d211f14' },
-  es: { file: `editorial-review/${EPISODE13_SOURCE}.es.editorial-review-2026-10-19-v2.md`, sha256: 'c94f9bca60703076439e671676e3a98812af2fdd897b63a50b84f432e9a3eb4c' },
-  fr: { file: `editorial-review/${EPISODE13_SOURCE}.fr.editorial-review-2026-10-19-v2.md`, sha256: 'aced16bb534658386b359b6c3b254672c155a767f6d92c86593bfb556b203311' },
-  id: { file: `editorial-review/${EPISODE13_SOURCE}.id.editorial-review-2026-10-19-v2.md`, sha256: '5618875bbeac231ae4b6a82700cbe8424e75cebe0829320c30bfee8a5484dab5' },
-  it: { file: `editorial-review/${EPISODE13_SOURCE}.it.editorial-review-2026-10-19-v2.md`, sha256: '480e98b8b2fb74b03714c48dbac76f29942c5f6a88f737b853ccac8f93fde522' },
-  ja: { file: `editorial-review/${EPISODE13_SOURCE}.ja.editorial-review-2026-10-19-v2.md`, sha256: '2dc27434c7931af78d7da69a09d64ae58453550dd7dca537e1d066d09ee27bfd' },
-  pt: { file: `editorial-review/${EPISODE13_SOURCE}.pt.editorial-review-2026-10-19-v2.md`, sha256: 'dff727654f0788ff3c8eb615a8ac0a596e7b71bd8b2db2cd8704d3df2a638019' },
+  en: { file: `${EPISODE13_SOURCE}.en.editorial-review-2026-10-23-v4.md`, sha256: '14fef8dde6be95ec7c2706bd666f65ba6c550cdef473ffb921d177201c1330fe' },
+  de: { file: `${EPISODE13_SOURCE}.de.pipeline-output-2026-10-28-v5.md`, sha256: 'afe32c9a4026e9697f2abf6ea5d80ca28cecfd59da1c7331af455403e1485788' },
+  es: { file: `${EPISODE13_SOURCE}.es.pipeline-output-2026-10-28-v5.md`, sha256: '71002097430c61d9dff646c220a2a51e37d929caa0251dc27ccb7b41f708d2ea' },
+  fr: { file: `${EPISODE13_SOURCE}.fr.pipeline-output-2026-10-28-v5.md`, sha256: '76d3729688072abeb233cba2ca5eab4e718ae8f636880663b528e7c2bed7a502' },
+  id: { file: `${EPISODE13_SOURCE}.id.pipeline-output-2026-10-28-v5.md`, sha256: 'fc511aafda17ae2654975c38e1023dc805d4af585f52a7dd3b9d2f5318ad5d3c' },
+  it: { file: `${EPISODE13_SOURCE}.it.pipeline-output-2026-10-28-v5.md`, sha256: '38e91993dcbc0dec7f147ce40eb3c00319d9c82a53ece0489797ab853eafab1b' },
+  ja: { file: `${EPISODE13_SOURCE}.ja.pipeline-output-2026-10-28-v5.md`, sha256: 'fcf4b6abcef529f9ee76a05dff699bcd7db069a1c9002346aef391f3b7fe7bf0' },
+  pt: { file: `${EPISODE13_SOURCE}.pt.pipeline-output-2026-10-28-v5.md`, sha256: '656a6a0569b8ef930625f1692c738b43bfa188ed7892857317b3d8b8bb0a2207' },
 };
 
 // Interface/card copy only. The article itself comes entirely from the files above.

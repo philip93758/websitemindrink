@@ -1,7 +1,7 @@
 # Episode 1.3 — selected illustrations
 
 The five illustrations follow the exact identities, captions and credits in the
-user-selected English / 19 October 2026 V2 articles. No image was generated,
+user-selected eight-language web handoff. No image was generated,
 retouched or newly cropped for the website. All article images are served locally,
 with proportional WebP variants and no enlargement; originals remain intact.
 

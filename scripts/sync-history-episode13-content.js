@@ -16,7 +16,7 @@ const styles = html => html.replace(/href="\/styles\.css(?:\?[^"]*)?"/g, `href="
 
 export function parseEpisode13Options(args) {
   const [directory, ...flags] = args;
-  if (!directory || directory.startsWith('--')) throw new Error('Usage: node scripts/sync-history-episode13-content.js <episode-1.3-root> [--check] [--locale fr]');
+  if (!directory || directory.startsWith('--')) throw new Error('Usage: node scripts/sync-history-episode13-content.js <web-handoff-directory> [--check] [--locale fr]');
   const options = { sourceDirectory: resolve(directory), check: false };
   for (let i = 0; i < flags.length; i++) {
     if (flags[i] === '--check' && !options.check) options.check = true;
@@ -24,6 +24,46 @@ export function parseEpisode13Options(args) {
     else throw new Error(`Invalid Episode 1.3 argument: ${flags[i]}`);
   }
   return options;
+}
+
+export function validateEpisode13Manifest(manifest) {
+  const expected = Object.keys(EPISODE13_SOURCES);
+  if (manifest?.schema_version !== 1 || manifest.episode !== '1.3' || manifest.english_reference_language !== 'en'
+    || !Array.isArray(manifest.articles) || manifest.articles.length !== expected.length) {
+    throw new Error('Expected the explicit eight-language Episode 1.3 web handoff manifest');
+  }
+  const seen = new Set();
+  for (const article of manifest.articles) {
+    const selected = EPISODE13_SOURCES[article.language];
+    if (!selected || seen.has(article.language) || article.file !== selected.file || article.sha256 !== selected.sha256
+      || article.edition !== (article.language === 'en' ? 'V4' : 'V5')
+      || article.locale !== (article.language === 'pt' ? 'pt-PT' : article.language)) {
+      throw new Error(`Unexpected Episode 1.3 handoff selection: ${article.language}`);
+    }
+    seen.add(article.language);
+  }
+  const local = EPISODE13_IMAGES['wilkinson-banquet-excess'];
+  if (manifest.references_per_article !== 16
+    || JSON.stringify(manifest.illustration_ids_in_order) !== JSON.stringify(Object.keys(EPISODE13_IMAGES))
+    || !Array.isArray(manifest.local_assets) || manifest.local_assets.length !== 1
+    || manifest.local_assets[0].file !== local.source || manifest.local_assets[0].sha256 !== local.sha256) {
+    throw new Error('Unexpected Episode 1.3 reference or illustration manifest');
+  }
+  return manifest;
+}
+
+export function loadEpisode13Handoff(sourceDirectory) {
+  const manifest = validateEpisode13Manifest(JSON.parse(readFileSync(join(sourceDirectory, 'manifest.json'), 'utf8')));
+  // Check every exact byte hash before parsing or queuing any website writes.
+  const sources = manifest.articles.map(article => {
+    const path = join(sourceDirectory, article.file), bytes = readFileSync(path);
+    if (digest(bytes) !== article.sha256) throw new Error(`Selected source changed; review before importing: ${path}`);
+    return [article.language, bytes.toString('utf8')];
+  });
+  for (const asset of manifest.local_assets) {
+    if (digest(readFileSync(join(sourceDirectory, asset.file))) !== asset.sha256) throw new Error(`Selected handoff asset changed: ${asset.file}`);
+  }
+  return Object.fromEntries(sources.map(([locale, source]) => [locale, parseEpisode13(source, locale)]));
 }
 
 function plain(text, locale, citations) {
@@ -95,8 +135,7 @@ export function parseEpisode13(markdown, locale) {
   const intro = [];
   while (blocks.length && !blocks[0].startsWith('FIGURETOKEN') && !blocks[0].startsWith('#')) intro.push(paragraph(blocks.shift(), locale));
   if (![1, 3].includes(intro.length) || blocks.shift() !== 'FIGURETOKEN0ENDTOKEN') throw new Error(`Expected selected opening paragraphs and lead image: ${locale}`);
-  // ES/PT/ID place the image after the opening hook; the other editions place
-  // it after all three introductory paragraphs. Preserve each selected order.
+  // Image position follows the selected source, never a locale-derived rewrite.
   const html = [], subheadings = [0, 0, 0, 0, 0];
   while (blocks.length && !blocks[0].startsWith('## ')) html.push(paragraph(blocks.shift(), locale));
   if (intro.length + html.length !== 3) throw new Error(`Expected three introductory paragraphs in total: ${locale}`);
@@ -202,11 +241,7 @@ export function syncEpisode13(sourceDirectory, { check = false, locale: requeste
   if (requestedLocale && !Object.hasOwn(EPISODE13_LOCALES, requestedLocale)) throw new Error(`Unknown Episode 1.3 locale: ${requestedLocale}`);
   const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());
   // Validate all human-selected sources and credited originals before any write.
-  const parsed = Object.fromEntries(Object.entries(EPISODE13_SOURCES).map(([locale, selected]) => {
-    const path = join(sourceDirectory, selected.file), bytes = readFileSync(path);
-    if (digest(bytes) !== selected.sha256) throw new Error(`Selected source changed; review before importing: ${path}`);
-    return [locale, parseEpisode13(bytes.toString('utf8'), locale)];
-  }));
+  const parsed = loadEpisode13Handoff(sourceDirectory);
   for (const image of Object.values(EPISODE13_IMAGES)) {
     if (digest(readFileSync(join(ROOT, EPISODE13_ASSETS, image.file))) !== image.sha256) throw new Error(`Unapproved Egypt original: ${image.file}`);
     for (const width of episode13Widths(image)) if (!existsSync(join(ROOT, EPISODE13_ASSETS, episode13Variant(image, width)))) throw new Error('Run the Episode 1.3 image builder first');
@@ -249,7 +284,7 @@ export function syncEpisode13(sourceDirectory, { check = false, locale: requeste
   queue(sitemapPath, sitemap);
   if (check && changes.length) throw new Error(`Episode 1.3 differs from selected sources/navigation: ${changes.map(change => change.path).join(', ')}`);
   if (!check) for (const { path, text } of changes) writeFileSync(path, text.replaceAll('\n', '\r\n'));
-  console.log(check ? 'Verified selected English/V2 Egypt text, illustrations, navigation and sitemap.' : `Synchronized Episode 1.3: ${changes.length} files updated; no commit, push or deployment.`);
+  console.log(check ? 'Verified manifest-selected Egypt text, illustrations, navigation and sitemap.' : `Synchronized Episode 1.3: ${changes.length} files updated; no commit, push or deployment.`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
