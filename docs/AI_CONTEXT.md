@@ -7,13 +7,20 @@ Agent entry for the public website repository (`websitemindrink`).
 | Need | Path |
 |---|---|
 | Active tickets (local) | `docs/Ai/active/` — **gitignored** in this repo |
-| SEO/UX action and release-evidence log | [SEO_ACTION_LOG.md](SEO_ACTION_LOG.md) — tracked; sanitized implementation history and links to private Atrium analysis |
+| Internal SEO/UX actions and release evidence | Private Atrium: [SEO documentation entry](../../mindrink-atrium/docs/marketing/seo/README.md). Do not create a local/public copy. |
 | Closed workstreams | **Moved to Atrium** — see below |
 
 ## Ownership
 
-- **This repo:** website pages, locale SEO implementation, deployment, content tickets
-- **Atrium:** SEO/growth ops, GSC workflow, ticket intake, platform KB (index-only link to this repo)
+- **This public repo:** website pages, locale SEO implementation, tests, build/deployment configuration and public-safe engineering instructions
+- **Private Atrium:** internal SEO/growth strategy, audits, action logs, experiment/measurement decisions, detailed release evidence, GSC workflow, ticket intake and platform KB
+
+Every tracked website file and its Git history is public, including `docs/` even
+though that directory is not deployed by Pages. Sanitizing an internal action log
+does not make this repository its appropriate home. Keep only public-safe technical
+guidance and pointers here; never copy private operational records into public
+files, commit messages, issues or PRs. The ignore rules help prevent accidental
+recreation of the old log; they do not hide tracked files or prior history.
 
 ## Archive (Atrium)
 
@@ -32,7 +39,12 @@ Clone sibling repos under the same `Dev/` parent for local paths below.
 | Platform KB entry | [../../mindrink-atrium/docs/atrium/AI_CONTEXT.md](../../mindrink-atrium/docs/atrium/AI_CONTEXT.md) | https://github.com/philip93758/mindrink-atrium/blob/dev/docs/atrium/AI_CONTEXT.md |
 | Atrium website index | [../../mindrink-atrium/docs/mindrink-website/README.md](../../mindrink-atrium/docs/mindrink-website/README.md) | https://github.com/philip93758/mindrink-atrium/blob/dev/docs/mindrink-website/README.md |
 
-Do not mirror website docs into Atrium. Do not edit Atrium platform files from a website session unless the human opens that repo separately.
+Public website implementation docs stay here; private business/SEO records belong
+in Atrium and must not be mirrored here. Do not edit Atrium from a website session
+unless the human explicitly authorizes the cross-repo targets or opens that repo
+separately. If that authorization/access is missing, complete the approved website
+work and report the pending private documentation handoff rather than saving it
+publicly. History removal and force-pushing require separate explicit approval.
 
 ## Sitemap `lastmod` workflow
 
@@ -66,7 +78,7 @@ The check belongs in this website repository, not Atrium. Run `npm run seo:check
 
 ## Multilingual SEO and UX changes
 
-- Record meaningful SEO/content/UX changes in [SEO_ACTION_LOG.md](SEO_ACTION_LOG.md), including affected URLs/locales, changed slots, implementation revision and the separate actual deployment evidence when known. Append dated analysis outcomes; never treat a commit or sitemap date as the production release date. Keep raw/private analytics in Atrium, linked rather than copied into Git.
+- Record internal SEO/content/UX actions and detailed release evidence only in private Atrium's `docs/marketing/seo/SEO_ACTION_LOG.md`, through an authorized private-repo workflow. Keep affected URLs/locales, changed slots, implementation revision, actual deployment evidence and later analysis there. Never treat a commit or sitemap date as publication evidence. Keep raw exports/credentials/service logs in Atrium's ignored `inputs/` or `reports/`, not in either repository's tracked docs. Do not recreate the former public log, including under another filename.
 - Use corresponding existing content slots across all eight languages. Local search terms and natural wording may differ; new explanations, section roles, features and CTA journeys must have equivalent coverage.
 - Do not introduce new locale-only sections or restore intentionally removed content. A shared structural change needs explicit approval and localized coverage before release.
 - `tests/seo-ux.test.js` and its locale fixture protect the current sections, heading hierarchy, language routing, calculator labels, CTA meaning and comparison disclosures. Existing differences in localized FAQs and comparison introductions are preserved by the baseline, not endorsed as a pattern for new divergence. Update that structural baseline only for an approved change.
@@ -119,7 +131,7 @@ npm test
 - Keep captions, credits and mobile image-height limits readable; never crop artifacts to fit.
 - Approved original images and responsive derivatives live in `assets/science/history/episode-1-2/`. Its [provenance record](../assets/science/history/episode-1-2/README.md) documents rights, hashes and regeneration. Normal content sync needs no image-processing dependency.
 - Run both episode importers with `--check` after changing series navigation. Episode 1.1 now uses the approved next page title/number rather than its outdated planned teaser.
-- `--check` is read-only; repeat imports preserve publication/modification dates when content is unchanged. Source dates are not verified deployment dates. Record actual release evidence separately in the action log.
+- `--check` is read-only; repeat imports preserve publication/modification dates when content is unchanged. Source dates are not verified deployment dates. Record actual release evidence separately in private Atrium, never in this public repo.
 
 ### Episode 1.3 — Egypt
 
@@ -129,7 +141,7 @@ npm test
 - The proportional, uncropped responsive illustrations and their provenance live in `assets/science/history/episode-1-3/`. The builder is optional local authoring tooling only; it does not install dependencies, call providers or change originals. Keep width/height and `--history-image-ratio` on every image to reserve space before lazy loading and preserve cold citation jumps on phones.
 - The importer adds the third same-language hub card and CollectionPage entry, reciprocal Episode 1.2 next / Episode 1.3 previous navigation, language switches, canonical/hreflang and eight sitemap entries. Episode 1.1 is unchanged. The shared navigation helper keeps the Episode 1.2 forward link intact on later Episode 1.2 imports. Hub forewords and the prominent methodology panel stay unchanged.
 - Run all three episode source checks, `science:metadata:check`, `sitemap:update`, tests, build and browser QA after changes. Source checks must be no-ops for unchanged inputs. `tests/history-episode13.test.js` independently reconstructs Markdown from the rendered pages and hashes every selected word, paragraph, citation, illustration and bibliography URL. Update those source expectations only after comparing a newly approved selection.
-- Initial dev article dates are provisional source dates, not proof of publication. Before a future main release, align Episode 1.3 publication dates with the actual release date and keep Article/social dates consistent; preserve them on later no-op imports. Record deployment separately in the SEO action log.
+- Initial dev article dates are provisional source dates, not proof of publication. Before a future main release, align Episode 1.3 publication dates with the actual release date and keep Article/social dates consistent; preserve them on later no-op imports. Record detailed deployment evidence separately in private Atrium.
 
 ### History-series foreword on the science hubs
 

@@ -1,3 +1,7 @@
 docs/Ai/
 node_modules/
 /scripts/analytics-config.js
+
+# Internal operational records belong in private Atrium, not this public repo.
+/docs/SEO_ACTION_LOG.md
+/docs/internal/
