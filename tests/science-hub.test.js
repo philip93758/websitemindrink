@@ -63,40 +63,53 @@ test('turns the English Science route into a real hub', () => {
   assert.ok(hub.indexOf('science-methodology') < hub.indexOf('science-history-series'));
 });
 
-// SHA-256 of each approved Atrium foreword after CRLF normalization and trim.
-// Reconstruct Markdown from the rendered block to protect every approved word,
-// paragraph break and emphasis without depending on a sibling checkout in CI.
+// SHA-256 of each selected season overview after CRLF normalization and trim.
+// Reconstruct the whole source from the rendered hub without requiring Atrium in CI.
 for (const [locale, approvedHash] of Object.entries({
-  en: '4426a5403c2e842873148c12d24c23453cbf9ec21ba43a2ea92b39f8f8dd1fe1',
-  de: 'f85f18c06bcfabf9c81cbe105b2cc0a5823b80f75425532c06616e911c84320e',
-  es: 'd6f185d8384c39a0cdc39c4d3a08ba7157da4b082b76e1be4fa272c8e9f329bb',
-  fr: '19da01e1799dc55bad9ed94df66e935da2db85eb1f69f3f12045303325567719',
-  id: 'af119de47ce1ff6bc5935c0143084ab62b4c5f7ec38b8d05a65c0ea8456047f7',
-  it: '0237b2415cdd390bdb3b5e3a03058e4469b15d7bcaf4529d55d10222e04e14a8',
-  ja: 'bee4e291024109d126719336ddc4bba77bb17233aea9a245ddb37b5e8359ac72',
-  pt: '9447c3b894f372c0bc6f5387596ffc745f7d37f90a4558266a23e0306804e3d2',
+  en: 'a3749bf653aa475933ef316cde2c5eca873fe05591970b171c38c17c5b539f2a',
+  de: '02c88b3df21f3531dc204ee856f8d05076440f6294d47e351c2b53db532f756f',
+  es: '6b13ef5e053306b950e2dda4bc00d28674cbb280fac279db6f6c6969778738f7',
+  fr: 'dd011aa459dda4e01c5963987d5c4efe68654a4bdbad64011e34dcc73a12019d',
+  id: 'ca3e8d6398f6638c83f36edd99b0e93395e2bd465334e746978ebe000d2184ea',
+  it: 'b9d7caddc1704037b93d1b8f957c71a678a24eb1cde0768ddf5b93b799e69fd9',
+  ja: 'f53ee27349d04153f962c9b3e6e095dd490de0780d311340d01de77da53f05a0',
+  pt: 'd6c2fa23953ba8288f615a4120d3d6a2e993e005baf22a6423725af5d44750f6',
 })) {
-  test(`${locale} science hub preserves the approved two-paragraph foreword below methodology`, () => {
+  test(`${locale} science hub preserves the selected eleven-episode overview`, () => {
     const prefix = locale === 'en' ? '' : `${locale}/`;
     const hub = read(`${prefix}science/index.html`);
     const intro = hub.match(/<div class="science-history-intro">([\s\S]*?)<\/div>/)?.[1];
     assert.ok(intro);
-    const label = intro.match(/<p class="science-card-label">([^<]+)<\/p>/)[1];
     const title = intro.match(/<h2 id="science-history-title">([^<]+)<\/h2>/)[1];
-    const paragraphs = [...intro.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(match => match[1]);
-    assert.equal(paragraphs.length, 2);
-    assert.equal((intro.match(/<em>/g) || []).length, 1);
-    assert.ok(paragraphs[1].includes(`<em>${title}</em>`));
-    assert.doesNotMatch(intro, /<!--|\*|\]\(/);
-    const markdown = [`**${label}**`, `## ${title}`, ...paragraphs.map(p => p.replaceAll('<em>', '*').replaceAll('</em>', '*'))].join('\n\n');
+    const question = intro.match(/<p class="science-history-question">([^<]+)<\/p>/)[1];
+    const introduction = intro.match(/<p>([^<]+)<\/p>/)[1];
+    const cards = [...hub.matchAll(/<article class="science-episode-card"(?: data-status="forthcoming")?>[\s\S]*?<\/article>/g)].map(match => match[0]);
+    assert.equal(cards.length, 11);
+    const blocks = [`# ${title}`, `**${question}**`, introduction];
+    const slugs = ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html'];
+    cards.forEach((card, index) => {
+      const label = card.match(/<p class="science-card-label">([^<]+)<\/p>/)[1];
+      const heading = card.match(/<h3>([^<]+)<\/h3>/)[1];
+      const description = card.match(/<h3>[^<]+<\/h3>\s*<p>([^<]+)<\/p>/)[1];
+      assert.match(label, new RegExp(`1\\.${index + 1}(?!\\d)`));
+      blocks.push(`### ${label} — ${heading}`, description);
+      if (index < 3) {
+        assert.ok(card.includes(`class="science-card-link" href="/${prefix}science/${slugs[index]}"`));
+        assert.doesNotMatch(card, /data-status="forthcoming"|science-episode-status/);
+      } else {
+        assert.match(card, /data-status="forthcoming"/);
+        assert.doesNotMatch(card, /<a\b/);
+        blocks.push(`*${card.match(/<span class="science-episode-status">([^<]+)<\/span>/)[1]}*`);
+      }
+    });
+    const markdown = blocks.join('\n\n').replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('&amp;', '&');
     assert.equal(createHash('sha256').update(markdown).digest('hex'), approvedHash);
     assert.ok(hub.indexOf('class="science-methodology"') < hub.indexOf('class="science-history-intro"'));
     assert.ok(hub.indexOf('class="science-history-intro"') < hub.indexOf('class="science-episode-card"'));
-    assert.equal((hub.match(/class="science-episode-card"/g) || []).length, 3);
     for (const slug of ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html']) {
       assert.ok(hub.includes(`class="science-card-link" href="/${prefix}science/${slug}"`));
     }
-    assert.equal((hub.match(/\/styles\.css\?v=foreword-20261017a/g) || []).length, 2);
+    assert.equal((hub.match(/\/styles\.css\?v=history-overview-20261101a/g) || []).length, 2);
   });
 }
 

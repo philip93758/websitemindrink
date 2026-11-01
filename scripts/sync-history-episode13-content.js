@@ -265,7 +265,8 @@ export function syncEpisode13(sourceDirectory, { check = false, locale: requeste
       .replace(/<h3>[^<]+<\/h3>/, `<h3>${escapeHtml(parsed[locale].title)}</h3>`)
       .replace(/(<\/h3>\s*<p>)[\s\S]*?(<\/p>)/, `$1${escapeHtml(copy.description)}$2`);
     const currentCard = cards.find(c => c.includes(EPISODE13_SLUG));
-    let updatedHub = currentCard ? hub.replace(currentCard, card) : hub.replace(previousCard, `${previousCard}\n                ${card}`);
+    // Existing overview copy is maintained independently from article content.
+    let updatedHub = currentCard ? hub : hub.replace(previousCard, `${previousCard}\n                ${card}`);
     updatedHub = updatedHub.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_match, json) => {
       const schema = JSON.parse(json), url = `${ORIGIN}/${prefix}science/${EPISODE13_SLUG}`;
       schema.hasPart = [...schema.hasPart.filter(part => part.url !== url), { '@type': 'Article', headline: parsed[locale].title, url }];

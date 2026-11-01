@@ -2363,6 +2363,11 @@ body.history-article-page {
     margin-top: 16px;
 }
 
+.science-history-intro .science-history-question {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
 .science-episode-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -2379,6 +2384,19 @@ body.history-article-page {
     color: var(--text-dark);
     font-size: 26px;
     line-height: 1.25;
+}
+
+.science-episode-card[data-status="forthcoming"] {
+    border-color: #e5e1dc;
+    background: #faf9f7;
+}
+
+.science-episode-status {
+    justify-self: start;
+    color: #655b50;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 .science-episode-card > div > p:not(.science-card-label) {

@@ -13,6 +13,7 @@
     "science:episode12:images": "node scripts/build-history-episode12-images.js",
     "science:episode13:sync": "node scripts/sync-history-episode13-content.js",
     "science:episode13:images": "node scripts/build-history-episode13-images.js",
+    "science:overview:sync": "node scripts/sync-history-overview.js",
     "science:metadata:update": "node scripts/update-science-search-metadata.js",
     "science:metadata:check": "node scripts/update-science-search-metadata.js --check",
     "test": "node --test",

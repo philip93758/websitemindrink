@@ -291,7 +291,9 @@ export function syncEpisode12(sourceDirectory, { check = false, locales, approve
       .replace(/<h3>[^<]+<\/h3>/, `<h3>${escapeHtml(parsed.title)}</h3>`)
       .replace(/(<\/h3>\s*<p>)[\s\S]*?(<\/p>)/, `$1${escapeHtml(EPISODE12_LOCALES[locale].description)}$2`);
     const currentCard = [...hubSource.matchAll(/<article class="science-episode-card">[\s\S]*?<\/article>/g)].map(match => match[0]).find(html => html.includes(EPISODE12_SLUG));
-    if (!currentCard || currentCard !== card) {
+    // The season overview has its own approved titles and descriptions.
+    // Create the card when missing, but do not overwrite editorial overview copy.
+    if (!currentCard) {
       let hub = refreshStyles(hubSource);
       hub = currentCard ? hub.replace(currentCard, card) : hub.replace(firstCard, `${firstCard}\n                ${card}`);
       hub = hub.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_match, json) => {
