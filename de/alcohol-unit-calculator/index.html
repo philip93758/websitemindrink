@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gib Volumen und Alkoholgehalt ein und berechne Alkoholeinheiten sowie reinen Alkohol in Gramm. Mit UK- und US-Vergleich; kein Promillerechner.">
+    <meta name="description" content="Berechne reinen Alkohol in Gramm aus Getränkemenge und Volumenprozent. Vergleiche 10-g-Einheiten, UK-Einheiten und US-Standarddrinks.">
     <meta name="robots" content="index, follow">
-    <title>Alkoholeinheiten berechnen | Rechner | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a" as="script">
+    <title>Alkohol in Gramm berechnen | Einheiten-Rechner | Mindrink</title>
+    <link rel="preload" href="/styles.css?v=calculator-guides-20261107a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261107a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/de/alcohol-unit-calculator/">
-    <meta property="og:title" content="Alkoholeinheiten berechnen">
-    <meta property="og:description" content="Gib Volumen und Alkoholgehalt ein und berechne Alkoholeinheiten sowie reinen Alkohol in Gramm. Mit UK- und US-Vergleich; kein Promillerechner.">
+    <meta property="og:title" content="Alkohol in Gramm berechnen | Einheiten-Rechner">
+    <meta property="og:description" content="Berechne reinen Alkohol in Gramm aus Getränkemenge und Volumenprozent. Vergleiche 10-g-Einheiten, UK-Einheiten und US-Standarddrinks.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <link rel="canonical" href="https://mindrink.me/de/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="en" href="https://mindrink.me/alcohol-unit-calculator/">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=qa-20260913a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-guides-20261107a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -69,7 +69,7 @@
         <section class="answer-hero">
             <div class="container narrow">
                 <p class="breadcrumb"><a href="/de/discover/">Entdecken</a> / Alkoholeinheiten berechnen</p>
-                <h1>Alkoholeinheiten berechnen</h1>
+                <h1>Alkohol in Gramm und Einheiten berechnen</h1>
                 <p class="hero-intro">Gib Volumen und Alkoholgehalt ein, um Gramm Alkohol, 10-g-Einheiten, UK-Einheiten und US-Standarddrinks zu berechnen. Dies ist kein Promillerechner.</p>
             </div>
         </section>
@@ -146,6 +146,7 @@
                                 </div>
                             </div>
 
+                            <p class="calculator-guide">Was bedeuten diese Zahlen? <a href="/de/blog/what-counts-as-a-drink-alcohol-units.html" data-calculator-guide="drink_units">Portionsgrößen und Alkoholeinheiten vergleichen</a>.</p>
                         </div>
                     </div>
 
@@ -200,6 +201,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="calculator-guide">Auch die Verteilung über die Woche zählt. <a href="/de/blog/why-weekly-drinking-patterns-matter.html" data-calculator-guide="weekly_patterns">Trinkmuster im Wochenverlauf verstehen</a>.</p>
                     </div>
                 </section>
 
@@ -213,7 +215,6 @@
                         <li><strong>US-Standarddrinks:</strong> 14 g reiner Alkohol.</li>
                         <li><strong>Reiner Alkohol in Gramm:</strong> die neutrale Basis, um alle Systeme zu vergleichen.</li>
                     </ul>
-                    <p>Im Artikel <a href="/de/blog/what-counts-as-a-drink-alcohol-units.html">Was ist eigentlich ein „Drink“?</a> erfährst du mehr über Portionsgrößen und Einheiten.</p>
                 </section>
 
                 <!-- Common drink examples -->
@@ -263,7 +264,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>Ein einzelnes Getränk zeigt nur einen Teil des Bildes. Lies, <a href="/de/blog/why-weekly-drinking-patterns-matter.html">warum der Wochenüberblick wichtig ist</a>.</p>
                 </section>
 
                 <!-- CTA Section -->
@@ -293,10 +293,10 @@
         </div>
     </footer>
 
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20261107a"></script>
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20261107a"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="description" content="お酒の容量・アルコール度数・数量から純アルコール量（g）を計算。ドリンク（10 g）、英国単位、米国標準ドリンクへの換算と、ビール・日本酒・缶チューハイの例を確認できます。">
     <meta name="robots" content="index, follow">
     <title>純アルコール量計算機 | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
+    <link rel="preload" href="/styles.css?v=calculator-guides-20261107a" as="style">
     <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261012ja" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=qa-20260913a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-guides-20261107a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -143,6 +143,7 @@
                                 </div>
                             </div>
 
+                            <p class="calculator-guide">この数値はどう読み取ればよいのでしょうか。<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html" data-calculator-guide="drink_units">お酒の量とドリンク数を比較する</a>。</p>
                         </div>
                     </div>
 
@@ -197,6 +198,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="calculator-guide">週の中でいつ飲むかも大切です。<a href="/ja/blog/why-weekly-drinking-patterns-matter.html" data-calculator-guide="weekly_patterns">週単位の飲酒パターンを理解する</a>。</p>
                     </div>
                 </section>
 
@@ -209,7 +211,7 @@
                         <li><strong>米国標準ドリンク:</strong> 純アルコール14g。</li>
                         <li><strong>純アルコール量（g）:</strong> お酒に含まれるアルコールの重さ。異なる換算方式でも、この量は変わりません。</li>
                     </ul>
-                    <p>日本で従来使われてきた「1単位」は約20 gです。「1合」は容量180 mlで、純アルコール量は度数によって変わります。ドリンクや単位は比較の基準であり、推奨量や安全な飲酒量ではありません。<a href="https://www.mhlw.go.jp/stf/newpage_38541.html">厚生労働省「健康に配慮した飲酒に関するガイドライン」</a>も純アルコール量に着目しています。<br>飲む量と換算の関係については、<a href="/ja/blog/what-counts-as-a-drink-alcohol-units.html">「1杯」はどのくらいなのか</a>をご覧ください。計算式の係数については<a href="/ja/methodology.html">算出方法</a>で説明しています。</p>
+                    <p>日本で従来使われてきた「1単位」は約20 gです。「1合」は容量180 mlで、純アルコール量は度数によって変わります。ドリンクや単位は比較の基準であり、推奨量や安全な飲酒量ではありません。<a href="https://www.mhlw.go.jp/stf/newpage_38541.html">厚生労働省「健康に配慮した飲酒に関するガイドライン」</a>も純アルコール量に着目しています。計算式の係数については<a href="/ja/methodology.html">算出方法</a>で説明しています。</p>
                 </section>
 
                 <section class="answer-block">
@@ -258,7 +260,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>表は1本・1杯分を係数0.789で計算し、小数第1位に丸めた値です。公式資料の係数0.8による概算では、ビール500 ml・5%は20 g、この計算機では19.725 g（表示は19.7 g）になります。<a href="https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/">東京都「とうきょう健康ステーション」の飲酒情報</a>でも容量と度数から飲酒量を確認できます。<br>1回の飲酒量だけでは習慣の全体像は分かりません。<a href="/ja/blog/why-weekly-drinking-patterns-matter.html">週単位の飲酒パターンを見る理由</a>もご覧ください。</p>
+                    <p>表は1本・1杯分を係数0.789で計算し、小数第1位に丸めた値です。公式資料の係数0.8による概算では、ビール500 ml・5%は20 g、この計算機では19.725 g（表示は19.7 g）になります。<a href="https://kenko-station.metro.tokyo.lg.jp/category3/kenkozukuri/inshu/">東京都「とうきょう健康ステーション」の飲酒情報</a>でも容量と度数から飲酒量を確認できます。</p>
                 </section>
 
                 <section class="answer-cta">
@@ -291,6 +293,6 @@
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20261107a"></script>
 </body>
 </html>

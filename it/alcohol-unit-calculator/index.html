@@ -6,7 +6,7 @@
     <meta name="description" content="Inserisci volume e gradazione alcolica per calcolare i grammi di alcol puro e confrontare le unità Mindrink da 10 g, le UA italiane da 12 g e i drink standard USA.">
     <meta name="robots" content="index, follow">
     <title>Calcolatore unità alcoliche | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
+    <link rel="preload" href="/styles.css?v=calculator-guides-20261107a" as="style">
     <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261012it2" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="manifest" href="/site.webmanifest">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="it" href="https://mindrink.me/it/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="ja" href="https://mindrink.me/ja/alcohol-unit-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://mindrink.me/alcohol-unit-calculator/">
-    <link rel="stylesheet" href="/styles.css?v=qa-20260913a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-guides-20261107a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -143,6 +143,7 @@
                                 </div>
                             </div>
 
+                            <p class="calculator-guide">Cosa significano questi numeri? <a href="/it/blog/what-counts-as-a-drink-alcohol-units.html" data-calculator-guide="drink_units">Confronta porzioni e unità alcoliche</a>.</p>
                         </div>
                     </div>
 
@@ -197,6 +198,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="calculator-guide">Conta anche come si distribuiscono le bevande nella settimana. <a href="/it/blog/why-weekly-drinking-patterns-matter.html" data-calculator-guide="weekly_patterns">Comprendi le abitudini di consumo settimanali</a>.</p>
                     </div>
                 </section>
 
@@ -209,7 +211,7 @@
                         <li><strong>Drink USA:</strong> 14 g di alcol puro.</li>
                         <li><strong>Grammi di alcol puro:</strong> base neutra per confrontare tutti i sistemi.</li>
                     </ul>
-                    <p>Il calcolatore mostra la stessa quantità di alcol in unità Mindrink (grammi ÷ 10) e UA italiane (grammi ÷ 12), dopo aver incluso la quantità di bevande. I totali si calcolano prima di arrotondare i risultati. Le soglie dell’app restano in unità Mindrink da 10 g, come spiega la <a href="/it/methodology.html">metodologia</a>. Per capire meglio porzioni e unità, leggi <a href="/it/blog/what-counts-as-a-drink-alcohol-units.html">cosa conta come un drink</a>.</p>
+                    <p>Il calcolatore mostra la stessa quantità di alcol in unità Mindrink (grammi ÷ 10) e UA italiane (grammi ÷ 12), dopo aver incluso la quantità di bevande. I totali si calcolano prima di arrotondare i risultati. Le soglie dell’app restano in unità Mindrink da 10 g, come spiega la <a href="/it/methodology.html">metodologia</a>.</p>
                 </section>
 
                 <section class="answer-block">
@@ -258,7 +260,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>Un singolo drink è solo una parte del quadro. Scopri <a href="/it/blog/why-weekly-drinking-patterns-matter.html">perché contano le abitudini settimanali</a>.</p>
                 </section>
 
                 <section class="answer-cta">
@@ -291,6 +292,6 @@
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20261107a"></script>
 </body>
 </html>

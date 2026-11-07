@@ -10,8 +10,8 @@ import {
   trackCalculationCompleted,
   trackCalculatorStarted,
   trackCalculatorTotalAdded,
-} from '/scripts/analytics.js?v=analytics-20260912a';
-import { observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20260912a';
+} from '/scripts/analytics.js?v=analytics-20261107a';
+import { observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20261107a';
 import {
   ETHANOL_DENSITY_G_PER_ML,
   GLOBAL_STANDARD_DRINK_GRAMS,

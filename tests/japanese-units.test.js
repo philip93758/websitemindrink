@@ -101,7 +101,7 @@ test('Japanese article metadata matches its final title and description', () => 
     const article = schemas.find(s => ['Article','BlogPosting'].includes(s['@type']));
     if (article) {
       assert.equal(article.description, description);
-      assert.equal(article.dateModified, '2026-10-12');
+      assert.equal(article.dateModified, path.endsWith('blog/what-counts-as-a-drink-alcohol-units.html') ? '2026-11-07' : '2026-10-12');
     }
   }
 });

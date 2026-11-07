@@ -4,6 +4,7 @@ export const ANALYTICS_EVENTS = Object.freeze({
   calculatorStarted: 'calculator_started',
   calculationCompleted: 'calculation_completed',
   calculatorTotalAdded: 'calculator_total_added',
+  calculatorGuideViewed: 'calculator_guide_viewed',
   appCtaClicked: 'app_cta_clicked',
   appCtaViewed: 'app_cta_viewed',
   appStoreClicked: 'app_store_clicked',
@@ -13,6 +14,7 @@ export const ANALYTICS_OPT_OUT_KEY = 'mindrink_analytics_opt_out';
 
 const SUPPORTED_LOCALES = new Set(['en', 'de', 'fr', 'es', 'pt', 'id', 'it', 'ja']);
 const ALLOWED_CTA_LOCATIONS = new Set(['calculator_footer']);
+const ALLOWED_CALCULATOR_GUIDES = new Set(['drink_units', 'weekly_patterns']);
 const ALLOWED_EVENT_NAMES = new Set(Object.values(ANALYTICS_EVENTS));
 const SDK_PROPERTY_KEYS = new Set([
   'token',
@@ -32,6 +34,7 @@ const EVENT_PROPERTY_KEYS = new Set([
   'cta_location',
   'page_family',
   'store',
+  'guide',
 ]);
 
 export function resolveStoreCta(href, pathname, placement) {
@@ -112,6 +115,12 @@ export function sanitizePosthogEvent(event) {
     }
   }
 
+  if (event.event === ANALYTICS_EVENTS.calculatorGuideViewed) {
+    if (!ALLOWED_CALCULATOR_GUIDES.has(properties.guide)) return null;
+  } else {
+    delete properties.guide;
+  }
+
   if (event.event === ANALYTICS_EVENTS.appStoreClicked) {
     if (!['app_store', 'google_play'].includes(properties.store)) return null;
     const placements = properties.page_family === 'home'
@@ -174,6 +183,7 @@ export function createAnalyticsController({
   let sitePageViewQueued = false;
   let calculatorStarted = false;
   let appCtaViewed = false;
+  const calculatorGuidesViewed = new Set();
 
   function contextProperties({ includePagePath = true, calculator = false } = {}) {
     const context = getContext?.() || {};
@@ -326,6 +336,13 @@ export function createAnalyticsController({
       {},
       { calculator: true },
     ),
+    calculatorGuideViewed(guide) {
+      const path = normalizePagePath(getContext?.()?.pathname);
+      if (optedOut || calculatorGuidesViewed.has(guide) || !ALLOWED_CALCULATOR_GUIDES.has(guide)
+        || !/^\/(?:de\/|fr\/|es\/|pt\/|id\/|it\/|ja\/)?alcohol-unit-calculator\/$/.test(path)) return false;
+      calculatorGuidesViewed.add(guide);
+      return enqueue(ANALYTICS_EVENTS.calculatorGuideViewed, { guide }, { calculator: true });
+    },
     appCtaClicked(ctaLocation) {
       if (!ALLOWED_CTA_LOCATIONS.has(ctaLocation)) return false;
       return enqueue(

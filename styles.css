@@ -1539,6 +1539,20 @@ body.answer-page main {
     background-color: rgba(244, 162, 97, 0.12);
 }
 
+.calculator-shell .calculator-guide {
+    grid-column: 1 / -1;
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-light);
+    overflow-wrap: anywhere;
+}
+
+.calculator-guide a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .weekly-actions,
 .weekly-row-actions {
     display: flex;

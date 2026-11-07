@@ -250,6 +250,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         }
         assert.equal(await page.locator('.answer-cta a').getAttribute('href'), '/it/');
         for (const slug of ['what-counts-as-a-drink-alcohol-units.html','why-weekly-drinking-patterns-matter.html']) {
+          if (slug.startsWith('why-')) await page.locator('#total-add-row').click();
           await page.locator(`main a[href="/it/blog/${slug}"]`).click();
           assert.equal(new URL(page.url()).pathname, `/it/blog/${slug}`);
           assert.equal(await page.locator('html').getAttribute('lang'), 'it');
@@ -328,6 +329,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         }
         assert.equal(await page.locator('.answer-cta a').getAttribute('href'), '/ja/');
         for (const slug of ['what-counts-as-a-drink-alcohol-units.html','why-weekly-drinking-patterns-matter.html']) {
+          if (slug.startsWith('why-')) await page.locator('#total-add-row').click();
           await page.locator(`main a[href="/ja/blog/${slug}"]`).click();
           assert.equal(new URL(page.url()).pathname, `/ja/blog/${slug}`);
           assert.equal(await page.locator('html').getAttribute('lang'), 'ja');

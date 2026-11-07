@@ -2,8 +2,8 @@ import {
   browserPrivacySignalActive,
   createAnalyticsController,
   resolveInternalNavigation,
-} from '/scripts/analytics-core.js?v=analytics-20260912a';
-import { handleStoreCtaClick } from '/scripts/analytics-cta.js?v=analytics-20260912a';
+} from '/scripts/analytics-core.js?v=analytics-20261107a';
+import { handleStoreCtaClick, observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20261107a';
 
 const COPY = {
   en: {
@@ -149,14 +149,23 @@ function handleInternalNavigation(event) {
   if (transition) controller.internalNavigationClicked(transition.to_page_path);
 }
 
+function observeCalculatorGuideLinks() {
+  if (controller.getState() !== 'enabled') return;
+  document.querySelectorAll('[data-calculator-guide]').forEach(anchor => {
+    observeCtaExposure(anchor, () => controller.calculatorGuideViewed(anchor.dataset.calculatorGuide));
+  });
+}
+
 controller.sitePageViewed();
 document.addEventListener('click', handleInternalNavigation, { capture: true });
 document.addEventListener('click', event => handleStoreCtaClick(event, controller));
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', renderOptOutControl, { once: true });
+  document.addEventListener('DOMContentLoaded', observeCalculatorGuideLinks, { once: true });
 } else {
   renderOptOutControl();
+  observeCalculatorGuideLinks();
 }
 
 export const trackCalculatorStarted = () => controller.calculatorStarted();

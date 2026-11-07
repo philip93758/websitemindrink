@@ -7,8 +7,8 @@
     <meta name="keywords" content="alcohol unit calculator, alcohol units, standard drinks, alcohol calculator, UK units, US standard drinks, drinking calculator">
     <meta name="robots" content="index, follow">
     <title>Alcohol Unit Calculator | Standard Drinks &amp; Grams | Mindrink</title>
-    <link rel="preload" href="/styles.css?v=qa-20260913a" as="style">
-    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a" as="script">
+    <link rel="preload" href="/styles.css?v=calculator-guides-20261107a" as="style">
+    <link rel="preload" href="/scripts/alcohol-unit-calculator.js?v=calculator-20261107a" as="script">
     <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicons/favicon-256x256.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="1024x1024" href="/assets/favicons/apple-touch-icon.png">
@@ -37,7 +37,7 @@
     <meta name="twitter:description" content="Enter drink volume and ABV to calculate pure alcohol grams and compare 10 g units, UK alcohol units, and US standard drinks.">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta name="twitter:image:alt" content="Mindrink Alcohol Unit Calculator">
-    <link rel="stylesheet" href="/styles.css?v=qa-20260913a">
+    <link rel="stylesheet" href="/styles.css?v=calculator-guides-20261107a">
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
@@ -157,6 +157,7 @@
                                 </div>
                             </div>
 
+                            <p class="calculator-guide">What do these numbers mean? <a href="/blog/what-counts-as-a-drink-alcohol-units.html" data-calculator-guide="drink_units">Compare serving sizes and alcohol units</a>.</p>
                         </div>
                     </div>
 
@@ -211,6 +212,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="calculator-guide">How drinks are spread across the week matters too. <a href="/blog/why-weekly-drinking-patterns-matter.html" data-calculator-guide="weekly_patterns">Understand weekly drinking patterns</a>.</p>
                     </div>
                 </section>
 
@@ -225,7 +227,6 @@
                         <li><strong>US standard drinks:</strong> 14g of pure alcohol.</li>
                         <li><strong>Pure alcohol grams:</strong> the neutral baseline for comparing all systems.</li>
                     </ul>
-                    <p>For more about serving sizes and units, read <a href="/blog/what-counts-as-a-drink-alcohol-units.html">what counts as a drink</a>.</p>
                 </section>
 
                 <!-- Common drink examples -->
@@ -302,7 +303,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>A single drink is only part of the picture. Read <a href="/blog/why-weekly-drinking-patterns-matter.html">why weekly drinking patterns matter</a>.</p>
                 </section>
 
                 <!-- FAQ Section -->
@@ -459,10 +459,10 @@
     </footer>
 
     <!-- Calculator Script (ES Module) -->
-    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20260913a"></script>
+    <script type="module" src="/scripts/alcohol-unit-calculator.js?v=calculator-20261107a"></script>
 
     <script defer>document.getElementById('current-year').textContent=new Date().getFullYear();</script><script>(function(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(t&&n){function o(){const e=n.classList.toggle('active');t.classList.toggle('active');t.setAttribute('aria-expanded',e?'true':'false')}t.addEventListener('click',o);t.addEventListener('touchstart',function(e){e.preventDefault();o()},{passive:false});n.querySelectorAll('.nav-link').forEach(e=>e.addEventListener('click',function(){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}));document.addEventListener('click',function(e){if(n.classList.contains('active')&&!e.target.closest('.header-container')){n.classList.remove('active');t.classList.remove('active');t.setAttribute('aria-expanded','false')}})}})();</script>
 
-    <script type="module" src="/scripts/analytics.js?v=analytics-20260912a"></script>
+    <script type="module" src="/scripts/analytics.js?v=analytics-20261107a"></script>
 </body>
 </html>
