@@ -23,7 +23,7 @@ export function observeCtaExposure(target, onViewed, {
       if (finished || documentObject.visibilityState !== 'visible') return;
       if (entries.some(entry => entry.target === target && entry.isIntersecting && entry.intersectionRatio >= 0.5)) {
         stop();
-        try { onViewed(); } catch { /* Analytics must never affect the calculator. */ }
+        try { onViewed(); } catch { /* Analytics must never affect the page. */ }
       }
     }, { threshold: [0.5] });
     documentObject.addEventListener('visibilitychange', onVisibilityChange);
@@ -34,15 +34,18 @@ export function observeCtaExposure(target, onViewed, {
   return stop;
 }
 
+export function storeCtaPlacement(anchor, pathname = window.location.pathname) {
+  if (!anchor || anchor.hasAttribute('download') || !anchor.classList.contains('btn')) return;
+  if (anchor.closest('.hero')) return 'home_hero';
+  if (anchor.closest('.cta')) {
+    return /\/blog\/best-alcohol-tracking-apps\.html$/.test(pathname)
+      ? 'comparison_footer' : 'home_footer';
+  }
+}
+
 export function handleStoreCtaClick(event, controller, pathname = window.location.pathname) {
   if (event.defaultPrevented || (event.button !== undefined && event.button !== 0)) return;
   const anchor = event.target.closest?.('a[href]');
-  if (!anchor || anchor.hasAttribute('download') || !anchor.classList.contains('btn')) return;
-  let placement;
-  if (anchor.closest('.hero')) placement = 'home_hero';
-  else if (anchor.closest('.cta')) {
-    placement = /\/blog\/best-alcohol-tracking-apps\.html$/.test(pathname)
-      ? 'comparison_footer' : 'home_footer';
-  }
+  const placement = storeCtaPlacement(anchor, pathname);
   if (placement) controller.appStoreClicked(anchor.href, placement);
 }

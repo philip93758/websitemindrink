@@ -32,6 +32,8 @@ The generated `scripts/analytics-config.js` file remains ignored. Do not commit 
 | `app_cta_clicked` | Click on the calculator journey’s app CTA | calculator properties plus `cta_location: calculator_footer` |
 | `app_cta_viewed` | Once per page when at least 50% of the existing calculator CTA button intersects the viewport while the document is visible | calculator properties plus `cta_location: calculator_footer` |
 | `app_store_clicked` | Click on an existing Mindrink store button on a homepage or the app-comparison article | `locale`, `page_path`, `page_family: home` or `app_comparison`, `cta_location: home_hero`, `home_footer` or `comparison_footer`, `store: app_store` or `google_play` |
+| `app_store_viewed` | Once per placement and store per page when at least half of that store button is visible in a foreground document | Same fixed properties as `app_store_clicked` |
+| `app_comparison_section_viewed` | Once per page when at least half of the existing Mindrink section heading is visible in a foreground document | `locale`, `page_path`, `page_family: app_comparison`, `section: mindrink` |
 
 Paths never contain query parameters or fragments. Link text, referrers, full URLs, calculator inputs, drink values, results, health information, and free text are never sent.
 
@@ -39,7 +41,7 @@ Store detection accepts only HTTPS links to Mindrink's exact Apple app ID or Goo
 
 `app_cta_viewed` means viewport exposure, not attention or proof the person read the CTA. An unavailable IntersectionObserver produces no exposure event. Background tabs do not count; returning to the tab requests a fresh intersection. Exposure is deduplicated in page memory and subject to the same GPC/DNT/opt-out gates. A store click is not an install. Do not reconstruct ordered, cross-page funnels or unique people from these aggregate events.
 
-The two events are introduced in the 2026-09-12 dev implementation. Before evaluating production results, record the actual deployment date, exclude known QA runs, and update any downstream report that uses an explicit six-event allowlist. Existing historical exports are not backfilled by this website change.
+Before evaluating production results for a newly added event, record the actual deployment date, exclude known QA runs, and update any downstream report that uses an explicit event allowlist. Existing historical exports are not backfilled by website instrumentation changes.
 
 `internal_navigation_clicked` describes an aggregate edge such as `/discover/` → `/about.html`. The destination page receives a new memory-only identifier, so these events do not create a stitched multi-page visitor journey. PostHog can still show the most common transitions by grouping the explicit from/to paths.
 
@@ -50,6 +52,16 @@ The 2026-10-12 dev change adds ordinary contextual links from every calculator l
 The drink-units link now sits with the selected-drink results. The weekly-patterns link appears with the total after a drink is added. Both destinations and placements have corresponding coverage in all eight languages. Each link records `calculator_guide_viewed` once per page load when at least 50% of the link intersects the viewport in a visible document. The fixed `guide` enum contains no link text, inputs or results. The existing click event and from/to paths still measure outgoing navigation. Exposure does not establish attention, and the weekly link's denominator starts only when that result is shown.
 
 After deployment, compare exposure counts and outgoing-link clicks by language over complete periods. These are event ratios, not unique-visitor conversion: repeated clicks can count more than once, and a click does not prove the destination loaded or was read. Article page loads, onward internal-link clicks, and existing store-click events can be reported separately. These aggregates cannot establish that one person progressed from calculator through articles to a store, or attribute that progression to Google Search. Analytics opt-out, browser privacy signals and blocking still reduce coverage. Record the actual release date before evaluating this change; the new exposure event has no historical backfill.
+
+### Comparison and homepage exposure
+
+The comparison article's ordinary explanation link leads to the same-language homepage's `#how-it-works` section. The existing `internal_navigation_clicked` event records the comparison-to-home transition, with the fragment stripped. It does not distinguish the explanation link from another link on that page to the same homepage.
+
+`app_comparison_section_viewed` records reaching the Mindrink **heading**, not reading the whole section. A heading is used because the full section can exceed a phone viewport. `app_store_viewed` records each store button independently: Apple and Google, and homepage hero/footer, have separate per-page counts. The existing comparison store buttons remain at the bottom. Returning to a previously visible surface does not produce another exposure event on the same page.
+
+Both exposure events require at least 50% intersection in a visible document. They share the existing observer's foreground check, fresh observation after returning to a tab, and graceful fallback when IntersectionObserver is unavailable. Opt-out, GPC and DNT still gate configuration, SDK loading and capture. No new persistence, identity, referrer, free text or personal values are introduced.
+
+These events support aggregate comparisons of page loads, section-heading exposure, store-button exposure and store clicks. They do not prove attention, link-originated installs, a unique-person conversion rate or a stitched comparison-to-home journey. Multiple clicks can exceed exposure counts. Exposure before deployment is not backfilled; analysis must use the verified release date and compatible complete periods.
 
 ## Privacy behavior
 

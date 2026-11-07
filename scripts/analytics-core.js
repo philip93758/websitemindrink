@@ -8,6 +8,8 @@ export const ANALYTICS_EVENTS = Object.freeze({
   appCtaClicked: 'app_cta_clicked',
   appCtaViewed: 'app_cta_viewed',
   appStoreClicked: 'app_store_clicked',
+  appStoreViewed: 'app_store_viewed',
+  appComparisonSectionViewed: 'app_comparison_section_viewed',
 });
 
 export const ANALYTICS_OPT_OUT_KEY = 'mindrink_analytics_opt_out';
@@ -35,17 +37,27 @@ const EVENT_PROPERTY_KEYS = new Set([
   'page_family',
   'store',
   'guide',
+  'section',
 ]);
 
-export function resolveStoreCta(href, pathname, placement) {
+function validComparisonSection(section, pathname) {
+  return section === 'mindrink'
+    && /^\/(?:de\/|fr\/|es\/|pt\/|id\/|it\/|ja\/)?blog\/best-alcohol-tracking-apps\.html$/.test(normalizePagePath(pathname));
+}
+
+function storePageFamily(pathname, placement) {
   const path = normalizePagePath(pathname);
   const localePrefix = '(?:(?:en|de|fr|es|pt|id|it|ja)/)?';
   const home = new RegExp(`^/${localePrefix}(?:index\\.html)?$`).test(path);
   const comparison = new RegExp(`^/${localePrefix}blog/best-alcohol-tracking-apps\\.html$`).test(path);
-  const validPlacement = home
-    ? ['home_hero', 'home_footer'].includes(placement)
-    : comparison && placement === 'comparison_footer';
-  if (!validPlacement) return null;
+  if (home && ['home_hero', 'home_footer'].includes(placement)) return 'home';
+  if (comparison && placement === 'comparison_footer') return 'app_comparison';
+  return null;
+}
+
+export function resolveStoreCta(href, pathname, placement) {
+  const pageFamily = storePageFamily(pathname, placement);
+  if (!pageFamily) return null;
 
   try {
     const url = new URL(href);
@@ -59,7 +71,7 @@ export function resolveStoreCta(href, pathname, placement) {
       && url.searchParams.get('id') === 'com.mindrink.app') {
       store = 'google_play';
     } else return null;
-    return { store, cta_location: placement, page_family: home ? 'home' : 'app_comparison' };
+    return { store, cta_location: placement, page_family: pageFamily };
   } catch {
     return null;
   }
@@ -121,7 +133,20 @@ export function sanitizePosthogEvent(event) {
     delete properties.guide;
   }
 
-  if (event.event === ANALYTICS_EVENTS.appStoreClicked) {
+  if (event.event === ANALYTICS_EVENTS.appComparisonSectionViewed) {
+    if (!validComparisonSection(properties.section, properties.page_path)) return null;
+    properties.page_path = normalizePagePath(properties.page_path);
+    properties.page_family = 'app_comparison';
+    delete properties.calculator_type;
+    delete properties.cta_location;
+    delete properties.from_page_path;
+    delete properties.to_page_path;
+    delete properties.store;
+  } else if (event.event === ANALYTICS_EVENTS.appStoreClicked || event.event === ANALYTICS_EVENTS.appStoreViewed) {
+    if (event.event === ANALYTICS_EVENTS.appStoreViewed) {
+      if (storePageFamily(properties.page_path, properties.cta_location) !== properties.page_family) return null;
+      properties.page_path = normalizePagePath(properties.page_path);
+    }
     if (!['app_store', 'google_play'].includes(properties.store)) return null;
     const placements = properties.page_family === 'home'
       ? ['home_hero', 'home_footer']
@@ -134,6 +159,7 @@ export function sanitizePosthogEvent(event) {
     delete properties.store;
     delete properties.page_family;
   }
+  if (event.event !== ANALYTICS_EVENTS.appComparisonSectionViewed) delete properties.section;
 
   return { ...event, properties };
 }
@@ -184,6 +210,8 @@ export function createAnalyticsController({
   let calculatorStarted = false;
   let appCtaViewed = false;
   const calculatorGuidesViewed = new Set();
+  const comparisonSectionsViewed = new Set();
+  const storeButtonsViewed = new Set();
 
   function contextProperties({ includePagePath = true, calculator = false } = {}) {
     const context = getContext?.() || {};
@@ -363,6 +391,20 @@ export function createAnalyticsController({
     appStoreClicked(href, placement) {
       const properties = resolveStoreCta(href, getContext?.()?.pathname, placement);
       return properties ? enqueue(ANALYTICS_EVENTS.appStoreClicked, properties) : false;
+    },
+    appStoreViewed(href, placement) {
+      const properties = resolveStoreCta(href, getContext?.()?.pathname, placement);
+      if (optedOut || !properties) return false;
+      const key = `${placement}:${properties.store}`;
+      if (storeButtonsViewed.has(key)) return false;
+      storeButtonsViewed.add(key);
+      return enqueue(ANALYTICS_EVENTS.appStoreViewed, properties);
+    },
+    appComparisonSectionViewed(section) {
+      if (optedOut || comparisonSectionsViewed.has(section)
+        || !validComparisonSection(section, getContext?.()?.pathname)) return false;
+      comparisonSectionsViewed.add(section);
+      return enqueue(ANALYTICS_EVENTS.appComparisonSectionViewed, { section, page_family: 'app_comparison' });
     },
   });
 }

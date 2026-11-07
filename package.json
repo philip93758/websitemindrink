@@ -17,7 +17,7 @@
     "science:metadata:update": "node scripts/update-science-search-metadata.js",
     "science:metadata:check": "node scripts/update-science-search-metadata.js --check",
     "test": "node --test",
-    "test:browser": "node tools/release-browser-qa.cjs && node tools/calculator-guides-browser-qa.cjs",
+    "test:browser": "node tools/release-browser-qa.cjs && node tools/calculator-guides-browser-qa.cjs && node tools/app-discovery-browser-qa.cjs",
     "sitemap:update": "node scripts/update-sitemap-lastmod.js",
     "sitemap:check": "node scripts/update-sitemap-lastmod.js --check"
   },

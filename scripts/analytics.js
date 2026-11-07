@@ -2,8 +2,9 @@ import {
   browserPrivacySignalActive,
   createAnalyticsController,
   resolveInternalNavigation,
-} from '/scripts/analytics-core.js?v=analytics-20261107a';
-import { handleStoreCtaClick, observeCtaExposure } from '/scripts/analytics-cta.js?v=analytics-20261107a';
+  resolveStoreCta,
+} from '/scripts/analytics-core.js?v=analytics-20261107b';
+import { handleStoreCtaClick, observeCtaExposure, storeCtaPlacement } from '/scripts/analytics-cta.js?v=analytics-20261107b';
 
 const COPY = {
   en: {
@@ -156,6 +157,18 @@ function observeCalculatorGuideLinks() {
   });
 }
 
+function observeAppDiscovery() {
+  if (controller.getState() !== 'enabled') return;
+  document.querySelectorAll('[data-app-comparison-section]').forEach(heading => {
+    observeCtaExposure(heading, () => controller.appComparisonSectionViewed(heading.dataset.appComparisonSection));
+  });
+  document.querySelectorAll('a.btn[href]').forEach(anchor => {
+    const placement = storeCtaPlacement(anchor);
+    if (!resolveStoreCta(anchor.href, window.location.pathname, placement)) return;
+    observeCtaExposure(anchor, () => controller.appStoreViewed(anchor.href, placement));
+  });
+}
+
 controller.sitePageViewed();
 document.addEventListener('click', handleInternalNavigation, { capture: true });
 document.addEventListener('click', event => handleStoreCtaClick(event, controller));
@@ -163,9 +176,11 @@ document.addEventListener('click', event => handleStoreCtaClick(event, controlle
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', renderOptOutControl, { once: true });
   document.addEventListener('DOMContentLoaded', observeCalculatorGuideLinks, { once: true });
+  document.addEventListener('DOMContentLoaded', observeAppDiscovery, { once: true });
 } else {
   renderOptOutControl();
   observeCalculatorGuideLinks();
+  observeAppDiscovery();
 }
 
 export const trackCalculatorStarted = () => controller.calculatorStarted();
