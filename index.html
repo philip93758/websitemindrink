@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mindrink helps you track drinking habits mindfully, understand patterns, and make balanced choices while still enjoying social moments.">
+    <meta name="description" content="Mindrink is a free alcohol tracker. Log drinks, record alcohol-free days and understand your drinking patterns.">
     <meta name="keywords" content="mindful drinking, alcohol tracker, drinking app, moderation, balance, drinking habits, alcohol awareness, mindful drinking app">
     <meta name="robots" content="index, follow">
-    <title>Mindrink - Mindful Drinking App | Track & Balance Your Drinking Habits</title>
+    <title>Mindrink | Free Alcohol Tracker</title>
     <!-- Resource Hints for Performance -->
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/styles.css" as="style">
@@ -19,8 +19,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mindrink.me/">
-    <meta property="og:title" content="Mindrink - Mindful Drinking App">
-    <meta property="og:description" content="Mindrink helps you track drinking habits mindfully, understand patterns, and make balanced choices while still enjoying social moments.">
+    <meta property="og:title" content="Mindrink | Free Alcohol Tracker">
+    <meta property="og:description" content="Mindrink is a free alcohol tracker. Log drinks, record alcohol-free days and understand your drinking patterns.">
     <meta property="og:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta property="og:image:secure_url" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -51,11 +51,13 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://mindrink.me/">
-    <meta name="twitter:title" content="Mindrink - Mindful Drinking App">
-    <meta name="twitter:description" content="Mindrink helps you track drinking habits mindfully, understand patterns, and make balanced choices while still enjoying social moments.">
+    <meta name="twitter:title" content="Mindrink | Free Alcohol Tracker">
+    <meta name="twitter:description" content="Mindrink is a free alcohol tracker. Log drinks, record alcohol-free days and understand your drinking patterns.">
     <meta name="twitter:image" content="https://mindrink.me/assets/app-mindrink-way-social.jpg">
     <meta name="twitter:image:alt" content="People using a mindful drinking app to track alcohol habits in a social moment">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/homepage/homepage.css?v=20261109-final-spacing-01">
+    <noscript><style>@media(max-width:767px){.home-page .header-container{flex-wrap:wrap}.home-page .header .nav{position:static;display:flex;visibility:visible;opacity:1;transform:none;max-height:none;width:100%;box-shadow:none}.home-page .menu-toggle{display:none}}</style></noscript>
     <!-- Force HTTPS redirect -->
     <script defer>
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
@@ -70,7 +72,7 @@
       "name": "Mindrink",
       "url": "https://mindrink.me",
       "logo": "https://mindrink.me/assets/mindrink_icon_256.png",
-      "description": "Mindrink helps you track drinking habits mindfully, understand patterns, and make balanced choices while still enjoying social moments.",
+      "description": "Mindrink is a free alcohol tracker. Log drinks, record alcohol-free days and understand your drinking patterns.",
       "sameAs": [
         "https://apps.apple.com/us/app/mindrink/id6756892721",
         "https://play.google.com/store/apps/details?id=com.mindrink.app"
@@ -89,8 +91,8 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Mindrink - Mindful Drinking App",
-      "description": "Mindrink helps you maintain balance while enjoying social drinking. Track, reflect, and make mindful choices with our intuitive app.",
+      "name": "Mindrink | Free Alcohol Tracker",
+      "description": "Mindrink is a free alcohol tracker. Log drinks, record alcohol-free days and understand your drinking patterns.",
       "url": "https://mindrink.me/",
       "inLanguage": "en-US",
       "isPartOf": {
@@ -101,8 +103,8 @@
     }
     </script>
 </head>
-<body>
-    <!-- Sticky Header -->
+<body class="home-page">
+    <a class="home-skip-link" href="#main">Skip to content</a>
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
@@ -111,7 +113,7 @@
                     <span class="logo-text">Mindrink</span>
                 </a>
             </div>
-            <nav class="nav">
+            <nav class="nav" id="main-nav" aria-label="Main navigation">
                     <a href="#why-mindrink" class="nav-link">Why Mindrink</a>
                     <a href="#how-it-works" class="nav-link">How it works</a>
                     <a href="/discover/" class="nav-link">Discover</a>
@@ -131,7 +133,7 @@
                         </div>
                     </details>
                 </nav>
-            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -139,218 +141,120 @@
         </div>
     </header>
 
-    <main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-headline">Stay in control, without giving up joy.</h1>
-                <p class="hero-subtext">
-                    Mindrink helps you maintain balance while enjoying social drinking. 
-                    Track, reflect, and make mindful choices with our intuitive app.
-                </p>
-                <div class="hero-buttons">
-                    <a href="https://apps.apple.com/us/app/mindrink/id6756892721" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get it on the App Store</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.mindrink.app" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get it on Google Play</a>
+    <main id="main">
+        <section class="hero home-hero" id="home" aria-labelledby="hero-title">
+            <div class="home-container home-hero-inner">
+                <div class="home-hero-text">
+                    <h1 id="hero-title">Mindrink: a free alcohol tracker</h1>
+                    <p class="home-hero-copy">Log your drinks. See your patterns. Make your own choices.</p>
+                    <div class="home-store-links" aria-label="Download Mindrink">
+                        <a class="btn home-store-link home-apple" href="https://apps.apple.com/us/app/mindrink/id6756892721" target="_blank" rel="noopener noreferrer" aria-label="Download Mindrink on the App Store"><img src="/assets/homepage/app-store.svg" width="150" height="50" alt="Download on the App Store"></a>
+                        <a class="btn home-store-link home-google" href="https://play.google.com/store/apps/details?id=com.mindrink.app" target="_blank" rel="noopener noreferrer" aria-label="Get Mindrink on Google Play"><img src="/assets/homepage/google-play.png" width="194" height="75" alt="Get it on Google Play"></a>
+                    </div>
+                    <ul class="home-hero-facts" aria-label="Price and setup"><li>No account</li><li>No subscription</li><li>No ads</li></ul>
                 </div>
+                <figure class="home-hero-artwork" aria-label="Mindrink's seated Roman woman and man">
+                    <picture>
+                        <source type="image/webp" srcset="/assets/homepage/romans-seated-ac-400.webp 400w, /assets/homepage/romans-seated-ac-800.webp 800w, /assets/homepage/romans-seated-ac-1200.webp 1200w" sizes="(max-width: 900px) 220px, (max-width: 1150px) 330px, 400px">
+                        <img src="/assets/homepage/romans-seated-ac.png" width="1254" height="1195" alt="" fetchpriority="high">
+                    </picture>
+                </figure>
             </div>
-            <div class="hero-illustration">
-                <picture class="hero-picture">
-                    <source type="image/avif" srcset="/assets/app-mindrink-way-300.avif 300w, /assets/app-mindrink-way-400.avif 400w, /assets/app-mindrink-way-600.avif 600w, /assets/app-mindrink-way-800.avif 800w" sizes="(max-width: 340px) calc(100vw - 40px), (max-width: 767px) 300px, 400px">
-                    <source type="image/webp" srcset="/assets/app-mindrink-way-300.webp 300w, /assets/app-mindrink-way-400.webp 400w, /assets/app-mindrink-way-600.webp 600w, /assets/app-mindrink-way-800.webp 800w" sizes="(max-width: 340px) calc(100vw - 40px), (max-width: 767px) 300px, 400px">
-                    <img src="/assets/app-mindrink-way.png" alt="People using a mindful drinking app to track alcohol habits in a social moment" class="hero-img" width="700" height="560" loading="eager" fetchpriority="high">
-                </picture>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy" id="why-mindrink">
-        <div class="container">
-            <h2 class="section-title">Our Philosophy</h2>
-            <div class="philosophy-cards">
-                <div class="philosophy-card">
-                    <img src="/assets/slide1_roman_banquet.png" alt="Roman character enjoying a drink" class="philosophy-img" width="400" height="300" loading="lazy">
-                    <h3 class="philosophy-title">From antiquity to today, we've enjoyed the pleasure of alcohol.</h3>
-                    <p class="philosophy-text">
-                        For its taste, the social warmth, and the spark it brings to life. Even in ancient Rome, wine was a symbol of joy and connection.
-                    </p>
+        <section class="home-product" id="how-it-works" aria-labelledby="app-title">
+            <div class="home-container home-analysis-row">
+                <div class="home-analysis-copy">
+                    <h2 id="app-title">See your drinking over time.</h2>
+                    <p class="home-section-intro">Compare your recorded alcohol totals and alcohol-free days.</p>
                 </div>
-                <div class="philosophy-card">
-                    <img src="/assets/slide2_roman_reflecting.png" alt="Roman character reflecting on consequences" class="philosophy-img" width="400" height="300" loading="lazy">
-                    <h3 class="philosophy-title">But every pleasure has its cost.</h3>
-                    <p class="philosophy-text">
-                        Science — and how we feel the next day — remind us that moderation matters. Our body, sleep, and energy all respond to how much we drink.
-                    </p>
-                </div>
-                <div class="philosophy-card">
-                    <img src="/assets/slide3_roman_phone.png" alt="Roman character finding balance" class="philosophy-img" width="400" height="300" loading="lazy">
-                    <h3 class="philosophy-title">Mindrink helps you enjoy, not abstain.</h3>
-                    <p class="philosophy-text">
-                        Being fully dry isn’t always the answer — but awareness, tracking, and small habits can make a big difference. A clear view of your drinking helps you stay in control.
-                    </p>
+                <figure class="home-screen-demonstration">
+                    <div class="home-phone" role="img" aria-label="Mindrink analytics screen: average 1.7 alcohol units per day versus a weekly target of 0.7, with Back on track on the Average/Day card, eight weekly periods with trends off, including a 29.6-unit week and a green marker for a fully alcohol-free week; 66% alcohol-free days" aria-describedby="analytics-caption">
+                        <img src="/assets/homepage/app-main-analytics-varied.png" width="1080" height="2304" alt="">
+                    </div>
+                    <figcaption id="analytics-caption">Mindrink app &middot; Example data<span>Weekly target shown; synthetic records.</span></figcaption>
+                </figure>
+            </div>
+            <div class="home-logging-band" id="drink-logging">
+                <div class="home-container home-logging-row">
+                    <div class="home-logging-copy">
+                        <h3 id="logging-title">Log what you drink.</h3>
+                        <p class="home-section-intro">Choose your drink, check the size, strength and quantity, and save it to your diary.</p>
+                    </div>
+                    <figure class="home-screen-demonstration home-logging-demonstration">
+                        <div class="home-phone"><img src="/assets/homepage/app-drink-entry.png" width="1080" height="2304" alt="Mindrink drink-entry screen with Beer selected, 330 ml, 5% ABV, quantity 1, the calculated units preview and Save drink visible" aria-describedby="logging-caption" loading="lazy"></div>
+                        <figcaption id="logging-caption">Mindrink app &middot; Example drink</figcaption>
+                    </figure>
                 </div>
             </div>
-            <p style="font-size: 18px; color: var(--text-light); line-height: 1.7; text-align: center; max-width: 800px; margin: 48px auto 0;">
-                Many apps focus on quitting altogether.
-Mindrink takes a different approach: it helps you build awareness, track your habits, and find a balanced way to enjoy drinking.
-            </p>
-        </div>
-    </section>
+        </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Track Your Drinks</h3>
-                    <p class="feature-text">
-                        Log your drinks with ease. Simple, quick, and designed to fit into 
-                        your social moments without disruption. Learn more about <a href="/blog/am-i-drinking-too-much-without-judgment.html" class="footer-link">reflecting on your habits</a>.
-                    </p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">See Your Patterns</h3>
-                    <p class="feature-text">
-                        Visualize your drinking habits over time. Understand your patterns 
-                        with clear, insightful charts and summaries. Our calculations are based on <a href="/methodology.html" class="footer-link">transparent methodology</a>.
-                    </p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💭</div>
-                    <h3 class="feature-title">Reflect Mindfully</h3>
-                    <p class="feature-text">
-                        Take a moment to reflect on how drinking affects you. Build awareness 
-                        through gentle prompts and journaling.
-                    </p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Set Your Goals</h3>
-                    <p class="feature-text">
-                        Define what balance means to you. Set personal goals and track your 
-                        progress toward a healthier relationship with drinking.
-                    </p>
-                </div>
+        <section class="home-section home-questions-section" id="questions" aria-labelledby="questions-title">
+            <div class="home-container">
+                <div class="home-section-heading"><h2 id="questions-title">Before you download</h2></div>
+                <dl class="home-questions">
+                    <div><dt>Is Mindrink free?</dt><dd>Yes. There is no subscription and no advertising.</dd></div>
+                    <div><dt>Do I need an account?</dt><dd>No. You can start tracking without registering.</dd></div>
+                    <div><dt>Do I have to be trying to quit?</dt><dd>No. You can simply keep a record and understand your patterns.</dd></div>
+                    <div><dt>Where are my drinking records stored?</dt><dd>Your drinking records are stored on your device. Usage analytics are enabled by default and can include masked recordings of taps and navigation. You can turn analytics off in Settings. Technical error reports are collected separately and are not disabled by that switch.<a class="home-question-privacy-link" href="/about.html#privacy">Privacy details</a></dd></div>
+                </dl>
+                <div class="home-text-links"><a href="/faq.html">More questions</a></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Knowledge Section -->
-    <section class="knowledge-section" aria-labelledby="knowledge-title">
-        <div class="container">
-            <div class="knowledge-header">
-                <h2 class="knowledge-title" id="knowledge-title">Understand your drinking</h2>
-                <p class="knowledge-text">
-                    Clear answers for the patterns Mindrink helps you notice: units, dry days, moderation, and heavier sessions.
-                </p>
-                <p class="knowledge-text" style="margin-top: 12px;"><a href="/discover/" class="footer-link">See all questions in Discover</a></p>
-            </div>
-            <div class="knowledge-links">
-                <a href="/dry-day.html" class="knowledge-link">
-                    <span class="knowledge-link-title">What is a dry day?</span>
-                    <span class="knowledge-link-text">A simple way to make alcohol-free days visible.</span>
-                </a>
-                <a href="/alcohol-units.html" class="knowledge-link">
-                    <span class="knowledge-link-title">Alcohol units explained</span>
-                    <span class="knowledge-link-text">Compare beer, wine, spirits, and cocktails consistently.</span>
-                </a>
-                <a href="/reduce-drinking.html" class="knowledge-link">
-                    <span class="knowledge-link-title">Reduce drinking without quitting</span>
-                    <span class="knowledge-link-text">Small changes that shift the pattern without pressure.</span>
-                </a>
-                <a href="/alcohol-unit-calculator/" class="knowledge-link">
-                    <span class="knowledge-link-title">Alcohol unit calculator</span>
-                    <span class="knowledge-link-text">Calculate UK units, US standard drinks, and 10g standards for any drink.</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to find your balance?</h2>
-                <p class="cta-text">
-                    Start building a more mindful relationship with drinking.
-                </p>
-                <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-                    <a href="https://apps.apple.com/us/app/mindrink/id6756892721" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Get it on the App Store</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.mindrink.app" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Get it on Google Play</a>
+        <section class="home-section home-story-section" id="why-mindrink" aria-labelledby="story-title">
+            <div class="home-container home-story-layout">
+                <div><h2 id="story-title">Why Mindrink exists</h2></div>
+                <div class="home-story-copy">
+                    <p>Mindrink helps you understand your drinking without making quitting the goal.</p>
+                    <p>Accessing and exporting your own drinking records shouldn't require a subscription.</p>
+                    <a href="/about.html">About Mindrink <span aria-hidden="true">&rarr;</span></a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="home-section home-resources-section" id="resources" aria-labelledby="resources-title">
+            <div class="home-container">
+                <div class="home-section-heading"><h2 id="resources-title">Understand your drinking.</h2></div>
+                <ul class="home-resource-links">
+                    <li><a href="/alcohol-unit-calculator/"><span><strong>Alcohol unit calculator</strong><small>Calculate alcohol units, standard drinks and grams.</small></span><span class="home-link-arrow" aria-hidden="true">&rarr;</span></a></li>
+                    <li><a href="/alcohol-units.html"><span><strong>Alcohol units explained</strong><small>Understand how drink size and strength affect alcohol content.</small></span><span class="home-link-arrow" aria-hidden="true">&rarr;</span></a></li>
+                    <li><a href="/dry-day.html"><span><strong>What is an alcohol-free day?</strong><small>Understand what counts as a dry day.</small></span><span class="home-link-arrow" aria-hidden="true">&rarr;</span></a></li>
+                    <li><a href="/reduce-drinking.html"><span><strong>Reducing your drinking</strong><small>Explore options if you want to drink less.</small></span><span class="home-link-arrow" aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cta home-section home-download" id="download" aria-labelledby="download-title">
+            <div class="home-container">
+                <h2 id="download-title">Download Mindrink.</h2>
+                <p class="home-download-copy">Log your drinks and understand your patterns over time.</p>
+                <div class="home-store-links" aria-label="Download Mindrink">
+                    <a class="btn home-store-link home-apple" href="https://apps.apple.com/us/app/mindrink/id6756892721" target="_blank" rel="noopener noreferrer" aria-label="Download Mindrink on the App Store"><img src="/assets/homepage/app-store.svg" width="150" height="50" alt="Download on the App Store" loading="lazy"></a>
+                    <a class="btn home-store-link home-google" href="https://play.google.com/store/apps/details?id=com.mindrink.app" target="_blank" rel="noopener noreferrer" aria-label="Get Mindrink on Google Play"><img src="/assets/homepage/google-play.png" width="194" height="75" alt="Get it on Google Play" loading="lazy"></a>
+                </div>
+                <p class="home-download-facts">Free. No account. No subscription.</p>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">
-                    © <span id="current-year">2026</span> Mindrink. All rights reserved.
-                </p>
-                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                    <a href="/#why-mindrink" class="footer-link">Why Mindrink</a>
-                    <a href="/#how-it-works" class="footer-link">How it works</a>
-                    <a href="/discover/" class="footer-link">Discover</a>
-                    <a href="/science/" class="footer-link">Science</a>
-                    <a href="/about.html" class="footer-link">About</a>
-                    <a href="https://tally.so/r/WOr06N?source=website_footer" class="footer-link" target="_blank" rel="noopener noreferrer">Feedback</a>
-                </div>
+    <footer class="footer home-footer">
+        <div class="home-container">
+            <div class="home-footer-top">
+                <a class="home-wordmark" href="/" aria-label="Mindrink home"><img src="/assets/mindrink_icon_256.png" width="32" height="32" alt="">Mindrink</a>
+                <nav aria-label="Footer navigation">
+                    <a href="/#why-mindrink">Why Mindrink</a>
+                    <a href="/#how-it-works">How it works</a>
+                    <a href="/discover/">Discover</a>
+                    <a href="/science/">Science</a>
+                    <a href="/about.html">About</a>
+                    <a href="https://tally.so/r/WOr06N?source=website_footer" target="_blank" rel="noopener noreferrer">Feedback</a>
+                </nav>
             </div>
+            <div class="home-footer-bottom"><small>&copy; <span id="current-year">2026</span> Mindrink</small><small>A tool for tracking and awareness.</small></div>
         </div>
     </footer>
-
-    <!-- Auto-fill current year in footer -->
-    <script defer>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-    <!-- Mobile menu toggle -->
-    <script>
-        (function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('.nav');
-            
-            if (menuToggle && nav) {
-                // Use both click and touchstart for better Safari compatibility
-                function toggleMenu() {
-                    const isActive = nav.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-                }
-                
-                menuToggle.addEventListener('click', toggleMenu);
-                menuToggle.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    toggleMenu();
-                }, { passive: false });
-                
-                // Close menu when clicking a link
-                const navLinks = nav.querySelectorAll('.nav-link');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        nav.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    });
-                });
-                
-                // Close menu when clicking outside (only if menu is open)
-                document.addEventListener('click', function(event) {
-                    if (nav.classList.contains('active') && !event.target.closest('.header-container')) {
-                        nav.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        })();
-    </script>
+    <script src="/scripts/homepage.js?v=20261109" defer></script>
     <script type="module" src="/scripts/analytics.js?v=analytics-20261107b"></script>
 </body>
 </html>
