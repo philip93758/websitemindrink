@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+    .home-page .home-hero h1 { font-size: 25px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 26px; }
+    .home-page .home-hero-copy { margin-top: 10px; font-size: 15px; line-height: 1.5; }
+}
+@media (max-width: 359px) {
+    .home-page .home-hero h1 { font-size: 23px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 25px; }
+}

@@ -63,12 +63,16 @@ test('original artwork and native captures are retained, with bounded delivery o
     assert.match(html, /width="1080" height="2304"/);
 });
 
-test('new styling and progressive navigation are scoped to the English homepage', () => {
+test('new styling and progressive navigation are scoped to the updated homepages', () => {
     assert.match(html, /<body class="home-page">/);
     assert.match(html, /<noscript><style>/);
     assert.match(html, /aria-controls="main-nav"/);
     const script = read('scripts/homepage.js');
     assert.match(script, /event\.key !== 'Escape'/);
     assert.doesNotMatch(script, /URLSearchParams|romanConcept|heroMode|localStorage|fetch\(/);
-    for (const locale of ['de', 'fr', 'es', 'pt', 'id', 'it', 'ja']) assert.doesNotMatch(read(`${locale}/index.html`), /homepage\.css|scripts\/homepage\.js|class="home-page"/);
+    const localized = read('pt/index.html');
+    assert.match(localized, /<body class="home-page">/);
+    assert.match(localized, /assets\/homepage\/homepage\.css/);
+    assert.match(localized, /scripts\/homepage\.js/);
+    for (const locale of ['de', 'fr', 'es', 'id', 'it', 'ja']) assert.doesNotMatch(read(`${locale}/index.html`), /homepage\.css|scripts\/homepage\.js|class="home-page"/);
 });

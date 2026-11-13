@@ -6,6 +6,12 @@ const { resolve, join, extname, sep } = require('node:path');
 
 const root = resolve(__dirname, '..');
 const origin = 'http://127.0.0.1:4181';
+const locale = process.env.MINDRINK_HOMEPAGE_LOCALE || 'en';
+const copy = {
+    en: { path: '/', heading: 'Mindrink: a free alcohol tracker', menu: 'Toggle menu', how: 'How it works', discover: 'Discover', nav: ['Why Mindrink', 'How it works', 'Discover', 'Science', 'About'] },
+    pt: { path: '/pt/', heading: 'Mindrink: acompanhamento gratuito do consumo de \u00e1lcool', menu: 'Abrir menu', how: 'Como funciona', discover: 'Descobrir', nav: ['Por que Mindrink', 'Como funciona', 'Descobrir', 'Ci\u00eancia', 'Sobre'] },
+}[locale];
+assert.ok(copy, 'Homepage browser checks require a supported locale');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.jpg': 'image/jpeg' };
 const sizes = [[320, 568], [320, 844], [359, 800], [360, 800], [390, 667], [390, 844], [430, 932], [600, 844], [601, 844], [767, 1024], [768, 1024], [900, 900], [901, 900], [1000, 800], [1024, 768], [1280, 800], [1440, 720], [1440, 900], [1920, 1080]];
 const sdk = 'let options; export default {init(token,config){options=config},capture(event,properties){const safe=options.before_send({event,properties:{...properties,distinct_id:"test-memory",$current_url:location.href,drink_amount:999}});if(safe)window.__events.push(safe)}};';
@@ -44,7 +50,7 @@ async function main() {
         const page = await context.newPage();
         page.setDefaultTimeout(8000);
         page.on('pageerror', error => errors.push(error.message));
-        await page.goto(origin + '/');
+        await page.goto(origin + copy.path);
         return { context, page, analyticsLoads };
     }
     async function screenshot(page, name, fullPage = false) {
@@ -131,11 +137,15 @@ async function main() {
                         closingStores: [...document.querySelectorAll('#download .home-store-link')].map(box),
                         facts: box(document.querySelector('.home-download-facts')),
                         headerLinks: [...document.querySelectorAll('.nav > .nav-link')].map(link => link.textContent),
+                        headerBrand: box(document.querySelector('.logo-section')),
+                        headerNav: box(document.querySelector('.nav')),
                     };
                 });
+                await screenshot(page, `homepage-${width}-${height}-top`);
+                if ((width === 1440 && height === 900) || (width === 390 && height === 844)) await screenshot(page, `homepage-${width}-full`, true);
                 assert.equal(result.documentWidth, width);
                 assert.deepEqual(result.overflowing, [], `No overflow at ${width}x${height}`);
-                assert.equal(result.heading, 'Mindrink: a free alcohol tracker');
+                assert.equal(result.heading, copy.heading);
                 assert.ok(result.copyVisible && result.heroCopy.height > 0);
                 assert.ok(result.heroStores.every(box => box.top >= 0 && box.bottom < height), 'Both hero store choices stay in the first screen');
                 assert.ok(result.art.left >= result.heroText.right - 1 || result.art.top >= result.heroText.bottom - 1, 'Hero text and seated pair do not overlap');
@@ -147,7 +157,7 @@ async function main() {
                 assert.ok(result.artworkAlpha.base > 200, 'Bench artwork reaches the bottom of its image');
                 assert.ok(result.phones.every(box => box.width === (width < 768 ? 260 : 280)));
                 assert.deepEqual(result.sections, ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
-                assert.deepEqual(result.headerLinks, ['Why Mindrink', 'How it works', 'Discover', 'Science', 'About']);
+                assert.deepEqual(result.headerLinks, copy.nav);
                 assert.ok(result.assets);
                 if (width >= 768) assert.ok(result.analyticsHeading.top <= result.screen.top + 40 && result.analyticsHeading.bottom < height, 'Complete desktop analytics heading visible in first screen');
                 if (width >= 768) {
@@ -157,7 +167,8 @@ async function main() {
                     assert.ok(Math.abs(result.analyticsHeading.top - result.loggingHeading.top) < 1, 'Product headings share one top alignment');
                     assert.ok(Math.abs(result.phones[0].top - result.phones[1].top) < 1, 'Both product phones share one top baseline');
                     if (result.supportsSubgrid) {
-                        assert.ok(result.productCopyGaps.every(gap => gap >= 23 && gap < 64), 'Shared intro row avoids oversized copy-to-phone gaps');
+                        assert.ok(result.productCopyGaps.every(gap => gap >= 23), 'Shared intro row never overlaps a description');
+                        if (locale === 'en') assert.ok(result.productCopyGaps.every(gap => gap < 64), 'English shared intro row avoids oversized copy-to-phone gaps');
                         assert.ok(Math.abs(Math.min(...result.productCopyGaps) - 24) < 1, 'Phones follow the taller description with a 24px gap');
                     }
                     assert.ok(result.phones[0].right < result.phones[1].left, 'Desktop demonstrations sit side by side');
@@ -177,13 +188,11 @@ async function main() {
                     assert.equal(result.art.width, width <= 1150 ? 330 : 400, 'Desktop artwork size is unchanged');
                     assert.equal(result.heroBadgeFaces[0].height, 50, 'Desktop badge size is unchanged');
                 }
-                if (width <= 390) assert.ok(result.hero.bottom < 570, 'Larger mobile artwork still fits the compact hero');
+                if (width <= 390) assert.ok(result.hero.bottom < 570, `Compact hero at ${width}px ends at ${result.hero.bottom}px`);
                 if (width <= 390 && height >= 800) assert.ok(result.screen.top < 790, 'Analytics still appears within a tall mobile first screen');
                 if (width < 390) assert.ok(result.closingStores[0].bottom <= result.closingStores[1].top);
                 assert.ok(result.closingStores.every(box => box.bottom < result.facts.top));
                 reports.push(result);
-                await screenshot(page, `homepage-${width}-${height}-top`);
-                if ((width === 1440 && height === 900) || (width === 390 && height === 844)) await screenshot(page, `homepage-${width}-full`, true);
             } finally { await context.close(); }
         }
         for (const width of [320, 390]) {
@@ -220,14 +229,14 @@ async function main() {
         {
             const { context, page } = await setup(390, 844);
             try {
-                const menu = page.getByRole('button', { name: 'Toggle menu' });
+                const menu = page.getByRole('button', { name: copy.menu });
                 await menu.click();
                 assert.equal(await menu.getAttribute('aria-expanded'), 'true');
                 await page.keyboard.press('Escape');
                 assert.equal(await menu.getAttribute('aria-expanded'), 'false');
                 assert.ok(await menu.evaluate(element => element === document.activeElement));
                 await menu.click();
-                await page.locator('.nav').getByRole('link', { name: 'How it works', exact: true }).click();
+                await page.locator('.nav').getByRole('link', { name: copy.how, exact: true }).click();
                 assert.equal(await menu.getAttribute('aria-expanded'), 'false');
                 await page.waitForFunction(() => Math.abs(document.getElementById('how-it-works').getBoundingClientRect().top - 88) < 2);
                 await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
@@ -258,7 +267,7 @@ async function main() {
                 }
                 const clicks = await page.evaluate(() => window.__events.filter(event => event.event === 'app_store_clicked').map(event => event.properties));
                 assert.deepEqual(clicks.map(event => [event.cta_location, event.store]), [['home_hero', 'app_store'], ['home_hero', 'google_play'], ['home_footer', 'app_store'], ['home_footer', 'google_play']]);
-                assert.ok(clicks.every(event => event.page_path === '/' && event.page_family === 'home' && event.drink_amount === undefined && event.$current_url === undefined));
+                assert.ok(clicks.every(event => event.page_path === copy.path && event.page_family === 'home' && event.drink_amount === undefined && event.$current_url === undefined));
             } finally { await context.close(); }
         }
         for (const mode of ['gpc', 'dnt', 'optout', 'disabled', 'no-js']) {
@@ -266,7 +275,7 @@ async function main() {
             try {
                 assert.equal(await page.locator('.home-store-link').count(), 4);
                 assert.ok(await page.getByRole('heading', { level: 1 }).isVisible());
-                if (mode === 'no-js') assert.ok(await page.locator('.nav').getByRole('link', { name: 'Discover', exact: true }).isVisible());
+                if (mode === 'no-js') assert.ok(await page.locator('.nav').getByRole('link', { name: copy.discover, exact: true }).isVisible());
                 else {
                     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
                     assert.deepEqual(await page.evaluate(() => window.__events), []);
@@ -278,7 +287,7 @@ async function main() {
         assert.deepEqual(errors, []);
         assert.deepEqual(external, []);
         assert.deepEqual(missing, []);
-        console.log(JSON.stringify({ viewports: reports.length, errors, external, missing, responsive: reports.map(({ width, height, hero, screen }) => ({ width, height, heroBottom: hero.bottom, phoneTop: screen.top })), scrollbarReports, desktopCopyGaps: reports.filter(report => report.width >= 768).map(({ width, productCopyGaps }) => ({ width, gaps: productCopyGaps })), storeClicks: 'all four placements/stores once; nested image and keyboard', privacy: 'GPC, DNT, opt-out, disabled config and no-JS checked' }, null, 2));
+        console.log(JSON.stringify({ locale, viewports: reports.length, errors, external, missing, responsive: reports.map(({ width, height, hero, screen }) => ({ width, height, heroBottom: hero.bottom, phoneTop: screen.top })), scrollbarReports, desktopCopyGaps: reports.filter(report => report.width >= 768).map(({ width, productCopyGaps }) => ({ width, gaps: productCopyGaps })), storeClicks: 'all four placements/stores once; nested image and keyboard', privacy: 'GPC, DNT, opt-out, disabled config and no-JS checked' }, null, 2));
     } finally { await browser.close(); }
 }
 
