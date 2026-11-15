@@ -94,6 +94,17 @@ The check belongs in this website repository, not Atrium. Run `npm run seo:check
 
 ## History episode content sync
 
+### Local draft preview
+
+`node tools/history-draft-preview.mjs <private-config.json>` starts a local-only,
+noindex preview at `http://127.0.0.1:4179/`. Keep the configuration and draft
+sources outside tracked website files. The configuration maps all eight locale
+codes to `{ "path": "<absolute Markdown path>", "sha256": "<source hash>",
+"status": "reviewed" | "unverified" }`. It validates source bytes and the
+expected article/reference structure before serving. It does not create site
+routes, update navigation or sitemap, or authorize publication. Treat it as a
+review aid; article integration and publication require the applicable approvals.
+
 Episode 1.1's approved Markdown is in Atrium's `docs/marketing/Content/History series/Ep 1.1/approved/` folder. From this website repository, import the six revised editions and verify all eight with:
 
 ```bash
