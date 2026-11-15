@@ -10,7 +10,7 @@ const inputs = args.filter(arg => arg !== '--check');
 if (inputs.length !== 1) throw new Error('Usage: node scripts/sync-history-overview.js <source-directory> [--check]');
 const source = resolve(inputs[0]);
 const locales = ['en', 'fr', 'de', 'es', 'pt', 'it', 'ja', 'id'];
-const slugs = ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html'];
+const slugs = ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html', 'greece-wine-and-the-human-mind.html'];
 const escape = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const updates = [];
 for (const locale of locales) {
@@ -36,14 +36,14 @@ for (const locale of locales) {
     if (!heading || !new RegExp(`1\\.${episode}(?!\\d)`).test(heading[1]) || /\n|[*<>]/.test(description)) throw new Error(`Unexpected episode ${episode}: ${locale}`);
     let action;
     let status = '';
-    if (episode <= 3) {
+    const forthcoming = episode >= 4 ? blocks[index++]?.match(/^\*([^*\n]+)\*$/)?.[1] : null;
+    if (episode >= 4 && !forthcoming) throw new Error(`Missing forthcoming label: ${locale} ${episode}`);
+    if (episode <= 4) {
       const href = `/${prefix}science/${slugs[episode - 1]}`;
       if (!existsSync(join(root, prefix, 'science', slugs[episode - 1]))) throw new Error(`Missing article ${href}`);
       action = cards[episode - 1][0].match(/<a class="science-card-link" href="[^"]+">[^<]+<\/a>/)?.[0];
       if (!action?.includes(`href="${href}"`)) throw new Error(`Missing localized article link: ${href}`);
     } else {
-      const forthcoming = blocks[index++]?.match(/^\*([^*\n]+)\*$/)?.[1];
-      if (!forthcoming) throw new Error(`Missing forthcoming label: ${locale} ${episode}`);
       status = ' data-status="forthcoming"';
       action = `<span class="science-episode-status">${escape(forthcoming)}</span>`;
     }

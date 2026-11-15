@@ -4,7 +4,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { EPISODE13_ASSETS, EPISODE13_IMAGES, EPISODE13_LOCALES, EPISODE13_SLUG, EPISODE13_SOURCES, EPISODE13_STYLES, episode13Prefix, episode13Variant, episode13Widths } from './history-episode13-config.js';
 import { applyScienceSearchMetadata, escapeMetadata as escapeHtml } from './science-search-metadata.js';
-import { linkNextHistoryEpisode } from './history-series-navigation.js';
+import { linkNextHistoryEpisode, retainNextHistoryEpisode } from './history-series-navigation.js';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const ORIGIN = 'https://mindrink.me';
@@ -232,6 +232,7 @@ ${parsed.body.split('\n').map(line => `                ${line}`).join('\n')}
   page = page.replace(/(<meta property="article:published_time" content=")[^"]+/, `$1${dateValue('published', published)}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${dateValue('modified', modified)}`);
   page = applyScienceSearchMetadata(page, locale, 'episode13');
+  if (existing) page = retainNextHistoryEpisode(page, existing);
   if (existing && page !== existing) page = page.replace(/("dateModified": ")[^"]+/, `$1${today}`)
     .replace(/(<meta property="article:modified_time" content=")[^"]+/, `$1${dateValue('modified', today)}`);
   return page;
@@ -269,7 +270,9 @@ export function syncEpisode13(sourceDirectory, { check = false, locale: requeste
     let updatedHub = currentCard ? hub : hub.replace(previousCard, `${previousCard}\n                ${card}`);
     updatedHub = updatedHub.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_match, json) => {
       const schema = JSON.parse(json), url = `${ORIGIN}/${prefix}science/${EPISODE13_SLUG}`;
-      schema.hasPart = [...schema.hasPart.filter(part => part.url !== url), { '@type': 'Article', headline: parsed[locale].title, url }];
+      const part = { '@type': 'Article', headline: parsed[locale].title, url };
+      const index = schema.hasPart.findIndex(entry => entry.url === url);
+      if (index < 0) schema.hasPart.push(part); else schema.hasPart[index] = part;
       return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
     });
     queue(hubPath, updatedHub);

@@ -81,7 +81,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         assert.ok(await page.locator('#total-totals').isHidden());
         assert.ok(await page.locator('#total-empty').isVisible());
       });
-      for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html']) {
+      for (const slug of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html','greece-wine-and-the-human-mind.html']) {
         for (const width of [320,390,768,1280]) await check(`${locale}/${slug}/${width}: cold citation and image stability`, async () => {
           await page.setViewportSize({width,height:844});
           await page.goto(origin + prefix + 'science/' + slug);
@@ -119,9 +119,9 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
         assert.equal(await paragraphs.count(), 2);
         assert.equal(await intro.locator('.science-history-question').count(), 1);
         assert.equal(await page.locator('.science-episode-card').count(), 11);
-        assert.equal(await page.locator('.science-episode-card[data-status="forthcoming"]').count(), 8);
+        assert.equal(await page.locator('.science-episode-card[data-status="forthcoming"]').count(), 7);
         assert.equal(await page.locator('.science-episode-card[data-status="forthcoming"] a').count(), 0);
-        assert.equal(await page.locator('.science-episode-card .science-card-link').count(), 3);
+        assert.equal(await page.locator('.science-episode-card .science-card-link').count(), 4);
         assert.equal(await page.locator('h1').count(), 1);
         const layout = await page.evaluate(() => {
           const intro = document.querySelector('.science-history-intro');
@@ -151,7 +151,7 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
           await page.locator('.science-primary-link').click();
           assert.equal(new URL(page.url()).pathname, prefix+'methodology.html');
           await page.goto(origin+prefix+'science/');
-          for (const [index, slug] of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html'].entries()) {
+          for (const [index, slug] of ['who-invented-alcohol.html','mesopotamia-beer-written-records.html','egypt-drinking-with-the-gods.html','greece-wine-and-the-human-mind.html'].entries()) {
             await page.locator('.science-card-link').nth(index).click();
             assert.equal(new URL(page.url()).pathname, prefix+'science/'+slug);
             await page.goto(origin+prefix+'science/');

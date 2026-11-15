@@ -36,7 +36,7 @@ test('keeps sitemap lastmod values synchronized with page sources', () => {
   const sitemapText = readFileSync(SITEMAP_PATH, 'utf8');
   const { changes, entries, output } = buildExpectedSitemap(sitemapText);
 
-  assert.equal(entries.length, 216); // Existing 208 pages plus eight Episode 1.3 editions.
+  assert.equal(entries.length, 224); // Eight editions of each of the first four episodes.
   assert.deepEqual(
     changes,
     [],

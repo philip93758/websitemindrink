@@ -6,6 +6,7 @@ import test from 'node:test';
 
 const ROOT = join(import.meta.dirname, '..');
 const LOCALE_DIRECTORIES = new Set(['de', 'es', 'fr', 'id', 'it', 'ja', 'pt']);
+const ORIGINAL_FORTHCOMING = { en: 'Forthcoming', fr: 'À venir', de: 'Demnächst', es: 'Próximamente', pt: 'Brevemente', it: 'Prossimamente', ja: '近日公開', id: 'Segera hadir' };
 const LOCALIZED_SCIENCE = {
   de: { label: 'Wissenschaft', title: 'Wer hat den Alkohol erfunden?' },
   es: { label: 'Ciencia', title: '¿Quién inventó el alcohol?' },
@@ -86,16 +87,17 @@ for (const [locale, approvedHash] of Object.entries({
     const cards = [...hub.matchAll(/<article class="science-episode-card"(?: data-status="forthcoming")?>[\s\S]*?<\/article>/g)].map(match => match[0]);
     assert.equal(cards.length, 11);
     const blocks = [`# ${title}`, `**${question}**`, introduction];
-    const slugs = ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html'];
+    const slugs = ['who-invented-alcohol.html', 'mesopotamia-beer-written-records.html', 'egypt-drinking-with-the-gods.html', 'greece-wine-and-the-human-mind.html'];
     cards.forEach((card, index) => {
       const label = card.match(/<p class="science-card-label">([^<]+)<\/p>/)[1];
       const heading = card.match(/<h3>([^<]+)<\/h3>/)[1];
       const description = card.match(/<h3>[^<]+<\/h3>\s*<p>([^<]+)<\/p>/)[1];
       assert.match(label, new RegExp(`1\\.${index + 1}(?!\\d)`));
       blocks.push(`### ${label} — ${heading}`, description);
-      if (index < 3) {
+      if (index < 4) {
         assert.ok(card.includes(`class="science-card-link" href="/${prefix}science/${slugs[index]}"`));
         assert.doesNotMatch(card, /data-status="forthcoming"|science-episode-status/);
+        if (index === 3) blocks.push(`*${ORIGINAL_FORTHCOMING[locale]}*`);
       } else {
         assert.match(card, /data-status="forthcoming"/);
         assert.doesNotMatch(card, /<a\b/);

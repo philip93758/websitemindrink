@@ -23,7 +23,7 @@ function markdownInline(html) {
 // citation, image identity/alt/caption/credit and bibliography URL is covered.
 // Editorial section comments are the only source material intentionally omitted.
 export function reconstructEpisode13(html) {
-  const content = html.slice(html.indexOf('<h1 class="history-title">'), html.indexOf('<nav class="history-series-navigation"'));
+  const content = html.slice(html.indexOf('<h1 class="history-title">'), html.search(/<nav class="history-series-navigation(?: |")/));
   const blocks = [];
   for (const match of content.matchAll(/<(h[123]|p|figure|li)\b([^>]*)>([\s\S]*?)<\/\1>/g)) {
     const [, tag, attributes, inner] = match;
