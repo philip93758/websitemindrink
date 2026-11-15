@@ -11,8 +11,8 @@ test('Italian homepage keeps its offer, practical answers and privacy distinctio
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.equal([...section('questions').matchAll(/<dt>/g)].length, 4);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('attive per impostazione predefinita'));
-    assert.ok(section('questions').includes('non vengono disattivate da questa opzione'));
+    assert.ok(section('questions').includes('ID casuale, non al tuo nome'));
+    assert.ok(section('questions').includes('separatamente segnalazioni di arresti anomali'));
     assert.ok(html.includes('dati sintetici generati per la dimostrazione.'));
     assert.match(html, /href="\/assets\/homepage\/homepage-it\.css\?v=/);
 });
@@ -25,7 +25,7 @@ test('Italian navigation and resources keep their localized destinations', () =>
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/it\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/it/alcohol-unit-calculator/', '/it/alcohol-units.html', '/it/dry-day.html', '/it/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/it\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/it\/privacy\.html"/);
     assert.match(section('questions'), /href="\/it\/faq\.html"/);
 });
 

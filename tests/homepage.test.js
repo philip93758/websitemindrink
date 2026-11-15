@@ -14,10 +14,10 @@ test('English homepage delivers its product offer, six sections and open practic
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.deepEqual([...section('questions').matchAll(/<dt>([^<]+)<\/dt>/g)].map(match => match[1]), ['Is Mindrink free?', 'Do I need an account?', 'Do I have to be trying to quit?', 'Where are my drinking records stored?']);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.match(section('questions'), /Analytics events do not include the drink type or amount you enter/);
-    assert.match(section('questions'), /app-generated ID, not your name/);
-    assert.match(section('questions'), /screen interactions with standard text and input fields masked/);
-    assert.match(section('questions'), /Technical error reports are collected separately and are not disabled by that switch/);
+    assert.match(section('questions'), /Your drinking records stay on your device/);
+    assert.match(section('questions'), /limited usage data using a random ID, not your name/);
+    assert.match(section('questions'), /separate crash reports/);
+    assert.match(section('questions'), /turn usage analytics off in Settings/);
     assert.doesNotMatch(section('why-mindrink').replace(/<[^>]*>/g, ''), /\b(?:I|we|our|founder)\b/i);
     assert.match(section('download'), /Free\. No account\. No subscription\./);
     assert.doesNotMatch(html, /<video|<iframe|newsletter|hero-description|Useful reading/);

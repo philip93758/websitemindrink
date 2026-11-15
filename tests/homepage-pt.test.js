@@ -12,8 +12,8 @@ test('Portuguese homepage keeps its offer, practical answers and privacy distinc
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.equal([...section('questions').matchAll(/<dt>/g)].length, 4);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('ativadas por padr\u00e3o'));
-    assert.ok(section('questions').includes('n\u00e3o s\u00e3o desativados por essa op\u00e7\u00e3o'));
+    assert.ok(section('questions').includes('ID aleat\u00f3rio, n\u00e3o ao seu nome'));
+    assert.ok(section('questions').includes('relat\u00f3rios de falhas coletados separadamente'));
     assert.match(html, /href="\/assets\/homepage\/homepage-pt\.css\?v=/);
 });
 
@@ -25,7 +25,7 @@ test('Portuguese navigation and resources keep their localized destinations', ()
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/pt\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/pt/alcohol-unit-calculator/', '/pt/alcohol-units.html', '/pt/dry-day.html', '/pt/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/pt\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/pt\/privacy\.html"/);
     assert.match(section('questions'), /href="\/pt\/faq\.html"/);
 });
 

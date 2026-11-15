@@ -10,8 +10,8 @@ test('Japanese homepage keeps its offer, practical answers and privacy distincti
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.equal([...section('questions').matchAll(/<dt>/g)].length, 4);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('利用状況の分析は初期設定で有効'));
-    assert.ok(section('questions').includes('技術的なエラーレポートは別途収集'));
+    assert.ok(section('questions').includes('お名前ではなくランダムなID'));
+    assert.ok(section('questions').includes('それとは別にクラッシュレポート'));
     assert.ok(html.includes('デモ用に生成した記録です。'));
     const analyticsLabel = html.match(/class="home-phone" role="img" aria-label="([^"]+)"/)[1];
     for (const value of ['1.7', '0.7', '29.6', '66%', 'Average/Day', 'Back on track']) assert.ok(analyticsLabel.includes(value));
@@ -26,7 +26,7 @@ test('Japanese navigation and resources keep their localized destinations', () =
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/ja\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/ja/alcohol-unit-calculator/', '/ja/alcohol-units.html', '/ja/dry-day.html', '/ja/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/ja\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/ja\/privacy\.html"/);
     assert.match(section('questions'), /href="\/ja\/faq\.html"/);
 });
 

@@ -22,8 +22,8 @@ test('German homepage exposes its offer and all four practical answers in the ap
         'Ist Mindrink kostenlos?', 'Brauche ich ein Konto?', 'Muss ich aufh\u00f6ren wollen?', 'Wo werden meine Trinkdaten gespeichert?',
     ]);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('standardm\u00e4\u00dfig aktiviert'));
-    assert.match(section('questions'), /durch diese Einstellung nicht deaktiviert/);
+    assert.match(section('questions'), /davon getrennte Absturzberichte/);
+    assert.match(section('questions'), /Nutzungsanalyse in den Einstellungen deaktivieren/);
     assert.doesNotMatch(section('why-mindrink').replace(/<[^>]*>/g, ''), /\b(?:ich|wir|Philip)\b/i);
     assert.doesNotMatch(html, /<video|<iframe|newsletter|hero-description/);
 });
@@ -37,7 +37,7 @@ test('German navigation preserves its existing labels and all contextual destina
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/de\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/de/alcohol-unit-calculator/', '/de/alcohol-units.html', '/de/dry-day.html', '/de/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/de\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/de\/privacy\.html"/);
     assert.match(section('questions'), /href="\/de\/faq\.html"/);
     const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
     assert.match(footer, /href="\/de\/#why-mindrink"/);

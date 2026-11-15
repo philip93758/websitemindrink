@@ -8,12 +8,12 @@ const section = id => html.match(new RegExp(`<section[^>]*id="${id}"[^>]*>[\\s\\
 test('Spanish homepage keeps the approved sections and practical answers visible', () => {
     assert.match(html, /<h1 id="hero-title">Mindrink: registro gratuito de consumo de alcohol<\/h1>/);
     assert.ok(html.includes('Anota tus bebidas. Ve tus patrones. Toma tus propias decisiones.'));
-    assert.ok(html.includes('Tus registros de consumo de alcohol permanecen en tu dispositivo.'));
+    assert.ok(html.includes('Tus registros de consumo de alcohol se guardan en tu dispositivo.'));
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.equal([...section('questions').matchAll(/<dt>/g)].length, 4);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.match(section('questions'), /activado de forma predeterminada/);
-    assert.match(section('questions'), /informes de errores t\u00e9cnicos se recopilan por separado/);
+    assert.match(section('questions'), /identificador aleatorio, no a tu nombre/);
+    assert.match(section('questions'), /informes de fallos recopilados por separado/);
     assert.match(html, /href="\/assets\/homepage\/homepage-es\.css\?v=/);
 });
 
@@ -25,7 +25,7 @@ test('Spanish homepage preserves navigation, localized resources and language ro
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/es\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/es/alcohol-unit-calculator/', '/es/alcohol-units.html', '/es/dry-day.html', '/es/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/es\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/es\/privacy\.html"/);
     assert.match(section('questions'), /href="\/es\/faq\.html"/);
 });
 

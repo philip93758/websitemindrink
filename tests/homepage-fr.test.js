@@ -22,8 +22,8 @@ test('French homepage delivers localized product copy and the same six visible s
         'Dois-je chercher \u00e0 arr\u00eater de boire ?', 'O\u00f9 mes donn\u00e9es de consommation sont-elles stock\u00e9es ?',
     ]);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('activ\u00e9es par d\u00e9faut'));
-    assert.ok(section('questions').includes('ne sont pas d\u00e9sactiv\u00e9s par ce r\u00e9glage'));
+    assert.ok(section('questions').includes('rapports sur les arr\u00eats inattendus de l\u2019application'));
+    assert.ok(section('questions').includes('identifiant al\u00e9atoire, et non \u00e0 votre nom'));
     assert.doesNotMatch(section('why-mindrink').replace(/<[^>]*>/g, ''), /\b(?:je|nous|Philip)\b/i);
     assert.doesNotMatch(html, /<video|<iframe|newsletter|hero-description/);
 });
@@ -37,7 +37,7 @@ test('French navigation and contextual links keep visitors in their selected lan
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/fr\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/fr/alcohol-unit-calculator/', '/fr/alcohol-units.html', '/fr/dry-day.html', '/fr/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/fr\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/fr\/privacy\.html"/);
     assert.match(section('questions'), /href="\/fr\/faq\.html"/);
     const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
     assert.match(footer, /href="\/fr\/#why-mindrink"/);

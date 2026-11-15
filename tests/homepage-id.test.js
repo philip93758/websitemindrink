@@ -11,8 +11,9 @@ test('Indonesian homepage keeps its offer, practical answers and privacy distinc
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.equal([...section('questions').matchAll(/<dt>/g)].length, 4);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.ok(section('questions').includes('diaktifkan secara default'));
-    assert.ok(section('questions').includes('tidak dinonaktifkan oleh pengaturan tersebut'));
+    assert.ok(section('questions').includes('ID acak, bukan namamu'));
+    assert.ok(section('questions').includes('aplikasi berhenti secara mendadak'));
+    assert.ok(section('questions').includes('secara terpisah dari data penggunaan'));
     assert.ok(html.includes('catatan dibuat secara sintetis untuk demonstrasi.'));
     assert.match(html, /href="\/assets\/homepage\/homepage-id\.css\?v=/);
 });
@@ -25,7 +26,7 @@ test('Indonesian navigation and resources keep their localized destinations', ()
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/id\/" class="language-option is-active" aria-current="page"/);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/id/alcohol-unit-calculator/', '/id/alcohol-units.html', '/id/dry-day.html', '/id/reduce-drinking.html']);
-    assert.match(section('questions'), /href="\/id\/about\.html#privacy"/);
+    assert.match(section('questions'), /href="\/id\/privacy\.html"/);
     assert.match(section('questions'), /href="\/id\/faq\.html"/);
 });
 
