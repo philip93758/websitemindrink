@@ -14,7 +14,9 @@ test('English homepage delivers its product offer, six sections and open practic
     assert.deepEqual([...html.matchAll(/<section[^>]*id="([^"]+)"/g)].map(match => match[1]), ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
     assert.deepEqual([...section('questions').matchAll(/<dt>([^<]+)<\/dt>/g)].map(match => match[1]), ['Is Mindrink free?', 'Do I need an account?', 'Do I have to be trying to quit?', 'Where are my drinking records stored?']);
     assert.doesNotMatch(section('questions'), /<details|<summary|hidden/);
-    assert.match(section('questions'), /masked recordings of taps and navigation/);
+    assert.match(section('questions'), /Analytics events do not include the drink type or amount you enter/);
+    assert.match(section('questions'), /app-generated ID, not your name/);
+    assert.match(section('questions'), /screen interactions with standard text and input fields masked/);
     assert.match(section('questions'), /Technical error reports are collected separately and are not disabled by that switch/);
     assert.doesNotMatch(section('why-mindrink').replace(/<[^>]*>/g, ''), /\b(?:I|we|our|founder)\b/i);
     assert.match(section('download'), /Free\. No account\. No subscription\./);
@@ -70,9 +72,10 @@ test('new styling and progressive navigation are scoped to the updated homepages
     const script = read('scripts/homepage.js');
     assert.match(script, /event\.key !== 'Escape'/);
     assert.doesNotMatch(script, /URLSearchParams|romanConcept|heroMode|localStorage|fetch\(/);
-    const localized = read('pt/index.html');
-    assert.match(localized, /<body class="home-page">/);
-    assert.match(localized, /assets\/homepage\/homepage\.css/);
-    assert.match(localized, /scripts\/homepage\.js/);
-    for (const locale of ['de', 'fr', 'es', 'id', 'it', 'ja']) assert.doesNotMatch(read(`${locale}/index.html`), /homepage\.css|scripts\/homepage\.js|class="home-page"/);
+    for (const locale of ['fr', 'de', 'es', 'pt', 'id', 'it', 'ja']) {
+        const localized = read(`${locale}/index.html`);
+        assert.match(localized, /<body class="home-page">/);
+        assert.match(localized, /assets\/homepage\/homepage\.css/);
+        assert.match(localized, /scripts\/homepage\.js/);
+    }
 });

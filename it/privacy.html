@@ -116,7 +116,7 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Informativa sulla privacy</h1>
-            <p class="small-muted">Ultimo aggiornamento: 12 settembre 2026</p>
+            <p class="small-muted">Ultimo aggiornamento: 13 novembre 2026</p>
             <p class="feature-text">
                 Questa informativa sulla privacy descrive come Mindrink tratta le informazioni nell’app mobile e sul sito pubblico mindrink.me. Il sito non usa cookie pubblicitari o di analytics. L’analytics del sito con dati minimi è descritta di seguito e può essere disattivata in qualsiasi momento.
             </p>
@@ -155,14 +155,14 @@
 
             <h2 class="feature-title">Informazioni che raccogliamo</h2>
             <p class="feature-text">
-                <strong>Analytics.</strong> L’analytics è attiva per impostazione predefinita e può essere disattivata in Gestione dati. Finché è attiva, inviamo dati di utilizzo anonimi ad Amplitude (Unione europea). Possono includere versione dell’app, classe del dispositivo, sistema operativo, dimensioni dello schermo, paese derivato dalle impostazioni locali del dispositivo, lingua, tema, se i promemoria sono attivi e il profilo di orientamento scelto. Non includono cronologia dei consumi, riflessioni, note o obiettivi. Non raccogliamo identificatori pubblicitari né indirizzo IP per l’analytics.
+                <strong>Analytics.</strong> L’analisi dell’utilizzo dell’app è attiva per impostazione predefinita e puoi disattivarla in Gestione dei dati. Quando è attiva, inviamo ad Amplitude (Unione europea) eventi di utilizzo, come l’apertura di una schermata o l’aggiunta di una registrazione relativa a una bevanda. Questi eventi non includono il tipo di bevanda, la quantità, la gradazione alcolica, i registri del consumo di alcol, le riflessioni, le note o gli obiettivi. Gli eventi di utilizzo possono indicare quando viene aggiunta la registrazione di una bevanda o viene contrassegnato un giorno senza alcol, anche se non contengono i dettagli della bevanda registrata. L’analisi utilizza un identificatore generato dall’app che può persistere tra le sessioni, non il tuo nome, il tuo indirizzo email o un account Mindrink. Su Android può essere inviato anche un App Set ID, se disponibile. I dati di utilizzo possono inoltre includere la versione dell’app, la classe del dispositivo, il suo produttore e il suo modello, il sistema operativo, l’operatore di telefonia mobile, le dimensioni dello schermo, il Paese ricavato dalle impostazioni locali del dispositivo, la lingua, il tema, la preferenza relativa ai promemoria e il profilo delle linee guida che hai selezionato. Su Android, l’SDK di analisi può anche indicare il tuo Paese in base alla tua rete mobile. La configurazione dell’analisi disabilita la raccolta degli identificatori pubblicitari e degli indirizzi IP. Su iOS, l’analisi può includere anche registrazioni delle interazioni con lo schermo; i componenti di testo standard e i campi di immissione vengono mascherati. La riproduzione può comunque mostrare la disposizione delle schermate e le interazioni.
             </p>
             <p class="feature-text">
                 <strong>Analytics del sito.</strong> Mindrink invia un piccolo insieme di eventi aggregati ed espliciti a PostHog Cloud EU: visualizzazioni di pagina, clic verso un’altra pagina di mindrink.me interazioni con il calcolatore, visibilità del pulsante Esplora Mindrink e clic sui pulsanti degli store di Mindrink nelle pagine iniziali e di confronto. Gli eventi possono includere soltanto lingua, percorsi normalizzati, tipo di calcolatore, categoria della pagina e, se pertinente, posizione della CTA e store (App Store o Google Play). Testo dei link, referrer, dati sulle bevande, volume, ABV, quantità, risultati, totali, informazioni sanitarie, testo libero, parametri di query e URL completi non vengono mai inviati. PostHog usa solo un identificatore temporaneo nella memoria della pagina; nessun identificatore persiste nella pagina successiva, quindi il percorso completo non viene collegato a una persona. Autocapture, profili, registrazione della sessione, mappe di calore, acquisizione delle prestazioni, arricchimento GeoIP e archiviazione persistente di PostHog sono disattivati. Global Privacy Control e Do Not Track vengono rispettati automaticamente. Solo la preferenza viene salvata se disattivi l’analytics qui sotto.
             </p>
             <div class="analytics-opt-out" data-analytics-opt-out></div>
             <p class="feature-text">
-                <strong>Segnalazioni di crash ed errori.</strong> Inviamo segnalazioni tecniche di crash ed errori a Sentry per diagnosticare i malfunzionamenti. Queste segnalazioni possono includere stack trace e metadati diagnostici. Sono configurate per non includere la cronologia dei consumi, screenshot o identificatori personali predefiniti.
+                <strong>Segnalazioni di arresti anomali ed errori e dati sulle prestazioni.</strong> Inviamo a Sentry rapporti tecnici su arresti anomali ed errori per poter diagnosticare i malfunzionamenti. Questi rapporti possono includere tracce dello stack e metadati diagnostici. Sono configurati in modo da non includere registri del consumo di alcol o schermate acquisite. La raccolta predefinita di informazioni personali da parte di Sentry è disabilitata. I rapporti tecnici vengono raccolti separatamente e non vengono disattivati dall’interruttore dell’analisi dell’app. Quando il monitoraggio delle prestazioni è attivo, Sentry può anche ricevere informazioni tecniche sui tempi di avvio e di navigazione dell’app. Questo monitoraggio è separato dall’interruttore dell’analisi dell’app.
             </p>
             <p class="feature-text">
                 <strong>Comunicazioni di supporto.</strong> Se ci scrivi o invii un feedback tramite Tally, riceviamo il contenuto che invii.
@@ -196,13 +196,13 @@
             <h2 class="feature-title">Conservazione dei dati</h2>
             <ul>
                 <li><strong>Registri delle consumazioni, riflessioni, obiettivi e impostazioni locali.</strong> Mindrink non memorizza né conserva questi dati sui nostri server. Restano solo sul tuo dispositivo finché non li elimini nell’app o disinstalli l’applicazione.</li>
-                <li><strong>Analytics.</strong> Amplitude conserva eventi di utilizzo anonimi per il tempo necessario ad analizzare l’uso e migliorare l’app, poi li elimina in conformità alle impostazioni di conservazione di Amplitude. Disattivare l’analytics interrompe ulteriori raccolte.</li>
+                <li><strong>Analytics.</strong> Amplitude conserva gli eventi di utilizzo dell’app in base alle proprie impostazioni di conservazione, per tutto il tempo necessario ad analizzare l’utilizzo e migliorare l’app. La disattivazione dell’analisi interrompe il monitoraggio dei nuovi eventi, ma non elimina i dati già inviati.</li>
                 <li><strong>Analytics del sito.</strong> Gli eventi del sito in PostHog vengono conservati per non più di 90 giorni. La disattivazione interrompe ulteriori raccolte in questo browser.</li>
-                <li><strong>Segnalazioni di crash ed errori.</strong> Sentry conserva i report diagnostici per un periodo limitato, necessario a indagare e risolvere i problemi, poi li elimina in conformità alle impostazioni di conservazione di Sentry.</li>
+                <li><strong>Segnalazioni di arresti anomali ed errori e dati sulle prestazioni.</strong> Sentry conserva i rapporti diagnostici per il periodo limitato necessario a indagare e risolvere i problemi, quindi li elimina in conformità alle impostazioni di conservazione di Sentry. I dati sulle prestazioni vengono conservati in base alle impostazioni di conservazione di Sentry.</li>
                 <li><strong>Email e feedback.</strong> Conserviamo queste comunicazioni per il tempo necessario a gestire la tua richiesta e le eliminiamo quando non servono più.</li>
             </ul>
             <p class="feature-text">
-                Poiché analytics e segnalazioni di crash non sono collegate a un account o a un identificatore persistente, non possiamo identificare né eliminare i dati Amplitude, PostHog o Sentry di una persona specifica.
+                L’analisi dell’app utilizza un identificatore generato casualmente e può includere un Android App Set ID, non un account Mindrink né il tuo nome o indirizzo email. L’analisi del sito web utilizza un identificatore temporaneo nella memoria del browser per quella pagina. I rapporti tecnici vengono raccolti separatamente e non sono collegati al tuo nome o indirizzo email.
             </p>
 
             <h2 class="feature-title">Eliminazione</h2>
@@ -216,7 +216,7 @@
                 Per chiedere l’eliminazione di un’email o di un feedback che ci hai inviato, scrivi a <a href="mailto:philip.mindrink@gmail.com" class="footer-link">philip.mindrink@gmail.com</a>.
             </p>
             <p class="feature-text">
-                Non possiamo eliminare i dati Amplitude, PostHog o Sentry di una persona specifica. Quei dati non sono collegati a un account o a un identificatore persistente.
+                Poiché i dati di analisi e i rapporti tecnici non sono collegati al tuo nome o indirizzo email, quando ci contatti non possiamo identificare quali dati e rapporti ti appartengano né eliminarli.
             </p>
 
             <h2 class="feature-title">Sicurezza</h2>

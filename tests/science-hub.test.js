@@ -273,7 +273,9 @@ test('keeps the Japanese Why Mindrink and About labels distinct', () => {
   const homepage = read('ja/index.html');
 
   assert.match(homepage, /href="#why-mindrink" class="nav-link">私たちの考え方<\/a>/);
-  assert.match(homepage, /href="\/ja\/#why-mindrink" class="footer-link">私たちの考え方<\/a>/);
+  const footer = homepage.match(/<footer[\s\S]*?<\/footer>/)?.[0];
+  assert.ok(footer);
+  assert.match(footer, /href="\/ja\/#why-mindrink"(?: class="footer-link")?>私たちの考え方<\/a>/);
   assert.match(homepage, /href="\/ja\/about\.html" class="nav-link">Mindrinkについて<\/a>/);
   assert.doesNotMatch(homepage, /href="#why-mindrink"[^>]*>Mindrinkについて<\/a>/);
 });

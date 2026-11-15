@@ -9,7 +9,13 @@ const origin = 'http://127.0.0.1:4181';
 const locale = process.env.MINDRINK_HOMEPAGE_LOCALE || 'en';
 const copy = {
     en: { path: '/', heading: 'Mindrink: a free alcohol tracker', menu: 'Toggle menu', how: 'How it works', discover: 'Discover', nav: ['Why Mindrink', 'How it works', 'Discover', 'Science', 'About'] },
+    fr: { path: '/fr/', heading: 'Mindrink : suivi gratuit de la consommation d\u2019alcool', menu: 'Afficher le menu', how: 'Comment \u00e7a marche', discover: 'D\u00e9couvrir', nav: ['Pourquoi Mindrink', 'Comment \u00e7a marche', 'D\u00e9couvrir', 'Science', '\u00c0 propos'] },
+    de: { path: '/de/', heading: 'Mindrink: ein kostenloser Alkohol-Tracker', menu: 'Men\u00fc \u00f6ffnen', how: 'So funktioniert es', discover: 'Entdecken', nav: ['Warum Mindrink', 'So funktioniert es', 'Entdecken', 'Wissenschaft', '\u00dcber uns'] },
+    es: { path: '/es/', heading: 'Mindrink: registro gratuito de consumo de alcohol', menu: 'Abrir men\u00fa', how: 'C\u00f3mo funciona', discover: 'Descubrir', nav: ['Por qu\u00e9 Mindrink', 'C\u00f3mo funciona', 'Descubrir', 'Ciencia', 'Acerca de'] },
     pt: { path: '/pt/', heading: 'Mindrink: acompanhamento gratuito do consumo de \u00e1lcool', menu: 'Abrir menu', how: 'Como funciona', discover: 'Descobrir', nav: ['Por que Mindrink', 'Como funciona', 'Descobrir', 'Ci\u00eancia', 'Sobre'] },
+    id: { path: '/id/', heading: 'Mindrink: pelacak konsumsi alkohol gratis', menu: 'Buka menu', how: 'Cara kerja', discover: 'Jelajahi', nav: ['Mengapa Mindrink', 'Cara kerja', 'Jelajahi', 'Sains', 'Tentang'] },
+    it: { path: '/it/', heading: 'Mindrink: un tracker gratuito del consumo di alcol', menu: 'Apri menu', how: 'Come funziona', discover: 'Scopri', nav: ['Perch\u00e9 Mindrink', 'Come funziona', 'Scopri', 'Scienza', 'Chi siamo'] },
+    ja: { path: '/ja/', heading: 'Mindrink：無料の飲酒記録アプリ', menu: 'メニューを開く', how: '使い方', discover: 'ガイド', nav: ['私たちの考え方', '使い方', 'ガイド', '科学', 'Mindrinkについて'] },
 }[locale];
 assert.ok(copy, 'Homepage browser checks require a supported locale');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.jpg': 'image/jpeg' };
@@ -158,6 +164,7 @@ async function main() {
                 assert.ok(result.phones.every(box => box.width === (width < 768 ? 260 : 280)));
                 assert.deepEqual(result.sections, ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
                 assert.deepEqual(result.headerLinks, copy.nav);
+                if (locale === 'de' && width >= 768) assert.ok(result.headerNav.left - result.headerBrand.right >= 12, 'Long German navigation labels leave space around the brand');
                 assert.ok(result.assets);
                 if (width >= 768) assert.ok(result.analyticsHeading.top <= result.screen.top + 40 && result.analyticsHeading.bottom < height, 'Complete desktop analytics heading visible in first screen');
                 if (width >= 768) {

@@ -1,0 +1,11 @@
+@media (max-width: 600px) {
+    .home-page .home-hero h1 { font-size: 28px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 28px; }
+}
+@media (max-width: 359px) {
+    .home-page .home-hero h1 { font-size: 25px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 25px; }
+    .home-page .home-hero-facts { flex-wrap: nowrap; gap: 6px 4px; }
+    .home-page .home-hero-facts li { flex: none; }
+    .home-page .home-hero-facts li + li::before { margin-right: 4px; }
+}

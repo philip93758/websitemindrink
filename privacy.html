@@ -115,7 +115,7 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Privacy Policy</h1>
-            <p class="small-muted">Last updated: 12 September 2026</p>
+            <p class="small-muted">Last updated: 13 November 2026</p>
             <p class="feature-text">
                 This privacy policy describes how Mindrink handles information in the Mindrink mobile application and on the public website at mindrink.me. The website uses no advertising or analytics cookies. Privacy-minimized website analytics is described below and can be turned off at any time.
             </p>
@@ -153,14 +153,14 @@
 
             <h2 class="feature-title">Information we collect</h2>
             <p class="feature-text">
-                <strong>Analytics.</strong> Analytics is on by default and can be turned off in Data Management. While it is on, we send anonymous usage data to Amplitude (European Union). This may include app version, device class, operating system, screen size, country derived from device locale, language, theme, whether reminders are enabled, and the guideline profile you selected. It does not include drink history, reflections, notes, or goals. We do not collect advertising identifiers or IP address for analytics.
+                <strong>Analytics.</strong> App analytics is on by default and can be turned off in Data Management. While enabled, we send usage events to Amplitude (European Union), such as opening a screen or adding a drink entry. These events do not include the drink type, amount, alcohol strength, drinking records, reflections, notes or goals. Usage events can show when a drink entry is added or a dry day is marked, even though they do not contain the recorded drink details. Analytics uses an app-generated identifier that can persist between sessions, not your name, email address or a Mindrink account. On Android, an App Set ID may also be sent if available. Usage data may also include app version, device class, manufacturer and model, operating system, mobile carrier, screen size, country derived from device locale, language, theme, reminder preference and your selected guideline profile. On Android, the analytics SDK may also report country from your mobile network. The analytics configuration disables collection of advertising identifiers and IP addresses. On iOS, analytics may also include recordings of screen interactions; standard text and input fields are masked. The replay can still show screen layouts and interactions.
             </p>
             <p class="feature-text">
                 <strong>Website analytics.</strong> Mindrink sends a small set of explicit aggregate events to PostHog Cloud EU: page views, clicks to another page on mindrink.me, calculator interactions, visibility of the calculator’s Explore Mindrink button, and clicks on Mindrink’s app-store buttons on home and comparison pages. Events may include only the language, normalized page paths, calculator type, page family, CTA location, and store (App Store or Google Play) where relevant. They never include link text, referrers, drink inputs, volume, ABV, quantity, calculated results, totals, health information, free text, query parameters, or complete URLs. PostHog uses an ephemeral identifier in page memory only; no identifier persists to the next page, so full journeys are not stitched to one visitor. Autocapture, person profiles, session replay, heatmaps, performance capture, GeoIP enrichment, and persistent PostHog storage are disabled. Global Privacy Control and Do Not Track are respected automatically. Only an opt-out preference is stored if you turn website analytics off below.
             </p>
             <div class="analytics-opt-out" data-analytics-opt-out></div>
             <p class="feature-text">
-                <strong>Crash and error reports.</strong> We send technical crash and error reports to Sentry so we can diagnose failures. These reports may include stack traces and diagnostic metadata. They are configured not to include drink history, screenshots, or default personal identifiers.
+                <strong>Crash, error and performance reports.</strong> We send technical crash and error reports to Sentry so we can diagnose failures. These reports may include stack traces and diagnostic metadata. They are configured not to include drinking records or screenshots. Sentry's default collection of personal information is disabled. They are collected separately and are not disabled by the app analytics switch. When performance monitoring is enabled, Sentry may also receive technical timing information about app startup and navigation. This is separate from the app analytics switch.
             </p>
             <p class="feature-text">
                 <strong>Support communications.</strong> If you email us or submit feedback through Tally, we receive the content you send.
@@ -194,13 +194,13 @@
             <h2 class="feature-title">Data retention</h2>
             <ul>
                 <li><strong>Drink records, reflections, goals, and local settings.</strong> Mindrink does not store or retain this data on our servers. It is retained only on your device until you delete it in the app or uninstall the app.</li>
-                <li><strong>Analytics.</strong> Amplitude retains anonymous usage events for as long as needed to analyze usage and improve the app, and then deletes them in accordance with Amplitude’s retention settings. Disabling analytics stops further collection.</li>
+                <li><strong>Analytics.</strong> Amplitude retains app usage events according to its retention settings, for as long as needed to analyze usage and improve the app. Disabling analytics stops tracking new events; it does not delete data already sent.</li>
                 <li><strong>Website analytics.</strong> PostHog website events are retained for no longer than 90 days. Turning website analytics off stops further collection in that browser.</li>
-                <li><strong>Crash and error reports.</strong> Sentry retains diagnostic reports for a limited period necessary to investigate and fix issues, and then deletes them in accordance with Sentry’s retention settings.</li>
+                <li><strong>Crash, error and performance reports.</strong> Sentry retains diagnostic reports for a limited period necessary to investigate and fix issues, and then deletes them in accordance with Sentry’s retention settings. Performance data is retained according to Sentry’s retention settings.</li>
                 <li><strong>Emails and feedback.</strong> We retain these communications for as long as needed to handle your request, and delete them when they are no longer required.</li>
             </ul>
             <p class="feature-text">
-                Because analytics and crash reports are not tied to an account or persistent visitor identifier, we cannot identify or delete a specific person’s Amplitude, PostHog, or Sentry data.
+                App analytics uses a randomly generated identifier and may include an Android App Set ID, not a Mindrink account or your name or email. Website analytics uses a temporary identifier in page memory. Technical reports are collected separately and are not linked to your name or email.
             </p>
 
             <h2 class="feature-title">Deletion</h2>
@@ -214,7 +214,7 @@
                 To request deletion of an email or feedback message you sent us, contact <a href="mailto:philip.mindrink@gmail.com" class="footer-link">philip.mindrink@gmail.com</a>.
             </p>
             <p class="feature-text">
-                We cannot delete Amplitude, PostHog, or Sentry data for a specific person. That data is not tied to an account or persistent visitor identifier.
+                Because analytics and technical reports are not linked to your name or email, we cannot identify which reports are yours or delete them when you contact us.
             </p>
 
             <h2 class="feature-title">Security</h2>

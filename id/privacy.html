@@ -116,7 +116,7 @@
     <section class="philosophy">
         <div class="container narrow">
             <h1 class="section-title">Kebijakan Privasi</h1>
-            <p class="small-muted">Terakhir diperbarui: 12 September 2026</p>
+            <p class="small-muted">Terakhir diperbarui: 13 November 2026</p>
             <p class="feature-text">
                 Kebijakan privasi ini menjelaskan bagaimana Mindrink menangani informasi di aplikasi seluler dan situs publik mindrink.me. Situs tidak memakai cookie iklan atau analitik. Analitik situs dengan data minimal dijelaskan di bawah dan dapat dimatikan kapan saja.
             </p>
@@ -155,14 +155,14 @@
 
             <h2 class="feature-title">Informasi yang kami kumpulkan</h2>
             <p class="feature-text">
-                <strong>Analitik.</strong> Analitik aktif secara default dan dapat dimatikan di Pengelolaan Data. Selama aktif, kami mengirim data penggunaan anonim ke Amplitude (Uni Eropa). Ini dapat mencakup versi aplikasi, kelas perangkat, sistem operasi, ukuran layar, negara dari pengaturan lokal perangkat, bahasa, tema, apakah pengingat aktif, dan profil panduan yang kamu pilih. Tidak mencakup riwayat minum, refleksi, catatan, atau tujuan. Kami tidak mengumpulkan pengenal iklan atau alamat IP untuk analitik.
+                <strong>Analitik.</strong> Analitik aplikasi diaktifkan secara default dan dapat kamu nonaktifkan di Pengelolaan Data. Selama diaktifkan, kami mengirimkan peristiwa penggunaan ke Amplitude (Uni Eropa), seperti saat kamu membuka layar atau menambahkan entri minuman. Peristiwa ini tidak mencakup jenis minuman, jumlah, kadar alkohol, riwayat konsumsi minuman, refleksi, catatan, atau tujuan. Peristiwa penggunaan dapat menunjukkan saat entri minuman ditambahkan atau hari tanpa minum ditandai, meskipun peristiwa tersebut tidak memuat detail minuman yang dicatat. Analitik menggunakan pengenal yang dibuat secara acak oleh aplikasi dan dapat bertahan di antara sesi, bukan nama, alamat email, atau akun Mindrink kamu. Di Android, App Set ID juga dapat dikirim jika tersedia. Data penggunaan juga dapat mencakup versi aplikasi, kelas perangkat, produsen dan model, sistem operasi, operator seluler, ukuran layar, negara yang diperoleh dari setelan lokal perangkat, bahasa, tema, preferensi pengingat, serta profil pedoman yang kamu pilih. Di Android, SDK analitik juga dapat melaporkan negara berdasarkan jaringan seluler kamu. Konfigurasi analitik menonaktifkan pengumpulan pengenal iklan dan alamat IP. Di iOS, analitik juga dapat mencakup rekaman interaksi dengan layar; komponen teks standar dan kolom input disamarkan. Rekaman tersebut masih dapat menampilkan tata letak layar dan interaksi.
             </p>
             <p class="feature-text">
                 <strong>Analitik situs.</strong> Mindrink mengirim sejumlah kecil peristiwa agregat yang ditentukan secara eksplisit ke PostHog Cloud EU: halaman dilihat, klik ke halaman lain di mindrink.me, interaksi kalkulator, kemunculan tombol Jelajahi Mindrink di layar, serta klik tombol toko aplikasi Mindrink di beranda dan halaman perbandingan. Peristiwa hanya boleh menyertakan bahasa, jalur halaman yang dinormalisasi, jenis kalkulator, kategori halaman, serta lokasi CTA dan toko (App Store atau Google Play) bila relevan. Teks tautan, perujuk, input minuman, volume, ABV, jumlah, hasil, total, informasi kesehatan, teks bebas, parameter kueri, dan URL lengkap tidak pernah dikirim. PostHog hanya memakai pengenal sementara di memori halaman; tidak ada pengenal yang bertahan ke halaman berikutnya, sehingga perjalanan lengkap tidak ditautkan ke seseorang. Autocapture, profil, rekaman sesi, heatmap, pengukuran performa, pengayaan GeoIP, dan penyimpanan PostHog persisten dinonaktifkan. Global Privacy Control dan Do Not Track dihormati secara otomatis. Hanya pilihan opt-out yang disimpan jika kamu mematikan analitik di bawah.
             </p>
             <div class="analytics-opt-out" data-analytics-opt-out></div>
             <p class="feature-text">
-                <strong>Laporan crash dan error.</strong> Kami mengirim laporan teknis crash dan error ke Sentry untuk mendiagnosis kegagalan. Laporan ini dapat mencakup stack trace dan metadata diagnostik. Laporan dikonfigurasi agar tidak mencakup riwayat minum, tangkapan layar, atau pengenal pribadi default.
+                <strong>Laporan crash, error, dan performa.</strong> Kami mengirimkan laporan teknis tentang crash dan error ke Sentry agar kami dapat mendiagnosis kegagalan. Laporan ini dapat mencakup jejak tumpukan dan metadata diagnostik. Laporan tersebut dikonfigurasi agar tidak menyertakan catatan konsumsi minuman atau tangkapan layar. Pengumpulan informasi pribadi oleh Sentry dinonaktifkan secara default. Laporan teknis dikumpulkan secara terpisah dan tidak dinonaktifkan oleh tombol analitik aplikasi. Saat pemantauan performa diaktifkan, Sentry juga dapat menerima informasi teknis mengenai waktu mulai aplikasi dan waktu navigasi. Pemantauan performa ini tidak dinonaktifkan oleh tombol analitik aplikasi.
             </p>
             <p class="feature-text">
                 <strong>Komunikasi dukungan.</strong> Jika kamu mengirim email atau masukan lewat Tally, kami menerima isi yang kamu kirim.
@@ -196,13 +196,13 @@
             <h2 class="feature-title">Retensi data</h2>
             <ul>
                 <li><strong>Catatan minuman, refleksi, tujuan, dan pengaturan lokal.</strong> Mindrink tidak menyimpan atau menahan data ini di server kami. Data itu hanya ditahan di perangkat kamu sampai kamu menghapusnya di aplikasi atau mencopot pemasangan aplikasi.</li>
-                <li><strong>Analitik.</strong> Amplitude menahan peristiwa penggunaan anonim selama diperlukan untuk menganalisis penggunaan dan memperbaiki aplikasi, lalu menghapusnya sesuai pengaturan retensi Amplitude. Mematikan analitik menghentikan pengumpulan baru.</li>
+                <li><strong>Analitik.</strong> Amplitude menyimpan peristiwa penggunaan aplikasi sesuai dengan pengaturan retensinya, selama diperlukan untuk menganalisis penggunaan dan meningkatkan aplikasi. Menonaktifkan analitik menghentikan pelacakan peristiwa baru, tetapi tidak menghapus data yang sudah dikirim.</li>
                 <li><strong>Analitik situs.</strong> Peristiwa situs di PostHog disimpan paling lama 90 hari. Mematikannya menghentikan pengumpulan baru di browser ini.</li>
-                <li><strong>Laporan crash dan error.</strong> Sentry menahan laporan diagnostik untuk jangka waktu terbatas yang diperlukan guna menyelidiki dan memperbaiki masalah, lalu menghapusnya sesuai pengaturan retensi Sentry.</li>
+                <li><strong>Laporan crash, error, dan performa.</strong> Sentry menyimpan laporan diagnostik selama jangka waktu terbatas yang diperlukan untuk menyelidiki dan memperbaiki masalah, lalu menghapusnya sesuai dengan pengaturan retensi Sentry. Data performa disimpan sesuai dengan pengaturan retensi Sentry.</li>
                 <li><strong>Email dan masukan.</strong> Kami menahan komunikasi ini selama diperlukan untuk menangani permintaanmu, lalu menghapusnya ketika tidak lagi dibutuhkan.</li>
             </ul>
             <p class="feature-text">
-                Karena analitik dan laporan crash tidak terikat ke akun atau pengenal pengunjung persisten, kami tidak dapat mengidentifikasi atau menghapus data Amplitude, PostHog, atau Sentry milik orang tertentu.
+                Analitik aplikasi menggunakan pengenal yang dibuat secara acak dan dapat menyertakan Android App Set ID, bukan akun Mindrink atau nama maupun email kamu. Analitik situs web menggunakan pengenal sementara di memori halaman. Laporan teknis dikumpulkan secara terpisah dan tidak ditautkan ke nama atau email kamu.
             </p>
 
             <h2 class="feature-title">Penghapusan</h2>
@@ -216,7 +216,7 @@
                 Untuk meminta penghapusan email atau masukan yang kamu kirim, hubungi <a href="mailto:philip.mindrink@gmail.com" class="footer-link">philip.mindrink@gmail.com</a>.
             </p>
             <p class="feature-text">
-                Kami tidak dapat menghapus data Amplitude, PostHog, atau Sentry milik orang tertentu. Data itu tidak terikat ke akun atau pengenal pengunjung persisten.
+                Karena data analitik dan laporan teknis tidak ditautkan ke nama atau email kamu, kami tidak dapat mengidentifikasi data atau laporan mana yang merupakan milik kamu maupun menghapusnya saat kamu menghubungi kami.
             </p>
 
             <h2 class="feature-title">Keamanan</h2>

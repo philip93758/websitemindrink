@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+    .home-page .home-hero h1 { font-size: 28px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 26px; }
+}
+@media (max-width: 359px) {
+    .home-page .home-hero h1 { font-size: 24px; }
+    .home-page .home-product h2, .home-page .home-product h3 { font-size: 25px; }
+    .home-page .home-hero-copy { margin-top: 10px; font-size: 15px; line-height: 1.5; }
+    .home-page .home-analysis-copy .home-section-intro, .home-page .home-logging-copy .home-section-intro { font-size: 15px; line-height: 1.5; }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+    .home-page .nav { gap: 14px; }
+    .home-page .nav-link { font-size: 14px; white-space: nowrap; }
+}
