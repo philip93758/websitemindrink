@@ -421,7 +421,7 @@
         "<h3 class=\"feature-title\">WHO — Globaler Statusbericht zu Alkohol und Gesundheit</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Risikoschwellenwerte für Alkoholkonsum</h3>"
       ],
-      "structureHash": "d953f62bb4ab0a3bdf3a344f73b2960e9c3834a1ac9d8dee9d1040dae50bfb0b",
+      "structureHash": "14809f6b84afb2625f24d482978c3e9fef0227be6d7040a3832b265fb5daaf2d",
       "links": [
         "/de/",
         "/de/discover/",
@@ -489,7 +489,7 @@
         "<h2>FAQ</h2>",
         "<h2>Den Wochenrhythmus verstehen</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "8abe0700c745bde86210a26aeb0a1a9912b9f36e01a5113bf2932dba63065065",
       "links": [
         "/de/",
         "/de/discover/",
@@ -578,7 +578,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Was das für Nutzer bedeutet</h3>",
         "<h2 class=\"feature-title\">Der nächste Schritt: Wie kann ich über mein Trinkverhalten nachdenken – ganz ohne Schuldgefühle?</h2>"
       ],
-      "structureHash": "44fdca39d1dd8a675b0dac84f9449004646fc7c64052722a94adc085f8ab1cae",
+      "structureHash": "baa6ab660723b2fd024f1cc4639b3baaea04188e5a4844121a5034b9134e6b16",
       "links": [
         "/de/",
         "/de/discover/",
@@ -676,7 +676,7 @@
         "<h3 class=\"feature-title\">OMS — Global Status Report on Alcohol and Health</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Seuils de risque pour la consommation d’alcool</h3>"
       ],
-      "structureHash": "73dd42a0b310671c80e3347c8a900c0e9750c1e7445af2ed705379d284d4ba96",
+      "structureHash": "8c963d90b5492d5f52dc9f2da21052fa14cae2a31f0ba32665ac633b2c38a959",
       "links": [
         "/fr/",
         "/fr/discover/",
@@ -742,7 +742,7 @@
         "<h2>FAQ</h2>",
         "<h2>Comprendre la forme de la semaine</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "babb68bd6079473ab64fd22430e94182ebc62cbd5a7d218e417635a3a8b9b548",
       "links": [
         "/fr/",
         "/fr/discover/",
@@ -829,7 +829,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Ce que cela change pour vous</h3>",
         "<h2 class=\"feature-title\">Et après ? Réfléchir à ses habitudes sans jugement</h2>"
       ],
-      "structureHash": "273af8d48aeec21e13920657e93ec5faf2f1bc74fadb697629395407fd87fe8c",
+      "structureHash": "b12bf699ffdc8f6abce2da3cb70884f93f9c20d7910d2c36e78133d6be16d5c3",
       "links": [
         "/fr/",
         "/fr/discover/",
@@ -926,7 +926,7 @@
         "<h3 class=\"feature-title\">OMS — Informe mundial sobre el estado del alcohol y la salud</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Umbrales de Riesgo para el Consumo de Alcohol</h3>"
       ],
-      "structureHash": "2c9992ac73994620bb1c0cb59f85e959bafe6043c375240f717452f6f20ac046",
+      "structureHash": "1bca31a0e86fe1feae19b564bd4fcde6c28c50473333f9db3c48fed454c3180e",
       "links": [
         "/es/",
         "/es/discover/",
@@ -993,7 +993,7 @@
         "<h2>FAQ</h2>",
         "<h2>Comprender el patrón de consumo semanal</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "a32a82bf91cc760ef237ac92aa198f7f78ca876fb5edbc12a15ac47ac4e4b772",
       "links": [
         "/es/",
         "/es/discover/",
@@ -1081,7 +1081,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Lo que significa para los usuarios</h3>",
         "<h2 class=\"feature-title\">Un siguiente paso natural: reflexionar sobre tus hábitos sin juicio</h2>"
       ],
-      "structureHash": "35b98bf4d1528942a3f5f080a867eb089be0a42c446e5aba5a400108fbccec57",
+      "structureHash": "4517a825548dcd5d49a277be120ae5f5517af18c03e31dbb00570e64bc539405",
       "links": [
         "/es/",
         "/es/discover/",
@@ -1178,7 +1178,7 @@
         "<h3 class=\"feature-title\">OMS — Relatório global sobre álcool e saúde</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Limiares de risco para consumo de álcool</h3>"
       ],
-      "structureHash": "f7b2fcb5a41b151b9ae055df810e71951729a1a58b70592158104d4955dd4ba0",
+      "structureHash": "53aa15747b5a6f281865ed0cb17723572ffbb3f8f853c3c207d0e1e4bc0f6432",
       "links": [
         "/pt/",
         "/pt/discover/",
@@ -1245,7 +1245,7 @@
         "<h2>FAQ</h2>",
         "<h2>Compreender o padrão de consumo semanal</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "4efc4f0885f1c0ec66ee0d78d651e60662c6956956fe8711f1b733a5fe2a170f",
       "links": [
         "/pt/",
         "/pt/discover/",
@@ -1333,7 +1333,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">O que isso significa para os usuários</h3>",
         "<h2 class=\"feature-title\">Um próximo passo natural: refletir sobre seus hábitos sem julgamento</h2>"
       ],
-      "structureHash": "35b98bf4d1528942a3f5f080a867eb089be0a42c446e5aba5a400108fbccec57",
+      "structureHash": "d2501cce70b74991b5055872575ef52fcc5bdf876a86659845cb4fb1a9d4e26a",
       "links": [
         "/pt/",
         "/pt/discover/",
@@ -1437,7 +1437,7 @@
         "<h3 class=\"feature-title\">OMS — Global Status Report on Alcohol and Health</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Soglie di rischio per il consumo di alcol</h3>"
       ],
-      "structureHash": "23572cfb8c6dbc702c71679ca71a6c89515fa063e74fe0df85f4efaa75201dff",
+      "structureHash": "e91be4ad80a7828dc9a03aeb6313fc3dd5c7a2955718b63554766bbbc9f70650",
       "links": [
         "/it/",
         "/it/discover/",
@@ -1508,7 +1508,7 @@
         "<h2>FAQ</h2>",
         "<h2>Comprendere l'andamento settimanale</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "e363e04bcce433b67c11122565352230cae9e5eb5b2e31935690d5545e31ff39",
       "links": [
         "/it/",
         "/it/discover/",
@@ -1771,7 +1771,7 @@
         "<h2>FAQ</h2>",
         "<h2>1週間の飲酒パターンを理解する</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "b176be2c2347940272181cb6dfef16cb32e1671d379e5be0bcff692e14270d6d",
       "links": [
         "/ja/",
         "/ja/discover/",
@@ -1955,7 +1955,7 @@
         "<h3 class=\"feature-title\">WHO — Laporan status global tentang alkohol dan kesehatan</h3>",
         "<h3 class=\"feature-title\">Lancet (2018) — Ambang batas risiko untuk konsumsi alkohol</h3>"
       ],
-      "structureHash": "f7b2fcb5a41b151b9ae055df810e71951729a1a58b70592158104d4955dd4ba0",
+      "structureHash": "a1808a7404efae6a27bd29be41e1a5da357d5721f1a3c40a26b103147d811540",
       "links": [
         "/id/",
         "/id/discover/",
@@ -2021,7 +2021,7 @@
         "<h2>FAQ</h2>",
         "<h2>Pahami pola mingguan</h2>"
       ],
-      "structureHash": "45e028f468eebe4037bd841a621d1df00dcf28b036f81a1e0cb8955c7edc425d",
+      "structureHash": "69bfed4278d61594810be89ff6a0686fb755d616406c1fe2a258f328f8185692",
       "links": [
         "/id/",
         "/id/discover/",
@@ -2108,7 +2108,7 @@
         "<h3 class=\"feature-title\" style=\"font-size: 18px; margin-top: 24px; margin-bottom: 12px;\">Apa artinya bagi pengguna</h3>",
         "<h2 class=\"feature-title\">Langkah berikutnya yang alami: merefleksikan kebiasaan tanpa menghakimi</h2>"
       ],
-      "structureHash": "35b98bf4d1528942a3f5f080a867eb089be0a42c446e5aba5a400108fbccec57",
+      "structureHash": "9a25152da3d9eb86355f15d5e8ef28f3a56184f2dcb8f8962c51d38c11e40e87",
       "links": [
         "/id/",
         "/id/discover/",

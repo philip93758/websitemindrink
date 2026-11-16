@@ -9,6 +9,10 @@ const root = resolve(__dirname, '..');
 const origin = 'http://127.0.0.1:4175';
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const locales = ['en','de','es','fr','id','it','ja','pt'];
+const calculatorMenuLabels = {
+  en:'Toggle menu', de:'Menü öffnen', es:'Abrir menú', fr:'Afficher le menu',
+  id:'Buka menu', it:'Apri menu', ja:'メニューを開く', pt:'Abrir menu',
+};
 
 (async () => {
   const channel = process.env.MINDRINK_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : undefined);
@@ -39,6 +43,46 @@ const locales = ['en','de','es','fr','id','it','ja','pt'];
     page.on('pageerror', e => errors.push(e.message));
     for (const locale of locales) {
       const prefix = locale === 'en' ? '/' : `/${locale}/`;
+      for (const path of ['alcohol-unit-calculator/', 'about.html', 'blog/', 'science/', 'discover/']) {
+      for (const width of [390, 1280]) await check(`${locale}/${path}${width}: keyboard navigation and menu accessibility`, async () => {
+        await page.setViewportSize({width,height:844});
+        await page.goto(origin + prefix + path);
+        const menu = page.locator('.menu-toggle');
+        const nav = page.locator('header .nav');
+        assert.equal(await menu.count(), 1);
+        assert.equal(await menu.getAttribute('aria-label'), calculatorMenuLabels[locale]);
+        assert.equal(await menu.getAttribute('aria-expanded'), 'false');
+        if (width < 768) {
+          assert.ok(await menu.isVisible());
+          assert.equal(await page.getByRole('button', {name:calculatorMenuLabels[locale], exact:true}).count(), 1);
+          assert.ok(!(await nav.isVisible()));
+          for (let i = 0; i < 12 && !(await menu.evaluate(el => el === document.activeElement)); i++) {
+            await page.keyboard.press('Tab');
+          }
+          assert.ok(await menu.evaluate(el => el === document.activeElement), 'menu toggle must be reachable by Tab');
+          await page.keyboard.press('Enter');
+          assert.equal(await menu.getAttribute('aria-expanded'), 'true');
+          await nav.waitFor({state:'visible'});
+          await page.keyboard.press('Space');
+          assert.equal(await menu.getAttribute('aria-expanded'), 'false');
+          await nav.waitFor({state:'hidden'});
+          await page.keyboard.press('Space');
+          assert.equal(await menu.getAttribute('aria-expanded'), 'true');
+          await nav.waitFor({state:'visible'});
+          await page.keyboard.press('Shift+Tab');
+          assert.ok(await page.evaluate(() => !!document.activeElement.closest('header .nav')), 'open menu must be keyboard reachable');
+        } else {
+          assert.ok(!(await menu.isVisible()));
+          assert.ok(await nav.isVisible());
+          let focusedNav = false;
+          for (let i = 0; i < 12 && !focusedNav; i++) {
+            await page.keyboard.press('Tab');
+            focusedNav = await page.evaluate(() => !!document.activeElement.closest('header .nav'));
+          }
+          assert.ok(focusedNav, 'desktop navigation must be reachable by Tab');
+        }
+      });
+      }
       await check(`${locale}: real decimal typing, editing, limits and presets`, async () => {
         await page.goto(origin + prefix + 'alcohol-unit-calculator/');
         await page.waitForFunction(() => document.querySelector('#selected-global').textContent.replace(',', '.') === '2.0');
