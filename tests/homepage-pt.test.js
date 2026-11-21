@@ -20,7 +20,7 @@ test('Portuguese homepage keeps its offer, practical answers and privacy distinc
 test('Portuguese navigation and resources keep their localized destinations', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Por que Mindrink'], ['#how-it-works', 'Como funciona'], ['/pt/discover/', 'Descobrir'], ['/pt/science/', 'Ci\u00eancia'], ['/pt/about.html', 'Sobre'],
+        ['/pt/discover/', 'Descobrir'], ['/pt/science/', 'Ci\u00eancia'], ['/pt/about.html', 'Sobre'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/pt\/" class="language-option is-active" aria-current="page"/);

@@ -21,7 +21,7 @@ test('Japanese homepage keeps its offer, practical answers and privacy distincti
 test('Japanese navigation and resources keep their localized destinations', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', '私たちの考え方'], ['#how-it-works', '使い方'], ['/ja/discover/', 'ガイド'], ['/ja/science/', '科学'], ['/ja/about.html', 'Mindrinkについて'],
+        ['/ja/discover/', 'ガイド'], ['/ja/science/', '科学'], ['/ja/about.html', 'Mindrinkについて'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/ja\/" class="language-option is-active" aria-current="page"/);

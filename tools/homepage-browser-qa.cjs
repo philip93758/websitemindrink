@@ -8,14 +8,14 @@ const root = resolve(__dirname, '..');
 const origin = 'http://127.0.0.1:4181';
 const locale = process.env.MINDRINK_HOMEPAGE_LOCALE || 'en';
 const copy = {
-    en: { path: '/', heading: 'Mindrink: a free alcohol tracker', menu: 'Toggle menu', how: 'How it works', discover: 'Discover', nav: ['Why Mindrink', 'How it works', 'Discover', 'Science', 'About'] },
-    fr: { path: '/fr/', heading: 'Mindrink : suivi gratuit de la consommation d\u2019alcool', menu: 'Afficher le menu', how: 'Comment \u00e7a marche', discover: 'D\u00e9couvrir', nav: ['Pourquoi Mindrink', 'Comment \u00e7a marche', 'D\u00e9couvrir', 'Science', '\u00c0 propos'] },
-    de: { path: '/de/', heading: 'Mindrink: ein kostenloser Alkohol-Tracker', menu: 'Men\u00fc \u00f6ffnen', how: 'So funktioniert es', discover: 'Entdecken', nav: ['Warum Mindrink', 'So funktioniert es', 'Entdecken', 'Wissenschaft', '\u00dcber uns'] },
-    es: { path: '/es/', heading: 'Mindrink: registro gratuito de consumo de alcohol', menu: 'Abrir men\u00fa', how: 'C\u00f3mo funciona', discover: 'Descubrir', nav: ['Por qu\u00e9 Mindrink', 'C\u00f3mo funciona', 'Descubrir', 'Ciencia', 'Acerca de'] },
-    pt: { path: '/pt/', heading: 'Mindrink: acompanhamento gratuito do consumo de \u00e1lcool', menu: 'Abrir menu', how: 'Como funciona', discover: 'Descobrir', nav: ['Por que Mindrink', 'Como funciona', 'Descobrir', 'Ci\u00eancia', 'Sobre'] },
-    id: { path: '/id/', heading: 'Mindrink: pelacak konsumsi alkohol gratis', menu: 'Buka menu', how: 'Cara kerja', discover: 'Jelajahi', nav: ['Mengapa Mindrink', 'Cara kerja', 'Jelajahi', 'Sains', 'Tentang'] },
-    it: { path: '/it/', heading: 'Mindrink: un tracker gratuito del consumo di alcol', menu: 'Apri menu', how: 'Come funziona', discover: 'Scopri', nav: ['Perch\u00e9 Mindrink', 'Come funziona', 'Scopri', 'Scienza', 'Chi siamo'] },
-    ja: { path: '/ja/', heading: 'Mindrink：無料の飲酒記録アプリ', menu: 'メニューを開く', how: '使い方', discover: 'ガイド', nav: ['私たちの考え方', '使い方', 'ガイド', '科学', 'Mindrinkについて'] },
+    en: { path: '/', heading: 'Mindrink: a free alcohol tracker', menu: 'Toggle menu', nav: ['Discover', 'Science', 'About'] },
+    fr: { path: '/fr/', heading: 'Mindrink : suivi gratuit de la consommation d\u2019alcool', menu: 'Afficher le menu', nav: ['D\u00e9couvrir', 'Science', '\u00c0 propos'] },
+    de: { path: '/de/', heading: 'Mindrink: ein kostenloser Alkohol-Tracker', menu: 'Men\u00fc \u00f6ffnen', nav: ['Entdecken', 'Wissenschaft', '\u00dcber uns'] },
+    es: { path: '/es/', heading: 'Mindrink: registro gratuito de consumo de alcohol', menu: 'Abrir men\u00fa', nav: ['Descubrir', 'Ciencia', 'Acerca de'] },
+    pt: { path: '/pt/', heading: 'Mindrink: acompanhamento gratuito do consumo de \u00e1lcool', menu: 'Abrir menu', nav: ['Descobrir', 'Ci\u00eancia', 'Sobre'] },
+    id: { path: '/id/', heading: 'Mindrink: pelacak konsumsi alkohol gratis', menu: 'Buka menu', nav: ['Jelajahi', 'Sains', 'Tentang'] },
+    it: { path: '/it/', heading: 'Mindrink: un tracker gratuito del consumo di alcol', menu: 'Apri menu', nav: ['Scopri', 'Scienza', 'Chi siamo'] },
+    ja: { path: '/ja/', heading: 'Mindrink：無料の飲酒記録アプリ', menu: 'メニューを開く', nav: ['ガイド', '科学', 'Mindrinkについて'] },
 }[locale];
 assert.ok(copy, 'Homepage browser checks require a supported locale');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.jpg': 'image/jpeg' };
@@ -142,7 +142,7 @@ async function main() {
                         }).map(element => element.className || element.tagName),
                         closingStores: [...document.querySelectorAll('#download .home-store-link')].map(box),
                         facts: box(document.querySelector('.home-download-facts')),
-                        headerLinks: [...document.querySelectorAll('.nav > .nav-link')].map(link => link.textContent),
+                        headerLinks: [...document.querySelectorAll('#main-nav > a')].map(link => [link.textContent, link.getAttribute('href')]),
                         headerBrand: box(document.querySelector('.logo-section')),
                         headerNav: box(document.querySelector('.nav')),
                     };
@@ -163,8 +163,8 @@ async function main() {
                 assert.ok(result.artworkAlpha.base > 200, 'Bench artwork reaches the bottom of its image');
                 assert.ok(result.phones.every(box => box.width === (width < 768 ? 260 : 280)));
                 assert.deepEqual(result.sections, ['home', 'how-it-works', 'questions', 'why-mindrink', 'resources', 'download']);
-                assert.deepEqual(result.headerLinks, copy.nav);
-                if (locale === 'de' && width >= 768) assert.ok(result.headerNav.left - result.headerBrand.right >= 12, 'Long German navigation labels leave space around the brand');
+                assert.deepEqual(result.headerLinks, copy.nav.map((label, index) => [label, copy.path + ['discover/', 'science/', 'about.html'][index]]));
+                if (width >= 768) assert.ok(result.headerNav.left - result.headerBrand.right >= 12, 'Desktop navigation leaves space around the brand');
                 assert.ok(result.assets);
                 if (width >= 768) assert.ok(result.analyticsHeading.top <= result.screen.top + 40 && result.analyticsHeading.bottom < height, 'Complete desktop analytics heading visible in first screen');
                 if (width >= 768) {
@@ -237,28 +237,59 @@ async function main() {
             const { context, page } = await setup(390, 844);
             try {
                 const menu = page.getByRole('button', { name: copy.menu });
-                await menu.click();
+                const nav = page.locator('#main-nav');
+                const brand = page.locator('header .logo-section a');
+                const languages = nav.locator('.language-toggle');
+                const links = nav.locator(':scope > a');
+                const tabTo = async element => {
+                    await page.keyboard.press('Tab');
+                    assert.ok(await element.evaluate(node => node === document.activeElement && node.matches(':focus-visible') && getComputedStyle(node).outlineStyle === 'solid'));
+                };
+                assert.equal(await brand.getAttribute('href'), copy.path);
+                await brand.focus();
+                await tabTo(menu);
+                await page.keyboard.press('Enter');
                 assert.equal(await menu.getAttribute('aria-expanded'), 'true');
+                await nav.waitFor({ state: 'visible' });
+                for (const link of await links.all()) await tabTo(link);
+                await tabTo(languages);
+                await page.keyboard.press('Enter');
+                const options = nav.locator('.language-option');
+                assert.deepEqual(await options.evaluateAll(items => items.map(link => link.getAttribute('href'))), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
+                await tabTo(options.first());
                 await page.keyboard.press('Escape');
                 assert.equal(await menu.getAttribute('aria-expanded'), 'false');
                 assert.ok(await menu.evaluate(element => element === document.activeElement));
-                await menu.click();
-                await page.locator('.nav').getByRole('link', { name: copy.how, exact: true }).click();
-                assert.equal(await menu.getAttribute('aria-expanded'), 'false');
-                await page.waitForFunction(() => Math.abs(document.getElementById('how-it-works').getBoundingClientRect().top - 88) < 2);
-                await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-                await menu.click();
-                await page.locator('.language-toggle').click();
-                assert.deepEqual(await page.locator('.language-option').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
-                await page.keyboard.press('Escape');
-                await page.setViewportSize({ width: 1440, height: 900 });
-                await page.waitForFunction(() => getComputedStyle(document.querySelector('.menu-toggle')).display === 'none');
-                assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'false');
-                await page.locator('#why-mindrink a').focus();
-                for (const link of await page.locator('.home-resource-links a, #download .home-store-link').all()) {
-                    await page.keyboard.press('Tab');
-                    assert.ok(await link.evaluate(element => element === document.activeElement && element.matches(':focus-visible') && getComputedStyle(element).outlineStyle === 'solid'));
+                await nav.waitFor({ state: 'hidden' });
+                await tabTo(page.locator('#home .home-store-link').first());
+
+                for (const width of [390, 1440]) {
+                    await page.setViewportSize({ width, height: 844 });
+                    if (width === 1440) {
+                        assert.ok(!await menu.isVisible());
+                        await brand.focus();
+                        for (const link of await links.all()) await tabTo(link);
+                        await tabTo(languages);
+                        await page.keyboard.press('Space');
+                        await tabTo(options.first());
+                        await page.keyboard.press('Escape');
+                        assert.ok(await languages.evaluate(node => node === document.activeElement));
+                    }
+                    for (const id of ['why-mindrink', 'how-it-works']) {
+                        const fragment = copy.path + '#' + id;
+                        const footerLink = page.locator('footer a[href="' + fragment + '"]');
+                        await footerLink.press('Enter');
+                        await page.waitForURL(origin + fragment);
+                        await page.waitForFunction(id => {
+                            const target = document.querySelector(':target');
+                            if (target?.id !== id) return false;
+                            const top = target.getBoundingClientRect().top;
+                            return top >= document.querySelector('.header').getBoundingClientRect().bottom - 1 && top < innerHeight;
+                        }, id);
+                    }
                 }
+                await page.locator('#why-mindrink a').focus();
+                for (const link of await page.locator('.home-resource-links a, #download .home-store-link').all()) await tabTo(link);
             } finally { await context.close(); }
         }
         {
@@ -282,7 +313,9 @@ async function main() {
             try {
                 assert.equal(await page.locator('.home-store-link').count(), 4);
                 assert.ok(await page.getByRole('heading', { level: 1 }).isVisible());
-                if (mode === 'no-js') assert.ok(await page.locator('.nav').getByRole('link', { name: copy.discover, exact: true }).isVisible());
+                if (mode === 'no-js') {
+                    for (const link of await page.locator('#main-nav > a').all()) assert.ok(await link.isVisible());
+                }
                 else {
                     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
                     assert.deepEqual(await page.evaluate(() => window.__events), []);

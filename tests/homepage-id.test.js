@@ -21,7 +21,7 @@ test('Indonesian homepage keeps its offer, practical answers and privacy distinc
 test('Indonesian navigation and resources keep their localized destinations', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Mengapa Mindrink'], ['#how-it-works', 'Cara kerja'], ['/id/discover/', 'Jelajahi'], ['/id/science/', 'Sains'], ['/id/about.html', 'Tentang'],
+        ['/id/discover/', 'Jelajahi'], ['/id/science/', 'Sains'], ['/id/about.html', 'Tentang'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/id\/" class="language-option is-active" aria-current="page"/);

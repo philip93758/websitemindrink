@@ -20,7 +20,7 @@ test('Italian homepage keeps its offer, practical answers and privacy distinctio
 test('Italian navigation and resources keep their localized destinations', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Perch\u00e9 Mindrink'], ['#how-it-works', 'Come funziona'], ['/it/discover/', 'Scopri'], ['/it/science/', 'Scienza'], ['/it/about.html', 'Chi siamo'],
+        ['/it/discover/', 'Scopri'], ['/it/science/', 'Scienza'], ['/it/about.html', 'Chi siamo'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/it\/" class="language-option is-active" aria-current="page"/);

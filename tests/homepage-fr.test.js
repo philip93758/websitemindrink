@@ -31,7 +31,6 @@ test('French homepage delivers localized product copy and the same six visible s
 test('French navigation and contextual links keep visitors in their selected language', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Pourquoi Mindrink'], ['#how-it-works', 'Comment \u00e7a marche'],
         ['/fr/discover/', 'D\u00e9couvrir'], ['/fr/science/', 'Science'], ['/fr/about.html', '\u00c0 propos'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);

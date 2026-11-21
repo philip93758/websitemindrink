@@ -31,7 +31,6 @@ test('German homepage exposes its offer and all four practical answers in the ap
 test('German navigation preserves its existing labels and all contextual destinations remain German', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Warum Mindrink'], ['#how-it-works', 'So funktioniert es'],
         ['/de/discover/', 'Entdecken'], ['/de/science/', 'Wissenschaft'], ['/de/about.html', '\u00dcber uns'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);

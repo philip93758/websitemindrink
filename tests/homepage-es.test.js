@@ -20,7 +20,7 @@ test('Spanish homepage keeps the approved sections and practical answers visible
 test('Spanish homepage preserves navigation, localized resources and language routes', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [
-        ['#why-mindrink', 'Por qu\u00e9 Mindrink'], ['#how-it-works', 'C\u00f3mo funciona'], ['/es/discover/', 'Descubrir'], ['/es/science/', 'Ciencia'], ['/es/about.html', 'Acerca de'],
+        ['/es/discover/', 'Descubrir'], ['/es/science/', 'Ciencia'], ['/es/about.html', 'Acerca de'],
     ]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.match(nav, /href="\/es\/" class="language-option is-active" aria-current="page"/);

@@ -39,7 +39,7 @@ test('store badges preserve the existing event selector and placement contract',
 
 test('homepage keeps the existing navigation, language routes and useful resource destinations', () => {
     const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
-    assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [['#why-mindrink', 'Why Mindrink'], ['#how-it-works', 'How it works'], ['/discover/', 'Discover'], ['/science/', 'Science'], ['/about.html', 'About']]);
+    assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="nav-link">([^<]+)<\/a>/g)].map(match => [match[1], match[2]]), [['/discover/', 'Discover'], ['/science/', 'Science'], ['/about.html', 'About']]);
     assert.deepEqual([...nav.matchAll(/<a href="([^"]+)" class="language-option/g)].map(match => match[1]), ['/', '/fr/', '/de/', '/es/', '/pt/', '/id/', '/it/', '/ja/']);
     assert.deepEqual([...section('resources').matchAll(/<a href="([^"]+)"/g)].map(match => match[1]), ['/alcohol-unit-calculator/', '/alcohol-units.html', '/dry-day.html', '/reduce-drinking.html']);
     assert.match(html, /<link rel="canonical" href="https:\/\/mindrink.me\/">/);
