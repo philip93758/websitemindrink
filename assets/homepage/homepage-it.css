@@ -13,3 +13,7 @@
     .home-page .home-product h2, .home-page .home-product h3 { font-size: 25px; }
     .home-page .home-hero-copy { margin-top: 10px; font-size: 15px; line-height: 1.5; }
 }
+@media (max-width: 319px) {
+    .home-page .home-hero-facts { flex-wrap: wrap; column-gap: 12px; }
+    .home-page .home-hero-facts li + li::before { content: none; }
+}

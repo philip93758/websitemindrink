@@ -8,6 +8,9 @@
     .home-page .home-hero-copy { margin-top: 10px; font-size: 15px; line-height: 1.5; }
     .home-page .home-analysis-copy .home-section-intro, .home-page .home-logging-copy .home-section-intro { font-size: 15px; line-height: 1.5; }
 }
+@media (max-width: 319px) {
+    .home-page .home-resources-section h2, .home-page .home-download h2 { font-size: 26px; overflow-wrap: anywhere; }
+}
 @media (min-width: 768px) and (max-width: 900px) {
     .home-page .nav { gap: 14px; }
     .home-page .nav-link { font-size: 14px; white-space: nowrap; }

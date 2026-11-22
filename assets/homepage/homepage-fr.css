@@ -9,3 +9,8 @@
     .home-page .home-hero-facts li { flex: none; }
     .home-page .home-hero-facts li + li::before { margin-right: 4px; }
 }
+@media (max-width: 319px) {
+    .home-page .home-hero-facts { flex-wrap: wrap; column-gap: 12px; }
+    .home-page .home-hero-facts li + li::before { content: none; }
+    .home-page .home-resources-section h2 { font-size: 26px; overflow-wrap: anywhere; }
+}

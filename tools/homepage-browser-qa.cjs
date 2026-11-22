@@ -236,6 +236,20 @@ async function main() {
         {
             const { context, page } = await setup(240, 450);
             try {
+                const layout = await page.evaluate(() => {
+                    const { clientWidth, scrollWidth } = document.documentElement;
+                    const range = document.createRange();
+                    const clippedText = [...document.querySelectorAll('.home-hero-facts li, #resources-title, #download-title')]
+                        .filter(element => {
+                            range.selectNodeContents(element);
+                            return [...range.getClientRects()].some(rect => rect.left < -1 || rect.right > clientWidth + 1);
+                        })
+                        .map(element => element.textContent);
+                    return { clientWidth, scrollWidth, clippedText };
+                });
+                assert.equal(layout.scrollWidth, layout.clientWidth, 'Homepage has no horizontal overflow at 240 CSS pixels');
+                assert.deepEqual(layout.clippedText, [], 'Hero facts and headings are not clipped at either edge');
+
                 const badges = await page.locator('#home .home-store-link').all();
                 assert.equal(badges.length, 2);
                 const tops = [];
