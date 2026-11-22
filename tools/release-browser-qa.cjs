@@ -3,8 +3,10 @@
 // screenshots use MINDRINK_QA_SCREENSHOT_DIR for authoring review.
 const { chromium } = require(process.env.MINDRINK_PLAYWRIGHT_MODULE || 'playwright');
 const assert = require('node:assert/strict');
-const { readFileSync } = require('node:fs');
+const { mkdtempSync, readFileSync, rmdirSync, rmSync, writeFileSync } = require('node:fs');
+const { tmpdir } = require('node:os');
 const { resolve, join, extname, sep } = require('node:path');
+const { checkHomepageReflow } = require('./homepage-reflow-qa.cjs');
 const root = resolve(__dirname, '..');
 const origin = 'http://127.0.0.1:4175';
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
@@ -14,7 +16,74 @@ const calculatorMenuLabels = {
   id:'Buka menu', it:'Apri menu', ja:'メニューを開く', pt:'Abrir menu',
 };
 
+async function serveFiles(context, missing) {
+  await context.route('**/*', async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) return route.abort();
+    let path = resolve(root, '.' + decodeURIComponent(url.pathname));
+    if (path !== root && !path.startsWith(root + sep)) return route.abort();
+    if (url.pathname.endsWith('/')) path = join(path, 'index.html');
+    try {
+      const body = readFileSync(path);
+      // Delayed figure responses exercise cold loading, not only warm layout.
+      if (url.pathname.startsWith('/assets/science/')) await new Promise(r => setTimeout(r, 350));
+      await route.fulfill({body, contentType:types[extname(path)] || 'application/octet-stream'});
+    } catch { missing.push(url.pathname); await route.fulfill({status:404,body:''}); }
+  });
+}
+
+async function checkNativeHomepageZoom() {
+  // Native tab zoom needs a disposable profile and a permission-free extension.
+  const extension = mkdtempSync(join(tmpdir(), 'homepage-zoom-qa-'));
+  const manifest = join(extension, 'manifest.json');
+  const workerFile = join(extension, 'worker.js');
+  let context;
+  try {
+    writeFileSync(manifest, JSON.stringify({
+      name: 'Homepage Zoom QA', version: '1.0', manifest_version: 3,
+      background: { service_worker: 'worker.js' },
+    }));
+    writeFileSync(workerFile, 'chrome.runtime.onInstalled.addListener(() => {});');
+    context = await chromium.launchPersistentContext('', {
+      channel: 'chromium', headless: true, serviceWorkers: 'block', acceptDownloads: false,
+      args: ['--disable-extensions-except=' + extension, '--load-extension=' + extension],
+    });
+    const missing = [];
+    await serveFiles(context, missing);
+    await context.routeWebSocket('**/*', socket => socket.close());
+    const worker = context.serviceWorkers()[0] || await context.waitForEvent('serviceworker', { timeout: 8000 });
+    const page = context.pages()[0] || await context.newPage();
+    const results = [];
+    for (const locale of locales) {
+      for (const width of [240, 320]) {
+        await page.setViewportSize({ width: width * 2, height: 900 });
+        await page.goto(origin + (locale === 'en' ? '/' : '/' + locale + '/'));
+        const zoom = await worker.evaluate(async () => {
+          const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+          await chrome.tabs.setZoom(tab.id, 2);
+          return chrome.tabs.getZoom(tab.id);
+        });
+        assert.equal(zoom, 2, 'Chromium must report 200% native tab zoom');
+        await page.waitForFunction(expected => innerWidth === expected, width);
+        await checkHomepageReflow(page, width);
+        results.push({ locale, zoom, width });
+      }
+    }
+    assert.deepEqual(missing, []);
+    console.log(JSON.stringify({ passed: results.length, results }, null, 2));
+  } finally {
+    try {
+      await context?.close();
+    } finally {
+      rmSync(manifest, { force: true });
+      rmSync(workerFile, { force: true });
+      rmdirSync(extension);
+    }
+  }
+}
+
 (async () => {
+  if (process.argv.includes('--native-zoom')) return checkNativeHomepageZoom();
   const channel = process.env.MINDRINK_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : undefined);
   const browser = await chromium.launch({ headless:true, ...(channel ? {channel} : {}) });
   const failures = [], errors = [], missing = [];
@@ -25,19 +94,7 @@ const calculatorMenuLabels = {
   }
   try {
     const context = await browser.newContext({ viewport:{width:390,height:844}, serviceWorkers:'block' });
-    await context.route('**/*', async route => {
-      const url = new URL(route.request().url());
-      if (url.origin !== origin) return route.abort();
-      let path = resolve(root, '.' + decodeURIComponent(url.pathname));
-      if (path !== root && !path.startsWith(root + sep)) return route.abort();
-      if (url.pathname.endsWith('/')) path = join(path, 'index.html');
-      try {
-        const body = readFileSync(path);
-        // Delayed figure responses exercise cold loading, not only warm layout.
-        if (url.pathname.startsWith('/assets/science/')) await new Promise(r => setTimeout(r, 350));
-        await route.fulfill({body, contentType:types[extname(path)] || 'application/octet-stream'});
-      } catch { missing.push(url.pathname); await route.fulfill({status:404,body:''}); }
-    });
+    await serveFiles(context, missing);
     const page = await context.newPage();
     page.setDefaultTimeout(8000);
     page.on('pageerror', e => errors.push(e.message));
@@ -154,6 +211,11 @@ const calculatorMenuLabels = {
         await page.goto(origin+prefix); await page.locator('.logo-section a').click();
         assert.equal(new URL(page.url()).pathname, prefix);
         assert.equal(await page.locator('html').getAttribute('lang'), locale);
+      });
+      for (const width of [240, 320]) await check(`${locale}: homepage text and store badges fit at ${width} CSS px`, async () => {
+        await page.setViewportSize({ width, height: 450 });
+        await page.goto(origin + prefix);
+        await checkHomepageReflow(page, width);
       });
       for (const width of [320,390,768,1280]) await check(`${locale}/science/${width}: overview reflow, hierarchy and localized journeys`, async () => {
         await page.setViewportSize({width,height:844});

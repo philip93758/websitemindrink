@@ -3,6 +3,7 @@ const { chromium } = require(process.env.MINDRINK_PLAYWRIGHT_MODULE || 'playwrig
 const assert = require('node:assert/strict');
 const { readFileSync, mkdirSync } = require('node:fs');
 const { resolve, join, extname, sep } = require('node:path');
+const { checkHomepageReflow } = require('./homepage-reflow-qa.cjs');
 
 const root = resolve(__dirname, '..');
 const origin = 'http://127.0.0.1:4181';
@@ -236,50 +237,7 @@ async function main() {
         {
             const { context, page } = await setup(240, 450);
             try {
-                const layout = await page.evaluate(() => {
-                    const { clientWidth, scrollWidth } = document.documentElement;
-                    const range = document.createRange();
-                    const clippedText = [...document.querySelectorAll('.home-hero-facts li, #resources-title, #download-title')]
-                        .filter(element => {
-                            range.selectNodeContents(element);
-                            return [...range.getClientRects()].some(rect => rect.left < -1 || rect.right > clientWidth + 1);
-                        })
-                        .map(element => element.textContent);
-                    return { clientWidth, scrollWidth, clippedText };
-                });
-                assert.equal(layout.scrollWidth, layout.clientWidth, 'Homepage has no horizontal overflow at 240 CSS pixels');
-                assert.deepEqual(layout.clippedText, [], 'Hero facts and headings are not clipped at either edge');
-
-                const badges = await page.locator('#home .home-store-link').all();
-                assert.equal(badges.length, 2);
-                const tops = [];
-                for (const badge of badges) {
-                    tops.push(await badge.evaluate(link => {
-                        const button = link.getBoundingClientRect();
-                        const image = link.querySelector('img').getBoundingClientRect();
-                        const width = document.documentElement.clientWidth;
-                        if (button.left < 0 || button.right > width || image.left < button.left || image.right > button.right || image.width === 0) {
-                            throw new Error('Hero badge is clipped at 240 CSS pixels');
-                        }
-                        return button.top;
-                    }));
-                }
-                assert.ok(tops[0] < tops[1], 'Hero badges stack when a single row cannot fit');
-
-                for (let index = 0; index < 8; index++) {
-                    await page.keyboard.press('Tab');
-                    if (await badges[0].evaluate(link => link === document.activeElement)) break;
-                }
-                for (const [index, badge] of badges.entries()) {
-                    if (index > 0) await page.keyboard.press('Tab');
-                    assert.ok(await badge.evaluate(link => {
-                        const style = getComputedStyle(link);
-                        const ring = parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset);
-                        const rect = link.getBoundingClientRect();
-                        return link === document.activeElement && link.matches(':focus-visible') && style.outlineStyle === 'solid'
-                            && rect.left >= ring && rect.right + ring <= document.documentElement.clientWidth && scrollX === 0;
-                    }), 'Each hero badge is keyboard reachable with its full focus ring visible');
-                }
+                await checkHomepageReflow(page, 240);
             } finally { await context.close(); }
         }
         {
