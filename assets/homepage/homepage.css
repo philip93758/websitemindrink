@@ -148,7 +148,7 @@ body.home-page {
     .home-page .home-hero-copy { margin-inline: auto; }
     .home-page .home-hero .home-store-links, .home-page .home-hero-facts { justify-content: center; }
     .home-page .home-hero-artwork { position: relative; right: auto; bottom: auto; width: 220px; height: 220px; margin-top: 6px; }
-    .home-page .home-hero .home-store-links { gap: 0; flex-wrap: nowrap; }
+    .home-page .home-hero .home-store-links { gap: 0; }
     .home-page .home-hero .home-store-link.btn { height: 60px; flex: none; }
     .home-page .home-hero .home-store-link.home-apple { width: 126px; }
     .home-page .home-hero .home-apple img { width: 120px; height: 40px; }
